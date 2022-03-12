@@ -10,14 +10,16 @@ public class player : MonoBehaviour
     [SerializeField, Header("ジャンプ力"), Range(0, 10)]         float jump_power;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)] float mouse_max_y;
 
+    [SerializeField, Header("主人公のカメラ")] GameObject my_camera;
+
     //プライベート変数
     private Vector3 velocity;               //リジットボディの力
     private Rigidbody rb;                   //リジッドボディを取得するための変数
     private bool isGround = true;           //着地しているかどうかの判定
     private float mem_camera_rotato_y = 0;  //カメラのY軸回転記憶
-    private Transform _camTransform;        //cameraのtransform
-    private Vector3 _startMousePos;         //マウス操作の始点
-    private Vector3 _presentCamRotation;    //カメラ回転の始点情報
+    private Transform camTransform;         //cameraのtransform
+    private Vector3 startMousePos;          //マウス操作の始点
+    private Vector3 presentCamRotation;     //カメラ回転の始点情報
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +27,10 @@ public class player : MonoBehaviour
         rb = GetComponent<Rigidbody>(); //リジッドボディを取得
 
         //カメラ関係初期化
-        _camTransform = this.gameObject.transform;
-        _startMousePos = Input.mousePosition;
-        _presentCamRotation.x = _camTransform.transform.eulerAngles.x;
-        _presentCamRotation.y = _camTransform.transform.eulerAngles.y;
+        camTransform = this.gameObject.transform;
+        startMousePos = Input.mousePosition;
+        presentCamRotation.x = camTransform.transform.eulerAngles.x;
+        presentCamRotation.y = camTransform.transform.eulerAngles.y;
     }
 
     // Update is called once per frame
@@ -65,7 +67,6 @@ public class player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("a");
                 isGround = false;//  isGroundをfalseにする
                 rb.AddForce(new Vector3(0, jump_power*100, 0)); //上に向かって力を加える
             }
@@ -92,21 +93,23 @@ public class player : MonoBehaviour
     private void CameraRotationMouseControl()
     {
         //(移動開始座標 - マウスの現在座標) / 解像度 で正規化
-        float x = (_startMousePos.x + Input.mousePosition.x) / Screen.width;
+        float x = (startMousePos.x + Input.mousePosition.x) / Screen.width;
         float y = mem_camera_rotato_y;
 
-        //Y軸の回転は一定値で止まる
-        if (((_startMousePos.y - Input.mousePosition.y) / Screen.height) <= mouse_max_y &&
-            ((_startMousePos.y - Input.mousePosition.y) / Screen.height) >= -mouse_max_y)
+        //Y軸の回転は一定値(mouse_max_y)で止まる
+        if (((startMousePos.y - Input.mousePosition.y) / Screen.height) <= mouse_max_y &&
+            ((startMousePos.y - Input.mousePosition.y) / Screen.height) >= -mouse_max_y)
         {
-            y = (_startMousePos.y - Input.mousePosition.y) / Screen.height;
+            y = (startMousePos.y - Input.mousePosition.y) / Screen.height;
             mem_camera_rotato_y = y;
         }
 
         //回転開始角度 ＋ マウスの変化量 * 90
-        float eulerX = _presentCamRotation.x + y * mouse_power;
-        float eulerY = _presentCamRotation.y + x * mouse_power;
+        float eulerX = presentCamRotation.x + y * mouse_power;
+        float eulerY = presentCamRotation.y + x * mouse_power;
 
-        _camTransform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
+        //主人公とカメラにそれぞれ、回転量代入
+        camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
+        my_camera.transform.rotation= Quaternion.Euler(eulerX, eulerY, 0);
     }
 }
