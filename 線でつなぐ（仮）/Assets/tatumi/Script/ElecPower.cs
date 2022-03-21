@@ -5,9 +5,11 @@ using UnityEngine;
 public class ElecPower : MonoBehaviour
 {
     public int mynumber;
+    //共有できるゲームオブジェクト型
     public GameObject maneger;
     public bool flag,change;
 
+    //スクリプト型（イメージは）を宣言名前で変えれるよ！
     ElecPower_maneger SC_EPmane;
 
     // Start is called before the first frame update
@@ -16,6 +18,7 @@ public class ElecPower : MonoBehaviour
         flag = false;
         change = false;
 
+        //中身を突っ込む（初期化）
         SC_EPmane = maneger.GetComponent<ElecPower_maneger>();
     }
 

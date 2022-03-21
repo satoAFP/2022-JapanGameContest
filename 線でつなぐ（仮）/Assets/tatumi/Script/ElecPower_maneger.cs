@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElecPower_maneger : MonoBehaviour
 {
+    //“ñ‚Â‚Æ‚à‹¤—L‚Å‚«‚é”z—ñ
     public bool[] flags = new bool[10];
     public GameObject[] gimicks=new GameObject[10];
 
