@@ -6,6 +6,8 @@ using System.Linq;
 
 public class Menu_up : MonoBehaviour
 {
+    public GameObject Menu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +19,14 @@ public class Menu_up : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           if(this.gameObject.activeSelf == true)
+           if(Menu.gameObject.activeSelf == true)
            {
-                this.gameObject.SetActive(false);
+                Menu.gameObject.SetActive(false);
+               
            }
            else
            {
-                this.gameObject.SetActive(true);
+                Menu.gameObject.SetActive(true);
            }
         }
     }
