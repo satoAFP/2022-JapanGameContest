@@ -20,7 +20,7 @@ public class Conductor_Script : MonoBehaviour
     }
 
     //
-    void OnCollisionStay(Collider c)
+    void OnTriggerStay(Collider c)
     {
         //“dŒ¹‚ÆÚG‚µ‚Ä‚é‚Æ‚«
         if(c.CompareTag("Power_Supply"))
