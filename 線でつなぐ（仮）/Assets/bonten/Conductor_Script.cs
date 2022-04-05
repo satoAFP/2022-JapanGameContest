@@ -20,20 +20,22 @@ public class Conductor_Script : MonoBehaviour
     }
 
     //
-    void OnTriggerStay(Collider c)
+    void OnCollisionStay(Collision c)
     {
         //電源と接触してるとき
-        if(c.CompareTag("Power_Supply"))
+        if(c.gameObject.tag == "Power_Supply")
         {
             //通電変数をtrueにし、色を赤に変更
             energization = true;
             GetComponent<Renderer>().material.color = Color.red;
+
+            Debug.Log("true");
         }
         //電源と接触せずに導体と接触してるとき
-        else if(c.CompareTag("Conductor"))
+        else if(c.gameObject.tag == "Conductor")
         {
             //絶縁体と接触してるとき
-            if (c.CompareTag("Insulator"))
+            if (c.gameObject.tag == "Insulator")
             {
                 //通電変数をfalseにする
                 energization = false;
