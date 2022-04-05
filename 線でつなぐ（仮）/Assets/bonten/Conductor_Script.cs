@@ -6,6 +6,7 @@ public class Conductor_Script : MonoBehaviour
 {
     protected
         bool energization = false;
+             Material red;
     public
     // Start is called before the first frame update
     void Start()
@@ -25,9 +26,9 @@ public class Conductor_Script : MonoBehaviour
         //電源と接触してるとき
         if(c.gameObject.tag == "Power_Supply")
         {
-            //通電変数をtrueにし、色を赤に変更
+            //通電変数をtrueにし、色を水色に変更
             energization = true;
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponent<Renderer>().material.color = Color.cyan;
 
             Debug.Log("true");
         }
@@ -42,9 +43,9 @@ public class Conductor_Script : MonoBehaviour
             }
             else
             {
-                //通電変数をtrueにし、色を赤に変更
+                //通電変数をtrueにし、色を水色に変更
                 energization = true;
-                GetComponent<Renderer>().material.color = Color.red;
+                GetComponent<Renderer>().material.color = Color.cyan;
             }
         }
     }
