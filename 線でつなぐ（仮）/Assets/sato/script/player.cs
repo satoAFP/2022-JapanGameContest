@@ -61,11 +61,39 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //情報の更新-----------------------------------------------------------------------------------------
+        //情報の更新--------------------------------------------------------------------------------------------
         //主人公が壁を上るときの判定の更新
         climbing_check_head = head.GetComponent<climbing_check>().check;
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
 
+
+        //カーソルの座標がリセットされたとき、移動量がリセットされないよう
+        if (cursol_reset)
+        {
+            cursol_pos_check = Input.mousePosition;
+            cursol_reset = false;
+        }
+
+
+        //カーソルの表示、非表示
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (key_check_E)
+            {
+                if (cursol_pop)
+                {
+                    cursol_pop = false;
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    cursol_pop = true;
+                    Cursor.visible = true;
+                }
+            }
+            key_check_E = false;
+        }
+        else{ key_check_E = true; }
 
 
         //メニュー表示中は動けない
@@ -107,36 +135,6 @@ public class player : MonoBehaviour
             }
         }
 
-
-        //カーソルの座標がリセットされたとき、移動量がリセットされないよう
-        if (cursol_reset)
-        {
-            cursol_pos_check = Input.mousePosition;
-            cursol_reset = false;
-        }
-
-
-        //カーソルの表示、非表示
-        if (Input.GetKey(KeyCode.E))
-        {
-            if (key_check_E)
-            {
-                if (cursol_pop)
-                {
-                    cursol_pop = false;
-                    Cursor.visible = false;
-                }
-                else
-                {
-                    cursol_pop = true;
-                    Cursor.visible = true;
-                }
-            }
-            key_check_E = false;
-        }
-        else{ key_check_E = true; }
-
-        
 
         //地面の着地しているかどうか判定
         //着地しているとき
