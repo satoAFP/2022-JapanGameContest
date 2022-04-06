@@ -32,7 +32,7 @@ public class Conductor_Script : MonoBehaviour
 
             Debug.Log("true");
         }
-        //“dŒ¹‚ÆÚG‚¹‚¸‚É“±‘Ì‚ÆÚG‚µ‚Ä‚é‚Æ‚«
+        //“dŒ¹‚ÆÚG‚¹‚¸‚É“±‘Ì‚ÆÚG‚µ‚Ä‚é‚Æ‚«!
         else if(c.gameObject.tag == "Conductor")
         {
             //â‰‘Ì‚ÆÚG‚µ‚Ä‚é‚Æ‚«
