@@ -10,6 +10,13 @@ public class BoxCastRayTest : MonoBehaviour
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
+    public bool r_flag;//オブジェクトにレイが衝突しているかのフラグ
+
+    void Start()
+    {
+        r_flag = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +29,20 @@ public class BoxCastRayTest : MonoBehaviour
         if (Physics.BoxCast(transform.position, Vector3.one * 0.5f, transform.forward, out hit, Quaternion.identity, 100f, LayerMask.GetMask("Target")))
         {
             Debug.Log(hit.transform.name);
+            //接触したオブジェクトのスクリプトを取得し、フラグを変更
+            hit.collider.GetComponent<ClickObj>().move=true;
+            //接触していたらフラグtrue
+            r_flag = true;
+        }
+        else
+        {
+            //接触してないときfalse
+            r_flag = false;
+        }
+
+        if(r_flag==true)
+        {
+            Debug.Log("移動");
         }
     }
 
