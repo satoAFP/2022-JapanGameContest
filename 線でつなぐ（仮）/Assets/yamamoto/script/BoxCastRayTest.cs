@@ -42,7 +42,7 @@ public class BoxCastRayTest : MonoBehaviour
 
         if(r_flag==true)
         {
-            Debug.Log("ˆÚ“®");
+           // Debug.Log("ˆÚ“®");
         }
     }
 
