@@ -20,7 +20,7 @@ public class BoxCastRayTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //
+        //8
         //　ターゲットとの距離
         distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
 
