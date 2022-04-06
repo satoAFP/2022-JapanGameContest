@@ -37,6 +37,7 @@ public class player : MonoBehaviour
     private bool cursol_pop = false;                                //カーソルを出現させるかどうか
     private bool climbing_check_head = false;                       //壁のぼりが出来る高さか判定
     private bool climbing_check_leg = false;                        //いつまで壁のぼりするか判定
+    private bool key_check_E = true;                                //キーが連続で押されないための判定
 
 
 
@@ -60,8 +61,51 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //情報の更新-----------------------------------------------------------------------------------------
+        //主人公が壁を上るときの判定の更新
         climbing_check_head = head.GetComponent<climbing_check>().check;
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
+
+
+
+        //メニュー表示中は動けない
+        if (!cursol_pop)
+        {
+            //マウス操作-----------------------------------------------------------------------------------------
+            CameraRotationMouseControl();
+
+
+
+            //左右上下の移動処理---------------------------------------------------------------------------------
+            if (Input.GetKey(KeyCode.W))
+            {
+                velocity = gameObject.transform.rotation * new Vector3(0, 0, move_power);
+                Move(velocity * Time.deltaTime);
+
+                if (!climbing_check_head)
+                {
+                    if (climbing_check_leg)
+                    {
+                        this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
+                    }
+                }
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                velocity = gameObject.transform.rotation * new Vector3(-move_power, 0, 0);
+                Move(velocity * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                velocity = gameObject.transform.rotation * new Vector3(0, 0, -move_power);
+                Move(velocity * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                velocity = gameObject.transform.rotation * new Vector3(move_power, 0, 0);
+                Move(velocity * Time.deltaTime);
+            }
+        }
 
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
@@ -73,55 +117,26 @@ public class player : MonoBehaviour
 
 
         //カーソルの表示、非表示
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-            if (cursol_pop) 
+            if (key_check_E)
             {
-                cursol_pop = false;
-                Cursor.visible = false;
-            }
-            else
-            {
-                cursol_pop = true;
-                Cursor.visible = true;
-            }
-        }
-
-
-        //カメラの回転 マウス
-        CameraRotationMouseControl();
-
-
-        //左右上下の移動処理
-        if (Input.GetKey(KeyCode.W))
-        {
-            velocity = gameObject.transform.rotation * new Vector3(0, 0, move_power);
-            Move(velocity * Time.deltaTime);
-
-            if (!climbing_check_head) 
-            {
-                if (climbing_check_leg)
+                if (cursol_pop)
                 {
-                    this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
+                    cursol_pop = false;
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    cursol_pop = true;
+                    Cursor.visible = true;
                 }
             }
+            key_check_E = false;
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            velocity = gameObject.transform.rotation * new Vector3(-move_power, 0, 0);
-            Move(velocity * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            velocity = gameObject.transform.rotation * new Vector3(0, 0, -move_power);
-            Move(velocity * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            velocity = gameObject.transform.rotation * new Vector3(move_power, 0, 0);
-            Move(velocity * Time.deltaTime);
-        }
+        else{ key_check_E = true; }
 
+        
 
         //地面の着地しているかどうか判定
         //着地しているとき
@@ -130,16 +145,15 @@ public class player : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 isGround = false;
-                rb.AddForce(new Vector3(0, jump_power*100, 0)); //上に向かって力を加える
+                rb.AddForce(new Vector3(0, jump_power * 100, 0)); //上に向かって力を加える
             }
         }
 
 
-        //カーソルロック解除
+        //カーソル表示
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
         }
 
         //カーソルの座標記憶
