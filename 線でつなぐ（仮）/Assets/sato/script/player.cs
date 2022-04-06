@@ -6,12 +6,16 @@ using System.Runtime.InteropServices;
 public class player : MonoBehaviour
 {
     //インスペクター設定
-    [SerializeField, Header("主人公の移動量"), Range(0, 10)]     float move_power;
-    [SerializeField, Header("マウス感度"), Range(100, 300)]      float mouse_power;
-    [SerializeField, Header("ジャンプ力"), Range(0, 10)]         float jump_power;
-    [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)] float mouse_max_y;
+    [SerializeField, Header("主人公の移動量"), Header("主人公のステータス"), Range(0, 10)]     float move_power;
+    [SerializeField, Header("マウス感度"), Range(100, 300)]          float mouse_power;
+    [SerializeField, Header("ジャンプ力"), Range(0, 10)]             float jump_power;
+    [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.05f)]    float climbing_speed;
+    [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
 
-    [SerializeField, Header("主人公のカメラ")] GameObject my_camera;
+    //ゲームオブジェクトの取得
+    [SerializeField, Header("主人公のカメラ"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
+    [SerializeField, Header("climbing_check_head")]     GameObject head;
+    [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
 
     //カーソルの移動設定
@@ -20,24 +24,28 @@ public class player : MonoBehaviour
 
 
     //プライベート変数
-    private Vector3 velocity;               //リジットボディの力
-    private Rigidbody rb;                   //リジッドボディを取得するための変数
-    private bool isGround = true;           //着地しているかどうかの判定
-    private float mem_camera_rotato_y = 0;  //カメラのY軸回転記憶
-    private Transform camTransform;         //cameraのtransform
-    private Vector3 startMousePos;          //マウス操作の始点
-    private Vector3 presentCamRotation;     //カメラ回転の始点情報
-    private Vector3 cursol_pos_check;       //カーソルの座標記憶
-    private Vector3 vertual_cursol_pos = new Vector3(1000, 0, 0);     //実際のカーソルの移動量分の座標
-    private bool cursol_reset = false;      //カーソルの座標がリセットされたときtrue
-    private bool cursol_pop = false;        //カーソルを出現させるかどうか
+    private Vector3 velocity;                                       //リジットボディの力
+    private Rigidbody rb;                                           //リジッドボディを取得するための変数
+    private bool isGround = true;                                   //着地しているかどうかの判定
+    private float mem_camera_rotato_y = 0;                          //カメラのY軸回転記憶
+    private Transform camTransform;                                 //cameraのtransform
+    private Vector3 startMousePos;                                  //マウス操作の始点
+    private Vector3 presentCamRotation;                             //カメラ回転の始点情報
+    private Vector3 cursol_pos_check;                               //カーソルの座標記憶
+    private Vector3 vertual_cursol_pos = new Vector3(1000, 0, 0);   //実際のカーソルの移動量分の座標
+    private bool cursol_reset = false;                              //カーソルの座標がリセットされたときtrue
+    private bool cursol_pop = false;                                //カーソルを出現させるかどうか
+    private bool climbing_check_head = false;                       //壁のぼりが出来る高さか判定
+    private bool climbing_check_leg = false;                        //いつまで壁のぼりするか判定
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         //リジッドボディを取得
-        rb = GetComponent<Rigidbody>(); 
-
+        rb = GetComponent<Rigidbody>();
+        
         //カメラ関係初期化
         camTransform = this.gameObject.transform;
         startMousePos = Input.mousePosition;
@@ -52,8 +60,12 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        climbing_check_head = head.GetComponent<climbing_check>().check;
+        climbing_check_leg = leg.GetComponent<climbing_check>().check;
+
+
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
-        if(cursol_reset)
+        if (cursol_reset)
         {
             cursol_pos_check = Input.mousePosition;
             cursol_reset = false;
@@ -85,6 +97,14 @@ public class player : MonoBehaviour
         {
             velocity = gameObject.transform.rotation * new Vector3(0, 0, move_power);
             Move(velocity * Time.deltaTime);
+
+            if (!climbing_check_head) 
+            {
+                if (climbing_check_leg)
+                {
+                    this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
+                }
+            }
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -107,9 +127,9 @@ public class player : MonoBehaviour
         //着地しているとき
         if (isGround)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
-                isGround = false;//  isGroundをfalseにする
+                isGround = false;
                 rb.AddForce(new Vector3(0, jump_power*100, 0)); //上に向かって力を加える
             }
         }
@@ -126,15 +146,16 @@ public class player : MonoBehaviour
         cursol_pos_check = Input.mousePosition;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision col)
     {
         //Groundタグのオブジェクトに触れたとき
-        if (other.gameObject.tag == "Ground") 
+        if (col.gameObject.tag == "Ground") 
         {
             //isGroundをtrueにする
             isGround = true; 
         }
     }
+
 
     //移動処理関数
     private void Move(Vector3 vec)
