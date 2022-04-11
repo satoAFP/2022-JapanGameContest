@@ -5,7 +5,7 @@ using UnityEngine;
 public class hand_move : MonoBehaviour
 {
     [SerializeField, Header("手の動く速度"), Range(1, 10)] int ani_speed;
-    [SerializeField, Header("手の上下の速度"), Range( 0.001f, 0.01f)] float updown_speed;
+    [SerializeField, Header("手の上下の速度"), Range( 0.001f, 0.02f)] float updown_speed;
     [SerializeField, Header("true = 右手　false = 左手")] bool hand_check;
 
     private Vector3[] ani_pos_right = new Vector3[10];      //右手のアニメーション
@@ -26,13 +26,13 @@ public class hand_move : MonoBehaviour
         {
             ani_pos_right[i].x = 0.5f + (0.01f * i);
             ani_pos_right[i].y = 0.7f - (0.005f * i);
-            ani_pos_right[i].z = 0.5f - (0.005f * i);
+            ani_pos_right[i].z = 0.5f - (0.01f * i);
         }
         for (int i = 0; i < 10; i++)
         {
             ani_pos_left[i].x = -0.5f - (0.01f * i);
             ani_pos_left[i].y = 0.7f - (0.005f * i);
-            ani_pos_left[i].z = 0.5f - (0.005f * i);
+            ani_pos_left[i].z = 0.5f - (0.01f * i);
         }
 
         //配列の初期化
