@@ -32,12 +32,10 @@ public class hand_move : MonoBehaviour
         }
 
         //”z—ñ‚Ì‰Šú‰»
-        ani_count[0] = 0;
-        ani_count[1] = 9;
-        for (int i = 0; i < 2; i++) 
-        {
-            ani_check[i] = true;
-        }
+        ani_count[0] = 4;
+        ani_count[1] = 5;
+        ani_check[0] = true;
+        ani_check[1] = false;
     }
 
     // Update is called once per frame
