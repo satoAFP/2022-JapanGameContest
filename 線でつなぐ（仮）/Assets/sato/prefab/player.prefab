@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ani_speed: 2
+  updown_speed: 0.01
   hand_check: 1
 --- !u!1 &5546672774901355798
 GameObject:
@@ -336,9 +337,11 @@ MonoBehaviour:
   jump_power: 3
   climbing_speed: 0.03
   mouse_max_y: 0.2
+  fade_time: 1.5
   my_camera: {fileID: 543616966170634727}
   common_camera: {fileID: 5546672775496220533}
   gray_camera: {fileID: 8268243440180083356}
+  fade: {fileID: 0}
   head: {fileID: 7661609363871565882}
   leg: {fileID: 3371741339474149769}
 --- !u!1 &5546672775496220533
@@ -533,6 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ani_speed: 2
+  updown_speed: 0.01
   hand_check: 0
 --- !u!1 &7661609363871565882
 GameObject:
