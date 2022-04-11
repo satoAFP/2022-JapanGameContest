@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4513533, g: 0.50093997, b: 0.5728226, a: 1}
+  m_IndirectSpecularColor: {r: 0.45135337, g: 0.50093937, b: 0.5728222, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1163,6 +1163,7 @@ GameObject:
   - component: {fileID: 891097323}
   - component: {fileID: 891097322}
   - component: {fileID: 891097326}
+  - component: {fileID: 891097327}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Conductor
@@ -1259,6 +1260,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c929f76bf033f54ea8f5483730e2009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &891097327
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891097321}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &920885476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1780,7 @@ GameObject:
   - component: {fileID: 1254507571}
   - component: {fileID: 1254507570}
   - component: {fileID: 1254507574}
+  - component: {fileID: 1254507575}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Conductor
@@ -1859,6 +1877,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c929f76bf033f54ea8f5483730e2009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1254507575
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254507569}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1322993840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,7 +2377,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &1834873428
 BoxCollider:
@@ -2415,7 +2449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834873426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.54, y: 0.443, z: 3.26}
+  m_LocalPosition: {x: -0.425, y: 0.24, z: 3.781}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3237,6 +3271,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2899465330019925867}
+  - component: {fileID: 2555556357307999699}
+  - component: {fileID: 2555556357307999698}
   m_Layer: 0
   m_Name: untitled
   m_TagString: Untagged
@@ -3244,6 +3280,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &2555556357307999698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555556357307999697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9925898, y: 4.166466, z: 2.0138729}
+  m_Center: {x: -0.047248103, y: -0.960531, z: -0.019018847}
+--- !u!54 &2555556357307999699
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555556357307999697}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &2556107976769488668
 MeshFilter:
   m_ObjectHideFlags: 0
