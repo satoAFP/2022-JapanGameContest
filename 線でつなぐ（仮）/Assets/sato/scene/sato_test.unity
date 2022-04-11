@@ -589,8 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 9a4364fcaf19d29459d8bd229f52c91c, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1272,6 +1272,14 @@ PrefabInstance:
     - target: {fileID: 5546672774901355798, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546672774901355801, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 963927380}
+    - target: {fileID: 5546672774901355801, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: fade_time
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5546672774901355801, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: climbing_speed

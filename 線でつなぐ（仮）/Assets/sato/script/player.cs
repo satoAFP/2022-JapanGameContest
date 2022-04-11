@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Runtime.InteropServices;
 
 public class player : MonoBehaviour
@@ -11,11 +12,13 @@ public class player : MonoBehaviour
     [SerializeField, Header("ジャンプ力"), Range(0, 10)]             float jump_power;
     [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.05f)]    float climbing_speed;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
+    [SerializeField, Header("フェードの時間"), Range(0.5f, 3.0f)]    float fade_time;
 
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
     [SerializeField, Header("通常カメラ")] GameObject common_camera;
     [SerializeField, Header("グレーカメラ")] GameObject gray_camera;
+    [SerializeField, Header("fade用image")] GameObject fade;
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
@@ -39,6 +42,9 @@ public class player : MonoBehaviour
     private bool cursol_pop = false;                                //カーソルを出現させるかどうか
     private bool climbing_check_head = false;                       //壁のぼりが出来る高さか判定
     private bool climbing_check_leg = false;                        //いつまで壁のぼりするか判定
+    private bool camera_change = true;                              //カメラの切り替え
+    private bool fade_check = false;                                //フェードするかどうか切り替え
+    private bool fade_updown = true;                                //透過レベルが上がるか下がるか
 
 
     //連続で押されないための判定
@@ -71,6 +77,8 @@ public class player : MonoBehaviour
         //主人公が壁を上るときの判定の更新
         climbing_check_head = head.GetComponent<climbing_check>().check;
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
+
+        //--------------------------------------------------------------------------------------------
 
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
@@ -165,18 +173,55 @@ public class player : MonoBehaviour
 
 
 
-        //カメラ切り替えテスト
+        //グレースケールカメラ切り替え
         if (Input.GetKey(KeyCode.C))
         {
             if (key_check_C)
             {
-                common_camera.SetActive(false);
-                gray_camera.SetActive(true);
+                //フェードオン
+                fade_check = true;
+
+                //カメラ切り替え
+                if (camera_change)
+                {
+                    common_camera.SetActive(false);
+                    gray_camera.SetActive(true);
+                    camera_change = false;
+                }
+                else
+                {
+                    common_camera.SetActive(true);
+                    gray_camera.SetActive(false);
+                    camera_change = true;
+                }
             }
             key_check_C = false;
         }
         else { key_check_C = true; }
+
+        //フェード処理
+        if(fade_check)
+        {
+            //フェード実行
+            if (fade_updown)
+                fade.GetComponent<Image>().color += new Color(0, 0, 0, 0.1f);
+            else
+                fade.GetComponent<Image>().color -= new Color(0, 0, 0, 0.1f);
+
+            //透過レベルの上げ下げ切り替え
+            if (fade.GetComponent<Image>().color.a >= fade_time)
+            {
+                fade_updown = false;
+            }
+            else if (fade.GetComponent<Image>().color.a <= 0)
+            {
+                fade_updown = true;
+                fade_check = false;
+            }
+        }
     }
+
+
 
     void OnCollisionEnter(Collision col)
     {
@@ -189,11 +234,14 @@ public class player : MonoBehaviour
     }
 
 
+
     //移動処理関数
     private void Move(Vector3 vec)
     {
         this.gameObject.transform.position += vec;
     }
+
+
 
     //カメラコントロール関数
     private void CameraRotationMouseControl()

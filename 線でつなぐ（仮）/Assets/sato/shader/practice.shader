@@ -7,9 +7,8 @@ Shader "Unlit/practice"
     }
     SubShader
     {
-        //Tags { "RenderType"="Opaque" }
-            Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
-        Blend SrcAlpha OneMinusSrcAlpha
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }//透過したいならこれいる
+        Blend SrcAlpha OneMinusSrcAlpha//重なったオブジェクトの画素の色とのブレンド方法の指定
         LOD 100
 
         Pass
@@ -52,12 +51,14 @@ Shader "Unlit/practice"
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed radius = 0.0;
-                fixed r = distance(i.uv, fixed2(0.5,0.5)) - _Time*4;
-                fixed4 red = fixed4(0.5, 0.5, 0.5, 0.6);
+                fixed r = distance(i.uv, fixed2(0.5,0.5)) - _Time*4;//円が広がる処理
+
+                fixed4 red = fixed4(0.5, 0.5, 0.5, 0.6);//色付ける処理
                 fixed4 green = fixed4(1, 1, 1, 0);
-                fixed4 col = tex2D(_MainTex, i.uv) * _Color;
-                col.a = _Color.a;
-                //return col;
+
+                //lerpは引数1と引数2にどちらかを表示
+                //stepは0か1を返す
+
                 return lerp(red, green, step(radius, r));
             }
             ENDCG
