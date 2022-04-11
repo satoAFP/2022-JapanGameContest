@@ -10,17 +10,16 @@ public class BoxCastRayTest : MonoBehaviour
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
-    public bool r_flag;//オブジェクトにレイが衝突しているかのフラグ
+    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
 
     void Start()
     {
-        r_flag = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //8
         //　ターゲットとの距離
         distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
 
@@ -29,20 +28,35 @@ public class BoxCastRayTest : MonoBehaviour
         if (Physics.BoxCast(transform.position, Vector3.one * 0.5f, transform.forward, out hit, Quaternion.identity, 100f, LayerMask.GetMask("Target")))
         {
             Debug.Log(hit.transform.name);
+
             //接触したオブジェクトのスクリプトを取得し、フラグを変更
             hit.collider.GetComponent<ClickObj>().move=true;
-            //接触していたらフラグtrue
-            r_flag = true;
-        }
-        else
-        {
-            //接触してないときfalse
-            r_flag = false;
+
+            //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
+            if (Input.GetMouseButtonDown(0))
+            {
+                Target = hit.collider.gameObject;
+            }
+
         }
 
-        if(r_flag==true)
+        //マップチップにレイが接触しているか判定(rayを線に変更）
+        else if(Physics.BoxCast(transform.position, Vector3.one * 0.000005f, transform.forward, out hit, Quaternion.identity, 100f, LayerMask.GetMask("Mapcip")))
         {
-           // Debug.Log("移動");
+
+            Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
+
+           
+            //左クリックされたときにマップチップの座標をTargetに上書きする
+            if (Input.GetMouseButtonDown(0))
+            {
+                worldPos.y = 0.5f;//Y軸を固定する
+                Target.transform.position = worldPos;
+                Target = new GameObject();
+            }
+
+            Debug.Log(hit.transform.name);
+           
         }
     }
 
@@ -52,4 +66,5 @@ public class BoxCastRayTest : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position + transform.forward * distanceFromTargetObj, Vector3.one);
     }
+
 }

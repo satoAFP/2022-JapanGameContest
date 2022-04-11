@@ -1,12 +1,11 @@
+//いらんくね？これ
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ClickObj : MonoBehaviour
 {
-    //public GameObject Ray;
-    //BoxCastRayTest script;//スクリプトの宣言
-
     public bool move;//移動許可フラグ
 
     public bool grab;//掴みフラグ
@@ -14,7 +13,6 @@ public class ClickObj : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //script = Ray.GetComponent<BoxCastRayTest>();//スクリプトを代入
         move = false;//初期化
         grab = false;//初期化
     }
@@ -22,7 +20,9 @@ public class ClickObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(move == true)
+        Debug.Log(transform.position);
+
+        if (move == true)
         {
             Debug.Log("受け渡し");
             //左クリックを受け付ける&掴んでいない状態
@@ -45,4 +45,6 @@ public class ClickObj : MonoBehaviour
             Debug.Log("???");
         }       
     }
+
+   
 }
