@@ -52,7 +52,7 @@ Shader "Unlit/practice"
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed radius = 0.0;
-                fixed r = distance(i.uv, fixed2(0.5,0.5)) - _Time*2;
+                fixed r = distance(i.uv, fixed2(0.5,0.5)) - _Time*4;
                 fixed4 red = fixed4(0.5, 0.5, 0.5, 0.6);
                 fixed4 green = fixed4(1, 1, 1, 0);
                 fixed4 col = tex2D(_MainTex, i.uv) * _Color;

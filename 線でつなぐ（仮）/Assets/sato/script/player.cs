@@ -13,7 +13,9 @@ public class player : MonoBehaviour
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
 
     //ゲームオブジェクトの取得
-    [SerializeField, Header("主人公のカメラ"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
+    [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
+    [SerializeField, Header("通常カメラ")] GameObject common_camera;
+    [SerializeField, Header("グレーカメラ")] GameObject gray_camera;
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
@@ -37,7 +39,11 @@ public class player : MonoBehaviour
     private bool cursol_pop = false;                                //カーソルを出現させるかどうか
     private bool climbing_check_head = false;                       //壁のぼりが出来る高さか判定
     private bool climbing_check_leg = false;                        //いつまで壁のぼりするか判定
+
+
+    //連続で押されないための判定
     private bool key_check_E = true;                                //キーが連続で押されないための判定
+    private bool key_check_C = true;                                //キーが連続で押されないための判定
 
 
 
@@ -156,6 +162,20 @@ public class player : MonoBehaviour
 
         //カーソルの座標記憶
         cursol_pos_check = Input.mousePosition;
+
+
+
+        //カメラ切り替えテスト
+        if (Input.GetKey(KeyCode.C))
+        {
+            if (key_check_C)
+            {
+                common_camera.SetActive(false);
+                gray_camera.SetActive(true);
+            }
+            key_check_C = false;
+        }
+        else { key_check_C = true; }
     }
 
     void OnCollisionEnter(Collision col)
