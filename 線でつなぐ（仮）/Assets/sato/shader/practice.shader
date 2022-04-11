@@ -3,10 +3,13 @@ Shader "Unlit/practice"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Color("Color", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        //Tags { "RenderType"="Opaque" }
+            Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
         Pass
@@ -34,6 +37,8 @@ Shader "Unlit/practice"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            fixed4 _Color;
+
 
             v2f vert (appdata v)
             {
@@ -48,7 +53,12 @@ Shader "Unlit/practice"
             {
                 fixed radius = 0.0;
                 fixed r = distance(i.uv, fixed2(0.5,0.5)) - _Time*2;
-                return step(radius, r);
+                fixed4 red = fixed4(0.5, 0.5, 0.5, 0.6);
+                fixed4 green = fixed4(1, 1, 1, 0);
+                fixed4 col = tex2D(_MainTex, i.uv) * _Color;
+                col.a = _Color.a;
+                //return col;
+                return lerp(red, green, step(radius, r));
             }
             ENDCG
         }
