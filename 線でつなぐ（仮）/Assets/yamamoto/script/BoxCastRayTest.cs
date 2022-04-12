@@ -12,9 +12,11 @@ public class BoxCastRayTest : MonoBehaviour
 
     public GameObject Target;//レイが衝突しているオブジェクトを入れる 
 
+    public bool grab;//掴みフラグ
+
     void Start()
     {
-        
+        grab = false;//初期化
     }
 
     // Update is called once per frame
@@ -29,13 +31,11 @@ public class BoxCastRayTest : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            //接触したオブジェクトのスクリプトを取得し、フラグを変更
-            hit.collider.GetComponent<ClickObj>().move=true;
-
             //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && grab == false)
             {
                 Target = hit.collider.gameObject;
+                grab = true;//掴みフラグをtrue
             }
 
         }
@@ -48,14 +48,15 @@ public class BoxCastRayTest : MonoBehaviour
 
            
             //左クリックされたときにマップチップの座標をTargetに上書きする
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && grab == true)
             {
                 worldPos.y = 0.5f;//Y軸を固定する
                 Target.transform.position = worldPos;
-                Target = new GameObject();
+                Target = null;//タ-ゲットの初期化
+                grab = false;//掴みフラグをfalse
             }
 
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
            
         }
     }
