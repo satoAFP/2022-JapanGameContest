@@ -29,4 +29,9 @@ public class button : MonoBehaviour, IPointerClickHandler
         gameObject.GetComponent<Renderer>().material.color = Color.red;
         //botton_flag = true;//クリックフラグをtrue
     }
+
+    public void Push()
+    {
+        Debug.Log("Push!!");
+    }
 }
