@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 5546672775496220538}
   - component: {fileID: 5546672775496220539}
   - component: {fileID: 5546672775496220532}
+  - component: {fileID: 5416599692782986113}
   m_Layer: 0
   m_Name: fps_camera
   m_TagString: MainCamera
@@ -427,6 +428,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5546672775496220533}
   m_Enabled: 1
+--- !u!114 &5416599692782986113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546672775496220533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fea3d39898ca148bb6064aa22a8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTra: {fileID: 0}
+  Target: {fileID: 0}
 --- !u!1 &6892866865984143637
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +623,7 @@ GameObject:
   - component: {fileID: 5916831172815661471}
   - component: {fileID: 445606229031599781}
   - component: {fileID: 3290433161343194821}
+  - component: {fileID: 5997867494996260493}
   m_Layer: 0
   m_Name: fps_camera_gray
   m_TagString: MainCamera
@@ -693,3 +709,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monoTone: {fileID: 2100000, guid: 4db2911bed960cb4b893e88a3572dd70, type: 2}
+--- !u!114 &5997867494996260493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268243440180083356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fea3d39898ca148bb6064aa22a8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTra: {fileID: 0}
+  Target: {fileID: 0}
