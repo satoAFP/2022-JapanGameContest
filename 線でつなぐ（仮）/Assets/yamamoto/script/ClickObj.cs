@@ -16,15 +16,15 @@ public class ClickObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //マテリアル変更
-        if (Input.GetMouseButtonDown(0))
-        {
-            mats[0] = mat[1];
-        }
-        else if(Input.GetMouseButtonDown(1))
-        {
-            mats[0] = mat[0];
-        }
+        
+    }
+
+    //関数化（Updateはうざいため）
+    public void ChangeMaterial(int a)
+    {
+        //マテリアル変更(1=強調0=普通)
+        
+        mats[0] = mat[a];
 
         GetComponent<Renderer>().materials = mats;
     }
