@@ -55,6 +55,11 @@ public class Conductor_Script : MonoBehaviour
     {
         Confimation_Energi();
 
+
+        if (energi_investigate == false)
+        {
+            energization = false;
+        }
         if (energization == true)
         {
             //オブジェクトの色をシアンにする
@@ -82,6 +87,7 @@ public class Conductor_Script : MonoBehaviour
         {
             //power_supply_hitをtrueにする
             power_supply_hit = true;
+            energi_investigate = true;
         }
         //絶縁体と接触してるとき
         else if (c.gameObject.tag == "Insulator")
@@ -96,11 +102,11 @@ public class Conductor_Script : MonoBehaviour
             //つながってる導体のenergization(通電確認用変数)で初期化
             energi_investigate = c.gameObject.GetComponent<Conductor_Script>().energization;
             //電気がついてないとき
-            if (energization==false)
-            {
+            //if (energization==false)
+            //{
             
                 
-            }
+            //}
                 
         }
     }
