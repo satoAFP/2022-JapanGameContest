@@ -290,7 +290,7 @@ public class player : MonoBehaviour
                 cursol_reset = true;
             }
         }
-        Debug.Log("" + eulerX);
+        
         //ålŒö‚ÆƒJƒƒ‰‚É‚»‚ê‚¼‚êA‰ñ“]—Ê‘ã“ü
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
