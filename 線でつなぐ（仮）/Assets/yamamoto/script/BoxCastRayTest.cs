@@ -36,6 +36,7 @@ public class BoxCastRayTest : MonoBehaviour
             {
                 Target = hit.collider.gameObject;
                 grab = true;//掴みフラグをtrue
+                hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
             }
 
         }
@@ -46,14 +47,20 @@ public class BoxCastRayTest : MonoBehaviour
 
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
-           
+            if (grab == true)
+            {
+                hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
+            }
+
             //左クリックされたときにマップチップの座標をTargetに上書きする
             if (Input.GetMouseButtonDown(0) && grab == true)
             {
                 worldPos.y = 0.5f;//Y軸を固定する
                 Target.transform.position = worldPos;
+                Target.GetComponent<ClickObj>().ChangeMaterial(0);//選択objの色を戻す
                 Target = null;//タ-ゲットの初期化
                 grab = false;//掴みフラグをfalse
+                
             }
 
             //Debug.Log(hit.transform.name);

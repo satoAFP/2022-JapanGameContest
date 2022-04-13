@@ -9,7 +9,8 @@ Shader "Custom/Outline_ver3"
     }
         SubShader
         {
-            Tags { "RenderType" = "Opaque" }
+            Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+            //Blend SrcAlpha OneMinusSrcAlpha
             LOD 100
 
             // 【1パス目】ダミー色で塗りつぶし
