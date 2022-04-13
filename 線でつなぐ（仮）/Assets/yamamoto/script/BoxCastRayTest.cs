@@ -6,11 +6,11 @@ public class BoxCastRayTest : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform targetTra;
+    private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
+
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
-    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
 
     public bool grab;//掴みフラグ
 
