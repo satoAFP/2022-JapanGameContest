@@ -48,8 +48,8 @@ public class player : MonoBehaviour
 
 
     //連続で押されないための判定
-    private bool key_check_E = true;                                //キーが連続で押されないための判定
-    private bool key_check_C = true;                                //キーが連続で押されないための判定
+    private bool key_check_E = true;
+    private bool key_check_C = true;
 
 
 
@@ -251,7 +251,7 @@ public class player : MonoBehaviour
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
         float x = (startMousePos.x + vertual_cursol_pos.x) / Screen.width;
         float y = mem_camera_rotato_y;
-
+        
         //実際のカーソルの移動量計算
         vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
         //Y軸の回転は一定値(mouse_max_y)で止まる
@@ -290,7 +290,7 @@ public class player : MonoBehaviour
                 cursol_reset = true;
             }
         }
-
+        Debug.Log("" + eulerX);
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
