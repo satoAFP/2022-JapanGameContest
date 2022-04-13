@@ -22,6 +22,10 @@ public class player : MonoBehaviour
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
+    //他のスクリプトとやり取りする変数
+    [Header("他のスクリプトとやり取りする変数")] 
+    public bool Ground_check = true;                               //着地しているかどうかの判定
+
 
     //カーソルの移動設定
     [DllImport("user32.dll")]
@@ -31,7 +35,6 @@ public class player : MonoBehaviour
     //プライベート変数
     private Vector3 velocity;                                       //リジットボディの力
     private Rigidbody rb;                                           //リジッドボディを取得するための変数
-    private bool isGround = true;                                   //着地しているかどうかの判定
     private float mem_camera_rotato_y = 0;                          //カメラのY軸回転記憶
     private Transform camTransform;                                 //cameraのtransform
     private Vector3 startMousePos;                                  //マウス操作の始点
@@ -48,8 +51,9 @@ public class player : MonoBehaviour
 
 
     //連続で押されないための判定
-    private bool key_check_E = true;                                //キーが連続で押されないための判定
-    private bool key_check_C = true;                                //キーが連続で押されないための判定
+    private bool key_check_E = true;
+    private bool key_check_C = true;
+    private bool key_check_Space = true;
 
 
 
@@ -152,13 +156,18 @@ public class player : MonoBehaviour
 
         //地面の着地しているかどうか判定
         //着地しているとき
-        if (isGround)
+        if (Ground_check)
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                isGround = false;
-                rb.AddForce(new Vector3(0, jump_power * 100, 0)); //上に向かって力を加える
+                if (key_check_Space)
+                {
+                    rb.AddForce(new Vector3(0, jump_power * 100, 0)); //上に向かって力を加える
+                    key_check_Space = false;
+                }
             }
+            else
+                key_check_Space = true;
         }
 
 
@@ -225,12 +234,7 @@ public class player : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        //Groundタグのオブジェクトに触れたとき
-        if (col.gameObject.tag == "Ground") 
-        {
-            //isGroundをtrueにする
-            isGround = true; 
-        }
+        
     }
 
 
@@ -251,7 +255,7 @@ public class player : MonoBehaviour
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
         float x = (startMousePos.x + vertual_cursol_pos.x) / Screen.width;
         float y = mem_camera_rotato_y;
-
+        
         //実際のカーソルの移動量計算
         vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
         //Y軸の回転は一定値(mouse_max_y)で止まる
@@ -290,7 +294,7 @@ public class player : MonoBehaviour
                 cursol_reset = true;
             }
         }
-
+        
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
