@@ -12,6 +12,8 @@ public class BoxCastRayTest : MonoBehaviour
 
     public GameObject Target;//レイが衝突しているオブジェクトを入れる 
 
+    public GameObject Cancel;//選択キャンセル用の変数
+
     public bool grab;//掴みフラグ
 
     void Start()
@@ -31,12 +33,27 @@ public class BoxCastRayTest : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
+            Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
+
             //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
             if (Input.GetMouseButtonDown(0) && grab == false)
             {
                 Target = hit.collider.gameObject;
                 grab = true;//掴みフラグをtrue
                 hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
+                Cancel = Target;//キャンセルするオブジェクトを設定
+            }
+            //再度同じオブジェクトを選択で持ち状態を解除
+            else if (Input.GetMouseButtonDown(0) && grab == true && Cancel == Target)//TargetとCancel
+            {
+                //Debug.Log("w");
+                //オブジェクトの初期化
+                Target = null;
+                Cancel = null;
+                //掴みフラグをfalse
+                grab = false;
+
+                hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(0);//色付け
             }
 
         }
