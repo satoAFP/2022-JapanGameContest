@@ -17,6 +17,7 @@ public class Conductor_Script : MonoBehaviour
         //導体と接触してるとき
         else if (counductor_hit == true)
         {
+
             //絶縁体と接触してるとき
             if (insulator_hit == true)
             {
@@ -26,14 +27,13 @@ public class Conductor_Script : MonoBehaviour
             else
             {
                 //電気が通る
-
                 energization = true;
             }
         }
     }
 
     public
-    
+
     bool counductor_hit = false;        //導体と当たったか
     bool insulator_hit = false;         //絶縁体と当たったか
     bool power_supply_hit = false;      //電源と当たったか
@@ -42,7 +42,7 @@ public class Conductor_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class Conductor_Script : MonoBehaviour
     {
         Confimation_Energi();
 
-        if (energization == true) 
+        if (energization == true)
         {
             //オブジェクトの色をシアンにする
             GetComponent<Renderer>().material.color = Color.cyan;
@@ -60,7 +60,7 @@ public class Conductor_Script : MonoBehaviour
             //オブジェクトの色をグレーにする
             GetComponent<Renderer>().material.color = Color.gray;
         }
-    
+
 
     }
 
@@ -76,14 +76,22 @@ public class Conductor_Script : MonoBehaviour
         //電線と接触してるとき
         else if (c.gameObject.tag == "Insulator")
         {
-            //insulator_hitをfalseにする
+            //insulator_hitをtrueにする
             insulator_hit = true;
         }
         //絶縁体と接触してるとき!
         else if (c.gameObject.tag == "Conductor")
         {
-            //counductor_hit
-            counductor_hit = true;
+            
+            bool energi_investigate = c.gameObject.GetComponent<Conductor_Script>().energization;
+
+            //つながっている導体のenergizasionがtrueならこのobjのcounductorhitもtrueにする
+            if (energi_investigate == true)
+            {
+                Debug.Log("true");
+                //counductor_hitをtrueにする
+                counductor_hit = true;
+            }
         }
     }
 
@@ -106,7 +114,7 @@ public class Conductor_Script : MonoBehaviour
         else if (c.gameObject.tag == "Conductor")
         {
             //counductor_hit
-            counductor_hit = false;
+            //counductor_hit = false;
         }
     }
 }
