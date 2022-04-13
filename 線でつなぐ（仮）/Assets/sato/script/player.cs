@@ -22,6 +22,10 @@ public class player : MonoBehaviour
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
+    //他のスクリプトとやり取りする変数
+    [Header("他のスクリプトとやり取りする変数")] 
+    public bool Ground_check = true;                               //着地しているかどうかの判定
+
 
     //カーソルの移動設定
     [DllImport("user32.dll")]
@@ -31,7 +35,6 @@ public class player : MonoBehaviour
     //プライベート変数
     private Vector3 velocity;                                       //リジットボディの力
     private Rigidbody rb;                                           //リジッドボディを取得するための変数
-    private bool isGround = true;                                   //着地しているかどうかの判定
     private float mem_camera_rotato_y = 0;                          //カメラのY軸回転記憶
     private Transform camTransform;                                 //cameraのtransform
     private Vector3 startMousePos;                                  //マウス操作の始点
@@ -50,6 +53,7 @@ public class player : MonoBehaviour
     //連続で押されないための判定
     private bool key_check_E = true;
     private bool key_check_C = true;
+    private bool key_check_Space = true;
 
 
 
@@ -152,13 +156,18 @@ public class player : MonoBehaviour
 
         //地面の着地しているかどうか判定
         //着地しているとき
-        if (isGround)
+        if (Ground_check)
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                isGround = false;
-                rb.AddForce(new Vector3(0, jump_power * 100, 0)); //上に向かって力を加える
+                if (key_check_Space)
+                {
+                    rb.AddForce(new Vector3(0, jump_power * 100, 0)); //上に向かって力を加える
+                    key_check_Space = false;
+                }
             }
+            else
+                key_check_Space = true;
         }
 
 
@@ -225,12 +234,7 @@ public class player : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        //Groundタグのオブジェクトに触れたとき
-        if (col.gameObject.tag == "Ground") 
-        {
-            //isGroundをtrueにする
-            isGround = true; 
-        }
+        
     }
 
 

@@ -238,6 +238,7 @@ Transform:
   - {fileID: 4604860937094808726}
   - {fileID: 6580399736721906289}
   - {fileID: 7073373226492623031}
+  - {fileID: 5379940762128679881}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -442,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTra: {fileID: 0}
   Target: {fileID: 0}
+  grab: 0
 --- !u!1 &6892866865984143637
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +555,64 @@ MonoBehaviour:
   ani_speed: 2
   updown_speed: 0.01
   hand_check: 0
+--- !u!1 &7195473220597860165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5379940762128679881}
+  - component: {fileID: 896871968886171698}
+  - component: {fileID: 5692936106252976195}
+  m_Layer: 0
+  m_Name: Landing_check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5379940762128679881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195473220597860165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 5546672774901355802}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &896871968886171698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195473220597860165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5692936106252976195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195473220597860165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72af4fbca7e0d034e86739fdb6f5e4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  check: 1
 --- !u!1 &7661609363871565882
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,3 +783,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTra: {fileID: 0}
   Target: {fileID: 0}
+  grab: 0
