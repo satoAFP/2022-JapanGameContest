@@ -51,6 +51,10 @@ public class Conductor_Script : MonoBehaviour
         {
             energization = false;
         }
+        else if (Insulator_hit == true)
+        {
+            energization = false;
+        }
         else if(hitting_insulator == false && Conductor_hit==true)
         {
             energization = true;
@@ -131,7 +135,7 @@ public class Conductor_Script : MonoBehaviour
         if (c.gameObject.tag == "Insulator")
         {
             //insulator_hit‚ðtrue‚É‚·‚é
-            energization = false;
+            
             hitting_insulator = true;
         }
         if (c.gameObject.tag == "Conductor")
@@ -183,6 +187,7 @@ public class Conductor_Script : MonoBehaviour
                     else
                     {
                         c.gameObject.GetComponent<Conductor_Script>().prioritys[1] = priority;
+                        Debug.Log(this.gameObject.name);
                     }
                 }
             }
