@@ -16,8 +16,7 @@ public class player : MonoBehaviour
 
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
-    [SerializeField, Header("通常カメラ")] GameObject common_camera;
-    [SerializeField, Header("グレーカメラ")] GameObject gray_camera;
+    [SerializeField, Header("通常カメラ")] GameObject camera;
     [SerializeField, Header("fade用image")] GameObject fade;
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
@@ -25,6 +24,7 @@ public class player : MonoBehaviour
     //他のスクリプトとやり取りする変数
     [Header("他のスクリプトとやり取りする変数")] 
     public bool Ground_check = true;                               //着地しているかどうかの判定
+    public bool Move_check = false;                                //移動しているかどうかの判定
 
 
     //カーソルの移動設定
@@ -127,6 +127,7 @@ public class player : MonoBehaviour
             {
                 velocity = gameObject.transform.rotation * new Vector3(0, 0, move_power);
                 Move(velocity * Time.deltaTime);
+                Move_check = true;
 
                 if (!climbing_check_head)
                 {
@@ -140,17 +141,24 @@ public class player : MonoBehaviour
             {
                 velocity = gameObject.transform.rotation * new Vector3(-move_power, 0, 0);
                 Move(velocity * Time.deltaTime);
+                Move_check = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
                 velocity = gameObject.transform.rotation * new Vector3(0, 0, -move_power);
                 Move(velocity * Time.deltaTime);
+                Move_check = true;
             }
             if (Input.GetKey(KeyCode.D))
             {
                 velocity = gameObject.transform.rotation * new Vector3(move_power, 0, 0);
                 Move(velocity * Time.deltaTime);
+                Move_check = true;
             }
+
+            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) &&
+                !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+                Move_check = false;
         }
 
 
@@ -193,14 +201,12 @@ public class player : MonoBehaviour
                 //カメラ切り替え
                 if (camera_change)
                 {
-                    common_camera.SetActive(false);
-                    gray_camera.SetActive(true);
+                    camera.GetComponent<PostEffect>().enabled = true;
                     camera_change = false;
                 }
                 else
                 {
-                    common_camera.SetActive(true);
-                    gray_camera.SetActive(false);
+                    camera.GetComponent<PostEffect>().enabled = false;
                     camera_change = true;
                 }
             }
