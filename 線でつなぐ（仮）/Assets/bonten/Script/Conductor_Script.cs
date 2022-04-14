@@ -5,44 +5,12 @@ using UnityEngine;
 public class Conductor_Script : MonoBehaviour
 {
     //通電変数がtrueになるかどうか確認する関数
-    protected void Confimation_Energi()
-    {
-        if(insulator_hit==false)
-        {
-            //電源と接触してるとき
-            if (power_supply_hit == true)
-            {
-                //電気が通る
-                energization = true;
-            }
-            //導体と接触してるとき
-            else if (energi_investigate == true)
-            {
-                //電気が通る
-                energization = true;
-            }
-            else
-            {
-                energization = false;
-            }
-        }
-        else
-        {
-            energization = false;
-        }
-    }
-
-    public bool counductor_hit = false;        //導体と当たったか
-    public bool insulator_hit = false;         //絶縁体と当たったか
-    public bool power_supply_hit = false;      //電源と当たったか
-    public bool energization = false;          //通電してるか
-
-    private bool energi_investigate = false;
-
-    public void Energi_On(bool energi)
-    {
-        energization = energi;
-    }
+    public bool energization  = false;          //通電してるか
+    public bool Conductor_hit = false;          //導体と接触してるか
+    public bool Insulator_hit = false;          //絶縁体と接触してるか
+    public bool Power_hit     = false;          //電源と接触してるか
+    public bool hitting_insulator = false;      //周りに自分が絶縁体と接触していることを伝えるための変数
+    public bool hitting_Conductor = false;      //接触していたconductorと離れたことを伝えるための変数
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +21,10 @@ public class Conductor_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Confimation_Energi();
+        if (hitting_insulator == true && Power_hit == false) 
+        {
+            energization = false;
+        }
 
         if (energization == true)
         {
@@ -69,62 +40,91 @@ public class Conductor_Script : MonoBehaviour
         
     }
 
-    //ここで触れてるオブジェクトをリストにぶち込む
-    void OnCollisionStay(Collision c)
+    private void OnCollisionEnter(Collision c)
     {
-        //if(/*電源ついたよ*/true)
-        //{
-
-        //}
-
-        //電源と接触してるとき
+        //電源と接触したとき
         if (c.gameObject.tag == "Power_Supply")
         {
+            //Power_hitをtrueにする
+            Power_hit = true;
             //power_supply_hitをtrueにする
-            power_supply_hit = true;
+            energization = true;
         }
-        //絶縁体と接触してるとき
-        else if (c.gameObject.tag == "Insulator")
+        //絶縁体と接触したとき
+        else if(c.gameObject.tag=="Insulator")
         {
-            //insulator_hitをtrueにする
-            insulator_hit = true;
-            energi_investigate = false;
-        }
-        //導体と接触してるとき!
-        else if (c.gameObject.tag == "Conductor")
-        {
-            //つながってる導体のenergization(通電確認用変数)で初期化
-            energi_investigate = c.gameObject.GetComponent<Conductor_Script>().energization;
-            //電気がついてないとき
-            if (energization==false)
-            {
-            
-                
-            }
-                
+            //Insulator_hitをtrueにする
+            Insulator_hit = true;
         }
     }
 
     //離れたら離れたオブジェクトのリストを削除
     void OnCollisionExit(Collision c)
     {
+        
         //電源と離れたとき
         if (c.gameObject.tag == "Power_Supply")
         {
-            //power_supply_hitをtrueにする
-            power_supply_hit = false;
+            //
+            energization = false;
         }
-        //電線と離れたとき
+        //絶縁体と離れたとき
         else if (c.gameObject.tag == "Insulator")
         {
-            //insulator_hitをfalseにする
-            insulator_hit = false;
+            if (Conductor_hit == true)
+            {
+                energization = true;
+            }
+            Insulator_hit = false;
         }
         //電源と接触せずに導体と離れたとき
         else if (c.gameObject.tag == "Conductor")
         {
             //電気ついてるかの確認用変数をfalseにする
-            energi_investigate = false;
+            Conductor_hit = false;
+            if(Power_hit==false)
+            {
+                energization = false;
+            }
+            c.gameObject.GetComponent<Conductor_Script>().hitting_Conductor = true;
+        }
+    }
+    
+    //ここで触れてるオブジェクトをリストにぶち込む
+    void OnCollisionStay(Collision c)
+    {
+        
+        //絶縁体と接触してるとき
+        if (c.gameObject.tag == "Insulator")
+        {
+            //insulator_hitをtrueにする
+            energization = false;
+        }
+        else if (c.gameObject.tag == "Conductor")
+        {
+
+            if(Conductor_hit==false)
+            {
+                Conductor_hit = true;
+            }
+            if (energization == true)
+            {
+                //自分が通電状態にある時、周りの接触している導体も通電状態にする
+                c.gameObject.GetComponent<Conductor_Script>().energization = true;
+            }
+
+
+            
+            if (Insulator_hit ==true)
+            {
+                //通電状態をfalseにし、自身が絶縁体と接触していることを周りの導体に伝える
+                energization = false;
+                c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = true;
+            }
+            else
+            {
+                c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = false;
+            }
         }
     }
 }
