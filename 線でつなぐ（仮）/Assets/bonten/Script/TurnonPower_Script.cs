@@ -5,6 +5,8 @@ using UnityEngine;
 public class TurnonPower_Script : MonoBehaviour
 {
     public bool turn_on_power = false;
+    public GameObject Door;
+    public int Clear_num;
     private GameObject NonlitingChild;//光源となってない子オブジェクト取得用
     private GameObject LiteingChild;//光源となってる子オブジェクト取得用
     private bool energi_investigate;//電気ついてるかの確認用変数
@@ -50,6 +52,7 @@ public class TurnonPower_Script : MonoBehaviour
             {
                 //counductor_hitをtrueにする
                 turn_on_power = true;
+                Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = true;
             }
         }
     }
@@ -61,6 +64,7 @@ public class TurnonPower_Script : MonoBehaviour
         if (c.gameObject.tag == "Conductor")
         {
             turn_on_power = false;
+            Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num]=false;
         }
     }
 
