@@ -8,8 +8,6 @@ public class BoxCastRayTest : MonoBehaviour
     [SerializeField]
     private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
 
-    public GameObject MapCip;//レイが衝突しているマップチップを入れる
-
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
@@ -72,8 +70,6 @@ public class BoxCastRayTest : MonoBehaviour
         //マップチップにレイが接触しているか判定(rayを線に変更）
         else if(Physics.BoxCast(transform.position, Vector3.one * 0.000005f, transform.forward, out hit, Quaternion.identity, 150f, LayerMask.GetMask("Mapcip")))
         {
-
-            MapCip = hit.collider.gameObject;//レイが当たっているマップチップを取得
 
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
