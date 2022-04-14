@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1104,10 +1104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &232884703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,10 +2378,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &822549767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,10 +2544,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!54 &870175037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2749,10 +2755,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &877198503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,10 +3306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &1054069616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,10 +3359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!54 &1054069619
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3594,10 +3606,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &1287737961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,7 +4303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509381638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: -2.55, z: -3.62}
+  m_LocalPosition: {x: -0.45, y: -1.97, z: -3.62}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 659829063}
@@ -4385,10 +4399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &1585078312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5596,10 +5612,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
-  insulator_hit: 0
-  power_supply_hit: 0
   energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  hitting_Conductor: 0
 --- !u!1 &2026206558
 GameObject:
   m_ObjectHideFlags: 0
