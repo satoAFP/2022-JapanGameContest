@@ -182,7 +182,7 @@ public class Conductor_Script : MonoBehaviour
                     if (c.gameObject.GetComponent<Conductor_Script>().oneshot == true)
                     {
                         c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = hitting_insulator;
-                        Debug.Log("a");
+                        Debug.Log(c.gameObject.name);
                     }
                     else
                     {
