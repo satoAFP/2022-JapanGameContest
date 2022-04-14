@@ -39,18 +39,22 @@ public class Conductor_Script : MonoBehaviour
     //set_p→自身のpower_cnt
     public void Set_Power(int set_p)
     {
+        //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
+        //それがこのオブジェクトのpower_cntより小さければ代入する
         if ((set_p < power_cnt || power_cnt == 0) && energization == false) 
         {
             power_cnt = set_p;
         }
     }
 
+    //自身のpower_cntが0になったときに周りも0にするためだけのメソッド
     public void Set_Power(int set_p,int pow)
     {
+        //上のメソッドのset_pの役割を変数powで代用する。
         if(power_cnt>pow)
         {
+            //通電状態ではなくなるので通電している証となる変数を初期化する
             Give_Power_ReSet();
-            Debug.Log(this.gameObject.name);
             power_save = power_cnt;
             power_cnt = set_p;
         }
@@ -73,6 +77,8 @@ public class Conductor_Script : MonoBehaviour
             power_save = power_cnt;
             leaving_Conductor = leave;
             Conductor_hit = false;
+            //このオブジェクトのpower_cntが0になったことにより
+            //このオブジェクトと隣接しているオブジェクトも電力を失うかどうかを確認するため、trueにする
             energi_check = true;
         }
     }
@@ -89,7 +95,11 @@ public class Conductor_Script : MonoBehaviour
         if ((hitting_insulator == true && Power_hit == false) || (Insulator_hit == true && Power_hit == false) || (leaving_Conductor == true && Power_hit == false))
         {
             Give_Power_ReSet();
-            power_cnt = 0;
+            if(leaving_Conductor==true)
+            {
+                power_cnt = 0;
+            }
+            
             
             leaving_Conductor = false;
         }
@@ -189,9 +199,9 @@ public class Conductor_Script : MonoBehaviour
                 //自分が通電状態にある時、周りの接触している導体も通電状態にする
                 if (giving_conductor < contacing_conductor)
                 {
+                    //周りの導体のpower_cntには自身のpower_cntより1多い数を代入して差別化を図る
                     c.gameObject.GetComponent<Conductor_Script>().Set_Power(power_cnt + 1);
                     giving_conductor++;
-
                 }
                 else
                 {
@@ -199,8 +209,11 @@ public class Conductor_Script : MonoBehaviour
                 }
                 c.gameObject.GetComponent<Conductor_Script>().Set_insulator(false, power_cnt);
             }
+            //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
+                Debug.Log("a");
+                //隣のオブジェクトのパワーの大きさがこのオブジェクトより小さければ、そのオブジェクトは絶縁されない
                 c.gameObject.GetComponent<Conductor_Script>().Set_Power(0,power_save);
                 giving_conductor++;
                 if(giving_conductor==contacing_conductor)
