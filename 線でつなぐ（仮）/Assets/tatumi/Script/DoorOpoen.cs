@@ -6,6 +6,7 @@ using UnityEngine;
 public class DoorOpoen : MonoBehaviour
 {
     public bool[] ClearTaskflag;
+
     
     public Animator anim;
 
@@ -37,6 +38,11 @@ public class DoorOpoen : MonoBehaviour
         }
 
         
+
+    }
+
+    public void RayOpenDoor()
+    {
 
     }
 }

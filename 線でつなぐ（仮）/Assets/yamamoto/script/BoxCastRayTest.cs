@@ -81,7 +81,16 @@ public class BoxCastRayTest : MonoBehaviour
             //左クリックされたときにマップチップの座標をTargetに上書きする
             if (Input.GetMouseButtonDown(0) && grab == true)
             {
-                worldPos.y = 0.5f;//Y軸を固定する
+                //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
+                if(worldPos.y>0.3f)
+                {
+                    worldPos.y = 0.9f;
+                }
+                else
+                {
+                   worldPos.y = 0.5f;//Y軸を固定する
+                }
+              
                 Target.transform.position = worldPos;
                 Target.GetComponent<ClickObj>().ChangeMaterial(0);//選択objの色を戻す
                 Target = null;//タ-ゲットの初期化
@@ -92,6 +101,14 @@ public class BoxCastRayTest : MonoBehaviour
             //Debug.Log(hit.transform.name);
            
         }
+
+        //ドアにレイが接触しているか判定(rayを線に変更）
+        else if (Physics.BoxCast(transform.position, Vector3.one * 0.000005f, transform.forward, out hit, Quaternion.identity, 150f, LayerMask.GetMask("Door")))
+        {
+            hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける
+        }
+
+
     }
 
     void OnDrawGizmos()
