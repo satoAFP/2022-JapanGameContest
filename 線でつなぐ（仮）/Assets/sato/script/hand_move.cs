@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class hand_move : MonoBehaviour
 {
+    //インスペクター設定
     [SerializeField, Header("手の動く速度"), Range(1, 10)] int ani_speed;
     [SerializeField, Header("手の上下の速度"), Range( 0.001f, 0.02f)] float updown_speed;
     [SerializeField, Header("true = 右手　false = 左手")] bool hand_check;
 
-    private Vector3[] ani_pos_right = new Vector3[10];      //右手のアニメーション
-    private Vector3[] ani_pos_left = new Vector3[10];       //左手のアニメーション
+    //ゲームオブジェクトの取得
+    [SerializeField, Header("カメラ"), Header("ゲームオブジェクトの取得")] GameObject camera;
+
+    private Vector3[] move_ani_pos_right = new Vector3[10]; //移動時の右手のアニメーション
+    private Vector3[] move_ani_pos_left = new Vector3[10];  //移動時の左手のアニメーション
+    private Vector3[] grab_ani_pos_right = new Vector3[10]; //掴んだ時の右手のアニメーション
+    private Vector3[] grab_ani_pos_left = new Vector3[10];  //掴んだ時の左手のアニメーション
     private int[] ani_count = new int[2];                   //現在のアニメーション番号
     private bool[] ani_check = new bool[2];                 //再生中か逆再生中か
     private int frame = 0;                                  //開始時からのフレーム
     private Vector3 now_pos;                                //現在の座標
-    private float move_amount_y = 0.2f;                     //行動を起こすと手が出てくる移動量
+    private float move_amount_y = 0.0f;                     //行動を起こすと手が出てくる移動量
+    private bool move_check = false;                        //主人公が移動中かを取得するよう
+    private bool grab_check = false;                        //主人公が物を持ってる判定取得
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +30,27 @@ public class hand_move : MonoBehaviour
         now_pos = this.gameObject.transform.localPosition;
 
         //手のアニメーション座標決定
-        for (int i=0;i<10;i++)
+        for (int i = 0; i < 10; i++) 
         {
-            ani_pos_right[i].x = 0.5f + (0.01f * i);
-            ani_pos_right[i].y = 0.7f - (0.005f * i);
-            ani_pos_right[i].z = 0.5f - (0.01f * i);
+            //移動時の右手のアニメーション
+            move_ani_pos_right[i].x = 0.5f + (0.01f * i);
+            move_ani_pos_right[i].y = 0.7f - (0.005f * i);
+            move_ani_pos_right[i].z = 0.5f - (0.01f * i);
+            //移動時の左手のアニメーション
+            move_ani_pos_left[i].x = -0.5f - (0.01f * i);
+            move_ani_pos_left[i].y = 0.7f - (0.005f * i);
+            move_ani_pos_left[i].z = 0.5f - (0.01f * i);
+
+            //掴んだ時の右手のアニメーション
+            grab_ani_pos_right[i].x = 0.5f + (0.01f * i);
+            grab_ani_pos_right[i].y = 0.7f - (0.005f * i);
+            grab_ani_pos_right[i].z = 0.5f - (0.01f * i);
+            //掴んだ時の左手のアニメーション
+            grab_ani_pos_left[i].x = -0.5f - (0.01f * i);
+            grab_ani_pos_left[i].y = 0.7f - (0.005f * i);
+            grab_ani_pos_left[i].z = 0.5f - (0.01f * i);
         }
-        for (int i = 0; i < 10; i++)
-        {
-            ani_pos_left[i].x = -0.5f - (0.01f * i);
-            ani_pos_left[i].y = 0.7f - (0.005f * i);
-            ani_pos_left[i].z = 0.5f - (0.01f * i);
-        }
+        
 
         //配列の初期化
         ani_count[0] = 4;
@@ -45,9 +62,12 @@ public class hand_move : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //移動中のみ手が動く(仮)
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
-            Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        //欲しい情報の更新
+        move_check = transform.root.gameObject.GetComponent<player>().Move_check;
+        grab_check = camera.GetComponent<BoxCastRayTest>().grab;
+
+        //移動中の手の動き--------------------------------------------------------
+        if (move_check)
         {
             //右手と左手それぞれの動き
             if (hand_check)
@@ -71,19 +91,49 @@ public class hand_move : MonoBehaviour
             else
                 move_amount_y = 0;
         }
+        //------------------------------------------------------------------------
 
+        //物を動かすときの手の動き------------------------------------------------
+        if (move_check)
+        {
+            //右手と左手それぞれの動き
+            if (hand_check)
+                hand_move_right(now_pos.y);
+            else
+                hand_move_left(now_pos.y);
+
+            now_pos = this.gameObject.transform.localPosition;
+
+            move_amount_y += updown_speed;
+            if (move_amount_y <= 0.2f)
+                now_pos.y += updown_speed;
+            else
+                move_amount_y = 0.2f;
+        }
+        else
+        {
+            move_amount_y -= updown_speed;
+            if (move_amount_y >= 0)
+                now_pos.y -= updown_speed;
+            else
+                move_amount_y = 0;
+        }
+        //------------------------------------------------------------------------
+
+
+        //現在の計算後の座標代入
         this.gameObject.transform.localPosition = now_pos;
 
         //フレームの加算
         frame++;
     }
 
-
+    //移動時の右手の動き
     private void hand_move_right(float y)
     {
         //座標の更新
-        ani_pos_right[ani_count[0]].y = y;
-        this.gameObject.transform.localPosition = ani_pos_right[ani_count[0]];
+        move_ani_pos_right[ani_count[0]].y = y;
+        this.gameObject.transform.localPosition = move_ani_pos_right[ani_count[0]];
 
         //0～9番のアニメーションを行き来させるための処理
         if (ani_count[0] == 9)
@@ -101,11 +151,12 @@ public class hand_move : MonoBehaviour
         }
     }
 
+    //移動時の左手の動き
     private void hand_move_left(float y)
     {
         //座標の更新
-        ani_pos_left[ani_count[1]].y = y;
-        this.gameObject.transform.localPosition = ani_pos_left[ani_count[1]];
+        move_ani_pos_left[ani_count[1]].y = y;
+        this.gameObject.transform.localPosition = move_ani_pos_left[ani_count[1]];
 
         //0～9番のアニメーションを行き来させるための処理
         if (ani_count[1] == 9)
@@ -121,6 +172,16 @@ public class hand_move : MonoBehaviour
             else
                 ani_count[1]--;
         }
+    }
+
+
+    //掴んでいるときの右手の動き
+    private void hand_grab_left(float y)
+    {
+        //座標の更新
+        move_ani_pos_left[ani_count[1]].y = y;
+
+
     }
 
 
