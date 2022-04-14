@@ -1205,9 +1205,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &232884703
@@ -2484,9 +2485,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &822549767
@@ -2655,9 +2657,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!54 &870175037
@@ -2871,9 +2874,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &877198503
@@ -3427,9 +3431,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &1054069616
@@ -3485,9 +3490,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!54 &1054069619
@@ -3737,9 +3743,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &1287737961
@@ -4433,7 +4440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509381638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.43, y: -3.002, z: -3.6}
+  m_LocalPosition: {x: 3.85, y: -3.002, z: -3.6}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 659829063}
@@ -4535,9 +4542,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &1585078312
@@ -5753,9 +5761,10 @@ MonoBehaviour:
   Power_hit: 0
   hitting_insulator: 0
   leaving_Conductor: 0
+  energi_check: 0
   power_gave: 0
+  power_save: 0
   power_cnt: 0
-  leaving_power: 0
   contacing_conductor: 0
   giving_conductor: 0
 --- !u!1 &2026206558
