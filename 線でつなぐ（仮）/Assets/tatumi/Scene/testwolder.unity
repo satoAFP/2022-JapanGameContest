@@ -962,10 +962,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 3
-  prioritys: 8813000088130000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &41217157
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1097,10 +1100,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 1
-  prioritys: 8813000088130000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &45179153
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1341,6 +1347,7 @@ MonoBehaviour:
   mat:
   - {fileID: 2100000, guid: 46e1b1eb7f25ecd44820b698f23785c8, type: 2}
   - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
+  Rotationflag: 0
 --- !u!54 &61817248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1504,7 +1511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5546672775496220539, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 3127
+      value: 7223
       objectReference: {fileID: 0}
     - target: {fileID: 5997867494996260493, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: targetTra
@@ -4975,10 +4982,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 3
-  prioritys: 8813000088130000
-  oneshot: 1
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &353149894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8165,10 +8175,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 0
-  prioritys: 0000000000000000
-  oneshot: 1
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!114 &617780732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8184,6 +8197,7 @@ MonoBehaviour:
   mat:
   - {fileID: 2100000, guid: 7da793daed541f840bbe46a579706c38, type: 2}
   - {fileID: 2100000, guid: 75601ca377f0a12478fa6e3ecec3eec2, type: 2}
+  Rotationflag: 0
 --- !u!54 &617780733
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8495,7 +8509,9 @@ GameObject:
   - component: {fileID: 636509792}
   - component: {fileID: 636509794}
   - component: {fileID: 636509793}
-  m_Layer: 0
+  - component: {fileID: 636509797}
+  - component: {fileID: 636509796}
+  m_Layer: 12
   m_Name: Handle_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8535,7 +8551,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 596b22f161b4128428b18b52e2a8f90f, type: 2}
+  - {fileID: 2100000, guid: 46e1b1eb7f25ecd44820b698f23785c8, type: 2}
+  - {fileID: 2100000, guid: 46e1b1eb7f25ecd44820b698f23785c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8565,6 +8582,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636509791}
   m_Mesh: {fileID: 7702407541894380928, guid: 404ceac2a9b646a48a4a8ff6bf09ef23, type: 3}
+--- !u!114 &636509796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636509791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de7b214164d85a4bb7402da98c0a919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClearTaskflag: 00000000
+  anim: {fileID: 2036183656}
+  mat:
+  - {fileID: 2100000, guid: 46e1b1eb7f25ecd44820b698f23785c8, type: 2}
+  - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
+--- !u!65 &636509797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636509791}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0017696538, y: 0.00069647055, z: 0.0008142748}
+  m_Center: {x: -0.00047818583, y: -0.00037578077, z: -0.0000006113257}
 --- !u!1 &651142712
 GameObject:
   m_ObjectHideFlags: 0
@@ -10972,10 +11019,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 2
-  prioritys: 8813000088130000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &843728941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11380,7 +11430,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875365085}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.60948825, y: -3.1, z: 0.34}
   m_LocalScale: {x: 55, y: 55, z: 55}
   m_Children: []
@@ -11464,6 +11514,7 @@ MonoBehaviour:
   mat:
   - {fileID: 2100000, guid: 8004d495e33ff5c478536552dcca6a4f, type: 2}
   - {fileID: 2100000, guid: 6ff7a004884ad2f44953a37197ee2917, type: 2}
+  Rotationflag: 1
 --- !u!114 &875365091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11481,10 +11532,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 5
-  prioritys: 0000000000000000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &881831274
 GameObject:
   m_ObjectHideFlags: 0
@@ -11616,10 +11670,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 4
-  prioritys: 8813000088130000
-  oneshot: 1
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &884913325
 GameObject:
   m_ObjectHideFlags: 0
@@ -13832,6 +13889,7 @@ MonoBehaviour:
   mat:
   - {fileID: 2100000, guid: 7da793daed541f840bbe46a579706c38, type: 2}
   - {fileID: 2100000, guid: 75601ca377f0a12478fa6e3ecec3eec2, type: 2}
+  Rotationflag: 0
 --- !u!54 &1020769916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13927,10 +13985,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 0
-  prioritys: 0000000000000000
-  oneshot: 1
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1044727383
 GameObject:
   m_ObjectHideFlags: 0
@@ -15994,7 +16055,7 @@ PrefabInstance:
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Door
       value: 
-      objectReference: {fileID: 2036183654}
+      objectReference: {fileID: 636509791}
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Clear_num
       value: 2
@@ -19707,7 +19768,7 @@ PrefabInstance:
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Door
       value: 
-      objectReference: {fileID: 2036183654}
+      objectReference: {fileID: 636509791}
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Clear_num
       value: 1
@@ -21414,10 +21475,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 3
-  prioritys: 8813000088130000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1677655942
 GameObject:
   m_ObjectHideFlags: 0
@@ -21881,11 +21945,14 @@ MonoBehaviour:
   Conductor_hit: 0
   Insulator_hit: 0
   Power_hit: 0
-  hitting_insulator: 1
-  hitting_Conductor: 0
-  priority: 5
-  prioritys: 8813000088130000
-  oneshot: 1
+  hitting_insulator: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1704738540
 GameObject:
   m_ObjectHideFlags: 0
@@ -27110,10 +27177,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 4
-  prioritys: 8813000088130000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1733157974
 GameObject:
   m_ObjectHideFlags: 0
@@ -27239,7 +27309,7 @@ PrefabInstance:
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Door
       value: 
-      objectReference: {fileID: 2036183654}
+      objectReference: {fileID: 636509791}
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Clear_num
       value: 3
@@ -27675,10 +27745,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 2
-  prioritys: 8813000088130000
-  oneshot: 1
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &1779307042
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29271,10 +29344,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 1
-  prioritys: 8813000088130000
-  oneshot: 1
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &1885147932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31643,10 +31719,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
-  priority: 0
-  prioritys: 8813000088130000
-  oneshot: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &2006162720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31960,7 +32039,6 @@ GameObject:
   - component: {fileID: 2036183658}
   - component: {fileID: 2036183657}
   - component: {fileID: 2036183656}
-  - component: {fileID: 2036183659}
   - component: {fileID: 2036183661}
   - component: {fileID: 2036183660}
   m_Layer: 0
@@ -32054,20 +32132,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036183654}
   m_Mesh: {fileID: 2619086233303812490, guid: 404ceac2a9b646a48a4a8ff6bf09ef23, type: 3}
---- !u!114 &2036183659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036183654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de7b214164d85a4bb7402da98c0a919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClearTaskflag: 00000000
-  anim: {fileID: 2036183656}
 --- !u!54 &2036183660
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33554,7 +33618,7 @@ PrefabInstance:
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Door
       value: 
-      objectReference: {fileID: 2036183654}
+      objectReference: {fileID: 636509791}
     - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: Clear_num
       value: 0
