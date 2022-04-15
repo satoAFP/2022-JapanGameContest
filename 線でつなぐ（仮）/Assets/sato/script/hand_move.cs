@@ -12,6 +12,9 @@ public class hand_move : MonoBehaviour
     //ゲームオブジェクトの取得
     [SerializeField, Header("カメラ"), Header("ゲームオブジェクトの取得")] GameObject camera;
 
+    //アニメーション取得
+    [SerializeField, Header("hand_pos")] Animator up_anim;
+
     private Vector3[] move_ani_pos_right = new Vector3[10]; //移動時の右手のアニメーション
     private Vector3[] move_ani_pos_left = new Vector3[10];  //移動時の左手のアニメーション
     private Vector3[] grab_ani_pos_right = new Vector3[10]; //掴んだ時の右手のアニメーション
@@ -23,11 +26,15 @@ public class hand_move : MonoBehaviour
     private float move_amount_y = 0.0f;                     //行動を起こすと手が出てくる移動量
     private bool move_check = false;                        //主人公が移動中かを取得するよう
     private bool grab_check = false;                        //主人公が物を持ってる判定取得
+    private Animator wolk_anim;                             //手を動かすアニメーション
 
     // Start is called before the first frame update
     void Start()
     {
         now_pos = this.gameObject.transform.localPosition;
+
+        //アニメーション
+        wolk_anim = gameObject.GetComponent<Animator>();
 
         //手のアニメーション座標決定
         for (int i = 0; i < 10; i++) 
@@ -70,26 +77,18 @@ public class hand_move : MonoBehaviour
         if (move_check)
         {
             //右手と左手それぞれの動き
-            if (hand_check)
-                hand_move_right(now_pos.y);
-            else
-                hand_move_left(now_pos.y);
+            wolk_anim.SetBool("move_ani_start", true);
 
-            now_pos = this.gameObject.transform.localPosition;
-
-            move_amount_y += updown_speed;
-            if (move_amount_y <= 0.2f)
-                now_pos.y += updown_speed;
-            else
-                move_amount_y = 0.2f;
+            up_anim.SetBool("hand_move", true);
+            
         }
         else
         {
-            move_amount_y -= updown_speed;
-            if (move_amount_y >= 0)
-                now_pos.y -= updown_speed;
-            else
-                move_amount_y = 0;
+            wolk_anim.SetBool("move_ani_start", true);
+
+            up_anim.SetBool("hand_move", false);
+
+            
         }
         //------------------------------------------------------------------------
 
