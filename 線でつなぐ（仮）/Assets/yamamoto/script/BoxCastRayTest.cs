@@ -82,9 +82,9 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true)
             {
                 //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
-                if(worldPos.y>0.3f)
+                if(worldPos.y > 0.1f)
                 {
-                    worldPos.y = 0.9f;
+                    worldPos.y = worldPos.y + Target.transform.position.y;
                 }
                 else
                 {
