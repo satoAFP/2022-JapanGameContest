@@ -32,7 +32,7 @@ public class InputColor_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], 255, 255, 1);
     }
 
     // Update is called once per frame
