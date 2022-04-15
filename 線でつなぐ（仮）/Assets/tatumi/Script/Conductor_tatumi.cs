@@ -181,7 +181,7 @@ public class Conductor_tatumi : MonoBehaviour
                 {
                     if (c.gameObject.GetComponent<Conductor_tatumi>().oneshot == true)
                     {
-                        c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = hitting_insulator;
+                        //c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = hitting_insulator;
                         Debug.Log(c.gameObject.name);
                     }
                     else
