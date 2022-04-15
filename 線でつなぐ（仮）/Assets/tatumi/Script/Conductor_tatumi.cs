@@ -163,14 +163,14 @@ public class Conductor_tatumi : MonoBehaviour
                 if (energization == false)
                 {
 
-                    if (c.gameObject.GetComponent<Conductor_Script>().oneshot == true)
+                    if (c.gameObject.GetComponent<Conductor_tatumi>().oneshot == true)
                     {
-                        c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = hitting_insulator;
+                        c.gameObject.GetComponent<Conductor_tatumi>().hitting_insulator = hitting_insulator;
                         Debug.Log("i");
                     }
                     else
                     {
-                        c.gameObject.GetComponent<Conductor_Script>().prioritys[0] = priority;
+                        c.gameObject.GetComponent<Conductor_tatumi>().prioritys[0] = priority;
                     }
 
                 }
@@ -179,14 +179,14 @@ public class Conductor_tatumi : MonoBehaviour
             {
                 if (energization == true)
                 {
-                    if (c.gameObject.GetComponent<Conductor_Script>().oneshot == true)
+                    if (c.gameObject.GetComponent<Conductor_tatumi>().oneshot == true)
                     {
                         c.gameObject.GetComponent<Conductor_Script>().hitting_insulator = hitting_insulator;
                         Debug.Log(c.gameObject.name);
                     }
                     else
                     {
-                        c.gameObject.GetComponent<Conductor_Script>().prioritys[1] = priority;
+                        c.gameObject.GetComponent<Conductor_tatumi>().prioritys[1] = priority;
                         Debug.Log(this.gameObject.name);
                     }
                 }
