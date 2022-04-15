@@ -78,14 +78,15 @@ public class hand_move : MonoBehaviour
         {
             //‰Eè‚Æ¶è‚»‚ê‚¼‚ê‚Ì“®‚«
             wolk_anim.SetBool("move_ani_start", true);
-
+            //è‚ÌˆÊ’u‚ğã‚É‚ ‚°‚é
             up_anim.SetBool("hand_move", true);
             
         }
         else
         {
+            //è‚Ì“®‚«‚ğ‚â‚ß‚é
             wolk_anim.SetBool("move_ani_start", true);
-
+            //è‚ÌˆÊ’u‚ğ‰º‚É‚³‚ ‚°‚é
             up_anim.SetBool("hand_move", false);
 
             
