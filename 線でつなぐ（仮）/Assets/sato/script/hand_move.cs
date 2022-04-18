@@ -79,44 +79,56 @@ public class hand_move : MonoBehaviour
             //‰Eè‚Æ¶è‚»‚ê‚¼‚ê‚Ì“®‚«
             wolk_anim.SetBool("move_ani_start", true);
 
-            up_anim.SetBool("hand_move", true);
-            
+            if (!grab_check)
+                up_anim.SetBool("hand_move", true);
+            else
+                up_anim.SetBool("hand_move", false);
+
         }
         else
         {
-            wolk_anim.SetBool("move_ani_start", true);
+            wolk_anim.SetBool("move_ani_start", false);
 
             up_anim.SetBool("hand_move", false);
 
             
         }
         //------------------------------------------------------------------------
-
-        //•¨‚ğ“®‚©‚·‚Æ‚«‚Ìè‚Ì“®‚«------------------------------------------------
-        if (move_check)
+        if(grab_check)
         {
-            //‰Eè‚Æ¶è‚»‚ê‚¼‚ê‚Ì“®‚«
-            if (hand_check)
-                hand_move_right(now_pos.y);
-            else
-                hand_move_left(now_pos.y);
-
-            now_pos = this.gameObject.transform.localPosition;
-
-            move_amount_y += updown_speed;
-            if (move_amount_y <= 0.2f)
-                now_pos.y += updown_speed;
-            else
-                move_amount_y = 0.2f;
+            wolk_anim.SetBool("catch", true);
         }
         else
         {
-            move_amount_y -= updown_speed;
-            if (move_amount_y >= 0)
-                now_pos.y -= updown_speed;
-            else
-                move_amount_y = 0;
+            wolk_anim.SetBool("catch", false);
         }
+
+
+        //•¨‚ğ“®‚©‚·‚Æ‚«‚Ìè‚Ì“®‚«------------------------------------------------
+        //if (move_check)
+        //{
+        //    //‰Eè‚Æ¶è‚»‚ê‚¼‚ê‚Ì“®‚«
+        //    if (hand_check)
+        //        hand_move_right(now_pos.y);
+        //    else
+        //        hand_move_left(now_pos.y);
+
+        //    now_pos = this.gameObject.transform.localPosition;
+
+        //    move_amount_y += updown_speed;
+        //    if (move_amount_y <= 0.2f)
+        //        now_pos.y += updown_speed;
+        //    else
+        //        move_amount_y = 0.2f;
+        //}
+        //else
+        //{
+        //    move_amount_y -= updown_speed;
+        //    if (move_amount_y >= 0)
+        //        now_pos.y -= updown_speed;
+        //    else
+        //        move_amount_y = 0;
+        //}
         //------------------------------------------------------------------------
 
 
