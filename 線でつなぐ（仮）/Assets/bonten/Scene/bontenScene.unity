@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 548162952}
   - component: {fileID: 548162955}
   - component: {fileID: 548162956}
+  - component: {fileID: 548162957}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Insulator
@@ -289,7 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f983ad02371fa94198a77aaa5de97e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sentence: 0
 --- !u!54 &548162956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -306,6 +306,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &548162957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548162950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cceb0e32463b447b165def6174cac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &975421178
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c929f76bf033f54ea8f5483730e2009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counductor_hit: 0
 --- !u!4 &796710883000521602
 Transform:
   m_ObjectHideFlags: 0
@@ -791,9 +802,8 @@ GameObject:
   - component: {fileID: 796710884262336089}
   - component: {fileID: 796710884262336086}
   - component: {fileID: 796710884262336087}
-  - component: {fileID: 796710884262336091}
-  - component: {fileID: 796710884262336085}
   - component: {fileID: 796710884262336090}
+  - component: {fileID: 796710884262336085}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Conductor
@@ -810,10 +820,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 796710884262336084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc0347b1c3a5fc4296c45d887851bd9, type: 3}
+  m_Script: {fileID: 11500000, guid: d2f5e43d236f38f4aadb89072c875686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nannka: 0
+  color: 16000000cc000000aa000000
 --- !u!23 &796710884262336086
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -907,16 +917,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &796710884262336091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796710884262336084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c929f76bf033f54ea8f5483730e2009, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counductor_hit: 0
