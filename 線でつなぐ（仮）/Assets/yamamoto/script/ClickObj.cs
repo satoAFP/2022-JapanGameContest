@@ -7,6 +7,9 @@ public class ClickObj : MonoBehaviour
     public Material[] mat = new Material[2];//変更したいマテリアルをセット
     Material[] mats;
 
+    [SerializeField]
+    private bool Rotationflag;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,16 @@ public class ClickObj : MonoBehaviour
         mats[0] = mat[a];
 
         GetComponent<Renderer>().materials = mats;
+        //ここちゃんとかけ
+        Debug.Log(Mathf.Round(this.transform.localEulerAngles.y));
+
+        if (Rotationflag == true)
+        {
+            if (Mathf.Round(this.transform.localEulerAngles.y) == 0 || this.transform.localEulerAngles.y == 180.0f)
+                this.GetComponent<Conductor_Script>().enabled = true;
+            else
+                this.GetComponent<Conductor_Script>().enabled = false;
+        }
     }
 
    
