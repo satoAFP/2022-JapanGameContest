@@ -28,13 +28,16 @@ public class BoxCastRayTest : MonoBehaviour
         distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
 
         RaycastHit hit;
+
+        Ray ray = new Ray(transform.position, transform.forward);//レイの設定
+
         //Cubeのレイを飛ばしターゲットと接触しているか判定
         //Physics.BoxCast (Vector3 中心位置, Vector3 ボックスサイズの半分, Vector3 レイを飛ばす方向, out ヒットした情報, Quaternion ボックスの回転, float レイの長さ, int レイヤーマスク);
-        if (Physics.BoxCast(transform.position, Vector3.one * 0.5f, transform.forward, out hit, Quaternion.identity, 100f, LayerMask.GetMask("Target")))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target")))
         {
             Debug.Log(hit.transform.name);
 
-            Debug.Log(hit.transform.position.y);
+           // Debug.Log(hit.transform.position.y);
 
             Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
@@ -70,7 +73,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //マップチップにレイが接触しているか判定(rayを線に変更）
-        else if(Physics.BoxCast(transform.position, Vector3.one * 0.000005f, transform.forward, out hit, Quaternion.identity, 150f, LayerMask.GetMask("Mapcip")))
+        else if(Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Mapcip")))
         {
 
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
@@ -101,7 +104,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //ドアにレイが接触しているか判定(rayを線に変更）
-        else if (Physics.BoxCast(transform.position, Vector3.one * 0.000005f, transform.forward, out hit, Quaternion.identity, 150f, LayerMask.GetMask("Door")))
+        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
                 hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける
@@ -109,7 +112,14 @@ public class BoxCastRayTest : MonoBehaviour
             hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
         }
 
+       
 
+        //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        //{
+        //    //Rayが当たったオブジェクトの名前と位置情報をログに表示する
+        //    Debug.Log(hit.collider.gameObject.name);
+        //    Debug.Log(hit.collider.gameObject.transform.position);
+        //}
     }
 
     void OnDrawGizmos()
