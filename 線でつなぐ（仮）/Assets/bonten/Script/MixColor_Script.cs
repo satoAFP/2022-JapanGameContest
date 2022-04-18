@@ -26,11 +26,19 @@ public class MixColor_Script : MonoBehaviour
     }
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name== "Cylinder")
+        if(collision.gameObject.tag== "ColorInput")
         {
             color[COLOR_RED]   += collision.gameObject.GetComponent<InputColor_Script>().GetColorRed();
             color[COLOR_BRUE]  += collision.gameObject.GetComponent<InputColor_Script>().GetColorBlue();
             color[COLOR_GREEN] += collision.gameObject.GetComponent<InputColor_Script>().GetColorGreen();
+            for(int i=0;i<COLOR_MAX;i++)
+            {
+                //F‚Ì’l‚ÌÅ‘å’l‚ð’´‚¦‚Ä‚½‚çCOLOR_MAXNUM(255)‚ÉŒÅ’è
+                if (color[i]>COLOR_MAXNUM)
+                {
+                    color[i] = COLOR_MAXNUM;
+                }
+            }
 
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BRUE], (byte)color[COLOR_GREEN], 1);
         }

@@ -8,8 +8,8 @@ public class InputColor_Script : MonoBehaviour
     private const int COLOR_MAXNUM = 255;
     //カラーの数
     private const int COLOR_RED   = 0;
-    private const int COLOR_BRUE  = 1;
-    private const int COLOR_GREEN = 2;
+    private const int COLOR_GREEN = 1;
+    private const int COLOR_BRUE = 2;
     private const int COLOR_MAX   = 3;
 
     [NamedArrayAttribute(new string[] { "RED", "BRUE", "GREEN" })][SerializeField]
@@ -44,17 +44,6 @@ public class InputColor_Script : MonoBehaviour
     {
         return color[COLOR_GREEN];
     }
-    //public int GetColor(int element)
-    //{
-    //    if (element < 0 || element > 2)
-    //    {
-    //        return 0;//要素外の場合は0を返す
-    //    }
-    //    else
-    //    {
-    //        return color[element];
-    //    }
-    //}
 
     public void Awake()
     {
