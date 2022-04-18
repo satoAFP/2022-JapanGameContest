@@ -97,11 +97,12 @@ public class Conductor_Script : MonoBehaviour
             energi_check = true;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
+      
+    public void Power_Off()
     {
-
+        GivePowerReSet();
+        power_cnt = 0;
+        energization = false;
     }
 
     // Update is called once per frame
