@@ -13,23 +13,38 @@ public class Conductor_Script : MonoBehaviour
         MAX_SIZE
     }
 
-
+    [SerializeField]
     //通電変数がtrueになるかどうか確認する関数
-    public bool energization = false;          //通電してるか
-    public bool Conductor_hit = false;          //導体と接触してるか
-    public bool Insulator_hit = false;          //絶縁体と接触してるか
-    public bool Power_hit = false;          //電源と接触してるか
-    public bool hitting_insulator = false;      //周りに自分が絶縁体と接触していることを伝えるための変数
-    public bool leaving_Conductor = false;      //接触していたconductorと離れたことを伝えるための変数
-    public bool energi_check = false;         //自身が通電したことをチェックための変数
-    public bool power_gave = false;             //自分が接触してる導体すべてに電気を通せたか確認するための変数
-    public int power_save = 0;                  //パワーが0になってもこのオブジェクトの持ってたパワーがもともとどれぐらいだったかを保存しておくための変数
-    public int power_cnt = 0;                   //電源から何個目の導体かをカウント。小さくなるほど強くなる
-    public int contacing_conductor = 0;         //接触している導体の数
-    public int giving_conductor = 0;            //電気を分け与えた導体の数
+    private bool energization = false;          //通電してるか
+    [SerializeField]
+    private bool Conductor_hit = false;          //導体と接触してるか
+    [SerializeField]
+    private bool Insulator_hit = false;          //絶縁体と接触してるか
+    [SerializeField]
+    private bool Power_hit = false;          //電源と接触してるか
+    [SerializeField]
+    private bool hitting_insulator = false;      //周りに自分が絶縁体と接触していることを伝えるための変数
+    [SerializeField]
+    private bool leaving_Conductor = false;      //接触していたconductorと離れたことを伝えるための変数
+    [SerializeField]
+    private bool energi_check = false;         //自身が通電したことをチェックための変数
+    [SerializeField]
+    private bool power_gave = false;             //自分が接触してる導体すべてに電気を通せたか確認するための変数
+    [SerializeField]
+    private int power_save = 0;                  //パワーが0になってもこのオブジェクトの持ってたパワーがもともとどれぐらいだったかを保存しておくための変数
+    [SerializeField]
+    private int power_cnt = 0;                   //電源から何個目の導体かをカウント。小さくなるほど強くなる
+    [SerializeField]
+    private int contacing_conductor = 0;         //接触している導体の数
+    [SerializeField]
+    private int giving_conductor = 0;            //電気を分け与えた導体の数
 
 
-    public void Give_Power_ReSet()
+    public bool GetEnergization()
+    {
+        return energization;
+    }
+    public void GivePowerReSet()
     {
         energization = false;
         power_gave = false;
@@ -37,7 +52,7 @@ public class Conductor_Script : MonoBehaviour
     }
     //電力の優先度、数小さい程電源に近いので優先する
     //set_p→自身のpower_cnt
-    public void Set_Power(int set_p)
+    public void SetPower(int set_p)
     {
         //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
         //それがこのオブジェクトのpower_cntより小さければ代入する
@@ -48,20 +63,20 @@ public class Conductor_Script : MonoBehaviour
     }
 
     //自身のpower_cntが0になったときに周りも0にするためだけのメソッド
-    public void Set_Power(int set_p, int pow)
+    public void SetPower(int set_p, int pow)
     {
         //上のメソッドのset_pの役割を変数powで代用する。
         if (power_cnt > pow)
         {
             //通電状態ではなくなるので通電している証となる変数を初期化する
-            Give_Power_ReSet();
+            GivePowerReSet();
             power_save = power_cnt;
             power_cnt = set_p;
         }
     }
 
     //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
-    public void Set_insulator(bool set_insul, int pow)
+    public void SetInsulator(bool set_insul, int pow)
     {
         if (pow < power_cnt)
         {
@@ -70,7 +85,7 @@ public class Conductor_Script : MonoBehaviour
     }
 
     //導体と離れた時の処理
-    public void Set_leave(bool leave, int pow)
+    public void SetLeave(bool leave, int pow)
     {
         if (pow < power_cnt)
         {
@@ -94,7 +109,7 @@ public class Conductor_Script : MonoBehaviour
     {
         if ((hitting_insulator == true && Power_hit == false) || (Insulator_hit == true && Power_hit == false) || (leaving_Conductor == true && Power_hit == false))
         {
-            Give_Power_ReSet();
+            GivePowerReSet();
             if (leaving_Conductor == true)
             {
                 power_cnt = 0;
@@ -148,7 +163,7 @@ public class Conductor_Script : MonoBehaviour
             //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
             if (energization == true)
             {
-                Give_Power_ReSet();
+                GivePowerReSet();
             }
         }
     }
@@ -168,53 +183,52 @@ public class Conductor_Script : MonoBehaviour
         else if (c.gameObject.tag == "Insulator")
         {
             Insulator_hit = false;
-            Give_Power_ReSet();
+            GivePowerReSet();
         }
         //電源と接触せずに導体と離れたとき
         else if (c.gameObject.tag == "Conductor")
         {
             //電気ついてるかの確認用変数をfalseにする
             Conductor_hit = false;
-            c.gameObject.GetComponent<Conductor_Script>().Set_leave(true, power_cnt);
+            c.gameObject.GetComponent<Conductor_Script>().SetLeave(true, power_cnt);
         }
     }
 
 
     void OnCollisionStay(Collision c)
     {
-
         if (c.gameObject.tag == "Conductor")
         {
-
             if (Conductor_hit == false)
             {
                 Conductor_hit = true;
             }
             if (Insulator_hit == true || hitting_insulator == true)
             {
-                c.gameObject.GetComponent<Conductor_Script>().Set_insulator(true, power_cnt);
+                c.gameObject.GetComponent<Conductor_Script>().SetInsulator(true, power_cnt);
             }
             else if (energization == true && power_gave == false)
             {
+                
                 //自分が通電状態にある時、周りの接触している導体も通電状態にする
                 if (giving_conductor < contacing_conductor)
                 {
                     //周りの導体のpower_cntには自身のpower_cntより1多い数を代入して差別化を図る
-                    c.gameObject.GetComponent<Conductor_Script>().Set_Power(power_cnt + 1);
+                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt + 1);
                     giving_conductor++;
                 }
                 else
                 {
                     power_gave = true;
                 }
-                c.gameObject.GetComponent<Conductor_Script>().Set_insulator(false, power_cnt);
+                c.gameObject.GetComponent<Conductor_Script>().SetInsulator(false, power_cnt);
             }
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-                Debug.Log("a");
+
                 //隣のオブジェクトのパワーの大きさがこのオブジェクトより小さければ、そのオブジェクトは絶縁されない
-                c.gameObject.GetComponent<Conductor_Script>().Set_Power(0, power_save);
+                c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
                 if (giving_conductor == contacing_conductor)
                 {
