@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InputColor_Script : MonoBehaviour
 {
-
+    //色の値の最大値
+    private const int COLOR_MAXNUM = 255;
     //カラーの数
     private const int COLOR_RED   = 0;
     private const int COLOR_BRUE  = 1;
@@ -16,28 +17,59 @@ public class InputColor_Script : MonoBehaviour
 
 
     //色のセッター
-    void SetColorRed(int red)
+    public void SetColorRed(int red)
     {
         color[COLOR_RED] = red;
     }
-    void SetColorBrue(int brue)
+    public void SetColorBlue(int brue)
     {
         color[COLOR_BRUE] = brue;
     }
-    void SetColorGreen(int green)
+    public void SetColorGreen(int green)
     {
         color[COLOR_GREEN] = green;
+    }
+
+    //色のゲッター。引数で要素数を指定して取得
+
+    public int GetColorRed()
+    {
+        return color[COLOR_RED];
+    }
+    public int GetColorBlue()
+    {
+        return color[COLOR_BRUE];
+    }
+    public int GetColorGreen()
+    {
+        return color[COLOR_GREEN];
+    }
+    //public int GetColor(int element)
+    //{
+    //    if (element < 0 || element > 2)
+    //    {
+    //        return 0;//要素外の場合は0を返す
+    //    }
+    //    else
+    //    {
+    //        return color[element];
+    //    }
+    //}
+
+    public void Awake()
+    {
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], 255, 255, 1);
+        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BRUE], (byte)color[COLOR_GREEN], 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+        Debug.Log(color[COLOR_RED]);
     }
 }
