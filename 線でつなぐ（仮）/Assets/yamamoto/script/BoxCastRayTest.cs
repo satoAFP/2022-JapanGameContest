@@ -34,6 +34,8 @@ public class BoxCastRayTest : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
+            Debug.Log(hit.transform.position.y);
+
             Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
             //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
@@ -82,15 +84,11 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true)
             {
                 //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
-                if(worldPos.y > 0.1f)
-                {
-                    worldPos.y = worldPos.y + Target.transform.position.y;
-                }
-                else
-                {
-                   worldPos.y = 0.5f;//Y軸を固定する
-                }
-              
+                
+                //worldPos.y += Target.transform.localPosition.y;
+                //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
+                 worldPos.y += 0.5f;//Y軸を固定する
+
                 Target.transform.position = worldPos;
                 Target.GetComponent<ClickObj>().ChangeMaterial(0);//選択objの色を戻す
                 Target = null;//タ-ゲットの初期化
