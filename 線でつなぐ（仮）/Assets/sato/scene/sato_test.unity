@@ -907,6 +907,10 @@ PrefabInstance:
       propertyPath: mat.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ce08a7154f4489f46a4ebc2a2a7c265b, type: 2}
+    - target: {fileID: 3698194633379375334, guid: fe421185e534b2b4aa098863a0a72903, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4ed2ff2ec5bf63479c046b47648a832, type: 2}
     - target: {fileID: 3698194633379375335, guid: fe421185e534b2b4aa098863a0a72903, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3789,6 +3793,10 @@ PrefabInstance:
     - target: {fileID: 5546672774901355801, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: fade_time
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546672774901355801, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: mouse_max_y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5546672774901355801, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: climbing_speed

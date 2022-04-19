@@ -49,7 +49,8 @@ public class BoxCastRayTest : MonoBehaviour
                 Target = hit.collider.gameObject;
                 //手に持つ用にオブジェクトのサイズを帰る
                 TargetScale = Target.transform.localScale;
-                Target.transform.localScale /= 3;
+                Target.transform.localScale /= 5;
+                Target.GetComponent<BoxCollider>().isTrigger = true;
 
                 grab = true;//掴みフラグをtrue
                 hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
@@ -95,7 +96,10 @@ public class BoxCastRayTest : MonoBehaviour
                 //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
                  worldPos.y += 0.5f;//Y軸を固定する
 
+                Target.gameObject.transform.parent = null;
                 Target.transform.localScale = TargetScale;
+                Target.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                Target.GetComponent<BoxCollider>().isTrigger = false;
 
                 Target.transform.position = worldPos;
                 Target.GetComponent<ClickObj>().ChangeMaterial(0);//選択objの色を戻す
