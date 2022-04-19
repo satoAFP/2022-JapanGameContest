@@ -47,6 +47,7 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == false)
             {
                 Target = hit.collider.gameObject;
+                //手に持つ用にオブジェクトのサイズを帰る
                 TargetScale = Target.transform.localScale;
                 Target.transform.localScale /= 3;
 
