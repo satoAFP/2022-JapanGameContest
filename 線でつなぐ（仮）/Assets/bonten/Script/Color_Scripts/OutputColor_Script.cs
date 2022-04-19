@@ -42,7 +42,6 @@ public class OutputColor_Script : Base_Color_Script
 
     public void OnCollisionStay(Collision collision)
     {
-        Debug.Log(this.gameObject.tag);
         //MixColor‚©‚çF‚ğæ“¾
         if (collision.gameObject.tag == "ColorMix" && color_change == true)
         {
