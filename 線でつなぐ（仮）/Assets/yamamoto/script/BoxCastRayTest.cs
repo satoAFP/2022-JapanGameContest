@@ -33,13 +33,21 @@ public class BoxCastRayTest : MonoBehaviour
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
 
+        //bool a = false;
+        //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
+
+
         //Cubeのレイを飛ばしターゲットと接触しているか判定
         //Physics.BoxCast (Vector3 中心位置, Vector3 ボックスサイズの半分, Vector3 レイを飛ばす方向, out ヒットした情報, Quaternion ボックスの回転, float レイの長さ, int レイヤーマスク);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target")))
         {
             Debug.Log(hit.transform.name);
+            //if (a)
+            //    hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
+            //else
+            //    hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(0);//色付け
 
-           // Debug.Log(hit.transform.position.y);
+            // Debug.Log(hit.transform.position.y);
 
             Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
@@ -77,7 +85,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //マップチップにレイが接触しているか判定(rayを線に変更）
-        else if(Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Mapcip")))
+                else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Mapcip")))
         {
 
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
@@ -157,6 +165,7 @@ public class BoxCastRayTest : MonoBehaviour
             }
 
         }
+        
     }
 
     void OnDrawGizmos()
