@@ -12,6 +12,7 @@ public class hand_move : MonoBehaviour
     //ゲームオブジェクトの取得
     [SerializeField, Header("カメラ"), Header("ゲームオブジェクトの取得")] GameObject camera;
     [SerializeField, Header("手に持つブロック")] GameObject catch_block;
+    [SerializeField, Header("camera_all")] GameObject camera_all;
 
     //アニメーション取得
     [SerializeField, Header("hand_pos")] Animator up_anim;
@@ -29,6 +30,7 @@ public class hand_move : MonoBehaviour
     private bool grab_check = false;                        //主人公が物を持ってる判定取得
     private Animator wolk_anim;                             //手を動かすアニメーション
     private GameObject grab_block = null;                   //持った物の情報
+    private Vector3 grab_size;                              //持ったオブジェクトのサイズ記憶
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +78,10 @@ public class hand_move : MonoBehaviour
         grab_check = camera.GetComponent<BoxCastRayTest>().grab;
         grab_block = camera.GetComponent<BoxCastRayTest>().Target;
         if (grab_block != null)
-            catch_block.GetComponent<MeshRenderer>().material = grab_block.GetComponent<MeshRenderer>().material;
+        {
+            grab_block.transform.parent = camera_all.gameObject.transform;
+            grab_block.transform.localPosition = new Vector3(0.515f, -0.251f, 0.763f);
+        }
 
 
         //移動中の手の動き--------------------------------------------------------
@@ -103,7 +108,7 @@ public class hand_move : MonoBehaviour
         if(grab_check)
         {
             wolk_anim.SetBool("catch", true);
-            catch_block.SetActive(true);
+            //catch_block.SetActive(true);
         }
         else
         {
