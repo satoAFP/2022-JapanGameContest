@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class OutputColor_Script : Base_Color_Script
 {
-    bool color_change;
-
-    public void SetMixColor(bool change)
-    {
-        color_change = change;
-    }
+    bool color_change = true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,30 +20,27 @@ public class OutputColor_Script : Base_Color_Script
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ColorMix")
-            Debug.Log("くぁｗせｄｒｆｔｇｙふじこｌｐ");
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        //MixColorから色を捨てる
-        if (collision.gameObject.tag == "ColorMix")
+        if (collision.gameObject.tag == "ColorInput")
         {
-            color[COLOR_RED]   -= collision.gameObject.GetComponent<MixColor_Script>().GetColorRed();
-            color[COLOR_GREEN] -= collision.gameObject.GetComponent<MixColor_Script>().GetColorGreen();
-            color[COLOR_BLUE]  -= collision.gameObject.GetComponent<MixColor_Script>().GetColorBlue();
+            
+            //ColorInputから色を取得
+            color[COLOR_RED]    += collision.gameObject.GetComponent<InputColor_Script>().GetColorRed();
+            color[COLOR_GREEN]  += collision.gameObject.GetComponent<InputColor_Script>().GetColorGreen();
+            color[COLOR_BLUE]   += collision.gameObject.GetComponent<InputColor_Script>().GetColorBlue();
+
+            Debug.Log(color);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
         }
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void OnCollisionExit(Collision collision)
     {
-        //MixColorから色を取得
-        if (collision.gameObject.tag == "ColorMix" && color_change == true)
+        //MixColorから色を捨てる
+        if (collision.gameObject.tag == "ColorInput")
         {
-            color[COLOR_RED]     += collision.gameObject.GetComponent<MixColor_Script>().GetColorRed();
-            color[COLOR_GREEN]   += collision.gameObject.GetComponent<MixColor_Script>().GetColorGreen();
-            color[COLOR_BLUE]    += collision.gameObject.GetComponent<MixColor_Script>().GetColorBlue();
-            color_change = false;
+            color[COLOR_RED]   -= collision.gameObject.GetComponent<InputColor_Script>().GetColorRed();
+            color[COLOR_GREEN] -= collision.gameObject.GetComponent<InputColor_Script>().GetColorGreen();
+            color[COLOR_BLUE]  -= collision.gameObject.GetComponent<InputColor_Script>().GetColorBlue();
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
         }
     }

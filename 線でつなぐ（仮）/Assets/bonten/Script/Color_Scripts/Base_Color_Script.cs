@@ -12,6 +12,9 @@ public class Base_Color_Script : MonoBehaviour
     protected const int COLOR_BLUE = 2;
     protected const int COLOR_MAX = 3;
 
+    [SerializeField]
+    protected bool colorchange_signal = false;
+
     [NamedArrayAttribute(new string[] { "RED", "BRUE", "GREEN" })]
     [SerializeField]
     protected int[] color = new int[COLOR_MAX];

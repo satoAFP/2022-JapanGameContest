@@ -13,6 +13,6 @@ public class InputColor_Script : Base_Color_Script
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(color[COLOR_RED]);
+        
     }
 }
