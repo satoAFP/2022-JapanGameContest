@@ -8,6 +8,8 @@ public class BoxCastRayTest : MonoBehaviour
     [SerializeField]
     private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
 
+    private Vector3 TargetScale;//ターゲットの元の大きさ
+
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
@@ -45,6 +47,10 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == false)
             {
                 Target = hit.collider.gameObject;
+                //手に持つ用にオブジェクトのサイズを帰る
+                TargetScale = Target.transform.localScale;
+                Target.transform.localScale /= 3;
+
                 grab = true;//掴みフラグをtrue
                 hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
                 Cancel = Target;//キャンセルするオブジェクトを設定
@@ -52,7 +58,6 @@ public class BoxCastRayTest : MonoBehaviour
             //再度同じオブジェクトを選択で持ち状態を解除
             else if (Input.GetMouseButtonDown(0) && grab == true && Cancel == Target)//TargetとCancelの取得しているオブジェクトが同じとき
             {
-                //Debug.Log("w");
                 //オブジェクトの初期化
                 Target = null;
                 Cancel = null;
@@ -86,9 +91,11 @@ public class BoxCastRayTest : MonoBehaviour
             {
                 //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
                 
-                //worldPos.y += Target.transform.localPosition.y;
+                //worldPos.y += Target.transformr.localPosition.y;
                 //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
                  worldPos.y += 0.5f;//Y軸を固定する
+
+                Target.transform.localScale = TargetScale;
 
                 Target.transform.position = worldPos;
                 Target.GetComponent<ClickObj>().ChangeMaterial(0);//選択objの色を戻す
