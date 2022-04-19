@@ -8,8 +8,8 @@ public class MixColor_Script : MonoBehaviour
     private const int COLOR_MAXNUM = 255;
     //ƒJƒ‰[‚Ì”
     private const int COLOR_RED = 0;    //Ô
-    private const int COLOR_BRUE = 1;   //Â
-    private const int COLOR_GREEN = 2;  //—Î
+    private const int COLOR_GREEN = 1;   //Â
+    private const int COLOR_BRUE = 2;  //—Î
     private const int COLOR_MAX = 3;    //—v‘f”
     private int[] color = new int[COLOR_MAX];
 

@@ -78,7 +78,7 @@ public class Conductor_Script : MonoBehaviour
     //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
     public void SetInsulator(bool set_insul, int pow)
     {
-        if (pow < power_cnt)
+        if (pow < power_cnt && pow != 0) 
         {
             hitting_insulator = set_insul;
         }
