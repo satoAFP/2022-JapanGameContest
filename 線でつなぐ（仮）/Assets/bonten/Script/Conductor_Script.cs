@@ -98,33 +98,28 @@ public class Conductor_Script : MonoBehaviour
         }
     }
 
-    IEnumerator EffExit()
+    public void EffExit()
     {
-        for(int i=0;i < 2;i++)
-        {
-            if(i==0)
-            {
-                yield return 0.1f;
-            }
-            else if(i==1)
-            {
+       
                 PowerOn(power_save);
-            }
-        }
+            
+        
         
     }
 
-    public void PowerOn(int pow)
+    public void PowerOn(int a)
     {
-        power_cnt = pow;
+        power_cnt = a;
+        Debug.Log(a);
     }
 
     public void PowerOff()
     {
         GivePowerReSet();
+        if(power_cnt!=0)
         power_save = power_cnt;
         power_cnt = 0;
-        StartCoroutine(EffExit());
+        //StartCoroutine(EffExit());
         energization = false;
     }
 
