@@ -42,10 +42,8 @@ public class BoxCastRayTest : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target")))
         {
             Debug.Log(hit.transform.name);
-            //if (a)
-            //    hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
-            //else
-            //    hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(0);//色付け
+           
+            hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial();//レイが当たったところに色付け
 
             // Debug.Log(hit.transform.position.y);
 
@@ -61,7 +59,6 @@ public class BoxCastRayTest : MonoBehaviour
                 Target.GetComponent<BoxCollider>().isTrigger = true;
 
                 grab = true;//掴みフラグをtrue
-                hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
                 Cancel = Target;//キャンセルするオブジェクトを設定
             }
             //再度同じオブジェクトを選択で持ち状態を解除
@@ -73,7 +70,6 @@ public class BoxCastRayTest : MonoBehaviour
                 //掴みフラグをfalse
                 grab = false;
 
-                hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(0);//色付け
             }
 
             //右クリックでオブジェクトを回転
@@ -110,7 +106,6 @@ public class BoxCastRayTest : MonoBehaviour
                 Target.GetComponent<BoxCollider>().isTrigger = false;
 
                 Target.transform.position = worldPos;
-                Target.GetComponent<ClickObj>().ChangeMaterial(0);//選択objの色を戻す
                 Target = null;//タ-ゲットの初期化
                 grab = false;//掴みフラグをfalse
                 
