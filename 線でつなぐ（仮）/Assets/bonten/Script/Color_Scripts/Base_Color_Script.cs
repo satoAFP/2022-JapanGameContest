@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//色の基盤スクリプト
 public class Base_Color_Script : MonoBehaviour
 {
     //色の値の最大値
@@ -15,6 +16,7 @@ public class Base_Color_Script : MonoBehaviour
     [SerializeField]
     protected bool colorchange_signal = false;
 
+    //要素の名前を変更
     [NamedArrayAttribute(new string[] { "RED", "BRUE", "GREEN" })]
     [SerializeField]
     protected int[] color = new int[COLOR_MAX];

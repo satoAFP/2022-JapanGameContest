@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class Conductor_Script : MonoBehaviour
 {
-    protected static int electoric_power = 1;   //1以上で通電
-    protected enum Contact
-    {
-        CONTACT,
-        GIVING_POWER,
-
-        MAX_SIZE
-    }
+    private const int ELECTORIC_POWER = 1;   //1以上で通電
 
     [SerializeField]
     //通電変数がtrueになるかどうか確認する関数
@@ -39,10 +32,15 @@ public class Conductor_Script : MonoBehaviour
     [SerializeField]
     private int giving_conductor = 0;            //電気を分け与えた導体の数
 
-
+    //energizationのセッター。
     public bool GetEnergization()
     {
         return energization;
+    }
+    public void SetEnergization(bool electoric)
+    {
+        energization = electoric;
+
     }
     public void GivePowerReSet()
     {
@@ -73,6 +71,13 @@ public class Conductor_Script : MonoBehaviour
             power_save = power_cnt;
             power_cnt = set_p;
         }
+    }
+
+    //タグPower_Supplyオブジェクトからアクセスするためのメソッド
+    public void SetPower(int set_p, bool turn_on)
+    {
+        power_cnt = set_p;
+        Power_hit = turn_on;
     }
 
     //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
@@ -142,7 +147,7 @@ public class Conductor_Script : MonoBehaviour
 
             leaving_Conductor = false;
         }
-        else if (power_cnt >= electoric_power && (Conductor_hit == true || Power_hit == true))
+        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
         }
@@ -168,10 +173,10 @@ public class Conductor_Script : MonoBehaviour
         //電源と接触したとき
         if (c.gameObject.tag == "Power_Supply")
         {
-            //Power_hitをtrueにする
-            Power_hit = true;
-            //電源から伸びてる導体は最小に設定し、最優先とする
-            power_cnt = 1;
+            ////Power_hitをtrueにする
+            //Power_hit = true;
+            ////電源から伸びてる導体は最小に設定し、最優先とする
+            //power_cnt = 1;
         }
         //絶縁体と接触したとき
         else if (c.gameObject.tag == "Insulator")
