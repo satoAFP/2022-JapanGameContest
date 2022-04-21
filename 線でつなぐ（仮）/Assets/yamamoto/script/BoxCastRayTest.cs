@@ -56,6 +56,7 @@ public class BoxCastRayTest : MonoBehaviour
                 TargetScale = Target.transform.localScale;
                 Target.transform.localScale /= 5;
                 Target.GetComponent<BoxCollider>().isTrigger = true;
+                Target.GetComponent<Rigidbody>().isKinematic = true;
 
                 grab = true;//掴みフラグをtrue
                 Cancel = Target;//キャンセルするオブジェクトを設定
@@ -103,6 +104,7 @@ public class BoxCastRayTest : MonoBehaviour
                 Target.transform.localScale = TargetScale;
                 Target.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
                 Target.GetComponent<BoxCollider>().isTrigger = false;
+                Target.GetComponent<Rigidbody>().isKinematic = false;
 
                 Target.transform.position = worldPos;
                 Target = null;//タ-ゲットの初期化

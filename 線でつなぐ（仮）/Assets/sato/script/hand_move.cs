@@ -80,7 +80,7 @@ public class hand_move : MonoBehaviour
         if (grab_block != null)
         {
             grab_block.transform.parent = camera_all.gameObject.transform;
-            grab_block.transform.localPosition = new Vector3(0.515f, -0.251f, 0.763f);
+            grab_block.transform.localPosition = new Vector3(0.5f, -0.25f, 1.0f);
         }
 
 
