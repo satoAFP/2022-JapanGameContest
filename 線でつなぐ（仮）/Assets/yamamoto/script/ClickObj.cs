@@ -19,15 +19,22 @@ public class ClickObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(mat[0]!=mats[0])
+        {
+            //レイが当たってないときは初期色にし続ける
+            mats[0] = mat[0];
+
+            GetComponent<Renderer>().materials = mats;
+        }
+       
     }
 
     //関数化（Updateはうざいため）
-    public void ChangeMaterial(int a)
+    public void ChangeMaterial()
     {
         //マテリアル変更(1=強調0=普通)
         
-        mats[0] = mat[a];
+        mats[0] = mat[1];
 
         GetComponent<Renderer>().materials = mats;
         //ここちゃんとかけ
