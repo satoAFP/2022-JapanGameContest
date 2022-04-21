@@ -107,6 +107,7 @@ public class player : MonoBehaviour
                 {
                     cursol_pop = true;
                     Cursor.visible = true;
+                    SetCursorPos(1000, 600);
                 }
             }
             key_check_E = false;
@@ -234,13 +235,6 @@ public class player : MonoBehaviour
                 fade_check = false;
             }
         }
-    }
-
-
-
-    void OnCollisionEnter(Collision col)
-    {
-        
     }
 
 
