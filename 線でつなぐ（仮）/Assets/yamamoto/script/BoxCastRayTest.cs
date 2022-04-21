@@ -38,8 +38,7 @@ public class BoxCastRayTest : MonoBehaviour
 
 
         //Cubeのレイを飛ばしターゲットと接触しているか判定
-        //Physics.BoxCast (Vector3 中心位置, Vector3 ボックスサイズの半分, Vector3 レイを飛ばす方向, out ヒットした情報, Quaternion ボックスの回転, float レイの長さ, int レイヤーマスク);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target")))
+        if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")))
         {
             Debug.Log(hit.transform.name);
            
@@ -81,7 +80,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //マップチップにレイが接触しているか判定(rayを線に変更）
-                else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Mapcip")))
+                else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")))
         {
 
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
