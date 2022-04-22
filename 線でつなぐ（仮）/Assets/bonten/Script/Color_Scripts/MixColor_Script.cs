@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MixColor_Script : Base_Color_Script
 {
-   
+    //子オブジェクト取得用
+    private GameObject child;
     // Start is called before the first frame update
     void Start()
     {
-        
+        child = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -17,14 +18,16 @@ public class MixColor_Script : Base_Color_Script
        
     }
 
+    public bool GetColorChange() => colorchange_signal;
+
     public void OnCollisionEnter(Collision collision)
     {
         //タグColorOutputオブジェクトから色を取得し、その色に変更
         if (collision.gameObject.tag == "ColorOutput")
         {
-            color[COLOR_RED]    += collision.gameObject.GetComponent<OutputColor_Script>().GetColorRed();
-            color[COLOR_BLUE]   += collision.gameObject.GetComponent<OutputColor_Script>().GetColorBlue();
-            color[COLOR_GREEN]  += collision.gameObject.GetComponent<OutputColor_Script>().GetColorGreen();
+            color[COLOR_RED]    += collision.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
+            color[COLOR_BLUE]   += collision.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
+            color[COLOR_GREEN]  += collision.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
             for (int i = 0; i < COLOR_MAX; i++)
             {
                 if (color[i] > COLOR_MAXNUM)
@@ -39,6 +42,9 @@ public class MixColor_Script : Base_Color_Script
                 }
             }
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+
+            colorchange_signal = true;
+            child.GetComponent<MIxColorChild_Script>().SetColCulation(ADDITION);
         }
     }
 
@@ -53,6 +59,10 @@ public class MixColor_Script : Base_Color_Script
             color[COLOR_GREEN]  -= collision.gameObject.GetComponent<OutputColor_Script>().GetColorGreen();
 
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            colorchange_signal = true;
+            child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION);
         }
     }
+
+    
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1010,7 +1010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150112209751641930, guid: c29d2240bd4a2844399b47e515590ce6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.398
+      value: 2.897
       objectReference: {fileID: 0}
     - target: {fileID: 8150112209751641930, guid: c29d2240bd4a2844399b47e515590ce6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1703,6 +1703,21 @@ MonoBehaviour:
   power_on: 0
   obj_list: []
   electoric_power: 1
+--- !u!114 &1701786809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701786807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6b1cf035808264ca853b3e4488291f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  clearColor: ff000000ff00000000000000
 --- !u!1 &2015474791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,7 +2082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796710883000521603}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.1399999, y: -0.26999998, z: 0.029999971}
+  m_LocalPosition: {x: -1.453, y: -0.127, z: 0.029999971}
   m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_Children: []
   m_Father: {fileID: 548162951}
@@ -2086,6 +2101,7 @@ GameObject:
   - component: {fileID: 796710883000521604}
   - component: {fileID: 796710883000521605}
   - component: {fileID: 796710883000521606}
+  - component: {fileID: 796710883000521608}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -2145,9 +2161,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 2.1396446
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000049670533, y: 0.06982231, z: -0.00000009934107}
 --- !u!54 &796710883000521606
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2172,6 +2188,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796710883000521603}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &796710883000521608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796710883000521603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3653e6391c1c40545a26e99a10d1b202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  parent: {fileID: 548162950}
 --- !u!1 &796710883786213892
 GameObject:
   m_ObjectHideFlags: 0
