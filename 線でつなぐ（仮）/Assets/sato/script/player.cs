@@ -107,6 +107,7 @@ public class player : MonoBehaviour
                 {
                     cursol_pop = true;
                     Cursor.visible = true;
+                    SetCursorPos(1000, 600);
                 }
             }
             key_check_E = false;
@@ -179,12 +180,6 @@ public class player : MonoBehaviour
         }
 
 
-        //カーソル表示
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = true;
-        }
-
         //カーソルの座標記憶
         cursol_pos_check = Input.mousePosition;
 
@@ -234,13 +229,6 @@ public class player : MonoBehaviour
                 fade_check = false;
             }
         }
-    }
-
-
-
-    void OnCollisionEnter(Collision col)
-    {
-        
     }
 
 
