@@ -98,10 +98,29 @@ public class Conductor_Script : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void EffExit()
     {
+       
+                PowerOn(power_save);
+            
+        
+        
+    }
 
+    public void PowerOn(int a)
+    {
+        power_cnt = a;
+        Debug.Log(a);
+    }
+
+    public void PowerOff()
+    {
+        GivePowerReSet();
+        if(power_cnt!=0)
+        power_save = power_cnt;
+        power_cnt = 0;
+        //StartCoroutine(EffExit());
+        energization = false;
     }
 
     // Update is called once per frame
