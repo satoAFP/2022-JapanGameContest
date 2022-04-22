@@ -17,7 +17,7 @@ public class Menu_up : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.E))
         {
            if(Menu.gameObject.activeSelf == true)
            {
