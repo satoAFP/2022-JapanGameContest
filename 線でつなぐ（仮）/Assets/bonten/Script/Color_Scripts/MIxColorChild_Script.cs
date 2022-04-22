@@ -47,6 +47,7 @@ public class MIxColorChild_Script : Base_Color_Script
         {
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(this.gameObject, colculation);
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColorChange(colorchange_signal);
+            parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
             colorchange_signal = false;
         }
     }
