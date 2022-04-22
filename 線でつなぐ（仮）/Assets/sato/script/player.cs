@@ -180,12 +180,6 @@ public class player : MonoBehaviour
         }
 
 
-        //カーソル表示
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = true;
-        }
-
         //カーソルの座標記憶
         cursol_pos_check = Input.mousePosition;
 
