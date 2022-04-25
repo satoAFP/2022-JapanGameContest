@@ -48,6 +48,7 @@ public class player : MonoBehaviour
     private bool camera_change = true;                              //カメラの切り替え
     private bool fade_check = false;                                //フェードするかどうか切り替え
     private bool fade_updown = true;                                //透過レベルが上がるか下がるか
+    private bool first = true;                                      //一番最初の処理だけ実行
 
 
     //連続で押されないための判定
@@ -72,6 +73,7 @@ public class player : MonoBehaviour
         //カーソルを消して、中央にロック
         Cursor.visible = false;
         SetCursorPos(1000, 600);
+        my_camera.transform.rotation = Quaternion.identity;
     }
 
     // Update is called once per frame
@@ -244,6 +246,8 @@ public class player : MonoBehaviour
     //カメラコントロール関数
     private void CameraRotationMouseControl()
     {
+        my_camera.transform.rotation = Quaternion.identity;
+
         //実際のカーソルの移動量計算
         vertual_cursol_pos.x += Input.mousePosition.x - cursol_pos_check.x;
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
@@ -292,5 +296,11 @@ public class player : MonoBehaviour
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
+
+        if (first)
+        {
+            my_camera.transform.rotation = Quaternion.identity;
+            first = false;
+        }
     }
 }
