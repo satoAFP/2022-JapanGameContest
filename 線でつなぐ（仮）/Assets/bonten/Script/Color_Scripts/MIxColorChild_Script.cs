@@ -5,12 +5,12 @@ using UnityEngine;
 public class MIxColorChild_Script : Base_Color_Script
 {
     //ColorJudgement_ScriptÇ…êFÇÃílÇìnÇ∑éûÇ…å∏éZÇ©â¡éZÇ©îªífÇ≥ÇπÇÈópïœêî
-    private bool colculation;
+    private short colculation;
 
     [SerializeField]
     private GameObject parent;
 
-    public void SetColCulation(bool col)
+    public void SetColCulation(short col)
     {
         colculation = col;
     }
@@ -24,14 +24,23 @@ public class MIxColorChild_Script : Base_Color_Script
     // Update is called once per frame
     void Update()
     {
-        if(parent.gameObject.GetComponent<MixColor_Script>().GetColorChange() == true)
+        if (colculation == ADDITION)
         {
             Debug.Log("ÇﬂÇÍÇÒÇ∞");
-            colorchange_signal = true;
             SetColor(parent.gameObject, colculation);
 
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
 
+            colorchange_signal = true;
+        }
+        else if (colculation == SUBTRACTION)
+        {
+            Debug.Log("Ç∞ÇÒÇÍÇﬂ");
+            SetColor(parent.gameObject, colculation);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
+            colorchange_signal = true;
         }
     }
 
@@ -42,12 +51,12 @@ public class MIxColorChild_Script : Base_Color_Script
 
     public void OnCollisionStay(Collision collision)
     {
-        Debug.Log("ds;lkaj");
         if (collision.gameObject.tag == "Power_Supply" && colorchange_signal == true)
         {
+            
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(this.gameObject, colculation);
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColorChange(colorchange_signal);
-            parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
+            
             colorchange_signal = false;
         }
     }

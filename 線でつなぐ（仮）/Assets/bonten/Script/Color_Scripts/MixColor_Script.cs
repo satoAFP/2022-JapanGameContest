@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class MixColor_Script : Base_Color_Script
 {
+    
     //子オブジェクト取得用
     private GameObject child;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        //子オブジェクトを取得
         child = transform.GetChild(0).gameObject;
     }
 
@@ -20,31 +25,30 @@ public class MixColor_Script : Base_Color_Script
 
     public bool GetColorChange() => colorchange_signal;
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionStay(Collision collision)
     {
         //タグColorOutputオブジェクトから色を取得し、その色に変更
         if (collision.gameObject.tag == "ColorOutput")
         {
-            color[COLOR_RED]    += collision.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
-            color[COLOR_BLUE]   += collision.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
-            color[COLOR_GREEN]  += collision.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
-            for (int i = 0; i < COLOR_MAX; i++)
+            if (collision.gameObject.GetComponent<Base_Color_Script>().GetEnergization() == true)
             {
-                if (color[i] > COLOR_MAXNUM)
+                if (colorchange_signal == false)
                 {
-                    //色の値の最大値を超えてたらCOLOR_MAXNUM(255)に固定
-                    color[i] = COLOR_MAXNUM;
-                }
-                else if (color[i] < 0) 
-                {
-                    //色の値の最小値を下回ってたら0にする
-                    color[i] = 0;
+                    SetColor(collision.gameObject, ADDITION);
+                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+
+                    //子オブジェクトに色を出す指令を出す
+                    child.GetComponent<MIxColorChild_Script>().SetColCulation(ADDITION);
                 }
             }
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            else
+            {
+                SetColor(collision.gameObject, ADDITION);
+                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
 
-            colorchange_signal = true;
-            child.GetComponent<MIxColorChild_Script>().SetColCulation(ADDITION);
+                //子オブジェクトに色を消す指令を出す
+                child.GetComponent<MIxColorChild_Script>().SetColCulation(ADDITION);
+            }
         }
     }
 
@@ -54,12 +58,9 @@ public class MixColor_Script : Base_Color_Script
         if (collision.gameObject.tag == "ColorOutput")
         {
             //その後、離れたColorInputが持っている色の値を今これが持ってる色の値から減らす
-            color[COLOR_RED]    -= collision.gameObject.GetComponent<OutputColor_Script>().GetColorRed();
-            color[COLOR_BLUE]   -= collision.gameObject.GetComponent<OutputColor_Script>().GetColorBlue();
-            color[COLOR_GREEN]  -= collision.gameObject.GetComponent<OutputColor_Script>().GetColorGreen();
-
+            SetColor(collision.gameObject, SUBTRACTION);
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
-            colorchange_signal = true;
+            //子オブジェクトに色を消す指令を出す
             child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION);
         }
     }

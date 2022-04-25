@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Conductor_Script : MonoBehaviour
+public class Conductor_Script : Base_Enegization
 {
     private const int ELECTORIC_POWER = 1;   //1à»è„Ç≈í ìd
 
