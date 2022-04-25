@@ -20,6 +20,8 @@ public class BoxCastRayTest : MonoBehaviour
 
     public bool grab;//掴みフラグ
 
+    private bool wall = false;
+
     void Start()
     {
         grab = false;//初期化
@@ -38,10 +40,18 @@ public class BoxCastRayTest : MonoBehaviour
         //bool a = false;
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 
-
-        //Cubeのレイを飛ばしターゲットと接触しているか判定
-        if(grab==false)
+        //壁にレイが接触しているか
+        if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")))
         {
+            wall = true;
+        }
+        //Cubeのレイを飛ばしターゲットと接触しているか判定
+        else if (grab==false)
+        {
+
+            
+
+
             if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")))
             {
                 Debug.Log(hit.transform.name);
@@ -64,7 +74,6 @@ public class BoxCastRayTest : MonoBehaviour
                     Target.GetComponent<Rigidbody>().isKinematic = true;
 
                     grab = true;//掴みフラグをtrue
-                    Debug.Log("無領空処");
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
                 //再度同じオブジェクトを選択で持ち状態を解除
@@ -103,7 +112,7 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true)
             {
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if(hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock==false)
+                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                 {
                     //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
@@ -214,7 +223,6 @@ public class BoxCastRayTest : MonoBehaviour
             }
 
         }
-        
     }
 
     void OnDrawGizmos()
