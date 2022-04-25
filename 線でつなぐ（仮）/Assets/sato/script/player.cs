@@ -64,16 +64,16 @@ public class player : MonoBehaviour
         //リジッドボディを取得
         rb = GetComponent<Rigidbody>();
         
-        //カメラ関係初期化
-        camTransform = this.gameObject.transform;
-        startMousePos = Input.mousePosition;
-        presentCamRotation.x = camTransform.transform.eulerAngles.x;
-        presentCamRotation.y = camTransform.transform.eulerAngles.y;
-
         //カーソルを消して、中央にロック
         Cursor.visible = false;
-        SetCursorPos(1000, 600);
-        my_camera.transform.rotation = Quaternion.identity;
+        SetCursorPos(1024, 576);
+        //my_camera.transform.rotation = Quaternion.identity;
+
+        //カメラ関係初期化
+        camTransform = this.gameObject.transform;
+        //startMousePos = Input.mousePosition;
+        presentCamRotation.x = camTransform.transform.eulerAngles.x;
+        presentCamRotation.y = camTransform.transform.eulerAngles.y;
     }
 
     // Update is called once per frame
@@ -85,7 +85,7 @@ public class player : MonoBehaviour
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
 
         //--------------------------------------------------------------------------------------------
-
+        //Debug.Log("" + Input.mousePosition);
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
         if (cursol_reset)
@@ -109,7 +109,7 @@ public class player : MonoBehaviour
                 {
                     cursol_pop = true;
                     Cursor.visible = true;
-                    SetCursorPos(1000, 600);
+                    SetCursorPos(1024, 576);
                 }
             }
             key_check_E = false;
@@ -241,21 +241,30 @@ public class player : MonoBehaviour
         this.gameObject.transform.position += vec;
     }
 
-
+    
 
     //カメラコントロール関数
     private void CameraRotationMouseControl()
     {
-        my_camera.transform.rotation = Quaternion.identity;
+        //my_camera.transform.rotation = Quaternion.identity;
 
         //実際のカーソルの移動量計算
         vertual_cursol_pos.x += Input.mousePosition.x - cursol_pos_check.x;
+        vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
+        
+        if (first)
+        {
+            startMousePos = vertual_cursol_pos;
+            first = false;
+        }
+        Debug.Log(startMousePos);
+
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
-        float x = (startMousePos.x + vertual_cursol_pos.x) / Screen.width;
+        float x = (-startMousePos.x + vertual_cursol_pos.x) / Screen.width;
         float y = mem_camera_rotato_y;
         
-        //実際のカーソルの移動量計算
-        vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
+        
+        
         //Y軸の回転は一定値(mouse_max_y)で止まる
         if (((startMousePos.y - vertual_cursol_pos.y) / Screen.height) <= mouse_max_y &&
             ((startMousePos.y - vertual_cursol_pos.y) / Screen.height) >= -mouse_max_y)
@@ -288,7 +297,7 @@ public class player : MonoBehaviour
             if (Input.mousePosition.x > 950 || Input.mousePosition.x < 35 ||
                 Input.mousePosition.y > 540 || Input.mousePosition.y < 40)
             {
-                SetCursorPos(1000, 600);
+                SetCursorPos(1024, 576);
                 cursol_reset = true;
             }
         }
@@ -296,11 +305,7 @@ public class player : MonoBehaviour
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
-
-        if (first)
-        {
-            my_camera.transform.rotation = Quaternion.identity;
-            first = false;
-        }
+        //Debug.Log(eulerX+" : "+ eulerY);
+        
     }
 }
