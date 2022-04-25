@@ -10,6 +10,8 @@ public class BoxCastRayTest : MonoBehaviour
 
     private Vector3 TargetScale;//ターゲットの元の大きさ
 
+    private Vector3 TargetRotate;//ターゲットの元の角度
+
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
@@ -56,11 +58,13 @@ public class BoxCastRayTest : MonoBehaviour
                     Target = hit.collider.gameObject;
                     //手に持つ用にオブジェクトのサイズを帰る
                     TargetScale = Target.transform.localScale;
+                    TargetRotate = Target.transform.eulerAngles;
                     Target.transform.localScale /= 5;
                     Target.GetComponent<BoxCollider>().isTrigger = true;
                     Target.GetComponent<Rigidbody>().isKinematic = true;
 
                     grab = true;//掴みフラグをtrue
+                    Debug.Log("無領空処");
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
                 //再度同じオブジェクトを選択で持ち状態を解除
@@ -110,7 +114,7 @@ public class BoxCastRayTest : MonoBehaviour
                     //手に持ったオブジェクトを元の大きさに戻す
                     Target.gameObject.transform.parent = null;
                     Target.transform.localScale = TargetScale;
-                    Target.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                    Target.transform.localEulerAngles = TargetRotate;
                     //手に持ったオブジェクトの当たり判定を復活させる
                     Target.GetComponent<BoxCollider>().isTrigger = false;
                     Target.GetComponent<Rigidbody>().isKinematic = false;
@@ -123,8 +127,6 @@ public class BoxCastRayTest : MonoBehaviour
                 
                 
             }
-
-            //Debug.Log(hit.transform.name);
            
         }
 
