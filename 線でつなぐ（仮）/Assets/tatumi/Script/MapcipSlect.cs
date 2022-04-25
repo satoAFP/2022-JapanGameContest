@@ -7,6 +7,8 @@ public class MapcipSlect : MonoBehaviour
     public Material[] mat = new Material[2];//変更したいマテリアルをセット
     Material[] mats;
 
+    public bool Onblock = false;//自身のマップチップにブロックが乗っているときにtrue
+
     //セレクトON,OFFでマテリアル制御
     private bool now_select;
 
