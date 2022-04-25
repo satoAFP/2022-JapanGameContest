@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //色の基盤スクリプト
-public class Base_Color_Script : MonoBehaviour
+public class Base_Color_Script : Base_Enegization
 {
     //定数-------------------------------------------------------
     //色の値の最大値
@@ -25,19 +25,9 @@ public class Base_Color_Script : MonoBehaviour
     protected bool colorchange_signal = false;
 
     //要素の名前を変更
-    [NamedArrayAttribute(new string[] { "RED", "BRUE", "GREEN" })]
+    [NamedArrayAttribute(new string[] { "RED", "GREEN", "BRUE" })]
     [SerializeField]
     protected int[] color = new int[COLOR_MAX];
-
-    [SerializeField]
-    protected bool energization = false;        //電気が通ってるかどうか
-
-
-    //energizationのゲッター
-    public bool GetEnergization()
-    {
-        return energization;
-    }
 
     //ゲームオブジェクトを引数として持ち、そのオブジェクトの色を自身の色に影響させる関数
     //引数1 -> ゲームオブジェクト型の引数
@@ -74,7 +64,37 @@ public class Base_Color_Script : MonoBehaviour
         }
     }
 
-
+    public void SetColor(int[] _color, short col)
+    {
+        if (col == ADDITION)
+        {
+            color[COLOR_RED]   += _color[COLOR_RED];
+            color[COLOR_GREEN] += _color[COLOR_GREEN];
+            color[COLOR_BLUE]  += _color[COLOR_BLUE];
+            for (int i = 0; i < COLOR_MAX; i++)
+            {
+                if (color[i] > COLOR_MAXNUM)
+                {
+                    //色の値の最大値を超えてたらCOLOR_MAXNUM(255)に固定
+                    color[i] = COLOR_MAXNUM;
+                }
+            }
+        }
+        else if (col == SUBTRACTION)
+        {
+            color[COLOR_RED]   -= _color[COLOR_RED];
+            color[COLOR_GREEN] -= _color[COLOR_GREEN];
+            color[COLOR_BLUE]  -= _color[COLOR_BLUE];
+            for (int i = 0; i < COLOR_MAX; i++)
+            {
+                if (color[i] < 0)
+                {
+                    //色の値の最小値を下回ってたら0にする
+                    color[i] = 0;
+                }
+            }
+        }
+    }
     public void SetColorChange(bool change) => colorchange_signal = change;
 
     //色のセッター
