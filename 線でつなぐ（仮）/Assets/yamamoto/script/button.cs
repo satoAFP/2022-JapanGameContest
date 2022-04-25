@@ -18,7 +18,7 @@ public class button : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        
+        //めた
     }
 
     // クリックされたときに呼び出されるメソッド
