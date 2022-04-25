@@ -129,7 +129,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //ドアにレイが接触しているか判定(rayを線に変更）
-        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
                 hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける

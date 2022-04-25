@@ -58,5 +58,7 @@ public class DoorOpoen : MonoBehaviour
 
         GetComponent<Renderer>().materials = mats;
 
+        Debug.Log("k");
+
     }
 }
