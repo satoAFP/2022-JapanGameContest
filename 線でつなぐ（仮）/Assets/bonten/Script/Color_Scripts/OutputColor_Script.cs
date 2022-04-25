@@ -17,14 +17,14 @@ public class OutputColor_Script : Base_Color_Script
                 energization = true;
                 //ColorInputÇ©ÇÁêFÇéÊìæ
                 SetColor(collision.gameObject, ADDITION);
-                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+               // GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
             }
             else
             {
                 energization = false;
                 //ColorInputÇ©ÇÁêFÇéÊìæ
                 SetColor(collision.gameObject, SUBTRACTION);
-                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+                //GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
             }
         }
     }
@@ -36,7 +36,7 @@ public class OutputColor_Script : Base_Color_Script
         {
             energization = false;
             SetColor(collision.gameObject, SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+          //  GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
         }
     }
 }

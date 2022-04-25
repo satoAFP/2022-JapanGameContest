@@ -29,7 +29,7 @@ public class MIxColorChild_Script : Base_Color_Script
             Debug.Log("‚ß‚ê‚ñ‚°");
             SetColor(parent.gameObject, colculation);
 
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+           // GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
             parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
 
             colorchange_signal = true;
@@ -38,7 +38,7 @@ public class MIxColorChild_Script : Base_Color_Script
         {
             Debug.Log("‚°‚ñ‚ê‚ß");
             SetColor(parent.gameObject, colculation);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+           // GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
             parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
             colorchange_signal = true;
         }
