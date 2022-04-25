@@ -37,6 +37,7 @@ public class Base_Color_Script : MonoBehaviour
             color[COLOR_RED]   += obj.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
             color[COLOR_GREEN] += obj.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
             color[COLOR_BLUE]  += obj.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
+
         }
         else if(col == SUBTRACTION)
         {
