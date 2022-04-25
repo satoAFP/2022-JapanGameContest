@@ -23,7 +23,7 @@ public class TurnonPower_Script : MonoBehaviour
         if (energi_investigate == false)
         {
             turn_on_power = false;
-            //Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
+            Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
         }
 
         if (turn_on_power == true)

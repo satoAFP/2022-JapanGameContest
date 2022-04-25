@@ -8,7 +8,8 @@ public class ClickObj : MonoBehaviour
     Material[] mats;
 
     [SerializeField]
-    private bool Rotationflag;
+    private bool Rotationflag,vertical;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,25 @@ public class ClickObj : MonoBehaviour
 
             GetComponent<Renderer>().materials = mats;
         }
-       
+
+        if (Rotationflag == true)
+        {
+            if (vertical == true)
+            {
+                if (Mathf.Round(this.transform.localEulerAngles.y) == 0 || this.transform.localEulerAngles.y == 180.0f)
+                    this.GetComponent<Conductor_Script>().enabled = true;
+                else
+                    this.GetComponent<Conductor_Script>().enabled = false;
+            }
+            else if (vertical == false)
+            {
+                if (Mathf.Round(this.transform.localEulerAngles.y) == 90.0f || this.transform.localEulerAngles.y == 270.0f)
+                    this.GetComponent<Conductor_Script>().enabled = true;
+                else
+                    this.GetComponent<Conductor_Script>().enabled = false;
+            }
+        }
+
     }
 
     //ä÷êîâªÅiUpdateÇÕÇ§Ç¥Ç¢ÇΩÇﬂÅj
@@ -40,13 +59,6 @@ public class ClickObj : MonoBehaviour
         //Ç±Ç±ÇøÇ·ÇÒÇ∆Ç©ÇØ
         Debug.Log(Mathf.Round(this.transform.localEulerAngles.y));
 
-        if (Rotationflag == true)
-        {
-            if (Mathf.Round(this.transform.localEulerAngles.y) == 0 || this.transform.localEulerAngles.y == 180.0f)
-                this.GetComponent<Conductor_Script>().enabled = true;
-            else
-                this.GetComponent<Conductor_Script>().enabled = false;
-        }
     }
 
    
