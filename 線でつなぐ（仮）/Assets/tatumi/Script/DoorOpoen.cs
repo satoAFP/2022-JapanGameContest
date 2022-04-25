@@ -12,7 +12,7 @@ public class DoorOpoen : MonoBehaviour
     
     public Animator anim;
 
-    public Material[] mat = new Material[2];//変更したいマテリアルをセット
+    public Material[] mat = new Material[1];//変更したいマテリアルをセット
     Material[] mats;
 
 
@@ -35,7 +35,7 @@ public class DoorOpoen : MonoBehaviour
 
         taskflag = Check;
 
-        mats[0] = mat[0];
+        mats[0] = mat[1];
 
         GetComponent<Renderer>().materials = mats;
 
@@ -54,9 +54,9 @@ public class DoorOpoen : MonoBehaviour
     {
         //マテリアル変更(1=強調0=普通)
 
-        mats[0] = mat[1];
+        mats[0] = mat[0];
 
         GetComponent<Renderer>().materials = mats;
-      
+
     }
 }
