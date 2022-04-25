@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - View
+  - Conductor
+  - Insulator
+  - Power_Supply
+  - ColorInput
+  - ColorMix
+  - ColorOutput
   layers:
   - Default
   - TransparentFX
@@ -11,14 +19,14 @@ TagManager:
   - 
   - Water
   - UI
+  - View
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Target
+  - Mapcip
+  - Door
+  - Plane
   - 
   - 
   - 
