@@ -20,8 +20,6 @@ public class BoxCastRayTest : MonoBehaviour
 
     public bool grab;//掴みフラグ
 
-    private bool wall = false;
-
     void Start()
     {
         grab = false;//初期化
@@ -40,10 +38,10 @@ public class BoxCastRayTest : MonoBehaviour
         //bool a = false;
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 
-        //壁にレイが接触しているか
+        //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
         if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")))
         {
-            wall = true;
+            Debug.Log("Wall");
         }
         //Cubeのレイを飛ばしターゲットと接触しているか判定
         else if (grab==false)
