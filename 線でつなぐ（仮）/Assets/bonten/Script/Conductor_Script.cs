@@ -7,9 +7,6 @@ public class Conductor_Script : Base_Enegization
     private const int ELECTORIC_POWER = 1;   //1以上で通電
 
     [SerializeField]
-    //通電変数がtrueになるかどうか確認する関数
-    private bool energization = false;          //通電してるか
-    [SerializeField]
     private bool Conductor_hit = false;          //導体と接触してるか
     [SerializeField]
     private bool Insulator_hit = false;          //絶縁体と接触してるか
@@ -32,16 +29,7 @@ public class Conductor_Script : Base_Enegization
     [SerializeField]
     private int giving_conductor = 0;            //電気を分け与えた導体の数
 
-    //energizationのセッター。
-    public bool GetEnergization()
-    {
-        return energization;
-    }
-    public void SetEnergization(bool electoric)
-    {
-        energization = electoric;
-
-    }
+    
     public void GivePowerReSet()
     {
         energization = false;
@@ -54,7 +42,7 @@ public class Conductor_Script : Base_Enegization
     {
         //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
         //それがこのオブジェクトのpower_cntより小さければ代入する
-        if ((set_p < power_cnt || power_cnt == 0) && energization == false)
+        if ((set_p > power_cnt || power_cnt == 0) && energization == false)
         {
             power_cnt = set_p;
         }
@@ -64,7 +52,7 @@ public class Conductor_Script : Base_Enegization
     public void SetPower(int set_p, int pow)
     {
         //上のメソッドのset_pの役割を変数powで代用する。
-        if (power_cnt > pow)
+        if (power_cnt < pow)
         {
             //通電状態ではなくなるので通電している証となる変数を初期化する
             GivePowerReSet();
@@ -92,7 +80,7 @@ public class Conductor_Script : Base_Enegization
     //導体と離れた時の処理
     public void SetLeave(bool leave, int pow)
     {
-        if (pow < power_cnt)
+        if (pow > power_cnt)
         {
             power_save = power_cnt;
             leaving_Conductor = leave;
@@ -105,11 +93,7 @@ public class Conductor_Script : Base_Enegization
 
     public void EffExit()
     {
-       
-                PowerOn(power_save);
-            
-        
-        
+        PowerOn(power_save);
     }
 
     public void PowerOn(int a)
@@ -121,11 +105,11 @@ public class Conductor_Script : Base_Enegization
     public void PowerOff()
     {
         GivePowerReSet();
-        if(power_cnt!=0)
-        power_save = power_cnt;
+        if(power_cnt!=0) power_save = power_cnt;
         power_cnt = 0;
         //StartCoroutine(EffExit());
         energization = false;
+        energi_check = true;
     }
 
     // Update is called once per frame
