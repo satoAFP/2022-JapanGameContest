@@ -176,15 +176,6 @@ public class BoxCastRayTest : MonoBehaviour
             }
         }
 
-        //ドアにレイが接触しているか判定(rayを線に変更）
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
-        {
-            if (Input.GetMouseButtonDown(0) && grab == false)
-                hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける
-
-            hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
-        }
-
         //床（電気を流すオブジェクト）にレイが接触しているか
         else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Plane")))
         {
@@ -221,6 +212,30 @@ public class BoxCastRayTest : MonoBehaviour
             }
 
         }
+
+        //ドアにレイが接触しているか判定(rayを線に変更）
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
+        {
+            if (Input.GetMouseButtonDown(0) && grab == false)
+                hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける
+
+            hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
+        }
+
+        //ボタンがレイに接触しているか判定
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Button")))
+        {
+            if (Input.GetMouseButtonDown(0) && grab == false)
+            {
+                hit.collider.gameObject.GetComponent<button>().RayPushButton();//ボタンが沈む
+                hit.collider.gameObject.GetComponent<button>().botton_flag = true;//trueならボタンアニメーション開始
+            }
+                
+
+            //hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
+        }
+
+
     }
 
     void OnDrawGizmos()
