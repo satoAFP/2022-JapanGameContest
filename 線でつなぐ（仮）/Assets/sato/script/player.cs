@@ -23,9 +23,8 @@ public class player : MonoBehaviour
 
 
     //他のスクリプトとやり取りする変数
-    [Header("他のスクリプトとやり取りする変数")] 
-    public bool Ground_check = true;                               //着地しているかどうかの判定
-    public bool Move_check = false;                                //移動しているかどうかの判定
+    [System.NonSerialized] public bool Ground_check = true;                               //着地しているかどうかの判定
+    [System.NonSerialized] public bool Move_check = false;                                //移動しているかどうかの判定
 
 
     //カーソルの移動設定
@@ -49,7 +48,8 @@ public class player : MonoBehaviour
     private bool camera_change = true;                              //カメラの切り替え
     private bool fade_check = false;                                //フェードするかどうか切り替え
     private bool fade_updown = true;                                //透過レベルが上がるか下がるか
-    private bool first = true;                                      //一番最初の処理だけ実行
+    private bool first_camera_pos_set = true;                       //一番最初のカメラの位置の初期化だけ実行
+    private bool first_scene_move = true;                           //シーンが切り替わった時だけ実行
 
 
     //連続で押されないための判定
@@ -231,6 +231,8 @@ public class player : MonoBehaviour
                 fade_check = false;
             }
         }
+
+        
     }
 
 
@@ -247,7 +249,7 @@ public class player : MonoBehaviour
     private void CameraRotationMouseControl()
     {
         //カメラの初期向き固定
-        if (first)
+        if (first_camera_pos_set)
         {
             cursol_pos_check.x = 0;
             cursol_pos_check.y = 0;
@@ -258,10 +260,10 @@ public class player : MonoBehaviour
         vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
         
         //マウスの移動量0に初期化
-        if (first)
+        if (first_camera_pos_set)
         {
             startMousePos = vertual_cursol_pos;
-            first = false;
+            first_camera_pos_set = false;
         }
 
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
