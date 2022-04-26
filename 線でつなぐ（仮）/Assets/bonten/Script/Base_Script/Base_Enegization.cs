@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Base_Enegization : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    protected bool energization = false;        //電気が通ってるかどうか
 
-    // Update is called once per frame
-    void Update()
+
+    //energizationのセッター。
+    public bool GetEnergization()
     {
-        
+        return energization;
+    }
+    public void SetEnergization(bool electoric)
+    {
+        energization = electoric;
+
     }
 }

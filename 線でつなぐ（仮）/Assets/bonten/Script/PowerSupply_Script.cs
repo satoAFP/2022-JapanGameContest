@@ -17,7 +17,7 @@ public class PowerSupply_Script : MonoBehaviour
     private List<GameObject> obj_list=new List<GameObject>();
 
     [SerializeField]
-    private int electoric_power = 1;            //接触している、タグConductorオブジェクトに譲渡する電力の値
+    private int electoric_power;            //接触している、タグConductorオブジェクトに譲渡する電力の値
 
     public void SetPowerSupply()
     {
@@ -36,7 +36,7 @@ public class PowerSupply_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        electoric_power = 20;
     }
 
     // Update is called once per frame
