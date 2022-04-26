@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //İ’è‚³‚ê‚½F‚É•Ï‚¦‚é‚¾‚¯
-public class InputMusic_Script : Base_Color_Script
+public class InputMusic_Script : Base_Enegization
 {
     [SerializeField]
     private int SE_set;
