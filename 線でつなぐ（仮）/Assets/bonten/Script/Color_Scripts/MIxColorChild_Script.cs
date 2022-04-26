@@ -33,7 +33,6 @@ public class MIxColorChild_Script : Base_Color_Script
         {
             SetColor(parent.gameObject, colculation);
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED],  (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
-            parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
             colorchange_signal = true;
         }
         else if (colculation == SUBTRACTION)

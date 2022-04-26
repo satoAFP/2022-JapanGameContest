@@ -13,7 +13,6 @@ public class MixColor_Script : Base_Color_Script
     //脱色処理
     public void Decolorization(int[] decolor,GameObject gameObject)
     {
-        Debug.Log(decolor[COLOR_BLUE]);
         //子オブジェクトに色を出す指令を出す
         child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION,color);
 
@@ -40,8 +39,6 @@ public class MixColor_Script : Base_Color_Script
     {
         //子オブジェクトを取得
         child = transform.GetChild(0).gameObject;
-        colorchange_signal = false;
-
     }
 
     // Update is called once per frame
@@ -49,8 +46,6 @@ public class MixColor_Script : Base_Color_Script
     {
        
     }
-
-    public bool GetColorChange() => colorchange_signal;
 
     public void OnCollisionStay(Collision collision)
     {
