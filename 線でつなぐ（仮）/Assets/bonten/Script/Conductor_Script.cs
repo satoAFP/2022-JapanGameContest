@@ -52,9 +52,10 @@ public class Conductor_Script : Base_Enegization
     public void SetPower(int set_p, int pow)
     {
         //上のメソッドのset_pの役割を変数powで代用する。
-        if (power_cnt < pow)
+        if (power_save < pow)
         {
             //通電状態ではなくなるので通電している証となる変数を初期化する
+            energi_check = true;
             GivePowerReSet();
             power_save = power_cnt;
             power_cnt = set_p;
@@ -71,7 +72,7 @@ public class Conductor_Script : Base_Enegization
     //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
     public void SetInsulator(bool set_insul, int pow)
     {
-        if (pow < power_cnt && pow != 0) 
+        if (pow > power_cnt && pow != 0) 
         {
             hitting_insulator = set_insul;
         }
@@ -105,10 +106,9 @@ public class Conductor_Script : Base_Enegization
     public void PowerOff()
     {
         GivePowerReSet();
-        if(power_cnt!=0) power_save = power_cnt;
+        power_save = power_cnt;
+        
         power_cnt = 0;
-        //StartCoroutine(EffExit());
-        energization = false;
         energi_check = true;
     }
 
@@ -222,7 +222,7 @@ public class Conductor_Script : Base_Enegization
                 if (giving_conductor < contacing_conductor)
                 {
                     //周りの導体のpower_cntには自身のpower_cntより1多い数を代入して差別化を図る
-                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt + 1);
+                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
                     giving_conductor++;
                 }
                 else
@@ -234,7 +234,8 @@ public class Conductor_Script : Base_Enegization
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-
+                Debug.Log(this.gameObject.name);
+                Debug.Log(power_save);
                 //隣のオブジェクトのパワーの大きさがこのオブジェクトより小さければ、そのオブジェクトは絶縁されない
                 c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
@@ -244,7 +245,6 @@ public class Conductor_Script : Base_Enegization
                     giving_conductor = 0;
                 }
             }
-
         }
     }
 }
