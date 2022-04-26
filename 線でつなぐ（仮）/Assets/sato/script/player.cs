@@ -184,8 +184,7 @@ public class player : MonoBehaviour
 
         //カーソルの座標記憶
         cursol_pos_check = Input.mousePosition;
-
-
+        
 
         //グレースケールカメラ切り替え
         if (Input.GetKey(KeyCode.C))
@@ -246,18 +245,23 @@ public class player : MonoBehaviour
     //カメラコントロール関数
     private void CameraRotationMouseControl()
     {
-        //my_camera.transform.rotation = Quaternion.identity;
+        //カメラの初期向き固定
+        if (first)
+        {
+            cursol_pos_check.x = 0;
+            cursol_pos_check.y = 0;
+        }
 
         //実際のカーソルの移動量計算
         vertual_cursol_pos.x += Input.mousePosition.x - cursol_pos_check.x;
         vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
         
+        //マウスの移動量0に初期化
         if (first)
         {
             startMousePos = vertual_cursol_pos;
             first = false;
         }
-        Debug.Log(startMousePos);
 
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
         float x = (-startMousePos.x + vertual_cursol_pos.x) / Screen.width;
@@ -293,9 +297,8 @@ public class player : MonoBehaviour
 
         if (!cursol_pop)
         {
-            //もしカーソルが子の座標内から出たらカーソルの位置をリセット
-            if (Input.mousePosition.x > 950 || Input.mousePosition.x < 35 ||
-                Input.mousePosition.y > 540 || Input.mousePosition.y < 40)
+            if (cursol_pos_check.x > 950 || cursol_pos_check.x < 35 ||
+                cursol_pos_check.y > 540 || cursol_pos_check.y < 40)
             {
                 SetCursorPos(1024, 576);
                 cursol_reset = true;
