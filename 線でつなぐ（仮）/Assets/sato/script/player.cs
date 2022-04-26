@@ -21,6 +21,7 @@ public class player : MonoBehaviour
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
+
     //他のスクリプトとやり取りする変数
     [Header("他のスクリプトとやり取りする変数")] 
     public bool Ground_check = true;                               //着地しているかどうかの判定
