@@ -14,6 +14,11 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         colculation = col;
     }
+    public void SetColCulation(short col, int[] decolor)
+    {
+        colculation = col;
+        SetColor(decolor, colculation);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,20 +31,14 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         if (colculation == ADDITION)
         {
-            Debug.Log("‚ß‚ê‚ñ‚°");
             SetColor(parent.gameObject, colculation);
-
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED],  (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
-
             colorchange_signal = true;
         }
         else if (colculation == SUBTRACTION)
         {
-            Debug.Log("‚°‚ñ‚ê‚ß");
-            SetColor(parent.gameObject, colculation);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
-            parent.gameObject.GetComponent<MixColor_Script>().SetColorChange(false);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             colorchange_signal = true;
         }
     }

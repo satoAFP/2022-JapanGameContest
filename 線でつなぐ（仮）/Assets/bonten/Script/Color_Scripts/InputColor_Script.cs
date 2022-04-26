@@ -9,7 +9,7 @@ public class InputColor_Script : Base_Color_Script
     // Start is called before the first frame update
     void Start()
     {
-        if(energization == true) GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+        if(energization == true) GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
     }
 
     // Update is called once per frame

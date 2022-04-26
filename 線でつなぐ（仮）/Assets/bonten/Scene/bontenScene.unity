@@ -368,9 +368,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5e43d236f38f4aadb89072c875686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 1
   colorchange_signal: 0
   color: ff0000000000000000000000
-  energization: 0
 --- !u!1 &259827731
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,9 +599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d66554fc917ade45b7b0574047443bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
 --- !u!54 &834331437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -948,9 +948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d66554fc917ade45b7b0574047443bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
 --- !u!54 &1316850620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1519,9 +1519,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d66554fc917ade45b7b0574047443bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
 --- !u!54 &2020356649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1751,9 +1751,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d66554fc917ade45b7b0574047443bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
 --- !u!1 &796710883786213892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,6 +1902,18 @@ PrefabInstance:
     - target: {fileID: 3060990284193360882, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060990284193360883, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: energization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060990284193360883, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060990284193360883, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[2]
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 3060990284193360886, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
       propertyPath: m_Name
