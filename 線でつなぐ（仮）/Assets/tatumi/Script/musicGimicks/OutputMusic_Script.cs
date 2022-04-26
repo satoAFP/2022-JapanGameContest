@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class OutputMusic_Script : Base_Color_Script
 {
-    private int[] my_color = new int[3];
+    private int music_num;
     GameObject MixObj;
-    private void Start()
+    void Start()
     {
-        colorchange_signal = false;
+       
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="ColorMix")
+        //判定対象更新
+        if (collision.gameObject.tag == "ColorMix")
         {
             MixObj = collision.gameObject;
         }
@@ -21,23 +22,37 @@ public class OutputMusic_Script : Base_Color_Script
 
     public void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "ColorInput")
+        if (collision.gameObject.tag == "MusicInput")
         {
             //電気は電源なので必ず通るので取得＆自身に代入
-            collision.gameObject.GetComponent<InputMusic_Script>().
-            
-              
+            music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
+            energization = true;
+        }
+        else if (collision.gameObject.tag == "MusicOutput")
+        {
+            //電源がOnの相手のみ作動
+            if (collision.gameObject.GetComponent<OutputMusic_Script>().energization == true)
+            {
+                //電気は電源なので必ず通るので取得＆自身に代入
+                music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
+                energization = true;
+            }
+            else
+            {
+                //OFF場合
+                music_num =-1;
+                energization = false;
+            }
         }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        //OutputColorから色を捨てる
+        //抜けたとき電源色番号初期化
         if (collision.gameObject.tag == "ColorInput")
         {
+            music_num = -1;//何もなし
             energization = false;
-            SetColor(collision.gameObject, SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
         }
     }
 }

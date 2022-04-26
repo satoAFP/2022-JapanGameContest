@@ -18,4 +18,9 @@ public class InputMusic_Script : Base_Color_Script
     {
         
     }
+
+    public int REset_num()
+    {
+        return SE_set;
+    }
 }
