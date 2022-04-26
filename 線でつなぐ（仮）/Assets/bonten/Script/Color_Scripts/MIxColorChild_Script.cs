@@ -52,7 +52,7 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         if (collision.gameObject.tag == "Power_Supply" && colorchange_signal == true)
         {
-            
+
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(this.gameObject, colculation);
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColorChange(colorchange_signal);
             

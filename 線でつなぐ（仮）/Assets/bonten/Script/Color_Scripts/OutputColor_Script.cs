@@ -47,7 +47,7 @@ public class OutputColor_Script : Base_Color_Script
                 //下記のMixColorObjを脱色できるようにtrueにする
                 energization = false;
                 //ColorInputから色を取得
-                SetColor(collision.gameObject, SUBTRACTION);
+                SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
                 GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             }
         }
@@ -58,8 +58,9 @@ public class OutputColor_Script : Base_Color_Script
         //OutputColorから色を捨てる
         if (collision.gameObject.tag == "ColorInput")
         {
+            MixObj.GetComponent<MixColor_Script>().Decolorization(color, this.gameObject);
             energization = false;
-            SetColor(collision.gameObject, SUBTRACTION);
+            SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
         }
     }

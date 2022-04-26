@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColorJudgment_Sctipt : Base_Color_Script
 {
     //ゲームクリアとなるカラー
-    [NamedArrayAttribute(new string[] { "RED", "BRUE", "GREEN" })]
+    [NamedArrayAttribute(new string[] { "RED",  "GREEN", "BRUE" })]
     [SerializeField]
     private int[] clearColor = new int[COLOR_MAX];
 
@@ -14,7 +14,7 @@ public class ColorJudgment_Sctipt : Base_Color_Script
     {
         if(colorchange_signal==true)
         {
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED],  (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             colorchange_signal = false;
         }
 
