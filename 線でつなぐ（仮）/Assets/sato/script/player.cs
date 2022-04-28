@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using System.Collections;
 
 public class player : MonoBehaviour
 {
@@ -16,15 +17,17 @@ public class player : MonoBehaviour
 
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
-    [SerializeField, Header("通常カメラ")] GameObject camera;
-    [SerializeField, Header("fade用image")] GameObject fade;
-    [SerializeField, Header("climbing_check_head")]     GameObject head;
-    [SerializeField, Header("climbing_check_leg")]      GameObject leg;
+    [SerializeField, Header("通常カメラ")]                           GameObject camera;
+    [SerializeField, Header("fade用image")]                          GameObject fade;
+    [SerializeField, Header("climbing_check_head")]                  GameObject head;
+    [SerializeField, Header("climbing_check_leg")]                   GameObject leg;
+    [SerializeField, Header("color_check")]                          GameObject color_check;
 
 
     //他のスクリプトとやり取りする変数
-    [System.NonSerialized] public bool Ground_check = true;                               //着地しているかどうかの判定
-    [System.NonSerialized] public bool Move_check = false;                                //移動しているかどうかの判定
+    [System.NonSerialized] public bool Ground_check = true;        //着地しているかどうかの判定
+    [System.NonSerialized] public bool Move_check = false;         //移動しているかどうかの判定
+    [System.NonSerialized] public bool monochrome_change = false;  //モノクロかどうかのの判定
 
 
     //カーソルの移動設定
@@ -50,7 +53,7 @@ public class player : MonoBehaviour
     private bool fade_updown = true;                                //透過レベルが上がるか下がるか
     private bool first_camera_pos_set = true;                       //一番最初のカメラの位置の初期化だけ実行
     private bool first_scene_move = true;                           //シーンが切り替わった時だけ実行
-
+    
 
     //連続で押されないための判定
     private bool key_check_E = true;
@@ -75,6 +78,7 @@ public class player : MonoBehaviour
         //startMousePos = Input.mousePosition;
         presentCamRotation.x = camTransform.transform.eulerAngles.x;
         presentCamRotation.y = camTransform.transform.eulerAngles.y;
+
     }
 
     // Update is called once per frame
@@ -87,6 +91,7 @@ public class player : MonoBehaviour
 
         //--------------------------------------------------------------------------------------------
         //Debug.Log("" + Input.mousePosition);
+
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
         if (cursol_reset)
@@ -210,6 +215,17 @@ public class player : MonoBehaviour
             key_check_C = false;
         }
         else { key_check_C = true; }
+
+        if(camera_change)
+        {
+            Debug.Log(camera.GetComponent<BoxCastRayTest>().Target.GetComponent<MeshRenderer>().material.color);
+            color_check.GetComponent<Image>().color = camera.GetComponent<BoxCastRayTest>().Target.GetComponent<MeshRenderer>().material.color;
+        }
+        else
+        {
+            color_check.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        }
+
 
         //フェード処理
         if(fade_check)
