@@ -54,11 +54,15 @@ public class Conductor_Script : Base_Enegization
         //上のメソッドのset_pの役割を変数powで代用する。
         if (power_save < pow)
         {
-            //通電状態ではなくなるので通電している証となる変数を初期化する
-            energi_check = true;
-            GivePowerReSet();
-            power_save = power_cnt;
-            power_cnt = set_p;
+            //電源と接触している導体だけ問題外とする
+            if(Power_hit!=true)
+            {
+                //通電状態ではなくなるので通電している証となる変数を初期化する
+                energi_check = true;
+                GivePowerReSet();
+                power_save = power_cnt;
+                power_cnt = set_p;
+            }
         }
     }
 
@@ -121,10 +125,8 @@ public class Conductor_Script : Base_Enegization
             if (leaving_Conductor == true)
             {
                 power_cnt = 0;
+                leaving_Conductor = false;
             }
-
-
-            leaving_Conductor = false;
         }
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
@@ -196,6 +198,7 @@ public class Conductor_Script : Base_Enegization
         //電源と接触せずに導体と離れたとき
         else if (c.gameObject.tag == "Conductor")
         {
+            contacing_conductor--;
             //電気ついてるかの確認用変数をfalseにする
             Conductor_hit = false;
             c.gameObject.GetComponent<Conductor_Script>().SetLeave(true, power_cnt);
@@ -221,7 +224,7 @@ public class Conductor_Script : Base_Enegization
                 //自分が通電状態にある時、周りの接触している導体も通電状態にする
                 if (giving_conductor < contacing_conductor)
                 {
-                    //周りの導体のpower_cntには自身のpower_cntより1多い数を代入して差別化を図る
+                    //周りの導体のpower_cntには自身のpower_cntより1少ない数を代入して差別化を図る
                     c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
                     giving_conductor++;
                 }
@@ -234,9 +237,8 @@ public class Conductor_Script : Base_Enegization
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-                Debug.Log(this.gameObject.name);
-                Debug.Log(power_save);
-                //隣のオブジェクトのパワーの大きさがこのオブジェクトより小さければ、そのオブジェクトは絶縁されない
+                
+                //隣のオブジェクトのパワーの大きさがこのオブジェクトより大きければ、そのオブジェクトは絶縁されない
                 c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
                 if (giving_conductor == contacing_conductor)
