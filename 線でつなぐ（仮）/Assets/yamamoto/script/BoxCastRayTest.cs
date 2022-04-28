@@ -39,7 +39,7 @@ public class BoxCastRayTest : MonoBehaviour
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 
         //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
-        if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")))
+        if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")) || Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Door")))
         {
             Debug.Log("Wall");
         }
