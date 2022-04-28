@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1637031222777872347}
   - component: {fileID: 1637031222777872346}
   - component: {fileID: 1637031222777872357}
+  - component: {fileID: 8750319444150461060}
   m_Layer: 0
   m_Name: water_wave
   m_TagString: Untagged
@@ -3797,7 +3798,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4815,6 +4816,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8750319444150461060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637031222777872356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa7ccf62a86b394bb4eb3eb277256f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1637031223283354409
 GameObject:
   m_ObjectHideFlags: 0

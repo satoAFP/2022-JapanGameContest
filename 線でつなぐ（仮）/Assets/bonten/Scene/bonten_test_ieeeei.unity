@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1109,7 +1109,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &232884703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,12 +1834,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489325915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfbfe02ea2803cf4eada482ca058dee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   turn_on_power: 0
+  Door: {fileID: 104402105}
+  Clear_num: 4
 --- !u!54 &489325919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2171,6 +2179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn_on_power: 0
+  Door: {fileID: 0}
+  Clear_num: 0
 --- !u!1 &812493465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,7 +2393,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &822549767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,7 +2565,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &870175037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2760,7 +2782,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &877198503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,7 +3339,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1054069616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3364,7 +3398,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!54 &1054069619
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3611,7 +3651,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1287737961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4404,7 +4450,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &1585078312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,7 +5669,13 @@ MonoBehaviour:
   Insulator_hit: 0
   Power_hit: 0
   hitting_insulator: 0
-  hitting_Conductor: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
 --- !u!1 &2026206558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5748,7 +5806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085531140}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.2, y: -3.2586062, z: -1.8975327}
+  m_LocalPosition: {x: -3.331, y: -3.2586062, z: -1.8975327}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 646694248}

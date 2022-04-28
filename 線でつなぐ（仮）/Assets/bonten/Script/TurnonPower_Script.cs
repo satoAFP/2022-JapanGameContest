@@ -20,13 +20,13 @@ public class TurnonPower_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(energi_investigate == false)
+        if (energi_investigate == false)
         {
             turn_on_power = false;
-            Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
+            //Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
         }
 
-        if(turn_on_power == true)
+        if (turn_on_power == true)
         {
             NonlitingChild.SetActive(false);
             LiteingChild.SetActive(true);
@@ -45,7 +45,7 @@ public class TurnonPower_Script : MonoBehaviour
         if (c.gameObject.tag == "Conductor")
         {
             //つながってる導体のenergization(通電確認用変数)で初期化
-            energi_investigate = c.gameObject.GetComponent<Conductor_Script>().energization;
+            energi_investigate = c.gameObject.GetComponent<Conductor_Script>().GetEnergization();
 
             //Debug.Log(c.gameObject.name);
             //つながっている導体のenergizasionがtrueならこのobjのcounductorhitもtrueにする
@@ -53,19 +53,19 @@ public class TurnonPower_Script : MonoBehaviour
             {
                 //counductor_hitをtrueにする
                 turn_on_power = true;
-                Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = true;
+                //Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = true;
             }
         }
     }
 
-    
+
     private void OnCollisionExit(Collision c)
     {
         //タグ名Conductorと離れたとき
         if (c.gameObject.tag == "Conductor")
         {
             turn_on_power = false;
-            Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num]=false;
+            //Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
 
         }
     }
