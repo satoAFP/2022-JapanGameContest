@@ -7,45 +7,42 @@ using UnityEngine.EventSystems;
 public class button : MonoBehaviour
 {
 
-    public bool botton_flag;//ボタンクリックフラグ
-
     public Animator anim;
 
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
     Material[] mats;
 
+    [SerializeField]
+    private float waittime;//ボタンクリック後の待機時間
+
     // Start is called before the first frame update
     void Start()
     {
-        botton_flag = false;
+        mats = GetComponent<Renderer>().materials;
     }
 
     // Update is called once per frame
     void Update()
     {
         //めた
+
+        mats[0] = mat[1];
+
+        GetComponent<Renderer>().materials = mats;
     }
 
     public void RayPushButton()
     {
-        if(botton_flag == true)
-        {
-            anim.SetBool("Push", true);
-            StartCoroutine("ButtonPushed");
-        }
-        else
-        {
-            anim.SetBool("Push", false);
-        }
-       
+        anim.SetBool("Push", true);
+        StartCoroutine("ButtonPushed");
     }
 
     IEnumerator ButtonPushed()
     {
         Debug.Log("はい");
         //1秒停止
-        yield return new WaitForSeconds(0.1f);
-        botton_flag = false;
+        yield return new WaitForSeconds(waittime);
+        anim.SetBool("Push", false);
     }
 
     public void RayTargetButton()
@@ -56,7 +53,7 @@ public class button : MonoBehaviour
 
         GetComponent<Renderer>().materials = mats;
 
-        Debug.Log("k");
+        Debug.Log("ミスターk");
 
     }
 }
