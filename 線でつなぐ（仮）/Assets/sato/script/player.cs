@@ -21,10 +21,10 @@ public class player : MonoBehaviour
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
+
     //他のスクリプトとやり取りする変数
-    [Header("他のスクリプトとやり取りする変数")] 
-    public bool Ground_check = true;                               //着地しているかどうかの判定
-    public bool Move_check = false;                                //移動しているかどうかの判定
+    [System.NonSerialized] public bool Ground_check = true;                               //着地しているかどうかの判定
+    [System.NonSerialized] public bool Move_check = false;                                //移動しているかどうかの判定
 
 
     //カーソルの移動設定
@@ -48,6 +48,8 @@ public class player : MonoBehaviour
     private bool camera_change = true;                              //カメラの切り替え
     private bool fade_check = false;                                //フェードするかどうか切り替え
     private bool fade_updown = true;                                //透過レベルが上がるか下がるか
+    private bool first_camera_pos_set = true;                       //一番最初のカメラの位置の初期化だけ実行
+    private bool first_scene_move = true;                           //シーンが切り替わった時だけ実行
 
 
     //連続で押されないための判定
@@ -63,15 +65,16 @@ public class player : MonoBehaviour
         //リジッドボディを取得
         rb = GetComponent<Rigidbody>();
         
-        //カメラ関係初期化
-        camTransform = this.gameObject.transform;
-        startMousePos = Input.mousePosition;
-        presentCamRotation.x = camTransform.transform.eulerAngles.x;
-        presentCamRotation.y = camTransform.transform.eulerAngles.y;
-
         //カーソルを消して、中央にロック
         Cursor.visible = false;
-        SetCursorPos(1000, 600);
+        SetCursorPos(1024, 576);
+        //my_camera.transform.rotation = Quaternion.identity;
+
+        //カメラ関係初期化
+        camTransform = this.gameObject.transform;
+        //startMousePos = Input.mousePosition;
+        presentCamRotation.x = camTransform.transform.eulerAngles.x;
+        presentCamRotation.y = camTransform.transform.eulerAngles.y;
     }
 
     // Update is called once per frame
@@ -83,7 +86,7 @@ public class player : MonoBehaviour
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
 
         //--------------------------------------------------------------------------------------------
-
+        //Debug.Log("" + Input.mousePosition);
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
         if (cursol_reset)
@@ -107,7 +110,7 @@ public class player : MonoBehaviour
                 {
                     cursol_pop = true;
                     Cursor.visible = true;
-                    SetCursorPos(1000, 600);
+                    SetCursorPos(1024, 576);
                 }
             }
             key_check_E = false;
@@ -182,8 +185,7 @@ public class player : MonoBehaviour
 
         //カーソルの座標記憶
         cursol_pos_check = Input.mousePosition;
-
-
+        
 
         //グレースケールカメラ切り替え
         if (Input.GetKey(KeyCode.C))
@@ -229,6 +231,8 @@ public class player : MonoBehaviour
                 fade_check = false;
             }
         }
+
+        
     }
 
 
@@ -239,19 +243,35 @@ public class player : MonoBehaviour
         this.gameObject.transform.position += vec;
     }
 
-
+    
 
     //カメラコントロール関数
     private void CameraRotationMouseControl()
     {
+        //カメラの初期向き固定
+        if (first_camera_pos_set)
+        {
+            cursol_pos_check.x = 0;
+            cursol_pos_check.y = 0;
+        }
+
         //実際のカーソルの移動量計算
         vertual_cursol_pos.x += Input.mousePosition.x - cursol_pos_check.x;
+        vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
+        
+        //マウスの移動量0に初期化
+        if (first_camera_pos_set)
+        {
+            startMousePos = vertual_cursol_pos;
+            first_camera_pos_set = false;
+        }
+
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
-        float x = (startMousePos.x + vertual_cursol_pos.x) / Screen.width;
+        float x = (-startMousePos.x + vertual_cursol_pos.x) / Screen.width;
         float y = mem_camera_rotato_y;
         
-        //実際のカーソルの移動量計算
-        vertual_cursol_pos.y += Input.mousePosition.y - cursol_pos_check.y;
+        
+        
         //Y軸の回転は一定値(mouse_max_y)で止まる
         if (((startMousePos.y - vertual_cursol_pos.y) / Screen.height) <= mouse_max_y &&
             ((startMousePos.y - vertual_cursol_pos.y) / Screen.height) >= -mouse_max_y)
@@ -280,11 +300,10 @@ public class player : MonoBehaviour
 
         if (!cursol_pop)
         {
-            //もしカーソルが子の座標内から出たらカーソルの位置をリセット
-            if (Input.mousePosition.x > 950 || Input.mousePosition.x < 35 ||
-                Input.mousePosition.y > 540 || Input.mousePosition.y < 40)
+            if (cursol_pos_check.x > 950 || cursol_pos_check.x < 35 ||
+                cursol_pos_check.y > 540 || cursol_pos_check.y < 40)
             {
-                SetCursorPos(1000, 600);
+                SetCursorPos(1024, 576);
                 cursol_reset = true;
             }
         }
@@ -292,5 +311,7 @@ public class player : MonoBehaviour
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
+        //Debug.Log(eulerX+" : "+ eulerY);
+        
     }
 }

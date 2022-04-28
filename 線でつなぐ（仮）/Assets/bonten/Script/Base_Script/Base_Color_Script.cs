@@ -50,9 +50,9 @@ public class Base_Color_Script : Base_Enegization
         }
         else if(col == SUBTRACTION)
         {
-            color[COLOR_RED]   -= obj.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
-            color[COLOR_GREEN] -= obj.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
-            color[COLOR_BLUE] -= obj.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
+            color[COLOR_RED]   = obj.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
+            color[COLOR_GREEN] = obj.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
+            color[COLOR_BLUE]  = obj.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
             for (int i = 0; i < COLOR_MAX; i++)
             {
                 if (color[i] < 0)
@@ -109,4 +109,6 @@ public class Base_Color_Script : Base_Enegization
     public int GetColorBlue() => color[COLOR_BLUE];
 
     public int GetColorGreen() => color[COLOR_GREEN];
+
+    public int[] GetColor() => color;
 }

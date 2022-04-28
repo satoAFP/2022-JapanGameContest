@@ -10,6 +10,8 @@ public class BoxCastRayTest : MonoBehaviour
 
     private Vector3 TargetScale;//ターゲットの元の大きさ
 
+    private Vector3 TargetRotate;//ターゲットの元の角度
+
     //　ターゲットとの距離
     private float distanceFromTargetObj;
 
@@ -36,10 +38,18 @@ public class BoxCastRayTest : MonoBehaviour
         //bool a = false;
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 
-
-        //Cubeのレイを飛ばしターゲットと接触しているか判定
-        if(grab==false)
+        //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
+        if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")))
         {
+            Debug.Log("Wall");
+        }
+        //Cubeのレイを飛ばしターゲットと接触しているか判定
+        else if (grab==false)
+        {
+
+            
+
+
             if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")))
             {
                 Debug.Log(hit.transform.name);
@@ -56,6 +66,7 @@ public class BoxCastRayTest : MonoBehaviour
                     Target = hit.collider.gameObject;
                     //手に持つ用にオブジェクトのサイズを帰る
                     TargetScale = Target.transform.localScale;
+                    TargetRotate = Target.transform.eulerAngles;
                     Target.transform.localScale /= 5;
                     Target.GetComponent<BoxCollider>().isTrigger = true;
                     Target.GetComponent<Rigidbody>().isKinematic = true;
@@ -99,13 +110,56 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true)
             {
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if(hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock==false)
+                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                 {
                     //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
                     //worldPos.y += Target.transformr.localPosition.y;
                     //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
                     worldPos.y += 0.5f;//Y軸を固定する
+
+                    //手に持ったオブジェクトを元の大きさに戻す
+                    Target.gameObject.transform.parent = null;
+                    Target.transform.localScale = TargetScale;
+                    Target.transform.localEulerAngles = TargetRotate;
+                    //手に持ったオブジェクトの当たり判定を復活させる
+                    Target.GetComponent<BoxCollider>().isTrigger = false;
+                    Target.GetComponent<Rigidbody>().isKinematic = false;
+
+                    Target.transform.position = worldPos;
+                    Target = null;//タ-ゲットの初期化
+                    grab = false;//掴みフラグをfalse
+                }
+
+                
+                
+            }
+           
+        }
+
+
+        //穴マップチップにレイが接触しているか判定(rayを線に変更）
+        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Hole")))
+        {
+
+            Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
+
+            if (grab == true)
+            {
+                hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
+            }
+
+            //左クリックされたときにマップチップの座標をTargetに上書きする
+            if (Input.GetMouseButtonDown(0) && grab == true)
+            {
+                //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
+                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
+                {
+                    //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
+
+                    //worldPos.y += Target.transformr.localPosition.y;
+                    //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
+                    worldPos.y -= 0.5f;//Y軸を固定する
 
                     //手に持ったオブジェクトを元の大きさに戻す
                     Target.gameObject.transform.parent = null;
@@ -119,13 +173,7 @@ public class BoxCastRayTest : MonoBehaviour
                     Target = null;//タ-ゲットの初期化
                     grab = false;//掴みフラグをfalse
                 }
-
-                
-                
             }
-
-            //Debug.Log(hit.transform.name);
-           
         }
 
         //ドアにレイが接触しているか判定(rayを線に変更）
@@ -173,7 +221,6 @@ public class BoxCastRayTest : MonoBehaviour
             }
 
         }
-        
     }
 
     void OnDrawGizmos()
