@@ -39,7 +39,7 @@ public class BoxCastRayTest : MonoBehaviour
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 
         //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
-        if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")))
+        if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")) || Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Door")))
         {
             Debug.Log("Wall");
         }
@@ -74,17 +74,7 @@ public class BoxCastRayTest : MonoBehaviour
                     grab = true;//掴みフラグをtrue
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
-                //再度同じオブジェクトを選択で持ち状態を解除
-                //else if (Input.GetMouseButtonDown(0) && grab == true && Cancel == Target)//TargetとCancelの取得しているオブジェクトが同じとき
-                //{
-                //    //オブジェクトの初期化
-                //    Target = null;
-                //    Cancel = null;
-                //    //掴みフラグをfalse
-                //    grab = false;
-
-                //}
-
+               
                 //右クリックでオブジェクトを回転
                 else if (Input.GetMouseButtonDown(1))
                 {
@@ -176,6 +166,24 @@ public class BoxCastRayTest : MonoBehaviour
             }
         }
 
+        //床（電気を流すオブジェクト）にレイが接触しているか
+        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Plane")))
+        {
+            //右クリックでオブジェクトを回転
+            if (Input.GetMouseButtonDown(1))
+            {
+                hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
+            }
+
+        }
+
+        //ブロックを持っている時に回転させる
+        if(Input.GetMouseButtonDown(1) && grab ==true)
+        {
+            Debug.Log("あばばばばばば");
+            TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
+        }
+
         //ドアにレイが接触しているか判定(rayを線に変更）
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
         {
@@ -185,42 +193,18 @@ public class BoxCastRayTest : MonoBehaviour
             hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
         }
 
-        //床（電気を流すオブジェクト）にレイが接触しているか
-        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Plane")))
+        //ボタンがレイに接触しているか判定
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Button")))
         {
-
-            //---------------------掴み処理（変数などは変える必要があるかも）------------------------------
-
-            //Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
-
-            ////左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
-            //if (Input.GetMouseButtonDown(0) && grab == false)
-            //{
-            //    Target = hit.collider.gameObject;
-            //    grab = true;//掴みフラグをtrue
-            //    hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(1);//色付け
-            //    Cancel = Target;//キャンセルするオブジェクトを設定
-            //}
-            ////再度同じオブジェクトを選択で持ち状態を解除
-            //else if (Input.GetMouseButtonDown(0) && grab == true && Cancel == Target)//TargetとCancelの取得しているオブジェクトが同じとき
-            //{
-            //    //Debug.Log("w");
-            //    //オブジェクトの初期化
-            //    Target = null;
-            //    Cancel = null;
-            //    //掴みフラグをfalse
-            //    grab = false;
-
-            //    hit.collider.gameObject.GetComponent<ClickObj>().ChangeMaterial(0);//色付け
-            //}
-
-            //右クリックでオブジェクトを回転
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0) && grab == false)
             {
-                hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
+                hit.collider.gameObject.GetComponent<button>().RayPushButton();//ボタンが沈む
             }
-
+             
+            hit.collider.gameObject.GetComponent<button>().RayTargetButton();//色付け
         }
+
+
     }
 
     void OnDrawGizmos()
