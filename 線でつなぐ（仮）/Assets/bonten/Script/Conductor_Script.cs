@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Conductor_Script : MonoBehaviour
+public class Conductor_Script : Base_Enegization
 {
+<<<<<<< HEAD
     protected static int electoric_power = 1;   //1以上で通電
     protected enum Contact
     {
@@ -17,6 +18,11 @@ public class Conductor_Script : MonoBehaviour
     //通電変数がtrueになるかどうか確認する関数
     private bool energization = false;          //通電してるか
     [SerializeField]
+=======
+    private const int ELECTORIC_POWER = 1;   //1以上で通電
+
+    [SerializeField]
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
     private bool Conductor_hit = false;          //導体と接触してるか
     [SerializeField]
     private bool Insulator_hit = false;          //絶縁体と接触してるか
@@ -39,11 +45,15 @@ public class Conductor_Script : MonoBehaviour
     [SerializeField]
     private int giving_conductor = 0;            //電気を分け与えた導体の数
 
+<<<<<<< HEAD
 
     public bool GetEnergization()
     {
         return energization;
     }
+=======
+    
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
     public void GivePowerReSet()
     {
         energization = false;
@@ -53,6 +63,7 @@ public class Conductor_Script : MonoBehaviour
     //電力の優先度、数小さい程電源に近いので優先する
     //set_p→自身のpower_cnt
     public void SetPower(int set_p)
+<<<<<<< HEAD
     {
         //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
         //それがこのオブジェクトのpower_cntより小さければ代入する
@@ -121,6 +132,93 @@ public class Conductor_Script : MonoBehaviour
         power_cnt = 0;
         //StartCoroutine(EffExit());
         energization = false;
+=======
+    {
+        //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
+        //それがこのオブジェクトのpower_cntより小さければ代入する
+        if ((set_p > power_cnt || power_cnt == 0) && energization == false)
+        {
+            power_cnt = set_p;
+        }
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
+    }
+
+    //自身のpower_cntが0になったときに周りも0にするためだけのメソッド
+    public void SetPower(int set_p, int pow)
+    {
+<<<<<<< HEAD
+        if ((hitting_insulator == true && Power_hit == false) || (Insulator_hit == true && Power_hit == false) || (leaving_Conductor == true && Power_hit == false))
+        {
+            GivePowerReSet();
+            if (leaving_Conductor == true)
+            {
+                power_cnt = 0;
+            }
+
+
+            leaving_Conductor = false;
+        }
+        else if (power_cnt >= electoric_power && (Conductor_hit == true || Power_hit == true))
+=======
+        //上のメソッドのset_pの役割を変数powで代用する。
+        if (power_cnt < pow)
+        {
+            //通電状態ではなくなるので通電している証となる変数を初期化する
+            GivePowerReSet();
+            power_save = power_cnt;
+            power_cnt = set_p;
+        }
+    }
+
+    //タグPower_Supplyオブジェクトからアクセスするためのメソッド
+    public void SetPower(int set_p, bool turn_on)
+    {
+        power_cnt = set_p;
+        Power_hit = turn_on;
+    }
+
+    //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
+    public void SetInsulator(bool set_insul, int pow)
+    {
+        if (pow < power_cnt && pow != 0) 
+        {
+            hitting_insulator = set_insul;
+        }
+    }
+
+    //導体と離れた時の処理
+    public void SetLeave(bool leave, int pow)
+    {
+        if (pow > power_cnt)
+        {
+            power_save = power_cnt;
+            leaving_Conductor = leave;
+            Conductor_hit = false;
+            //このオブジェクトのpower_cntが0になったことにより
+            //このオブジェクトと隣接しているオブジェクトも電力を失うかどうかを確認するため、trueにする
+            energi_check = true;
+        }
+    }
+
+    public void EffExit()
+    {
+        PowerOn(power_save);
+    }
+
+    public void PowerOn(int a)
+    {
+        power_cnt = a;
+        Debug.Log(a);
+    }
+
+    public void PowerOff()
+    {
+        GivePowerReSet();
+        if(power_cnt!=0) power_save = power_cnt;
+        power_cnt = 0;
+        //StartCoroutine(EffExit());
+        energization = false;
+        energi_check = true;
     }
 
     // Update is called once per frame
@@ -137,7 +235,8 @@ public class Conductor_Script : MonoBehaviour
 
             leaving_Conductor = false;
         }
-        else if (power_cnt >= electoric_power && (Conductor_hit == true || Power_hit == true))
+        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
         {
             energization = true;
         }
@@ -163,10 +262,17 @@ public class Conductor_Script : MonoBehaviour
         //電源と接触したとき
         if (c.gameObject.tag == "Power_Supply")
         {
+<<<<<<< HEAD
             //Power_hitをtrueにする
             Power_hit = true;
             //電源から伸びてる導体は最小に設定し、最優先とする
             power_cnt = 1;
+=======
+            ////Power_hitをtrueにする
+            //Power_hit = true;
+            ////電源から伸びてる導体は最小に設定し、最優先とする
+            //power_cnt = 1;
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
         }
         //絶縁体と接触したとき
         else if (c.gameObject.tag == "Insulator")
@@ -235,11 +341,19 @@ public class Conductor_Script : MonoBehaviour
                     //周りの導体のpower_cntには自身のpower_cntより1多い数を代入して差別化を図る
                     c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt + 1);
                     giving_conductor++;
+<<<<<<< HEAD
                 }
                 else
                 {
                     power_gave = true;
                 }
+=======
+                }
+                else
+                {
+                    power_gave = true;
+                }
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
                 c.gameObject.GetComponent<Conductor_Script>().SetInsulator(false, power_cnt);
             }
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する

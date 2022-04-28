@@ -65,7 +65,11 @@ public class TurnonPower_Script : MonoBehaviour
         if (c.gameObject.tag == "Conductor")
         {
             turn_on_power = false;
+<<<<<<< HEAD
             //Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
+=======
+            Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
+>>>>>>> 34a85c4f09f09f045e4ebb3c45aa3e74109ee66f
 
         }
     }
