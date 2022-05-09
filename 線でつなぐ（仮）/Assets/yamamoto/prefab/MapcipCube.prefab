@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5837372754190647465}
   - component: {fileID: 5837372754190647470}
   - component: {fileID: 5837372754190647381}
+  - component: {fileID: 6342808226366594736}
   m_Layer: 10
   m_Name: MapcipCube
   m_TagString: Conductor
@@ -156,6 +157,19 @@ MonoBehaviour:
   power_cnt: 0
   contacing_conductor: 0
   giving_conductor: 0
+  having_energy: 0
+--- !u!114 &6342808226366594736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837372754190647468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579f083970f89c547beacc673bbb710d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1805544200887344449
 PrefabInstance:
   m_ObjectHideFlags: 0

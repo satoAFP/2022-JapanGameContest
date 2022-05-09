@@ -10,7 +10,7 @@ public class player : MonoBehaviour
     [SerializeField, Header("主人公の移動量"), Header("主人公のステータス"), Range(0, 10)]     float move_power;
     [SerializeField, Header("マウス感度"), Range(100, 300)]          float mouse_power;
     [SerializeField, Header("ジャンプ力"), Range(0, 10)]             float jump_power;
-    [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.05f)]    float climbing_speed;
+    [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.1f)]    float climbing_speed;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
     [SerializeField, Header("フェードの時間"), Range(0.5f, 3.0f)]    float fade_time;
 

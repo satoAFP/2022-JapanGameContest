@@ -8,17 +8,15 @@ public class climbing_check : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Respawn")
-        {
-            check = true;
-        }
+        if (col.gameObject.GetComponent<BlockCheck>() != null)
+            if(col.gameObject.GetComponent<BlockCheck>().block==true)
+                check = true;
     }
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Respawn")
-        {
-            check = false;
-        }
+        if (col.gameObject.GetComponent<BlockCheck>() != null)
+            if (col.gameObject.GetComponent<BlockCheck>().block == true)
+                check = false;
     }
 }

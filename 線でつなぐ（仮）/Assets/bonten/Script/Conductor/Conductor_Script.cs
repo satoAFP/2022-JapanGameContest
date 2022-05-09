@@ -7,29 +7,35 @@ public class Conductor_Script : Base_Enegization
     private const int ELECTORIC_POWER = 1;   //1以上で通電
 
     [SerializeField]
-    private bool Conductor_hit = false;          //導体と接触してるか
+    protected bool Conductor_hit = false;          //導体と接触してるか
     [SerializeField]
-    private bool Insulator_hit = false;          //絶縁体と接触してるか
+    protected bool Insulator_hit = false;          //絶縁体と接触してるか
     [SerializeField]
-    private bool Power_hit = false;          //電源と接触してるか
+    protected bool Power_hit = false;          //電源と接触してるか
     [SerializeField]
-    private bool hitting_insulator = false;      //周りに自分が絶縁体と接触していることを伝えるための変数
+    protected bool hitting_insulator = false;      //周りに自分が絶縁体と接触していることを伝えるための変数
     [SerializeField]
-    private bool leaving_Conductor = false;      //接触していたconductorと離れたことを伝えるための変数
+    protected bool leaving_Conductor = false;      //接触していたconductorと離れたことを伝えるための変数
     [SerializeField]
-    private bool energi_check = false;         //自身が通電したことをチェックための変数
+    protected bool energi_check = false;         //自身が通電したことをチェックための変数
     [SerializeField]
-    private bool power_gave = false;             //自分が接触してる導体すべてに電気を通せたか確認するための変数
+    protected bool power_gave = false;             //自分が接触してる導体すべてに電気を通せたか確認するための変数
     [SerializeField]
-    private int power_save = 0;                  //パワーが0になってもこのオブジェクトの持ってたパワーがもともとどれぐらいだったかを保存しておくための変数
+    protected int power_save = 0;                  //パワーが0になってもこのオブジェクトの持ってたパワーがもともとどれぐらいだったかを保存しておくための変数
     [SerializeField]
-    private int power_cnt = 0;                   //電源から何個目の導体かをカウント。小さくなるほど強くなる
+    protected int power_cnt = 0;                   //電源から何個目の導体かをカウント。小さくなるほど強くなる
     [SerializeField]
-    private int contacing_conductor = 0;         //接触している導体の数
+    protected int contacing_conductor = 0;         //接触している導体の数
     [SerializeField]
-    private int giving_conductor = 0;            //電気を分け与えた導体の数
+    protected int giving_conductor = 0;            //電気を分け与えた導体の数
+    [SerializeField]
+    protected int having_energy = 0;                //
 
-    
+
+    public void HaveEnegyGave()
+    {
+        giving_conductor++;
+    }
     public void GivePowerReSet()
     {
         energization = false;
@@ -38,13 +44,14 @@ public class Conductor_Script : Base_Enegization
     }
     //電力の優先度、数小さい程電源に近いので優先する
     //set_p→自身のpower_cnt
-    public void SetPower(int set_p)
+    public void SetPower(int set_p,GameObject Obj)
     {
         //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
         //それがこのオブジェクトのpower_cntより小さければ代入する
         if ((set_p > power_cnt || power_cnt == 0) && energization == false)
         {
             power_cnt = set_p;
+            Obj.gameObject.GetComponent<Conductor_Script>().HaveEnegyGave();
         }
     }
 
@@ -54,11 +61,15 @@ public class Conductor_Script : Base_Enegization
         //上のメソッドのset_pの役割を変数powで代用する。
         if (power_save < pow)
         {
-            //通電状態ではなくなるので通電している証となる変数を初期化する
-            energi_check = true;
-            GivePowerReSet();
-            power_save = power_cnt;
-            power_cnt = set_p;
+            //電源と接触している導体だけ問題外とする
+            if(Power_hit!=true)
+            {
+                //通電状態ではなくなるので通電している証となる変数を初期化する
+                energi_check = true;
+                GivePowerReSet();
+                power_save = power_cnt;
+                power_cnt = set_p;
+            }
         }
     }
 
@@ -83,6 +94,35 @@ public class Conductor_Script : Base_Enegization
     {
         if (pow > power_cnt)
         {
+            if(this.gameObject.name=="Cube")
+            {
+                /*バグ原因
+                 電源からつながってるコンダクター(以下シリンダー1)が先にこの処理を通るとCubeコンダクターのパワーが0になる
+                 それによって、Cubeコンダクターからつながってるコンダクター(以下シリンダー3)のExit処理に入り、このSetLeave
+                 に入ってもCubeパワーが0(引数powの方)になってるのでこのif文に入らない
+
+                フローチャート的に描くと
+                Cubeが離れる
+                ↓
+                先にシリンダー1のExitがCubeに対して反応し、CubeのPower_cntが0になる
+                ↓
+                その後、CubeのExitがシリンダー3に対して反応し、シリンダー3の電気を消そうとする(SetLeaveに入る)が
+                しかしCubeのPower_cntが0になっているのでif文の中に入らない
+                ↓
+                その結果、電源とつながってる導体が離れても電気がつき続ける
+
+                やりたい処理
+                Cubeが離れる
+                ↓
+                先にCubeのExitがシリンダー1、およびシリンダー3に反応させる
+                ↓
+
+                 */
+                Debug.Log(this.gameObject.name);
+                Debug.Log(power_cnt);
+                Debug.Log(pow);
+            }
+
             power_save = power_cnt;
             leaving_Conductor = leave;
             Conductor_hit = false;
@@ -115,16 +155,15 @@ public class Conductor_Script : Base_Enegization
     // Update is called once per frame
     void Update()
     {
+        //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
         if ((hitting_insulator == true && Power_hit == false) || (Insulator_hit == true && Power_hit == false) || (leaving_Conductor == true && Power_hit == false))
         {
             GivePowerReSet();
             if (leaving_Conductor == true)
             {
                 power_cnt = 0;
+                leaving_Conductor = false;
             }
-
-
-            leaving_Conductor = false;
         }
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
@@ -193,20 +232,25 @@ public class Conductor_Script : Base_Enegization
             Insulator_hit = false;
             GivePowerReSet();
         }
-        //電源と接触せずに導体と離れたとき
+        //導体と離れたとき
         else if (c.gameObject.tag == "Conductor")
         {
+            //導体と接触してる総数を1個へらす
+            contacing_conductor--;
+
             //電気ついてるかの確認用変数をfalseにする
             Conductor_hit = false;
-            c.gameObject.GetComponent<Conductor_Script>().SetLeave(true, power_cnt);
         }
     }
 
 
-    void OnCollisionStay(Collision c)
+        void OnCollisionStay(Collision c)
     {
         if (c.gameObject.tag == "Conductor")
         {
+            if(this.gameObject.name== "Cylinder (3)") Debug.Log(c.gameObject.name);
+            else if(this.gameObject.name == "Cube" && c.gameObject.name == "Cylinder (3)") Debug.Log(c.gameObject.name);
+
             if (Conductor_hit == false)
             {
                 Conductor_hit = true;
@@ -221,9 +265,8 @@ public class Conductor_Script : Base_Enegization
                 //自分が通電状態にある時、周りの接触している導体も通電状態にする
                 if (giving_conductor < contacing_conductor)
                 {
-                    //周りの導体のpower_cntには自身のpower_cntより1多い数を代入して差別化を図る
-                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
-                    giving_conductor++;
+                    //周りの導体のpower_cntには自身のpower_cntより1少ない数を代入して差別化を図る
+                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1,this.gameObject);
                 }
                 else
                 {
@@ -234,9 +277,8 @@ public class Conductor_Script : Base_Enegization
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-                Debug.Log(this.gameObject.name);
-                Debug.Log(power_save);
-                //隣のオブジェクトのパワーの大きさがこのオブジェクトより小さければ、そのオブジェクトは絶縁されない
+                
+                //隣のオブジェクトのパワーの大きさがこのオブジェクトより大きければ、そのオブジェクトは絶縁されない
                 c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
                 if (giving_conductor == contacing_conductor)
