@@ -35,8 +35,6 @@ public class BoxCastRayTest : MonoBehaviour
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
 
-        Ray notsetray = new Ray(transform.position, transform.forward);//オブジェクトを置けなくする判定のレイ
-
         //bool a = false;
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 

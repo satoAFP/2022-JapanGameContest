@@ -2762,6 +2762,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: mapcip10_10
       objectReference: {fileID: 0}
+    - target: {fileID: 6677915162105482423, guid: a1c0370a4c1066941b64a280e4975029, type: 3}
+      propertyPath: mat.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677915162105482423, guid: a1c0370a4c1066941b64a280e4975029, type: 3}
+      propertyPath: mat.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3c038897395ea254e9af91d74fa0891d, type: 2}
     - target: {fileID: 6763044880481132199, guid: a1c0370a4c1066941b64a280e4975029, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3356,6 +3364,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3e543b6f0642de244a624de8c2b14767, type: 2}
   - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
   Onblock: 0
+  Onplayer: 0
 --- !u!65 &1614062882
 BoxCollider:
   m_ObjectHideFlags: 0

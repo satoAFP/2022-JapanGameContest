@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MapcipSlect : MonoBehaviour
 {
-    public Material[] mat = new Material[2];//変更したいマテリアルをセット
+    [SerializeField]
+    public Material[] mat = new Material[3];//変更したいマテリアルをセット
     Material[] mats;
 
     public bool Onblock = false;//自身のマップチップにブロックが乗っているときにtrue
@@ -26,16 +27,29 @@ public class MapcipSlect : MonoBehaviour
     {
         //クリックの明確な起点がないためUpdateで処理（マウスが外れたときなど）
         //いやならRayの外れた時に呼び出される関数を使うこと
-        if (now_select == true)
+        if (now_select == true && Onplayer==false)
         {
             now_select = false;
             mats[0] = mat[1];
 
             GetComponent<Renderer>().materials = mats;
         }
+        else if(Onplayer ==true)
+        {
+            now_select = false;
+            mats[0] = mat[2];
+
+            GetComponent<Renderer>().materials = mats;
+        }
         else
         {
             if (mats[0] == mat[1])
+            {
+                mats[0] = mat[0];
+
+                GetComponent<Renderer>().materials = mats;
+            }
+            else if (mats[0] == mat[2])
             {
                 mats[0] = mat[0];
 
@@ -51,10 +65,10 @@ public class MapcipSlect : MonoBehaviour
         //接触したオブジェクトのタグが"Player"のとき
         if (other.CompareTag("Player"))
         {
-            Debug.Log("キッチン☆");
+            Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
-       
+        
     }
 
     public void OnTriggerExit(Collider other)
@@ -67,6 +81,8 @@ public class MapcipSlect : MonoBehaviour
         }
 
     }
+
+    
 
     public void ChangeMaterial()
     {
