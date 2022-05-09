@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Conductor_Script : Base_Enegization
 {
-    private const int ELECTORIC_POWER = 1;   //1以上で通電
+    protected const int ELECTORIC_POWER = 1;   //1以上で通電
 
     [SerializeField]
     protected bool Conductor_hit = false;          //導体と接触してるか
@@ -28,8 +28,6 @@ public class Conductor_Script : Base_Enegization
     protected int contacing_conductor = 0;         //接触している導体の数
     [SerializeField]
     protected int giving_conductor = 0;            //電気を分け与えた導体の数
-    [SerializeField]
-    protected int having_energy = 0;               //既に電気が通ってるオブジェクトを数える変数
 
 
     public void AlreadyGetEnegy()
@@ -167,7 +165,6 @@ public class Conductor_Script : Base_Enegization
         //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
         if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
         {
-            Debug.Log(this.gameObject.name);
             GivePowerReSet();
             if (leaving_Conductor == true)
             {
@@ -178,11 +175,6 @@ public class Conductor_Script : Base_Enegization
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
-        }
-
-        if (energization == false&&Power_hit==true)
-        {
-
         }
 
 
@@ -263,8 +255,6 @@ public class Conductor_Script : Base_Enegization
     {
         if (c.gameObject.tag == "Conductor")
         {
-            if(this.gameObject.name== "Cylinder (3)") Debug.Log(c.gameObject.name);
-            else if(this.gameObject.name == "Cube" && c.gameObject.name == "Cylinder (3)") Debug.Log(c.gameObject.name);
 
             if (Conductor_hit == false)
             {
