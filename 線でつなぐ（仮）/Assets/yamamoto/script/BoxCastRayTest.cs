@@ -46,10 +46,6 @@ public class BoxCastRayTest : MonoBehaviour
         //Cubeのレイを飛ばしターゲットと接触しているか判定
         else if (grab==false)
         {
-
-            
-
-
             if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")))
             {
                 Debug.Log(hit.transform.name);
@@ -96,8 +92,8 @@ public class BoxCastRayTest : MonoBehaviour
                 hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
             }
 
-            //左クリックされたときにマップチップの座標をTargetに上書きする
-            if (Input.GetMouseButtonDown(0) && grab == true)
+           //左クリックされたときにマップチップの座標をTargetに上書きする
+           if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                 if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
@@ -120,11 +116,7 @@ public class BoxCastRayTest : MonoBehaviour
                     Target = null;//タ-ゲットの初期化
                     grab = false;//掴みフラグをfalse
                 }
-
-                
-                
             }
-           
         }
 
 
