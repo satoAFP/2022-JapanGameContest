@@ -29,10 +29,10 @@ public class Conductor_Script : Base_Enegization
     [SerializeField]
     protected int giving_conductor = 0;            //電気を分け与えた導体の数
     [SerializeField]
-    protected int having_energy = 0;                //
+    protected int having_energy = 0;               //既に電気が通ってるオブジェクトを数える変数
 
 
-    public void HaveEnegyGave()
+    public void AlreadyGetEnegy()
     {
         giving_conductor++;
     }
@@ -44,6 +44,15 @@ public class Conductor_Script : Base_Enegization
     }
     //電力の優先度、数小さい程電源に近いので優先する
     //set_p→自身のpower_cnt
+    public void SetPower(int set_p)
+    {
+        //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
+        //それがこのオブジェクトのpower_cntより小さければ代入する
+        if ((set_p > power_cnt || power_cnt == 0) && energization == false)
+        {
+            power_cnt = set_p;
+        }
+    }
     public void SetPower(int set_p,GameObject Obj)
     {
         //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
@@ -51,7 +60,7 @@ public class Conductor_Script : Base_Enegization
         if ((set_p > power_cnt || power_cnt == 0) && energization == false)
         {
             power_cnt = set_p;
-            Obj.gameObject.GetComponent<Conductor_Script>().HaveEnegyGave();
+            Obj.gameObject.GetComponent<Conductor_Script>().AlreadyGetEnegy();
         }
     }
 
@@ -156,7 +165,7 @@ public class Conductor_Script : Base_Enegization
     void Update()
     {
         //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        if ((hitting_insulator == true && Power_hit == false) || (Insulator_hit == true && Power_hit == false) || (leaving_Conductor == true && Power_hit == false))
+        if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true) && Power_hit == false) || contacing_conductor == 0)
         {
             GivePowerReSet();
             if (leaving_Conductor == true)
@@ -186,7 +195,7 @@ public class Conductor_Script : Base_Enegization
 
     }
 
-    private void OnCollisionEnter(Collision c)
+    public void OnCollisionEnter(Collision c)
     {
         //電源と接触したとき
         if (c.gameObject.tag == "Power_Supply")
@@ -216,7 +225,7 @@ public class Conductor_Script : Base_Enegization
     }
 
     //他の特定のオブジェクトが離れた時の処理
-    void OnCollisionExit(Collision c)
+    public void OnCollisionExit(Collision c)
     {
 
         //電源と離れたとき
@@ -244,7 +253,7 @@ public class Conductor_Script : Base_Enegization
     }
 
 
-        void OnCollisionStay(Collision c)
+    public void OnCollisionStay(Collision c)
     {
         if (c.gameObject.tag == "Conductor")
         {
@@ -261,12 +270,12 @@ public class Conductor_Script : Base_Enegization
             }
             else if (energization == true && power_gave == false)
             {
-                
                 //自分が通電状態にある時、周りの接触している導体も通電状態にする
                 if (giving_conductor < contacing_conductor)
                 {
                     //周りの導体のpower_cntには自身のpower_cntより1少ない数を代入して差別化を図る
-                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1,this.gameObject);
+                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
+                    giving_conductor++;
                 }
                 else
                 {
