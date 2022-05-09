@@ -4,34 +4,56 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class button : MonoBehaviour, IPointerClickHandler
+public class button : MonoBehaviour
 {
 
-    public bool botton_flag;//ボタンクリックフラグ
+    public Animator anim;
+
+    public Material[] mat = new Material[1];//変更したいマテリアルをセット
+    Material[] mats;
+
+    [SerializeField]
+    private float waittime;//ボタンクリック後の待機時間
 
     // Start is called before the first frame update
     void Start()
     {
-        botton_flag = false;
+        mats = GetComponent<Renderer>().materials;
     }
 
     // Update is called once per frame
     void Update()
     {
         //めた
+
+        mats[0] = mat[1];
+
+        GetComponent<Renderer>().materials = mats;
     }
 
-    // クリックされたときに呼び出されるメソッド
-    public void OnPointerClick(PointerEventData eventData)
+    public void RayPushButton()
     {
-        print($"オブジェクト {name} がクリックされたよ！");
-        // 赤色に変更する
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
-        //botton_flag = true;//クリックフラグをtrue
+        anim.SetBool("Push", true);
+        StartCoroutine("ButtonPushed");
     }
 
-    public void Push()
+    IEnumerator ButtonPushed()
     {
-        Debug.Log("Push!!");
+        Debug.Log("はい");
+        //1秒停止
+        yield return new WaitForSeconds(waittime);
+        anim.SetBool("Push", false);
+    }
+
+    public void RayTargetButton()
+    {
+        //マテリアル変更(1=強調0=普通)
+
+        mats[0] = mat[0];
+
+        GetComponent<Renderer>().materials = mats;
+
+        Debug.Log("ミスターk");
+
     }
 }
