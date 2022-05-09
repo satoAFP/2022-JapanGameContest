@@ -2158,11 +2158,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671969556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfbfe02ea2803cf4eada482ca058dee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turn_on_power: 0
+  Door: {fileID: 0}
+  Clear_num: 0
 --- !u!1 &812493465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,7 +2514,7 @@ GameObject:
   - component: {fileID: 870175037}
   - component: {fileID: 870175036}
   m_Layer: 0
-  m_Name: Cylinder (3)
+  m_Name: Cylinder (3);
   m_TagString: Conductor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3845,7 +3848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 155530616467131134, guid: 26c0b327f6323254798a345ee3864db9, type: 3}
       propertyPath: m_Name
-      value: Cylinder (3)
+      value: Cylinder (3)aaa
       objectReference: {fileID: 0}
     - target: {fileID: 155530616467131135, guid: 26c0b327f6323254798a345ee3864db9, type: 3}
       propertyPath: m_RootOrder

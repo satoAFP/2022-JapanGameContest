@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7416535302104172882}
   - component: {fileID: 1727078022348201614}
   - component: {fileID: 1727078022348201613}
-  - component: {fileID: 1727078022348201611}
   - component: {fileID: 1727078022348201610}
   m_Layer: 0
   m_Name: LightObj_X_Color
@@ -118,23 +117,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7416535302104172880}
   m_Mesh: {fileID: 0}
---- !u!114 &1727078022348201611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7416535302104172880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f890b36aafa160e46abd2af96dd3b61c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  power_on: 0
-  gave_power: 1
-  list_count: 0
-  obj_list: []
-  electoric_power: 1
 --- !u!114 &1727078022348201610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6b1cf035808264ca853b3e4488291f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
   clearColor: ff000000ff00000000000000
+  objs: []
 --- !u!1 &7416535302299309696
 GameObject:
   m_ObjectHideFlags: 0
