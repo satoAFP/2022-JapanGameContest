@@ -4298,6 +4298,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1454765421}
     m_Modifications:
+    - target: {fileID: 5837372754190647381, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647468, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Name
       value: MapcipCube
@@ -4344,6 +4348,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647471, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077040707213909096, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
