@@ -79,6 +79,7 @@ public class MapcipSlect : MonoBehaviour
         //}
     }
 
+    //プレイヤーが侵入したマップチップを離れたとき、置けない処理解除
     public void OnTriggerExit(Collider other)
     {
         //接触したオブジェクトのタグが"Player"のとき
