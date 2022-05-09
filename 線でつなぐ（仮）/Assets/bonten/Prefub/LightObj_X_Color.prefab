@@ -52,7 +52,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.2097006, y: 4.228888, z: 2.1530607}
-  m_Center: {x: -0.07501066, y: -0.9446146, z: -0.03614316}
+  m_Center: {x: -0.07501066, y: -0.6, z: -0.03614316}
 --- !u!54 &7416535302104172882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -147,10 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6b1cf035808264ca853b3e4488291f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
   clearColor: ff000000ff00000000000000
+  objs: []
 --- !u!1 &7416535302299309696
 GameObject:
   m_ObjectHideFlags: 0
