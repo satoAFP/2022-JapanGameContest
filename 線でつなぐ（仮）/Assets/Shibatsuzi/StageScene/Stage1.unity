@@ -1690,15 +1690,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7515901411532041956, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.09
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7515901411532041956, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.09
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7515901411532041956, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.09
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7515901411532041956, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4229,6 +4229,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7707817236922647681, guid: d93a55ddea3e3b04f9a1e4ca2d130b53, type: 3}
   m_PrefabInstance: {fileID: 2115748170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2118025584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8289187679779933843, guid: d9023386accc4ae42b84b83d882c6c6c, type: 3}
+  m_PrefabInstance: {fileID: 828521622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2118025591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118025584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c206548553022d442b663c4e1ac48c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  vertical: 0000
 --- !u!1001 &2135506732
 PrefabInstance:
   m_ObjectHideFlags: 0
