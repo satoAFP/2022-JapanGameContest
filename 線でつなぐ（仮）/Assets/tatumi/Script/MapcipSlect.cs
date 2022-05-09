@@ -9,6 +9,8 @@ public class MapcipSlect : MonoBehaviour
 
     public bool Onblock = false;//自身のマップチップにブロックが乗っているときにtrue
 
+    public bool Onplayer = false;//自身のマップチップにプレイヤーが乗っているときにtrue
+
     //セレクトON,OFFでマテリアル制御
     private bool now_select;
 
@@ -40,6 +42,30 @@ public class MapcipSlect : MonoBehaviour
                 GetComponent<Renderer>().materials = mats;
             }
         }
+
+    }
+
+    //プレイヤーがマップチップに侵入してた時、そのマップチップに置けないようにする
+    public void OnTriggerStay(Collider other)
+    {
+        //接触したオブジェクトのタグが"Player"のとき
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("キッチン☆");
+            Onplayer = true;
+        }
+       
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        //接触したオブジェクトのタグが"Player"のとき
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("フォークなのにさじ加減！");
+            Onplayer = false;
+        }
+
     }
 
     public void ChangeMaterial()
