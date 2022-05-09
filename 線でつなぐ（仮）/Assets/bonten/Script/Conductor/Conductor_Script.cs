@@ -165,8 +165,9 @@ public class Conductor_Script : Base_Enegization
     void Update()
     {
         //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true) && Power_hit == false) || contacing_conductor == 0)
+        if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
         {
+            Debug.Log(this.gameObject.name);
             GivePowerReSet();
             if (leaving_Conductor == true)
             {
@@ -177,6 +178,11 @@ public class Conductor_Script : Base_Enegization
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
+        }
+
+        if (energization == false&&Power_hit==true)
+        {
+
         }
 
 
