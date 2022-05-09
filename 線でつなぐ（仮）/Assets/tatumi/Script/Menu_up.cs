@@ -8,6 +8,7 @@ public class Menu_up : MonoBehaviour
 {
     [SerializeField, Header("メニュー")] GameObject Menu;
     [SerializeField, Header("設定メニュー")] GameObject setting_menu;
+    [SerializeField, Header("中央点")] GameObject center_point;
 
 
     // Start is called before the first frame update
@@ -25,12 +26,13 @@ public class Menu_up : MonoBehaviour
            {
                 Menu.gameObject.SetActive(false);
                 setting_menu.gameObject.SetActive(false);
-
+                center_point.gameObject.SetActive(true);
             }
            else
            {
                 Menu.gameObject.SetActive(true);
-           }
+                center_point.gameObject.SetActive(false);
+            }
         }
     }
 
