@@ -21,8 +21,8 @@ public class ColorJudgment_Sctipt : Base_Color_Script
             colorchange_signal = false;
         }
 
-        objs[0].SetActive(true);
-        objs[1].SetActive(false);
+        //objs[0].SetActive(true);
+        //objs[1].SetActive(false);
 
         if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
         {
