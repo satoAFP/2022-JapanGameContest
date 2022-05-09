@@ -15,11 +15,15 @@ public class MapcipSlect : MonoBehaviour
     //セレクトON,OFFでマテリアル制御
     private bool now_select;
 
+    BoxCastRayTest script;
+
     // Start is called before the first frame update
     void Start()
     {
         mats = GetComponent<Renderer>().materials;
         now_select = false;
+
+        script = GameObject.Find("fps_camera").GetComponent<BoxCastRayTest>();
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class MapcipSlect : MonoBehaviour
 
             GetComponent<Renderer>().materials = mats;
         }
-        else if(Onplayer ==true)
+        else if(now_select == true && Onplayer ==true && script.grab==true)
         {
             now_select = false;
             mats[0] = mat[2];
@@ -68,7 +72,11 @@ public class MapcipSlect : MonoBehaviour
             Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
-        
+        //if (other.gameObject.name == "mapchip_check")
+        //{
+        //    Debug.Log("夢色キッチン☆");
+        //    Onplayer = true;
+        //}
     }
 
     public void OnTriggerExit(Collider other)
@@ -79,6 +87,11 @@ public class MapcipSlect : MonoBehaviour
             Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
         }
+        //if (other.gameObject.name == "mapchip_check")
+        //{
+        //    Debug.Log("夢色キッチン☆");
+        //    Onplayer = false;
+        //}
 
     }
 
