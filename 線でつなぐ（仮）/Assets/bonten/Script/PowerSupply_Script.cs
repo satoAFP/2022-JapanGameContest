@@ -67,7 +67,6 @@ public class PowerSupply_Script : MonoBehaviour
         if (collision.gameObject.tag == "Conductor")
         {
             obj_list.Add(collision.gameObject);
-
         }
     }
 
