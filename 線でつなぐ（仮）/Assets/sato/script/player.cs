@@ -72,7 +72,6 @@ public class player : MonoBehaviour
 
         //カメラ関係初期化
         camTransform = this.gameObject.transform;
-        //startMousePos = Input.mousePosition;
         presentCamRotation.x = camTransform.transform.eulerAngles.x;
         presentCamRotation.y = camTransform.transform.eulerAngles.y;
     }
@@ -86,7 +85,7 @@ public class player : MonoBehaviour
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
 
         //--------------------------------------------------------------------------------------------
-        //Debug.Log("" + Input.mousePosition);
+
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
         if (cursol_reset)
@@ -211,6 +210,8 @@ public class player : MonoBehaviour
         }
         else { key_check_C = true; }
 
+
+
         //フェード処理
         if(fade_check)
         {
@@ -269,7 +270,7 @@ public class player : MonoBehaviour
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
         float x = (-startMousePos.x + vertual_cursol_pos.x) / Screen.width;
         float y = mem_camera_rotato_y;
-        
+
         
         
         //Y軸の回転は一定値(mouse_max_y)で止まる
@@ -311,7 +312,6 @@ public class player : MonoBehaviour
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
-        //Debug.Log(eulerX+" : "+ eulerY);
         
     }
 }
