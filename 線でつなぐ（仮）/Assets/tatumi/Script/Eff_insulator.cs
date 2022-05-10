@@ -49,7 +49,7 @@ public class Eff_insulator : MonoBehaviour
 
             if (result == null)
             {
-                Debug.Log(result);
+               // Debug.Log(result);
                 //ŒŠƒAƒCƒeƒ‹‚â‚Â’T‚µ‚Ä‚Ô‚Á‚±‚Þ
                 for (int i = 0; i != 10; i++)
                 {

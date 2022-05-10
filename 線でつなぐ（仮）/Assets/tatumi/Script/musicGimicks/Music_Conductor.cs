@@ -11,9 +11,13 @@ public class Music_Conductor : Base_Enegization
     private bool Change, Input_Hit;
     GameObject MixObj;
 
+    //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
+    private string InColor_name, OutColor_name;
+
     void Start()
     {
-
+        InColor_name = "InM&C";
+        OutColor_name = "OutM&C";
     }
 
     void Update()
@@ -60,12 +64,42 @@ public class Music_Conductor : Base_Enegization
                 }
             }
         }
+        else if (collision.gameObject.name.Contains(OutColor_name) == true)
+        {
+            //電源がOnの相手のみ作動
+            if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
+            {
+                if (Set_music_num == collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num())
+                {
+                    //電気は電源なので必ず通るので取得＆自身に代入
+                    music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
+                    Input_Hit = true;
+                    energization = true;
+                }
+            }
+            else
+            {
+                if (Input_Hit == false)
+                {
+                    //OFF場合
+                    music_num = -1;
+                    Input_Hit = false;
+                    energization = false;
+                }
+            }
+        }
     }
 
     public void OnCollisionExit(Collision collision)
     {
         //抜けたとき電源色番号初期化
         if (collision.gameObject.tag == "MusicOutput")
+        {
+            music_num = -1;//何もなし
+            energization = false;
+            Input_Hit = false;
+        }
+        else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             music_num = -1;//何もなし
             energization = false;

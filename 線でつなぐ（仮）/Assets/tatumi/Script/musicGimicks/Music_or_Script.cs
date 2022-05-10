@@ -1,36 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Music_or_Script : Base_Enegization
 {
 
-    //musicには合成がないため不要
-    //private GameObject child;
-    //[SerializeField]
-    //private List<GameObject> obj_list = new List<GameObject>();
+    //music用合成変数枠
+    [SerializeField]
+    private GameObject[] musics=new GameObject[10];
+    [SerializeField]
+    private string[] musics_name=new string[10];
     [SerializeField]
     private int music_num=-1;
 
     private GameObject ResetObj;
-    
-    //脱色処理(合成以下略)
-    //public void Decolorization(int decolor,GameObject gameObject)
-    //{
-    //    Debug.Log(decolor);
-    //    //子オブジェクトに音番号を渡す指令を出す
-    //    child.GetComponent<Music_or_Child_Script>().SetColCulation(music_num);
 
-    //    //混ぜるはないみたい
-
-    //}
+    //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
+    private string OutColor_name;
 
     // Start is called before the first frame update
     void Start()
     {
         //子オブジェクトを取得
-       // child = transform.GetChild(0).gameObject;
-      
+        // child = transform.GetChild(0).gameObject;
+
+        OutColor_name = "OutM&C";
+
     }
 
     // Update is called once per frame
@@ -44,26 +40,93 @@ public class Music_or_Script : Base_Enegization
 
     public void OnCollisionStay(Collision collision)
     {
-        //タグColorOutputオブジェクトから色を取得し、その色に変更
-        if (collision.gameObject.tag == "MusicOutput")
+        //名前一致確認
+        string result = musics_name.SingleOrDefault(value => value == collision.gameObject.name);
+
+        //同じ名前の物が無かった時
+        if (result == null)
         {
-            //ColorOutoputのenergizationがtrueならここに入る
-            if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
+            //穴アイテルやつ探してぶっこむ
+            for (int i = 0; i != 10; i++)
             {
-                music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
-                energization = true;
-            }
-            else
-            {
-                music_num = -1;
-                energization = false;
+                if (musics[i] == null)
+                {
+                    //新規なら入力
+                    musics[i] = collision.gameObject;
+                    musics_name[i] = collision.gameObject.name;
+                    break;
+                }
             }
         }
-        else if(music_num!=-1&&collision.gameObject.tag == "Power_Supply")
+
+        //記録の有無に限らず情報更新
+            //タグColorOutputオブジェクトから色を取得し、その色に変更
+            if (collision.gameObject.tag == "MusicOutput")
+            {
+                //ColorOutoputのenergizationがtrueならここに入る
+                if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
+                {
+                    music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
+                    energization = true;
+                }
+                else
+                {
+                    music_num = -1;
+                    energization = false;
+                }
+            }
+            else if (collision.gameObject.name.Contains(OutColor_name) == true)
+            {
+                //ColorOutoputのenergizationがtrueならここに入る
+                if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
+                {
+                    music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
+                    energization = true;
+                }
+                else
+                {
+                    music_num = -1;
+                    energization = false;
+                }
+            }
+            else if (music_num != -1 && collision.gameObject.tag == "Power_Supply")
+            {
+                ResetObj = collision.gameObject;
+                collision.gameObject.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
+            }
+
+        //長さ確認(2以上なら内部同一化確認)
+        //全要素一致か判断
+        IEnumerable<string> results = (IEnumerable<string>)musics_name.Distinct();
+
+        //種類別に何種類あるか
+        int num = results.Count();
+
+        if(num>1)
         {
-            ResetObj = collision.gameObject;
-            collision.gameObject.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
+            //2種類以上の音楽を認識した場合初期化
+            music_num = -1;
         }
+
+        /*合成処理----------------------------------------------------------
+        int nums[10];
+
+        //2種類以上の場合
+        if(num>1)
+        {
+            int k=0;
+
+            for(int i=0;i!=10i++)
+            {
+                if (musics != null)
+                {
+                    nums[k] = musics[i].GetComponent<OutputMusic_Script>().Remusic_num();
+                    k++;
+                }
+            }
+        }
+
+        //numsに抽出完了合成処理に対し使用-------------------------------------*/
     }
 
     public void OnCollisionExit(Collision collision)
@@ -71,12 +134,28 @@ public class Music_or_Script : Base_Enegization
         //タグColorOutputオブジェクトから色を取得し、設定された値をこのオブジェクトの変数から引くことで脱色
         if (collision.gameObject.tag == "MusicOutput")
         {
-
             music_num = -1;
             energization = false;
             ResetObj.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
             //子オブジェクトに色を消す指令を出す(子供はつか(ry)
             // child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION);
+        }
+        else if (collision.gameObject.name.Contains(OutColor_name) == true)
+        {
+            music_num = -1;
+            energization = false;
+            ResetObj.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
+        }
+
+        //記録を抜く
+        for(int i=0;i!=10;i++)
+        {
+            //同一の場合
+            if(musics_name[i]== collision.gameObject.name)
+            {
+                musics_name[i] = null;
+                musics[i] = null;
+            }
         }
     }
 
