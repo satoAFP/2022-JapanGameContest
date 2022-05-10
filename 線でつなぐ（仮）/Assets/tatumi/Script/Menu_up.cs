@@ -8,6 +8,7 @@ public class Menu_up : MonoBehaviour
 {
     [SerializeField, Header("メニュー")] GameObject Menu;
     [SerializeField, Header("設定メニュー")] GameObject setting_menu;
+    [SerializeField, Header("全体map")] GameObject All_map;
     [SerializeField, Header("中央点")] GameObject center_point;
 
 
@@ -26,13 +27,14 @@ public class Menu_up : MonoBehaviour
            {
                 Menu.gameObject.SetActive(false);
                 setting_menu.gameObject.SetActive(false);
+                All_map.gameObject.SetActive(false);
                 center_point.gameObject.SetActive(true);
             }
            else
            {
                 Menu.gameObject.SetActive(true);
                 center_point.gameObject.SetActive(false);
-            }
+           }
         }
     }
 
@@ -44,5 +46,15 @@ public class Menu_up : MonoBehaviour
     public void setting_close()
     {
         setting_menu.gameObject.SetActive(false);
+    }
+
+    public void Allmap_open()
+    {
+        All_map.gameObject.SetActive(true);
+    }
+
+    public void Allmap_close()
+    {
+        All_map.gameObject.SetActive(false);
     }
 }
