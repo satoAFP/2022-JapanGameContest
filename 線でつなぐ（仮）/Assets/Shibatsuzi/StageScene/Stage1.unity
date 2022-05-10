@@ -957,6 +957,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
   Rotationflag: 0
   vertical: 0
+  Nosetline: 0
 --- !u!54 &361260097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3351,6 +3352,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3e543b6f0642de244a624de8c2b14767, type: 2}
   - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
   Onblock: 0
+  Onplayer: 0
+  Onobj: 0
 --- !u!65 &1614062882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3850,6 +3853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cylinder
       objectReference: {fileID: 0}
+    - target: {fileID: 3132251060453365195, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
 --- !u!4 &1878532083 stripped
@@ -4305,6 +4312,10 @@ PrefabInstance:
     - target: {fileID: 5837372754190647468, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Name
       value: MapcipCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837372754190647470, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: Nosetline
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647471, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_RootOrder

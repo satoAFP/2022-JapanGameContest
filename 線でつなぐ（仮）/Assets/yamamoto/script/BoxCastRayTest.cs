@@ -56,6 +56,11 @@ public class BoxCastRayTest : MonoBehaviour
 
                 Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
+                if(hit.collider.GetComponent<ClickObj>().Nosetline==true)
+                {
+                    Debug.Log("as");
+                }
+
                 //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
                 if (Input.GetMouseButtonDown(0) && grab == false)
                 {
@@ -117,6 +122,7 @@ public class BoxCastRayTest : MonoBehaviour
                     grab = false;//掴みフラグをfalse
                 }
             }
+
         }
 
 
