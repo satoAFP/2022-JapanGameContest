@@ -29,6 +29,11 @@ public class Base_Color_Script : Base_Enegization
     [SerializeField]
     protected int[] color = new int[COLOR_MAX];
 
+    //色のセッター
+    public void SetColorRed(int red)         => color[COLOR_RED]     = red;
+    public void SetColorBlue(int brue)       => color[COLOR_BLUE]    = brue;
+    public void SetColorGreen(int green)     => color[COLOR_GREEN]   = green;
+
     //ゲームオブジェクトを引数として持ち、そのオブジェクトの色を自身の色に影響させる関数
     //引数1 -> ゲームオブジェクト型の引数
     //引数2 -> 加算代入(true)か、減算代入(false)かきめる
@@ -95,12 +100,14 @@ public class Base_Color_Script : Base_Enegization
             }
         }
     }
-    public void SetColorChange(bool change) => colorchange_signal = change;
 
-    //色のセッター
-    public void SetColorRed(int red) => color[COLOR_RED] = red;
-    public void SetColorBlue(int brue) => color[COLOR_BLUE] = brue;
-    public void SetColorGreen(int green) => color[COLOR_GREEN] = green;
+    public void SetColor(int[] _color)
+    {
+        SetColorRed(_color[COLOR_RED]);         
+        SetColorBlue(_color[COLOR_BLUE]);
+        SetColorGreen(_color[COLOR_GREEN]);     
+    }
+    public void SetColorChange(bool change) => colorchange_signal = change;
 
     //色のゲッター。引数で要素数を指定して取得
 

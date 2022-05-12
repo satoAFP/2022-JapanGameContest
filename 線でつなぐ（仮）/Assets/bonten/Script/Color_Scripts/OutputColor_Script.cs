@@ -56,7 +56,7 @@ public class OutputColor_Script : Base_Color_Script
             //電気が通っているかどうか確認。
             if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == false && energization == true)
             {
-                //当たっているObjの優先度(cnt変数)が0でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
+                //当たっているObjの優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
                 if (collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())
                 {
                     cnt = 0;
