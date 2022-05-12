@@ -18,7 +18,7 @@ public class ColorJudgment_Sctipt : Base_Color_Script
     private void Start()
     {
         OffLight = transform.Find("OffLight").gameObject;
-        OnLight = transform.Find("OnLight").gameObject;
+        OnLight  = transform.Find("OnLight").gameObject;
     }
 
     // Update is called once per frame
@@ -40,7 +40,8 @@ public class ColorJudgment_Sctipt : Base_Color_Script
                 OnLight.SetActive(true);
                 //光源Objに色を入力
                 OnLight.GetComponent<Base_Color_Script>().SetColor(color);
-               
+                OnLight.gameObject.GetComponent<Base_Color_Script>().SetColorChange(colorchange_signal);
+
                 colorchange_signal = false;
             }
             
@@ -49,8 +50,7 @@ public class ColorJudgment_Sctipt : Base_Color_Script
         if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
         {
             //ここにクリアの証的なコード
-            objs[0].SetActive(false);
-            objs[1].SetActive(true);
+           
         }
     }
 
