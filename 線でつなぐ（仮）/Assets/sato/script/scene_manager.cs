@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class scene_manager : MonoBehaviour
 {
+    [SerializeField, Header("OnTriggerEnterでのシーン移動")] bool Trigger_move;
+    [SerializeField, Header("OnCollisionEnterでのシーン移動")] bool Collision_move;
     [SerializeField, Header("移動シーン名")] string scene_name;
 
     public void SceneMove()
@@ -14,9 +16,23 @@ public class scene_manager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") 
+        if (Trigger_move)
         {
-            SceneManager.LoadScene(scene_name);
+            if (other.gameObject.tag == "Player")
+            {
+                SceneManager.LoadScene(scene_name);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (Collision_move)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                SceneManager.LoadScene(scene_name);
+            }
         }
     }
 }

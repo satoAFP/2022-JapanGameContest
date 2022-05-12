@@ -12,6 +12,8 @@ public class MapcipSlect : MonoBehaviour
 
     public bool Onplayer = false;//自身のマップチップにプレイヤーが乗っているときにtrue
 
+    public bool Onobj = false;   //自身のマップチップにオブジェクトが乗っているときにtrue
+
     //セレクトON,OFFでマテリアル制御
     private bool now_select;
 
@@ -38,7 +40,15 @@ public class MapcipSlect : MonoBehaviour
 
             GetComponent<Renderer>().materials = mats;
         }
+        //プレイヤーが足元近くにブロック置けなくする
         else if(now_select == true && Onplayer ==true && script.grab==true)
+        {
+            now_select = false;
+            mats[0] = mat[2];
+
+            GetComponent<Renderer>().materials = mats;
+        }
+        else if (now_select == true && Onobj == true && script.grab == true)
         {
             now_select = false;
             mats[0] = mat[2];
@@ -72,6 +82,12 @@ public class MapcipSlect : MonoBehaviour
             Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
+        //レイヤー番号17：シリンダー
+        if (other.gameObject.layer == 17)
+        {
+           // Debug.Log("お茶がぬるいよ～orz");
+            Onobj = true;
+        }
         //if (other.gameObject.name == "mapchip_check")
         //{
         //    Debug.Log("夢色キッチン☆");
@@ -88,6 +104,11 @@ public class MapcipSlect : MonoBehaviour
             Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
         }
+        //if (other.CompareTag("Conductor"))
+        //{
+        //    Debug.Log("Death");
+        //    Onobj = false;
+        //}
         //if (other.gameObject.name == "mapchip_check")
         //{
         //    Debug.Log("夢色キッチン☆");
