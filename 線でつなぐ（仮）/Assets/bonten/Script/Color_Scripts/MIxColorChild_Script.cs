@@ -18,6 +18,7 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         colculation = col;
         SetColor(decolor, colculation);
+
     }
 
     // Start is called before the first frame update
