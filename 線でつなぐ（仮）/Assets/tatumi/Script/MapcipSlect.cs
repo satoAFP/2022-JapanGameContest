@@ -34,32 +34,18 @@ public class MapcipSlect : MonoBehaviour
         if (now_select == true && Onplayer==false)
         {
             now_select = false;
-            mats[0] = mat[1];
+            mats[0] = mat[0];
 
             GetComponent<Renderer>().materials = mats;
         }
         else if(now_select == true && Onplayer ==true && script.grab==true)
         {
             now_select = false;
-            mats[0] = mat[2];
+            mats[0] = mat[1];
 
             GetComponent<Renderer>().materials = mats;
         }
-        else
-        {
-            if (mats[0] == mat[1])
-            {
-                mats[0] = mat[0];
-
-                GetComponent<Renderer>().materials = mats;
-            }
-            else if (mats[0] == mat[2])
-            {
-                mats[0] = mat[0];
-
-                GetComponent<Renderer>().materials = mats;
-            }
-        }
+       
 
     }
 
