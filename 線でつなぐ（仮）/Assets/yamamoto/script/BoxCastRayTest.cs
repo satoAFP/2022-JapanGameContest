@@ -26,11 +26,10 @@ public class BoxCastRayTest : MonoBehaviour
 
     private bool lineset = false;//オブジェクトの上に設置可能フラグ
 
-
-
     void Start()
     {
         grab = false;//初期化
+       
     }
 
     // Update is called once per frame
@@ -42,6 +41,9 @@ public class BoxCastRayTest : MonoBehaviour
         RaycastHit hit;
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
+
+        int layerMask = 1 << 12;//マップチップのレイヤーだけ除外するレイヤーマスク
+        layerMask = ~layerMask;//レイヤー11番（マップチップ）を除外
 
         //bool a = false;
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
@@ -117,7 +119,7 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false　&& lineset == false)
+                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false　/*&& nosetline == true*/)
                 {
                     //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
@@ -136,11 +138,12 @@ public class BoxCastRayTest : MonoBehaviour
                     Target.transform.position = worldPos;
                     Target = null;//タ-ゲットの初期化
                     grab = false;//掴みフラグをfalse
-                    lineset = true;//オブジェクト上に設置許可リセット
+                    //nosetline = false;//オブジェクト上に設置許可リセット
                 }
             }
 
         }
+       
 
 
         //穴マップチップにレイが接触しているか判定(rayを線に変更）
@@ -189,7 +192,6 @@ public class BoxCastRayTest : MonoBehaviour
             {
                 hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
             }
-
         }
 
         //ブロックを持っている時に回転させる
