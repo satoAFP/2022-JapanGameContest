@@ -14,6 +14,7 @@ public class OutputMusic_Script : Base_Enegization
     //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
     private string InColor_name,OutColor_name;
 
+    private bool MCmode = false;
     void Start()
     {
         InColor_name = "InM&C";
@@ -22,10 +23,13 @@ public class OutputMusic_Script : Base_Enegization
 
     void Update()
     {
-        if(energization==true)
-        GetComponent<Renderer>().material.color = new Color32(71,214, 255, 1);
-        else
-            GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+        if (MCmode == false)
+        {
+            if (energization == true)
+                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 1);
+            else
+                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+        }
 
     }
 
@@ -48,6 +52,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
                 energization = true;
                 Input_Hit = true;
+                MCmode = false;
             }
             else
             {
@@ -55,6 +60,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = -1;
                 energization = false;
                 Input_Hit = false;
+                MCmode = false;
             }
         }
         else if (collision.gameObject.tag == "MusicOutput")
@@ -66,6 +72,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
                 Input_Hit = true;
                 energization = true;
+                MCmode = false;
             }
             else if(collision.gameObject.GetComponent<OutputMusic_Script>())
             {
@@ -75,11 +82,12 @@ public class OutputMusic_Script : Base_Enegization
                     music_num = -1;
                     Input_Hit = false;
                     energization = false;
+                    MCmode = false;
                 }
             }
         }
 
-        if (collision.gameObject.name.Contains(InColor_name) == true)
+        else if (collision.gameObject.name.Contains(InColor_name) == true)
         {
             if (collision.gameObject.GetComponent<InputMusic_Script>().GetEnergization() == true)
             {
@@ -87,6 +95,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
                 energization = true;
                 Input_Hit = true;
+                MCmode = true;
             }
             else
             {
@@ -94,6 +103,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = -1;
                 energization = false;
                 Input_Hit = false;
+                MCmode = true;
             }
         }
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
@@ -105,6 +115,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
                 Input_Hit = true;
                 energization = true;
+                MCmode = true;
             }
             else if (collision.gameObject.GetComponent<OutputMusic_Script>())
             {
@@ -114,6 +125,7 @@ public class OutputMusic_Script : Base_Enegization
                     music_num = -1;
                     Input_Hit = false;
                     energization = false;
+                    MCmode = true;
                 }
             }
         }
@@ -127,24 +139,28 @@ public class OutputMusic_Script : Base_Enegization
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
+            MCmode = false;
         }
         else if (collision.gameObject.tag == "MusicOutput")
         {
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
+            MCmode = false;
         }
         else if (collision.gameObject.name.Contains(InColor_name) == true)
         {
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
+            MCmode = true;
         }
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
+            MCmode = true;
         }
     }
 
