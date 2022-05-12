@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
-using System.Collections;
 
 public class player : MonoBehaviour
 {
@@ -11,23 +10,21 @@ public class player : MonoBehaviour
     [SerializeField, Header("主人公の移動量"), Header("主人公のステータス"), Range(0, 10)]     float move_power;
     [SerializeField, Header("マウス感度"), Range(100, 300)]          float mouse_power;
     [SerializeField, Header("ジャンプ力"), Range(0, 10)]             float jump_power;
-    [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.05f)]    float climbing_speed;
+    [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.1f)]    float climbing_speed;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
     [SerializeField, Header("フェードの時間"), Range(0.5f, 3.0f)]    float fade_time;
 
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
-    [SerializeField, Header("通常カメラ")]                           GameObject camera;
-    [SerializeField, Header("fade用image")]                          GameObject fade;
-    [SerializeField, Header("climbing_check_head")]                  GameObject head;
-    [SerializeField, Header("climbing_check_leg")]                   GameObject leg;
-    [SerializeField, Header("color_check")]                          GameObject color_check;
+    [SerializeField, Header("通常カメラ")] GameObject camera;
+    [SerializeField, Header("fade用image")] GameObject fade;
+    [SerializeField, Header("climbing_check_head")]     GameObject head;
+    [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
 
     //他のスクリプトとやり取りする変数
-    [System.NonSerialized] public bool Ground_check = true;        //着地しているかどうかの判定
-    [System.NonSerialized] public bool Move_check = false;         //移動しているかどうかの判定
-    [System.NonSerialized] public bool monochrome_change = false;  //モノクロかどうかのの判定
+    [System.NonSerialized] public bool Ground_check = true;                               //着地しているかどうかの判定
+    [System.NonSerialized] public bool Move_check = false;                                //移動しているかどうかの判定
 
 
     //カーソルの移動設定
@@ -53,7 +50,7 @@ public class player : MonoBehaviour
     private bool fade_updown = true;                                //透過レベルが上がるか下がるか
     private bool first_camera_pos_set = true;                       //一番最初のカメラの位置の初期化だけ実行
     private bool first_scene_move = true;                           //シーンが切り替わった時だけ実行
-    
+
 
     //連続で押されないための判定
     private bool key_check_E = true;
@@ -75,10 +72,8 @@ public class player : MonoBehaviour
 
         //カメラ関係初期化
         camTransform = this.gameObject.transform;
-        //startMousePos = Input.mousePosition;
         presentCamRotation.x = camTransform.transform.eulerAngles.x;
         presentCamRotation.y = camTransform.transform.eulerAngles.y;
-
     }
 
     // Update is called once per frame
@@ -90,7 +85,6 @@ public class player : MonoBehaviour
         climbing_check_leg = leg.GetComponent<climbing_check>().check;
 
         //--------------------------------------------------------------------------------------------
-        //Debug.Log("" + Input.mousePosition);
 
 
         //カーソルの座標がリセットされたとき、移動量がリセットされないよう
@@ -188,10 +182,6 @@ public class player : MonoBehaviour
         }
 
 
-        //カーソルの座標記憶
-        cursol_pos_check = Input.mousePosition;
-        
-
         //グレースケールカメラ切り替え
         if (Input.GetKey(KeyCode.C))
         {
@@ -216,15 +206,6 @@ public class player : MonoBehaviour
         }
         else { key_check_C = true; }
 
-        if(camera_change)
-        {
-            Debug.Log(camera.GetComponent<BoxCastRayTest>().Target.GetComponent<MeshRenderer>().material.color);
-            color_check.GetComponent<Image>().color = camera.GetComponent<BoxCastRayTest>().Target.GetComponent<MeshRenderer>().material.color;
-        }
-        else
-        {
-            color_check.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        }
 
 
         //フェード処理
@@ -248,7 +229,9 @@ public class player : MonoBehaviour
             }
         }
 
-        
+
+        //カーソルの座標記憶
+        cursol_pos_check = Input.mousePosition;
     }
 
 
@@ -285,7 +268,7 @@ public class player : MonoBehaviour
         //(移動開始座標 - 実際のカーソルの座標) / 解像度 で正規化
         float x = (-startMousePos.x + vertual_cursol_pos.x) / Screen.width;
         float y = mem_camera_rotato_y;
-        
+
         
         
         //Y軸の回転は一定値(mouse_max_y)で止まる
@@ -327,7 +310,6 @@ public class player : MonoBehaviour
         //主人公とカメラにそれぞれ、回転量代入
         camTransform.rotation = Quaternion.Euler(0, eulerY, 0);
         my_camera.transform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
-        //Debug.Log(eulerX+" : "+ eulerY);
         
     }
 }

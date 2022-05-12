@@ -33,16 +33,16 @@ public class ClickObj : MonoBehaviour
             if (vertical == true)
             {
                 if (Mathf.Round(this.transform.localEulerAngles.y) == 0 || this.transform.localEulerAngles.y == 180.0f)
-                    this.GetComponent<Conductor_Script>().enabled = true;
+                    this.GetComponent<Conductor_Script>().SetEnergization(true);
                 else
-                    this.GetComponent<Conductor_Script>().enabled = false;
+                    this.GetComponent<Conductor_Script>().SetEnergization(false);
             }
             else if (vertical == false)
             {
                 if (Mathf.Round(this.transform.localEulerAngles.y) == 90.0f || this.transform.localEulerAngles.y == 270.0f)
-                    this.GetComponent<Conductor_Script>().enabled = true;
+                    this.GetComponent<Conductor_Script>().SetEnergization(true);
                 else
-                    this.GetComponent<Conductor_Script>().enabled = false;
+                    this.GetComponent<Conductor_Script>().SetEnergization(false);
             }
         }
 
@@ -56,9 +56,7 @@ public class ClickObj : MonoBehaviour
         mats[0] = mat[1];
 
         GetComponent<Renderer>().materials = mats;
-        //‚±‚±‚¿‚á‚ñ‚Æ‚©‚¯
-        Debug.Log(Mathf.Round(this.transform.localEulerAngles.y));
-
+       
     }
 
    
