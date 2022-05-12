@@ -6,7 +6,9 @@ public class BoxCastRayTest : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
+    private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる   
+
+    [SerializeField] private int getsize; //オブジェクトを拾った時に手に収まるサイズにする
 
     private Vector3 TargetScale;//ターゲットの元の大きさ
 
@@ -19,6 +21,12 @@ public class BoxCastRayTest : MonoBehaviour
     public GameObject Cancel;//選択キャンセル用の変数
 
     public bool grab;//掴みフラグ
+
+    private bool nosetline = false;//ClickObjのNosetlineの受け取りフラグ
+
+    private bool lineset = false;//オブジェクトの上に設置可能フラグ
+
+
 
     void Start()
     {
@@ -56,8 +64,10 @@ public class BoxCastRayTest : MonoBehaviour
 
                 Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
+                //シリンダーの上に置けないブロックの場合、シリンダー設置OFF
                 if(hit.collider.GetComponent<ClickObj>().Nosetline==true)
                 {
+                    nosetline = true;
                     Debug.Log("as");
                 }
 
@@ -68,7 +78,7 @@ public class BoxCastRayTest : MonoBehaviour
                     //手に持つ用にオブジェクトのサイズを帰る
                     TargetScale = Target.transform.localScale;
                     TargetRotate = Target.transform.eulerAngles;
-                    Target.transform.localScale /= 5;
+                    Target.transform.localScale /= getsize;
                     Target.GetComponent<BoxCollider>().isTrigger = true;
                     Target.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -97,11 +107,17 @@ public class BoxCastRayTest : MonoBehaviour
                 hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
             }
 
-           //左クリックされたときにマップチップの座標をTargetに上書きする
-           if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
+            if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onobj == true && nosetline==true)
+            {
+                lineset = true;
+                Debug.Log("穏やかじゃないですね");
+            }
+
+            //左クリックされたときにマップチップの座標をTargetに上書きする
+            if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
+                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false　&& lineset == false)
                 {
                     //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
@@ -120,6 +136,7 @@ public class BoxCastRayTest : MonoBehaviour
                     Target.transform.position = worldPos;
                     Target = null;//タ-ゲットの初期化
                     grab = false;//掴みフラグをfalse
+                    lineset = true;//オブジェクト上に設置許可リセット
                 }
             }
 
@@ -178,7 +195,7 @@ public class BoxCastRayTest : MonoBehaviour
         //ブロックを持っている時に回転させる
         if(Input.GetMouseButtonDown(1) && grab ==true)
         {
-            Debug.Log("あばばばばばば");
+           // Debug.Log("あばばばばばば");
             TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
         }
 
