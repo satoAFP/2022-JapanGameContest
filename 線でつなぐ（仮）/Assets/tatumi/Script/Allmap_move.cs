@@ -16,7 +16,7 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public GameObject All_map;
     //変数取得用
     Vector3 trans_C;
-
+    //MAP限界点座標
     public float END_z_front, END_z_back,END_x_right,END_x_left;
 
     // Use this for initialization
@@ -28,17 +28,21 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     // Update is called once per frame
     void Update()
     {
-        //常に今何処か取得
+        //常に今カメラが何処か取得
         trans_C = All_map.GetComponent<Allmap_moveCamera>().Getpos();
 
+        //マウスホイールの回転量取得
         var scroll = Input.mouseScrollDelta.y;
 
+        //一度sizeに落とし込む
         var size = All_map.GetComponent<Camera>().orthographicSize;
 
+        //限界点の場合スルー
         if (size - scroll > 20)
             ;
         else if (size - scroll < 0)
             ;
+        //限界点に引っかからない場合MAPの拡大率に影響させる（CameraのSIZE変更）
         else
         All_map.GetComponent<Camera>().orthographicSize =size - scroll;
     }
@@ -50,8 +54,6 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     {
         // ドラッグ前の位置を記憶しておく
         prevPos = Input.mousePosition;
-
-        //Debug.Log("a");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -66,6 +68,7 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             ;
         else if (trans_C.z > END_z_back)
             ;
+        //反映
         else
         All_map.GetComponent<Allmap_moveCamera>().Setpos_z(trans_C.z);
 
@@ -74,6 +77,7 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             ;
         else if (trans_C.x < END_x_left)
             ;
+        //反映
         else
             All_map.GetComponent<Allmap_moveCamera>().Setpos_x(trans_C.x);
 

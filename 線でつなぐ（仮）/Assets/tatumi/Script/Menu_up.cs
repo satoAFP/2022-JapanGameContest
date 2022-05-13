@@ -23,6 +23,7 @@ public class Menu_up : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            //Eキーを推されたさいメニュー画面を全部非表示(真ん中の十字は再表示)
            if(Menu.gameObject.activeSelf == true)
            {
                 Menu.gameObject.SetActive(false);
@@ -38,6 +39,7 @@ public class Menu_up : MonoBehaviour
         }
     }
 
+    //設定、全体mapの表示・非表示をボタンで扱えるよう関数化
     public void setting_open()
     {
         setting_menu.gameObject.SetActive(true);

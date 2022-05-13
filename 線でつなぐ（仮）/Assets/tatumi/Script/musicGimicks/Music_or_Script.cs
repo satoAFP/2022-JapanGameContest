@@ -6,21 +6,26 @@ using System.Linq;
 public class Music_or_Script : Base_Enegization
 {
 
-    //music用合成変数枠
+    //music用合成変数枠------
     [SerializeField]
     private GameObject[] musics=new GameObject[10];
     [SerializeField]
     private int[] musics_nums=new int[10];
     [SerializeField]
     private string[] musics_name = new string[10];
+    //-----------------------------------------------
+
+    //受け取る番号と、非電源対象の変数番号
     [SerializeField]
     private int music_num=-1,Powernum=-1;
 
+    //森井君（以下ry
     private GameObject ResetObj;
 
     //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
     private string OutColor_name;
 
+    //音＆色の状態かどうか判断（表示・非表示関連）
     private bool MCmode;
 
     // Start is called before the first frame update
@@ -29,8 +34,10 @@ public class Music_or_Script : Base_Enegization
         //子オブジェクトを取得
         // child = transform.GetChild(0).gameObject;
 
+        //名前
         OutColor_name = "OutM&C";
 
+        //初期化（SEタイプ）
         for(int i=0;i!=10;i++)
         {
             musics_nums[i] = -1;
@@ -41,8 +48,10 @@ public class Music_or_Script : Base_Enegization
     // Update is called once per frame
     void Update()
     {
+        //色も判定する場合色着くのは邪魔
         if (MCmode == false)
         {
+            //音のみなら色付け
             if (energization == true)
                 GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 1);
             else
@@ -83,8 +92,7 @@ public class Music_or_Script : Base_Enegization
             //ColorOutoputのenergizationがtrueならここに入る
             if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
             {
-               // music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
-                //energization = true;
+              //電源関連はいらない色があるかどうかのみを判断
                 MCmode = false;
             }
         }
@@ -93,20 +101,19 @@ public class Music_or_Script : Base_Enegization
             //ColorOutoputのenergizationがtrueならここに入る
             if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
             {
-                //music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
-                //energization = true;
+                //電源関連はいらない色があるかどうかのみを判断
                 MCmode = true;
             }
             else
             {
+                //電源関連はいらない色があるかどうかのみを判断(抜けなのでSE番号初期化)
                 music_num = -1;
-                //energization = false;
                 MCmode = true;
             }
         }
        
         //長さ確認(2以上なら内部同一化確認)
-        //中身更新
+        //中身更新(SE番号入れ替え)
         for(int i=0;i!=10;i++)
         {
             if (musics[i] != null)
@@ -140,7 +147,7 @@ public class Music_or_Script : Base_Enegization
         }
         else
         {
-            //ResetObj = musics[Powernum];
+            //SE番号を非電源対象に送る
             musics[Powernum].GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
         }
 
@@ -170,6 +177,7 @@ public class Music_or_Script : Base_Enegization
         //タグColorOutputオブジェクトから色を取得し、設定された値をこのオブジェクトの変数から引くことで脱色
         if (collision.gameObject.tag == "MusicOutput")
         {
+            //OFF処理
             music_num = -1;
             energization = false;
             ResetObj.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
@@ -179,13 +187,14 @@ public class Music_or_Script : Base_Enegization
         }
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
+            //OFF処理
             music_num = -1;
             energization = false;
             ResetObj.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
             MCmode = true;
         }
 
-        //記録を抜く
+        //記録を抜く(覚えてるやつから)
         for(int i=0;i!=10;i++)
         {
             //同一の場合

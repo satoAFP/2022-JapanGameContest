@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class OutputMusic_Script : Base_Enegization
 {
+    //自身の色番号
     [SerializeField]
     private int music_num;
 
+    //詳細は森井君側
     [SerializeField]
     private bool Change,Input_Hit;
     GameObject MixObj;
@@ -14,15 +16,18 @@ public class OutputMusic_Script : Base_Enegization
     //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
     private string InColor_name,OutColor_name;
 
+    //色同居判定
     private bool MCmode = false;
     void Start()
     {
+        //色のIN.OUTどっちも取得する可能性あり
         InColor_name = "InM&C";
         OutColor_name = "OutM&C";
     }
 
     void Update()
     {
+        //色同居の場合色変更は邪魔
         if (MCmode == false)
         {
             if (energization == true)
@@ -44,11 +49,12 @@ public class OutputMusic_Script : Base_Enegization
 
     public void OnCollisionStay(Collision collision)
     {
+        //SE判定のみの場合(In)
         if (collision.gameObject.tag == "MusicInput")
         {
             if (collision.gameObject.GetComponent<InputMusic_Script>().GetEnergization() == true)
             {
-                //電気は電源なので必ず通るので取得＆自身に代入
+                //取得＆自身に代入
                 music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
                 energization = true;
                 Input_Hit = true;
@@ -63,12 +69,13 @@ public class OutputMusic_Script : Base_Enegization
                 MCmode = false;
             }
         }
+        //SE判定のみの場合(Out)
         else if (collision.gameObject.tag == "MusicOutput")
         {
             //電源がOnの相手のみ作動
             if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
             {
-                //電気は電源なので必ず通るので取得＆自身に代入
+                //取得＆自身に代入
                 music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
                 Input_Hit = true;
                 energization = true;
@@ -86,12 +93,12 @@ public class OutputMusic_Script : Base_Enegization
                 }
             }
         }
-
+        //色も判定の場合(In)
         else if (collision.gameObject.name.Contains(InColor_name) == true)
         {
             if (collision.gameObject.GetComponent<InputMusic_Script>().GetEnergization() == true)
             {
-                //電気は電源なので必ず通るので取得＆自身に代入
+                //取得＆自身に代入
                 music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
                 energization = true;
                 Input_Hit = true;
@@ -106,12 +113,13 @@ public class OutputMusic_Script : Base_Enegization
                 MCmode = true;
             }
         }
+        //色も判定の場合(Out)
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             //電源がOnの相手のみ作動
             if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
             {
-                //電気は電源なので必ず通るので取得＆自身に代入
+                //取得＆自身に代入
                 music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
                 Input_Hit = true;
                 energization = true;
@@ -133,7 +141,7 @@ public class OutputMusic_Script : Base_Enegization
 
     public void OnCollisionExit(Collision collision)
     {
-        //抜けたとき電源色番号初期化
+        //抜けたとき電源音番号初期化(SE)
         if (collision.gameObject.tag == "MusicInput")
         {
             music_num = -1;//何もなし
@@ -148,6 +156,7 @@ public class OutputMusic_Script : Base_Enegization
             Input_Hit = false;
             MCmode = false;
         }
+        //抜けたとき電源音番号初期化(色付き)
         else if (collision.gameObject.name.Contains(InColor_name) == true)
         {
             music_num = -1;//何もなし
@@ -164,18 +173,11 @@ public class OutputMusic_Script : Base_Enegization
         }
     }
 
+    //かえすぅ
     public int Remusic_num()
     {
         return music_num;
     }
-    //public void Set_inputhere(bool a)
-    //{
-    //    Input_Hit = a;
-    //}
-
-    //public bool Get_inputhere()
-    //{
-    //   return Input_Hit;
-    //}
+   
 
 }
