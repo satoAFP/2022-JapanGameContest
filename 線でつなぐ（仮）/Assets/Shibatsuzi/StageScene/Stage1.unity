@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8263671631863799961, guid: 3a48a2c52295859419934354908299ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28180efe01144ea429da798b8d57a89e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a48a2c52295859419934354908299ce, type: 3}
 --- !u!1001 &68978393
@@ -952,6 +956,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
   Rotationflag: 0
   vertical: 0
+  Nosetline: 0
 --- !u!54 &361260097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1339,6 +1344,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8263671631863799961, guid: 3a48a2c52295859419934354908299ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28180efe01144ea429da798b8d57a89e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a48a2c52295859419934354908299ce, type: 3}
 --- !u!4 &481545814 stripped
@@ -2611,6 +2620,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8263671631863799961, guid: 3a48a2c52295859419934354908299ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28180efe01144ea429da798b8d57a89e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a48a2c52295859419934354908299ce, type: 3}
 --- !u!1001 &1243730613
@@ -2869,6 +2882,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8263671631863799961, guid: 3a48a2c52295859419934354908299ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28180efe01144ea429da798b8d57a89e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a48a2c52295859419934354908299ce, type: 3}
 --- !u!1001 &1384178192
@@ -3353,6 +3370,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
   Onblock: 0
   Onplayer: 0
+  Onobj: 0
 --- !u!65 &1614062882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3560,6 +3578,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8263671631863799961, guid: 3a48a2c52295859419934354908299ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28180efe01144ea429da798b8d57a89e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a48a2c52295859419934354908299ce, type: 3}
 --- !u!1001 &1763807703
