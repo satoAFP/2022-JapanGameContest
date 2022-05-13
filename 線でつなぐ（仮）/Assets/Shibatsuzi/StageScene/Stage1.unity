@@ -961,7 +961,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
   Rotationflag: 0
   vertical: 0
-  Nosetline: 0
+  Setlineblock: 1
 --- !u!54 &361260097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2121,6 +2121,10 @@ PrefabInstance:
     - target: {fileID: 5546672775496220539, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 195639
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819870333844757489, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6923285061398931774, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_CastShadows
@@ -4501,6 +4505,10 @@ PrefabInstance:
     - target: {fileID: 5837372754190647468, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Name
       value: MapcipCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837372754190647470, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: Setlineblock
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647471, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_RootOrder
