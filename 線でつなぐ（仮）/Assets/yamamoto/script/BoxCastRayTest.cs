@@ -221,7 +221,11 @@ public class BoxCastRayTest : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
+            {
                 hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける
+                hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenWarpDoor();//ワープドアを開ける
+            }
+            
 
             hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
         }
