@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_Outline_ver3 2
+  m_Name: white_out
   m_Shader: {fileID: 4800000, guid: c6f27940ad2525f4ab0da76297daaeda, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -26,6 +26,6 @@ Material:
     m_Floats:
     - _OutlineWidth: 3
     m_Colors:
-    - _MainColor: {r: 0.7764706, g: 0.28235295, b: 0.7318595, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
