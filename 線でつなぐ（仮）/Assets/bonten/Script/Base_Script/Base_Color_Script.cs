@@ -29,6 +29,11 @@ public class Base_Color_Script : Base_Enegization
     [SerializeField]
     protected int[] color = new int[COLOR_MAX];
 
+    //色のセッター
+    public void SetColorRed(int red)         => color[COLOR_RED]     = red;
+    public void SetColorBlue(int brue)       => color[COLOR_BLUE]    = brue;
+    public void SetColorGreen(int green)     => color[COLOR_GREEN]   = green;
+
     //ゲームオブジェクトを引数として持ち、そのオブジェクトの色を自身の色に影響させる関数
     //引数1 -> ゲームオブジェクト型の引数
     //引数2 -> 加算代入(true)か、減算代入(false)かきめる
@@ -50,9 +55,9 @@ public class Base_Color_Script : Base_Enegization
         }
         else if(col == SUBTRACTION)
         {
-            color[COLOR_RED]   = obj.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
-            color[COLOR_GREEN] = obj.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
-            color[COLOR_BLUE]  = obj.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
+            color[COLOR_RED]   -= obj.gameObject.GetComponent<Base_Color_Script>().GetColorRed();
+            color[COLOR_GREEN] -= obj.gameObject.GetComponent<Base_Color_Script>().GetColorGreen();
+            color[COLOR_BLUE]  -= obj.gameObject.GetComponent<Base_Color_Script>().GetColorBlue();
             for (int i = 0; i < COLOR_MAX; i++)
             {
                 if (color[i] < 0)
@@ -62,6 +67,7 @@ public class Base_Color_Script : Base_Enegization
                 }
             }
         }
+        
     }
 
     public void SetColor(int[] _color, short col)
@@ -95,12 +101,15 @@ public class Base_Color_Script : Base_Enegization
             }
         }
     }
-    public void SetColorChange(bool change) => colorchange_signal = change;
 
-    //色のセッター
-    public void SetColorRed(int red) => color[COLOR_RED] = red;
-    public void SetColorBlue(int brue) => color[COLOR_BLUE] = brue;
-    public void SetColorGreen(int green) => color[COLOR_GREEN] = green;
+    public void SetColor(int[] _color)
+    {
+        SetColorRed(_color[COLOR_RED]);         
+        SetColorBlue(_color[COLOR_BLUE]);
+        SetColorGreen(_color[COLOR_GREEN]);     
+    }
+    public void SetColorChange(bool change) => colorchange_signal = change;
+    public bool GetColorChange() => colorchange_signal;
 
     //色のゲッター。引数で要素数を指定して取得
 
