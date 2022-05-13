@@ -9,8 +9,9 @@ public class DoorOpoen : MonoBehaviour
     private bool taskflag = false;
     private int num,now_material=0;
 
-    
-    public Animator anim;
+    [SerializeField, Header("ワープゲートとして使うか(true)、ステージのドアとして使うか(false)")] public bool warp_door;
+    [SerializeField, Header("ドアのアニメーション")] public Animator door;
+    [SerializeField, Header("ドアノブのアニメーション")] public Animator doorknob;
 
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
     Material[] mats;
@@ -28,6 +29,7 @@ public class DoorOpoen : MonoBehaviour
         //全要素一致か判断
         IEnumerable<bool> results = (IEnumerable<bool>)ClearTaskflag.Distinct();
        
+        //num = 1 : 
         num = results.Count();
 
         //bool型で判定できるように変換
@@ -43,11 +45,30 @@ public class DoorOpoen : MonoBehaviour
 
     public void RayOpenDoor()
     {
-        //ドアが開けるかどうか見てアニメーションを再生
-        if (num == 1 && taskflag == true)
-            anim.SetBool("Open", true);
-        else
-            anim.SetBool("Open", false);
+        if (!warp_door)
+        {
+            //ドアが開けるかどうか見てアニメーションを再生
+            if (num == 1 && taskflag == true)
+            {
+                door.SetBool("open", true);
+                doorknob.SetBool("open", true);
+            }
+            else
+            {
+                door.SetBool("open", false);
+                doorknob.SetBool("open", false);
+            }
+        }
+    }
+
+    public void RayOpenWarpDoor()
+    {
+        if (warp_door)
+        {
+            //ステージ入るための扉開く処理
+            door.SetBool("open", true);
+            doorknob.SetBool("open", true);
+        }
     }
 
     public void RayTargetDoor()

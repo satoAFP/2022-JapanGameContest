@@ -6,7 +6,9 @@ public class BoxCastRayTest : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる 
+    private Transform targetTra;    public GameObject Target;//レイが衝突しているオブジェクトを入れる   
+
+    [SerializeField] private int getsize; //オブジェクトを拾った時に手に収まるサイズにする
 
     private Vector3 TargetScale;//ターゲットの元の大きさ
 
@@ -20,9 +22,19 @@ public class BoxCastRayTest : MonoBehaviour
 
     public bool grab;//掴みフラグ
 
+    private bool nosetline = false;//ClickObjのNosetlineの受け取りフラグ
+
+    private bool lineset = false;//オブジェクトの上に設置可能フラグ
+
+    private bool judgeblock_delete = false;//判定ブロック削除フラグ
+
+    // 判定ブロックプレハブ格納用
+    public GameObject Judgeblock;
+
     void Start()
     {
         grab = false;//初期化
+       
     }
 
     // Update is called once per frame
@@ -34,6 +46,9 @@ public class BoxCastRayTest : MonoBehaviour
         RaycastHit hit;
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
+
+        int layerMask = 1 << 12;//マップチップのレイヤーだけ除外するレイヤーマスク
+        layerMask = ~layerMask;//レイヤー11番（マップチップ）を除外
 
         //bool a = false;
         //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
@@ -56,6 +71,13 @@ public class BoxCastRayTest : MonoBehaviour
 
                 Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
+                //シリンダーの上に置けないブロックの場合、シリンダー設置OFF
+                if(hit.collider.GetComponent<ClickObj>().Nosetline==true)
+                {
+                    nosetline = true;
+                    Debug.Log("as");
+                }
+
                 //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
                 if (Input.GetMouseButtonDown(0) && grab == false)
                 {
@@ -63,7 +85,7 @@ public class BoxCastRayTest : MonoBehaviour
                     //手に持つ用にオブジェクトのサイズを帰る
                     TargetScale = Target.transform.localScale;
                     TargetRotate = Target.transform.eulerAngles;
-                    Target.transform.localScale /= 5;
+                    Target.transform.localScale /= getsize;
                     Target.GetComponent<BoxCollider>().isTrigger = true;
                     Target.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -80,23 +102,30 @@ public class BoxCastRayTest : MonoBehaviour
             }
         }
         
-
         //マップチップにレイが接触しているか判定(rayを線に変更）
         else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")))
         {
 
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
+            Instantiate(Judgeblock, new Vector3(worldPos.x, worldPos.y+=0.5f, worldPos.z), Quaternion.identity);
+
             if (grab == true)
             {
                 hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
             }
 
-           //左クリックされたときにマップチップの座標をTargetに上書きする
-           if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
+            if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onobj == true && nosetline==true)
+            {
+                lineset = true;
+                Debug.Log("穏やかじゃないですね");
+            }
+
+            //左クリックされたときにマップチップの座標をTargetに上書きする
+            if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
+                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false　/*&& nosetline == true*/)
                 {
                     //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
@@ -115,64 +144,76 @@ public class BoxCastRayTest : MonoBehaviour
                     Target.transform.position = worldPos;
                     Target = null;//タ-ゲットの初期化
                     grab = false;//掴みフラグをfalse
+                    //nosetline = false;//オブジェクト上に設置許可リセット
                 }
             }
+
         }
-
-
-        //穴マップチップにレイが接触しているか判定(rayを線に変更）
-        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Hole")))
+        else
         {
 
-            Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
-
-            if (grab == true)
-            {
-                hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
-            }
-
-            //左クリックされたときにマップチップの座標をTargetに上書きする
-            if (Input.GetMouseButtonDown(0) && grab == true)
-            {
-                //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
-                {
-                    //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
-
-                    //worldPos.y += Target.transformr.localPosition.y;
-                    //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
-                    worldPos.y -= 0.5f;//Y軸を固定する
-
-                    //手に持ったオブジェクトを元の大きさに戻す
-                    Target.gameObject.transform.parent = null;
-                    Target.transform.localScale = TargetScale;
-                    Target.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-                    //手に持ったオブジェクトの当たり判定を復活させる
-                    Target.GetComponent<BoxCollider>().isTrigger = false;
-                    Target.GetComponent<Rigidbody>().isKinematic = false;
-
-                    Target.transform.position = worldPos;
-                    Target = null;//タ-ゲットの初期化
-                    grab = false;//掴みフラグをfalse
-                }
-            }
         }
+       
 
-        //床（電気を流すオブジェクト）にレイが接触しているか
-        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Plane")))
-        {
-            //右クリックでオブジェクトを回転
-            if (Input.GetMouseButtonDown(1))
-            {
-                hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
-            }
+        //-----------使ってないレイヤーの処理（コメント解除で使えるよ！）--------------------
 
-        }
+
+        ////穴マップチップにレイが接触しているか判定(rayを線に変更）
+        //else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Hole")))
+        //{
+
+        //    Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
+
+        //    if (grab == true)
+        //    {
+        //        hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
+        //    }
+
+        //    //左クリックされたときにマップチップの座標をTargetに上書きする
+        //    if (Input.GetMouseButtonDown(0) && grab == true)
+        //    {
+        //        //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
+        //        if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
+        //        {
+        //            //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
+
+        //            //worldPos.y += Target.transformr.localPosition.y;
+        //            //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
+        //            worldPos.y -= 0.5f;//Y軸を固定する
+
+        //            //手に持ったオブジェクトを元の大きさに戻す
+        //            Target.gameObject.transform.parent = null;
+        //            Target.transform.localScale = TargetScale;
+        //            Target.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+        //            //手に持ったオブジェクトの当たり判定を復活させる
+        //            Target.GetComponent<BoxCollider>().isTrigger = false;
+        //            Target.GetComponent<Rigidbody>().isKinematic = false;
+
+        //            Target.transform.position = worldPos;
+        //            Target = null;//タ-ゲットの初期化
+        //            grab = false;//掴みフラグをfalse
+        //        }
+        //    }
+        //}
+
+        ////床（電気を流すオブジェクト）にレイが接触しているか
+        //else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Plane")))
+        //{
+        //    //右クリックでオブジェクトを回転
+        //    if (Input.GetMouseButtonDown(1))
+        //    {
+        //        hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
+        //    }
+        //}
+
+
+        //-----------------------------------------------------------------------------------------
+
 
         //ブロックを持っている時に回転させる
         if(Input.GetMouseButtonDown(1) && grab ==true)
         {
-            Debug.Log("あばばばばばば");
+           // Debug.Log("あばばばばばば");
             TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
         }
 
@@ -180,7 +221,11 @@ public class BoxCastRayTest : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
+            {
                 hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenDoor();//ドアを開ける
+                hit.collider.gameObject.GetComponent<DoorOpoen>().RayOpenWarpDoor();//ワープドアを開ける
+            }
+            
 
             hit.collider.gameObject.GetComponent<DoorOpoen>().RayTargetDoor();//色付け
         }

@@ -182,10 +182,6 @@ public class player : MonoBehaviour
         }
 
 
-        //カーソルの座標記憶
-        cursol_pos_check = Input.mousePosition;
-        
-
         //グレースケールカメラ切り替え
         if (Input.GetKey(KeyCode.C))
         {
@@ -233,7 +229,9 @@ public class player : MonoBehaviour
             }
         }
 
-        
+
+        //カーソルの座標記憶
+        cursol_pos_check = Input.mousePosition;
     }
 
 
