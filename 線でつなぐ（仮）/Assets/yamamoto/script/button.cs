@@ -31,6 +31,7 @@ public class button : MonoBehaviour
         GetComponent<Renderer>().materials = mats;
     }
 
+    //‰Ÿ‚³‚ê‚½‚Ìˆ—
     public void RayPushButton()
     {
         anim.SetBool("Push", true);
