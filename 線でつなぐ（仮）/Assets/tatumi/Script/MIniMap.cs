@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MIniMap : MonoBehaviour
 {
+    //PL‚ÌêŠAŠp“x‚ğæ“¾(Œü‚«‚ğMAP‚É”½‰f‚Í‚¤‚Á‚Æ‚¤‚µ‚¢‚Ì‚Å‚È‚µ)
     public GameObject player;
-    Vector3 trans, Angle;
+    Vector3 trans;// Angle;
 
+    [SerializeField, Header("ŒÀŠE“_iz=cj,‘å‚«‚³‚ª¡‚Ì‚Æ‚±‚ëˆê’è‚È‚Ì‚Å’†‰›ŒÅ’è‚ÌX(‰¡ˆÚ“®)")]
     public float Set_x, END_z_front,END_z_back;
     
     // Start is called before the first frame update
@@ -39,7 +41,7 @@ public class MIniMap : MonoBehaviour
         //‚’á·‘Î‰—p
         trans.y = player.transform.position.y+12.0f;
         
-
+        //”½‰f
         //this.transform.rotation = Quaternion.Euler(Angle);
         this.transform.position = trans;
     }

@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class Music_Conductor : Base_Enegization
 {
-    [SerializeField]
+    //現在送られtるSEの種類を判別＆特定の物しか通さない処理
+    [SerializeField, Header("現在のSE番号と特定のSE番号設定(設定した物しか通さない)")]
     private int music_num,Set_music_num;
 
+    //元からあるやつ詳細は森井君側で
     [SerializeField]
     private bool Change, Input_Hit;
     GameObject MixObj;
 
     //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
-    private string InColor_name, OutColor_name;
+    private string  OutColor_name;
 
     void Start()
     {
-        InColor_name = "InM&C";
+        //色＆音楽のoutput管理
+        //InColor_name = "InM&C";
         OutColor_name = "OutM&C";
     }
 
     void Update()
     {
+        //通電状況により色変更
         if (energization == true)
             GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 1);
         else
@@ -40,6 +44,7 @@ public class Music_Conductor : Base_Enegization
 
     public void OnCollisionStay(Collision collision)
     {
+        //SEのみの設定
        if (collision.gameObject.tag == "MusicOutput")
         {
             //電源がOnの相手のみ作動
@@ -64,6 +69,7 @@ public class Music_Conductor : Base_Enegization
                 }
             }
         }
+       //音＆色の設定名前で判別(out側)
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             //電源がOnの相手のみ作動
@@ -99,6 +105,7 @@ public class Music_Conductor : Base_Enegization
             energization = false;
             Input_Hit = false;
         }
+        //音＆色の設定名前で判別(out側)
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             music_num = -1;//何もなし
@@ -107,18 +114,10 @@ public class Music_Conductor : Base_Enegization
         }
     }
 
+    //自身の色番号を返す
     public int Remusic_num()
     {
         return music_num;
     }
-    //public void Set_inputhere(bool a)
-    //{
-    //    Input_Hit = a;
-    //}
-
-    //public bool Get_inputhere()
-    //{
-    //   return Input_Hit;
-    //}
-
+  
 }

@@ -5,21 +5,21 @@ using UnityEngine;
 public class MusicJudgment_Sctipt : Base_Enegization
 {
     //ゲームクリアとなる音番号,現在の番号
-   
-    [SerializeField]
+    [SerializeField, Header("クリアSE番号と現在のSE番号")]
     private int clearMusic,muisc_num;
 
     //消える対象（ぴかぴか処理用）
-    [SerializeField]
+    [SerializeField, Header("光る対象指定")]
     private GameObject[] objs;
 
-    [SerializeField]
+    //色も同居するか
+    [SerializeField, Header("色同居確認flag")]
     private bool MCmode;
 
     // Update is called once per frame
     void Update()
     {
-
+        //同居しなければ直接いじる
         if (MCmode == false)
         {
             objs[0].SetActive(true);
@@ -32,7 +32,9 @@ public class MusicJudgment_Sctipt : Base_Enegization
                 objs[1].SetActive(true);
             }
         }
+        else
         {
+            //同居してればenegeからいじる
             if (clearMusic == muisc_num)
             {
                 //ここにクリアの証的なコード
@@ -45,6 +47,7 @@ public class MusicJudgment_Sctipt : Base_Enegization
 
     public void now_music(int a)
     {
+        //音楽番号受け取り
         muisc_num = a;
     }
 }

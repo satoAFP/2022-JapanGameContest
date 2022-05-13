@@ -5,16 +5,16 @@ using System.Linq;
 
 public class Eff_insulator : MonoBehaviour
 {
-	[SerializeField]
-	private bool Stay=false;
-
-    [SerializeField]
+    //現在あたってるObj保存
+    [SerializeField, Header("現在反応してるObj")]
     private GameObject[] HitCon;
 
-    [SerializeField]
+    //上記の名前用
+    [SerializeField, Header("現在反応してるObj名")]
     private string[] HitCon_name;
 
-    [SerializeField]
+    //上記のObjが60FPS管理でどれだけ維持するかを保存するための変数
+    [SerializeField, Header("現在反応してるObjが反応し続けて何FPS経ったか")]
     private int[] HitCon_tonumber;
     
 
@@ -22,12 +22,14 @@ public class Eff_insulator : MonoBehaviour
 
 	void FixedUpdate()
     {
-
+        //保存するいずれかのObjが既定時間経ってるか確認
         for (int i = 0; i != 10; i++)
         {
             HitCon_tonumber[i]++;
+            //立ってるならExit判定＆値を初期化
             if (HitCon_tonumber[i] == 30)
             {
+                //電源ON,OFFはコンダクター側で管理
                 HitCon[i].GetComponent<Conductor_Script>().EffExit();
                 HitCon[i] = null;
                 HitCon_name[i] = null;
@@ -41,12 +43,13 @@ public class Eff_insulator : MonoBehaviour
 
 	private void OnParticleCollision(GameObject other)
 	{
+        //今のところNOMAL電柱のみ反応
         if (other.gameObject.tag == "Conductor")
         {
+            //名前を取得現在の保存している名前に一致しなけば
             string result = HitCon_name.SingleOrDefault(value => value == other.gameObject.name);
 
-            
-
+            //ここに入る
             if (result == null)
             {
                // Debug.Log(result);
@@ -75,8 +78,9 @@ public class Eff_insulator : MonoBehaviour
                     }
                 }
             }
-            
-                // 当たった相手を強制電源OFF
+
+            // 当たった相手を強制電源OFF
+            //電源ON,OFFはコンダクター側で管理
             other.gameObject.GetComponent<Conductor_Script>().PowerOff();
              
         }
