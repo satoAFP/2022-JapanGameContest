@@ -58,26 +58,24 @@ public class OutputColor_Script : Base_Color_Script
             //電気が通っているかどうか確認。
             if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == false && energization == true)
             {
-                
                 //当たっているObjの優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
                 if (collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())
                 {
-                    Debug.Log(collision.gameObject.GetComponent<OutputColor_Script>().GetColorBlue());
-                    
                     energization = false;
+                    if (mixObj_hit)
+                    {
+                        MixObj.GetComponent<MixColor_Script>().Decolorization(color);
+                    }
                     //ColorInputから色を取得
                     SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
                     GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
-                    if (mixObj_hit)
-                    {
-                        MixObj.GetComponent<MixColor_Script>().SetDecolor(true);
-                    }
+                    
                 }
             }
             else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false)
             {
-                //優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
-                if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 || cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()) && cnt == 0)
+                //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
+                if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
                 {
                     cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
                     energization = true;
@@ -88,6 +86,7 @@ public class OutputColor_Script : Base_Color_Script
                     
                     if(mixObj_hit)
                     {
+                        MixObj.GetComponent<Base_Color_Script>().SetColor(color,ADDITION);
                         MixObj.GetComponent<Base_Color_Script>().SetColorChange(true);
                     }
                 }

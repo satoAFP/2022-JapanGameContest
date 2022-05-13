@@ -34,11 +34,13 @@ public class MIxColorChild_Script : Base_Color_Script
             SetColor(parent.gameObject.GetComponent<Base_Color_Script>().GetColor());
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED],  (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             colorchange_signal = true;
+            colculation = NONE_COL;
         }
         else if (colculation == SUBTRACTION)
         {
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             colorchange_signal = true;
+            colculation = NONE_COL;
         }
     }
 
@@ -52,7 +54,7 @@ public class MIxColorChild_Script : Base_Color_Script
         if (collision.gameObject.tag == "Power_Supply" && colorchange_signal == true)
         {
 
-            collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(this.gameObject, SUBTRACTION);
+            collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(color);
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColorChange(colorchange_signal);
             
             colorchange_signal = false;
