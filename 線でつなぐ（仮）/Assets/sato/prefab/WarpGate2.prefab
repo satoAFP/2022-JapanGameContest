@@ -158,12 +158,12 @@ GameObject:
   - component: {fileID: 5565445573842272541}
   - component: {fileID: 5565445573842272540}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Scene_move_Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5565445573842272543
 Transform:
   m_ObjectHideFlags: 0
@@ -431,9 +431,11 @@ MonoBehaviour:
   warp_door: 1
   door: {fileID: 5565445574867910592}
   doorknob: {fileID: 5565445574604120400}
+  scene_move_panel: {fileID: 5565445573842272542}
   mat:
   - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
   - {fileID: 2100000, guid: 78bd2a3d83a0cce4aaf93c403212213b, type: 2}
+  mats: []
 --- !u!1 &5565445574511437220
 GameObject:
   m_ObjectHideFlags: 0
