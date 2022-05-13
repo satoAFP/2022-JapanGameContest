@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1853,6 +1853,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178293578}
   m_Mesh: {fileID: 5551418225153903260, guid: 4d62d0703ded5264882dcaed29733898, type: 3}
+--- !u!95 &1187115950 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6209279253565480622, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
+  m_PrefabInstance: {fileID: 6209279254350615088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1219706147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,7 +3555,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClearTaskflag: 00000000
-  anim: {fileID: 1414925061}
+  warp_door: 0
+  door: {fileID: 0}
+  doorknob: {fileID: 0}
   mat:
   - {fileID: 2100000, guid: 46e1b1eb7f25ecd44820b698f23785c8, type: 2}
   - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
@@ -4023,7 +4030,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClearTaskflag: 00
-  anim: {fileID: 1997073726}
+  warp_door: 0
+  door: {fileID: 1187115950}
+  doorknob: {fileID: 1997073726}
   mat:
   - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
   - {fileID: 2100000, guid: 78bd2a3d83a0cce4aaf93c403212213b, type: 2}
@@ -4442,7 +4451,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 43844316297212970, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
+    - {fileID: 7615367345356012639, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
 --- !u!1001 &8456421902086984875
 PrefabInstance:
