@@ -604,7 +604,7 @@ MonoBehaviour:
   mouse_power: 180
   jump_power: 0
   climbing_speed: 0.03
-  mouse_max_y: 0.2
+  mouse_max_y: 0.5
   fade_time: 1.5
   my_camera: {fileID: 543616966170634727}
   camera: {fileID: 5546672775496220533}
@@ -723,8 +723,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTra: {fileID: 0}
   Target: {fileID: 0}
+  getsize: 0
   Cancel: {fileID: 0}
   grab: 0
+  Judgeblock: {fileID: 0}
 --- !u!114 &2165052981480472097
 MonoBehaviour:
   m_ObjectHideFlags: 0
