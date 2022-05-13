@@ -26,29 +26,31 @@ public class ColorJudgment_Sctipt : Base_Color_Script
 
     private void Start()
     {
-
+        //光源部分のオブジェクトを取得
         OnLight = transform.Find("OnLight").gameObject;
         OffLight = transform.Find("OffLight").gameObject;
-
-        Debug.Log(OnLight.name);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //色変更の信号を受け取ると
         if(colorchange_signal==true)
         {
-            Debug.Log("ホヤあそばせ");
-            
-            OnLight.SetActive(true);
-            OffLight.SetActive(false);
+            //色変更をする
             OnLight.GetComponent<Base_Color_Script>().SetColor(color);
             OnLight.GetComponent<Base_Color_Script>().SetColorChange(true);
 
+            //前職が0なら消灯
             if (color[COLOR_RED] == 0 && color[COLOR_GREEN] == 0 && color[COLOR_BLUE] == 0)
             {
                 OnLight.SetActive(false);
                 OffLight.SetActive(true);
+            }
+            else
+            {
+                OnLight.SetActive(true);
+                OffLight.SetActive(false);
             }
 
             colorchange_signal = false;

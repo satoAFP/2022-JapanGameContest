@@ -101,8 +101,7 @@ public class Conductor_Script : Base_Enegization
     {
         if (pow > power_cnt)
         {
-            if(this.gameObject.name=="Cube")
-            {
+        
                 /*バグ原因
                  電源からつながってるコンダクター(以下シリンダー1)が先にこの処理を通るとCubeコンダクターのパワーが0になる
                  それによって、Cubeコンダクターからつながってるコンダクター(以下シリンダー3)のExit処理に入り、このSetLeave
@@ -125,12 +124,8 @@ public class Conductor_Script : Base_Enegization
                 ↓
 
                  */
-                Debug.Log(this.gameObject.name);
-                Debug.Log(power_cnt);
-                Debug.Log(pow);
-            }
 
-            power_save = power_cnt;
+                power_save = power_cnt;
             leaving_Conductor = leave;
             Conductor_hit = false;
             //このオブジェクトのpower_cntが0になったことにより
