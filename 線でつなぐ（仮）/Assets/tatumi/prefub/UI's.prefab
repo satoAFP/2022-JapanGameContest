@@ -997,7 +997,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2503376559503621229}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2503376558872538304}
+        m_TargetAssemblyTypeName: Menu_up, Assembly-CSharp
+        m_MethodName: Allmap_open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2503376559651426282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,6 +2599,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2503376558872538308}
     m_Modifications:
+    - target: {fileID: 281616992683180314, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2503376558872538304}
+    - target: {fileID: 281616992683180314, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Allmap_close
+      objectReference: {fileID: 0}
     - target: {fileID: 2112334751894939849, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
       propertyPath: m_Name
       value: Allmap
@@ -2675,6 +2695,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2112334751894939851, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
+      propertyPath: All_map
+      value: 
+      objectReference: {fileID: 5002043507089337601, guid: 52bd90da3f2028f46956f2b06543a423, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
 --- !u!1 &1654467014063245013 stripped
