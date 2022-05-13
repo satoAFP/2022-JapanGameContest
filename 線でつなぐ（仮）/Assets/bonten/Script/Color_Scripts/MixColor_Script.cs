@@ -16,8 +16,6 @@ public class MixColor_Script : Base_Color_Script
         //子オブジェクトに色を出す指令を出す
         child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION,color);
 
-
-
         color[COLOR_RED]    -= decolor[COLOR_RED];
         color[COLOR_GREEN]  -= decolor[COLOR_GREEN];
         color[COLOR_BLUE]   -= decolor[COLOR_BLUE];
@@ -39,12 +37,6 @@ public class MixColor_Script : Base_Color_Script
     {
         //子オブジェクトを取得
         child = transform.GetChild(0).gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 
     public void OnCollisionStay(Collision collision)
@@ -70,7 +62,7 @@ public class MixColor_Script : Base_Color_Script
         {
             //その後、離れたColorInputが持っている色の値を今これが持ってる色の値から減らす
             SetColor(collision.gameObject, SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_BLUE], (byte)color[COLOR_GREEN], 1);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             //子オブジェクトに色を消す指令を出す
             child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION);
         }

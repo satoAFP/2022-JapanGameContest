@@ -5,7 +5,7 @@ using UnityEngine;
 //設定された色に変えるだけ
 public class InputMusic_Script : Base_Enegization
 {
-    [SerializeField]
+    [SerializeField, Header("SE番号セット")]
     private int SE_set;
     // Start is called before the first frame update
     void Start()

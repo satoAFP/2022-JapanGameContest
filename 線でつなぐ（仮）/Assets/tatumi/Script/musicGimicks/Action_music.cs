@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Action_music : MonoBehaviour
 {
+    //‰¹Œ¹Žæ“¾
     [SerializeField]
     private AudioClip sound1;
     AudioSource audioSource;
@@ -20,6 +21,7 @@ public class Action_music : MonoBehaviour
         
     }
 
+    //PL‚ª“¥‚ñ‚¾‚çˆê“x‰¹‚È‚çƒX
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag=="Player")

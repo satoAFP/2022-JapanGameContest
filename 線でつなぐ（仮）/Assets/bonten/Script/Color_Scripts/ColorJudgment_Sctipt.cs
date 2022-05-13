@@ -12,6 +12,9 @@ public class ColorJudgment_Sctipt : Base_Color_Script
     [SerializeField]
     private GameObject[] objs;
 
+    [SerializeField]
+    private bool MCmode;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,12 +27,29 @@ public class ColorJudgment_Sctipt : Base_Color_Script
         //objs[0].SetActive(true);
         //objs[1].SetActive(false);
 
-        if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
+        if (MCmode == false)
         {
-            Debug.Log("くりあー");
-            //ここにクリアの証的なコード
-            objs[0].SetActive(false);
-            objs[1].SetActive(true);
+            if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
+            {
+                Debug.Log("くりあー");
+                //ここにクリアの証的なコード
+                objs[0].SetActive(false);
+                objs[1].SetActive(true);
+            }
+        }
+        else
+        {
+            if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
+            {
+
+                //ここにクリアの証的なコード
+                energization = true;
+            }
+            else
+            {
+                energization = false;
+            }
+            
         }
     }
 

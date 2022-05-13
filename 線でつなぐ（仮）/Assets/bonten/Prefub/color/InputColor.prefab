@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 3060990284193360882}
   - component: {fileID: 3060990284193360885}
   - component: {fileID: 3060990284193360884}
+  - component: {fileID: 6695563700187977699}
   - component: {fileID: 3060990284193360887}
   - component: {fileID: 3060990284193360883}
   - component: {fileID: 8293471138034573368}
-  m_Layer: 0
+  - component: {fileID: 4667164295131241466}
+  m_Layer: 10
   m_Name: InputColor
   m_TagString: ColorInput
   m_Icon: {fileID: 0}
@@ -84,6 +86,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6695563700187977699
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060990284193360886}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &3060990284193360887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5e43d236f38f4aadb89072c875686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energization: 0
+  energization: 1
   colorchange_signal: 0
   color: 000000000000000000000000
 --- !u!114 &8293471138034573368
@@ -124,3 +142,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579f083970f89c547beacc673bbb710d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4667164295131241466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060990284193360886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf338ab858b1f1044962534c30600a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat:
+  - {fileID: 2100000, guid: 81d2a72b44ea2f045b94e681ef7f7b27, type: 2}
+  - {fileID: 2100000, guid: 81d2a72b44ea2f045b94e681ef7f7b27, type: 2}
+  Rotationflag: 0
+  vertical: 0

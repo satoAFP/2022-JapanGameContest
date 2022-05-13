@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8289187679779933868}
   - component: {fileID: 8289187679779933869}
   - component: {fileID: 5931936459321983123}
+  - component: {fileID: -1378628130506516233}
   m_Layer: 10
   m_Name: RotationConductor
   m_TagString: Conductor
@@ -155,3 +156,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-1378628130506516233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289187679779933843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c206548553022d442b663c4e1ac48c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  vertical: 0000
