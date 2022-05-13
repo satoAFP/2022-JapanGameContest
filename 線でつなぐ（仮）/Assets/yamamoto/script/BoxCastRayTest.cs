@@ -119,7 +119,7 @@ public class BoxCastRayTest : MonoBehaviour
                 if (first_setblock)
                 {
                     //îªíËÉuÉçÉbÉNê∂ê¨
-                    cloneblock = Instantiate(Judgeblock, new Vector3(worldPos.x, worldPos.y += 0.5f, worldPos.z), Quaternion.identity);
+                    cloneblock = Instantiate(Judgeblock, new Vector3(worldPos.x, worldPos.y += 0.25f, worldPos.z), Quaternion.identity);
                     first_setblock = false;
                 }
                 Debug.Log("aaa");
