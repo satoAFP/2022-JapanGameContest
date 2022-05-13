@@ -48,13 +48,6 @@ public class MapcipSlect : MonoBehaviour
 
             GetComponent<Renderer>().materials = mats;
         }
-        else if (now_select == true && Onobj == true && script.grab == true)
-        {
-            now_select = false;
-            mats[0] = mat[2];
-
-            GetComponent<Renderer>().materials = mats;
-        }
         else
         {
             if (mats[0] == mat[1])
@@ -79,14 +72,8 @@ public class MapcipSlect : MonoBehaviour
         //接触したオブジェクトのタグが"Player"のとき
         if (other.CompareTag("Player"))
         {
-            Debug.Log("夢色キッチン☆");
+           // Debug.Log("夢色キッチン☆");
             Onplayer = true;
-        }
-        //レイヤー番号17：シリンダー
-        if (other.gameObject.layer == 17)
-        {
-           // Debug.Log("お茶がぬるいよ～orz");
-            Onobj = true;
         }
         //if (other.gameObject.name == "mapchip_check")
         //{
@@ -101,7 +88,7 @@ public class MapcipSlect : MonoBehaviour
         //接触したオブジェクトのタグが"Player"のとき
         if (other.CompareTag("Player"))
         {
-            Debug.Log("フォークなのにさじ加減！");
+           // Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
         }
         //if (other.CompareTag("Conductor"))
