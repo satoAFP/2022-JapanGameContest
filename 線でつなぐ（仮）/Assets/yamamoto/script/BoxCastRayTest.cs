@@ -22,7 +22,7 @@ public class BoxCastRayTest : MonoBehaviour
 
     public bool grab;//掴みフラグ
 
-    private bool nosetline = false;//ClickObjのNosetlineの受け取りフラグ
+    private bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
 
     private bool judgeblock_delete = false;//判定ブロック削除フラグ
 
@@ -78,10 +78,10 @@ public class BoxCastRayTest : MonoBehaviour
 
                 Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
-                //シリンダーの上に置けないブロックの場合、シリンダー設置OFF
-                if(hit.collider.GetComponent<ClickObj>().Nosetline==true)
+                //シリンダーの上に置けるブロックの場合、シリンダー設置ON
+                if(hit.collider.GetComponent<ClickObj>().Setlineblock == true)
                 {
-                    nosetline = true;
+                    setlineblock = true;
                     Debug.Log("as");
                 }
 
@@ -141,10 +141,11 @@ public class BoxCastRayTest : MonoBehaviour
             //左クリックされたときにマップチップの座標をTargetに上書きする
             if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
-                if(!Existence_Check)
+                //線の上に置けるオブジェクトかどうか判断して置ける処理を変更
+                if(setlineblock)
                 {
                     //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                    if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false　/*&& nosetline == true*/)
+                    if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                     {
                         //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
@@ -163,9 +164,38 @@ public class BoxCastRayTest : MonoBehaviour
                         Target.transform.position = worldPos;
                         Target = null;//タ-ゲットの初期化
                         grab = false;//掴みフラグをfalse
+                        setlineblock = false;//線の上に置けるオブジェクト設定を初期化
                     }
                 }
-              
+                //線の上に置ける
+                else
+                {
+                    if (!Existence_Check)
+                    {
+                        //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
+                        if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
+                        {
+                            //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
+
+                            //worldPos.y += Target.transformr.localPosition.y;
+                            //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
+                            worldPos.y += 0.5f;//Y軸を固定する
+
+                            //手に持ったオブジェクトを元の大きさに戻す
+                            Target.gameObject.transform.parent = null;
+                            Target.transform.localScale = TargetScale;
+                            Target.transform.localEulerAngles = TargetRotate;
+                            //手に持ったオブジェクトの当たり判定を復活させる
+                            Target.GetComponent<BoxCollider>().isTrigger = false;
+                            Target.GetComponent<Rigidbody>().isKinematic = false;
+
+                            Target.transform.position = worldPos;
+                            Target = null;//タ-ゲットの初期化
+                            grab = false;//掴みフラグをfalse
+                            setlineblock = false;//線の上に置けるオブジェクト設定を初期化
+                        }
+                    }
+                }
             }
 
         }
