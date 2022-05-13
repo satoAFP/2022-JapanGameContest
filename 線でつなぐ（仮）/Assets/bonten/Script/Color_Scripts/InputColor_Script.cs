@@ -30,6 +30,7 @@ public class InputColor_Script : Base_Color_Script
                 //ColorInputÇ©ÇÁêFÇéÊìæ
                 collision.gameObject.GetComponent<Base_Color_Script>().SetColor(this.gameObject, ADDITION);
                 collision.gameObject.GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
+                collision.gameObject.GetComponent<Base_Color_Script>().SetColorChange(true);
             }
         }
     }
