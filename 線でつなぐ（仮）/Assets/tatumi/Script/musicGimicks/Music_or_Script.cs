@@ -7,17 +7,18 @@ public class Music_or_Script : Base_Enegization
 {
 
     //music用合成変数枠------
-    [SerializeField]
+    [SerializeField, Header("現在認知しているObj")]
     private GameObject[] musics=new GameObject[10];
-    [SerializeField]
+    [SerializeField, Header("現在認知しているObjのSE番号")]
     private int[] musics_nums=new int[10];
-    [SerializeField]
+    [SerializeField, Header("現在認知しているObjの名前")]
     private string[] musics_name = new string[10];
     //-----------------------------------------------
 
     //受け取る番号と、非電源対象の変数番号
-    [SerializeField]
-    private int music_num=-1,Powernum=-1;
+    [SerializeField, Header("現在認のSE番号")]
+    private int music_num = -1;
+    private int Powernum=-1;
 
     //森井君（以下ry
     private GameObject ResetObj;
@@ -25,7 +26,7 @@ public class Music_or_Script : Base_Enegization
     //名前一部取得（かかわりあるものはすべて取得,小文字不可？）
     private string OutColor_name;
 
-    //音＆色の状態かどうか判断（表示・非表示関連）
+    //音＆色の状態かどうか判断
     private bool MCmode;
 
     // Start is called before the first frame update

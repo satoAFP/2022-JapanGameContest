@@ -16,7 +16,9 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public GameObject All_map;
     //変数取得用
     Vector3 trans_C;
+
     //MAP限界点座標
+    [SerializeField, Header("座標限界点(z=縦,x=横)")]
     public float END_z_front, END_z_back,END_x_right,END_x_left;
 
     // Use this for initialization

@@ -5,7 +5,7 @@ using UnityEngine;
 public class OutputMusic_Script : Base_Enegization
 {
     //©g‚ÌF”Ô†
-    [SerializeField]
+    [SerializeField, Header("Œ»İ‚ÌSE”Ô†")]
     private int music_num;
 
     //Ú×‚ÍXˆäŒN‘¤

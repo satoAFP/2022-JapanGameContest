@@ -5,15 +5,15 @@ using UnityEngine;
 public class MusicJudgment_Sctipt : Base_Enegization
 {
     //ゲームクリアとなる音番号,現在の番号
-    [SerializeField]
+    [SerializeField, Header("クリアSE番号と現在のSE番号")]
     private int clearMusic,muisc_num;
 
     //消える対象（ぴかぴか処理用）
-    [SerializeField]
+    [SerializeField, Header("光る対象指定")]
     private GameObject[] objs;
 
     //色も同居するか
-    [SerializeField]
+    [SerializeField, Header("色同居確認flag")]
     private bool MCmode;
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Music_Conductor : Base_Enegization
 {
     //Œ»İ‘—‚ç‚êt‚éSE‚Ìí—Ş‚ğ”»•Ê•“Á’è‚Ì•¨‚µ‚©’Ê‚³‚È‚¢ˆ—
-    [SerializeField]
+    [SerializeField, Header("Œ»İ‚ÌSE”Ô†‚Æ“Á’è‚ÌSE”Ô†İ’è(İ’è‚µ‚½•¨‚µ‚©’Ê‚³‚È‚¢)")]
     private int music_num,Set_music_num;
 
     //Œ³‚©‚ç‚ ‚é‚â‚ÂÚ×‚ÍXˆäŒN‘¤‚Å

@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class DoorOpoen : MonoBehaviour
 {
+    //ギミックノクリア状況管理用flag
+    [SerializeField, Header("現在の通電状況")]
     public bool[] ClearTaskflag;
+
+    //ギミックの詳細判別（flag種類,num=true,falseが同居してないか）
     private bool taskflag = false;
-    private int num,now_material=0;
+    private int num;
 
     [SerializeField, Header("ワープゲートとして使うか(true)、ステージのドアとして使うか(false)")] public bool warp_door;
     [SerializeField, Header("ドアのアニメーション")] public Animator door;
     [SerializeField, Header("ドアノブのアニメーション")] public Animator doorknob;
 
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
+    [SerializeField, Header("0=強調,1=普通")]
     Material[] mats;
 
 
@@ -29,16 +34,18 @@ public class DoorOpoen : MonoBehaviour
         //全要素一致か判断
         IEnumerable<bool> results = (IEnumerable<bool>)ClearTaskflag.Distinct();
        
-        //num = 1 : 
+        //配列にtrue,falseが同居してるか数化（true or false のみなら1,どっちもあるなら2）
         num = results.Count();
 
         //bool型で判定できるように変換
         foreach (bool Check in results)
-
-        taskflag = Check;
-
+        {
+            //代入（中身判別）
+            taskflag = Check;
+        }
+       
         mats[0] = mat[1];
-
+        //rayあたってないなら元に戻す
         GetComponent<Renderer>().materials = mats;
 
     }
@@ -76,10 +83,8 @@ public class DoorOpoen : MonoBehaviour
         //マテリアル変更(1=強調0=普通)
 
         mats[0] = mat[0];
-
+        //光るよ！
         GetComponent<Renderer>().materials = mats;
-
-        Debug.Log("k");
 
     }
 }

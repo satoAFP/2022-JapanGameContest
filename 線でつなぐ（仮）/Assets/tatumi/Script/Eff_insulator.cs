@@ -6,15 +6,15 @@ using System.Linq;
 public class Eff_insulator : MonoBehaviour
 {
     //現在あたってるObj保存
-    [SerializeField]
+    [SerializeField, Header("現在反応してるObj")]
     private GameObject[] HitCon;
 
     //上記の名前用
-    [SerializeField]
+    [SerializeField, Header("現在反応してるObj名")]
     private string[] HitCon_name;
 
     //上記のObjが60FPS管理でどれだけ維持するかを保存するための変数
-    [SerializeField]
+    [SerializeField, Header("現在反応してるObjが反応し続けて何FPS経ったか")]
     private int[] HitCon_tonumber;
     
 

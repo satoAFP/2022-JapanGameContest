@@ -18,6 +18,7 @@ public class MC_Judgment : MonoBehaviour
     private GameObject[] objs;
 
     //2種類のenegeの通電状態確認用
+    [SerializeField, Header("通電確認bool")]
     public bool OK;
 
     // Start is called before the first frame update

@@ -8,7 +8,7 @@ public class MIniMap : MonoBehaviour
     public GameObject player;
     Vector3 trans;// Angle;
 
-    //ŒÀŠE“_
+    [SerializeField, Header("ŒÀŠE“_iz=cj,‘å‚«‚³‚ª¡‚Ì‚Æ‚±‚ëˆê’è‚È‚Ì‚Å’†‰›ŒÅ’è‚ÌX(‰¡ˆÚ“®)")]
     public float Set_x, END_z_front,END_z_back;
     
     // Start is called before the first frame update
