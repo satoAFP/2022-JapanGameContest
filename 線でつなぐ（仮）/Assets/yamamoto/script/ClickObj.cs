@@ -9,7 +9,10 @@ public class ClickObj : MonoBehaviour
 
     [SerializeField]
     private bool Rotationflag,vertical;
-    
+
+    [SerializeField]
+    public bool Nosetline = false;//シリンダーの上に置けないブロック
+
 
     // Start is called before the first frame update
     void Start()
