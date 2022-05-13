@@ -11,7 +11,7 @@ public class ColorLight_Script : Base_Color_Script
     void Start()
     {
         
-        this.gameObject.GetComponent<Light>().intensity = 0.05f;
+        this.gameObject.GetComponent<Light>().intensity = 0.0125f;
     }
 
     void Update()

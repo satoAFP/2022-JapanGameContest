@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4998345419715525928}
   - component: {fileID: 4998345419715525929}
   - component: {fileID: 4998345419715525930}
-  - component: {fileID: 4998345419715525924}
+  - component: {fileID: 4500706876830126798}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -114,7 +114,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &4998345419715525924
+--- !u!114 &4500706876830126798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3653e6391c1c40545a26e99a10d1b202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
-  parent: {fileID: 5644080152936407850}
+  parent: {fileID: 0}
 --- !u!1 &5644080152936407850
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 5644080152936407845}
   - component: {fileID: 5644080152936407844}
   - component: {fileID: 5644080152936407840}
-  - component: {fileID: 5644080152936407847}
+  - component: {fileID: 7523126639342561798}
   m_Layer: 0
   m_Name: MixColor
   m_TagString: ColorMix
@@ -244,7 +244,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5644080152936407847
+--- !u!114 &7523126639342561798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cceb0e32463b447b165def6174cac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
+  obj_list: []

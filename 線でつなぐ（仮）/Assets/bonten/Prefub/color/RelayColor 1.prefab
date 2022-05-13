@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4307690091455122956}
   - component: {fileID: 4307690091455122957}
   - component: {fileID: 4307690091455122944}
-  - component: {fileID: 4307690091455122959}
+  - component: {fileID: 4025549257025050617}
   m_Layer: 0
   m_Name: RelayColor 1
   m_TagString: ColorOutput
@@ -114,7 +114,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &4307690091455122959
+--- !u!114 &4025549257025050617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d66554fc917ade45b7b0574047443bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  energization: 0
+  mixObj_hit: 0
+  cnt: 0
