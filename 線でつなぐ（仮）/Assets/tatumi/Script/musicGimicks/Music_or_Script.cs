@@ -54,9 +54,9 @@ public class Music_or_Script : Base_Enegization
         {
             //âπÇÃÇ›Ç»ÇÁêFïtÇØ
             if (energization == true)
-                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 128);
+                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 200);
             else
-                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 128);
+                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 200);
         }
     }
 
