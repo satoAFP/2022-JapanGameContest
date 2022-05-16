@@ -31,9 +31,9 @@ public class OutputMusic_Script : Base_Enegization
         if (MCmode == false)
         {
             if (energization == true)
-                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 1);
+                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 200);
             else
-                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 200);
         }
 
     }
