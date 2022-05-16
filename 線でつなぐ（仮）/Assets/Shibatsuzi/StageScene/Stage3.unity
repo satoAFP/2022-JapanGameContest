@@ -4548,6 +4548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf338ab858b1f1044962534c30600a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   mat:
   - {fileID: 2100000, guid: 46e1b1eb7f25ecd44820b698f23785c8, type: 2}
   - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
@@ -4715,6 +4716,10 @@ PrefabInstance:
       propertyPath: mat.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 10bad99f47a608c4e98164289605410d, type: 2}
+    - target: {fileID: 6991499480829396272, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[2]
+      value: 255
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
 --- !u!4 &1738312528 stripped

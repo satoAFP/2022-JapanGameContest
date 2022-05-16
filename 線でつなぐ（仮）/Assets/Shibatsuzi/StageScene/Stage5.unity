@@ -834,6 +834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InputColor
       objectReference: {fileID: 0}
+    - target: {fileID: 6991499480829396272, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[0]
+      value: 255
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
 --- !u!4 &290782665 stripped
