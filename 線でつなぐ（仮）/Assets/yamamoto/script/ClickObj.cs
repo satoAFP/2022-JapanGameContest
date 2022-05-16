@@ -11,7 +11,7 @@ public class ClickObj : Base_Enegization
     private bool Rotationflag,vertical;
 
     [SerializeField]
-    public bool Nosetline = false;//シリンダーの上に置けないブロック
+    public bool Setlineblock = false;//シリンダーの上に置けるブロック
 
 
     // Start is called before the first frame update

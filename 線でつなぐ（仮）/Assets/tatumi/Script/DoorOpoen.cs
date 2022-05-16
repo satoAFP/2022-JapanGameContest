@@ -17,6 +17,8 @@ public class DoorOpoen : MonoBehaviour
     [SerializeField, Header("ドアのアニメーション")] public Animator door;
     [SerializeField, Header("ドアノブのアニメーション")] public Animator doorknob;
 
+    [SerializeField, Header("シーン移動用のパネルの出現")] public GameObject scene_move_panel;
+
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
     [SerializeField, Header("0=強調,1=普通")]
     Material[] mats;
@@ -75,6 +77,7 @@ public class DoorOpoen : MonoBehaviour
             //ステージ入るための扉開く処理
             door.SetBool("open", true);
             doorknob.SetBool("open", true);
+            scene_move_panel.SetActive(true);
         }
     }
 
