@@ -39,7 +39,7 @@ public class Coloer : MonoBehaviour
             a--;
 
       //‘ã“ü
-        image.color = new Color32(255,255,255,(byte) a);
+        image.color = new Color32(255,0,0,(byte) a);
         
     }
 }
