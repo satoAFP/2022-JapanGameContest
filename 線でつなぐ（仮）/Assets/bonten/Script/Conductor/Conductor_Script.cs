@@ -160,33 +160,33 @@ public class Conductor_Script : Base_Enegization
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
-        {
-            GivePowerReSet();
-            if (leaving_Conductor == true)
-            {
-                power_cnt = 0;
-                leaving_Conductor = false;
-            }
-        }
-        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
-        {
-            energization = true;
-        }
+        //if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
+        //{
+        //    GivePowerReSet();
+        //    if (leaving_Conductor == true)
+        //    {
+        //        power_cnt = 0;
+        //        leaving_Conductor = false;
+        //    }
+        //}
+        //else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
+        //{
+        //    energization = true;
+        //}
 
 
         if (energization == true)
         {
             //オブジェクトの色をシアンにする
-            GetComponent<Renderer>().material.color = Color.cyan;
+            GetComponent<Renderer>().material.color = new Color32(0, 255, 255, 200);
         }
         else if (energization == false)
         {
             //オブジェクトの色をグレーにする
-            GetComponent<Renderer>().material.color = Color.gray;
+            GetComponent<Renderer>().material.color = new Color32(192, 192, 192, 200);
 
         }
 

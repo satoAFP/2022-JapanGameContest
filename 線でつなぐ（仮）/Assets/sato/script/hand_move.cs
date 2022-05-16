@@ -79,8 +79,8 @@ public class hand_move : MonoBehaviour
         grab_block = camera.GetComponent<BoxCastRayTest>().Target;
         if (grab_block != null)
         {
-            grab_block.transform.parent = camera_all.gameObject.transform;
-            grab_block.transform.localPosition = new Vector3(0.5f, -0.25f, 1.0f);
+            //grab_block.transform.parent = camera_all.gameObject.transform;
+            //grab_block.transform.localPosition = new Vector3(0.5f, -0.25f, 1.0f);
         }
 
 
@@ -113,7 +113,7 @@ public class hand_move : MonoBehaviour
         else
         {
             wolk_anim.SetBool("catch", false);
-            catch_block.SetActive(false);
+            //catch_block.SetActive(false);
         }
 
 

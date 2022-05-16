@@ -22,14 +22,14 @@ public class Rotate_Script : Conductor_Script
     }
 
     // Update is called once per frame
-    void Update()
+    public new void Update()
     {
         //自身の角度を判別
-        if (this.gameObject.transform.localEulerAngles.y == 0 || this.gameObject.transform.localEulerAngles.y == 180) vertical[OWN] = true;
-        else if (this.gameObject.transform.localEulerAngles.y == 90 || this.gameObject.transform.localEulerAngles.y == 270) vertical[OWN] = false;
+        if (this.gameObject.transform.localEulerAngles.y == 0 || this.gameObject.transform.localEulerAngles.y == -180) vertical[OWN] = true;
+        else if (this.gameObject.transform.localEulerAngles.y == 90 || this.gameObject.transform.localEulerAngles.y == -90) vertical[OWN] = false;
 
         //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
+        if ((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0 || vertical[OWN] != vertical[PARTHER]) && Power_hit == false)
         {
             GivePowerReSet();
             if (leaving_Conductor == true)
@@ -42,6 +42,7 @@ public class Rotate_Script : Conductor_Script
         {
             if(vertical[OWN]==vertical[PARTHER])
             {
+                Debug.Log("ロリコンかもしれない");
                 energization = true;
             }
         }
@@ -73,8 +74,8 @@ public class Rotate_Script : Conductor_Script
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
 
-            if (c.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == 180) vertical[PARTHER] = true;
-            else if (c.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == 270) vertical[PARTHER] = false;
+            if (c.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180 || c.gameObject.transform.localEulerAngles.y == 180) vertical[PARTHER] = true;
+            else if (c.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = false;
 
 
                 //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
