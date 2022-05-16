@@ -99,6 +99,7 @@ public class OutputColor_Script : Base_Color_Script
         //OutputColor‚©‚çF‚ğÌ‚Ä‚é
         if (collision.gameObject.tag == "ColorInput")
         {
+            Debug.Log("‚©‚Á‚Æ‚Î‚¹[I");
             if (mixObj_hit == true)
             {
                 MixObj.GetComponent<MixColor_Script>().Decolorization(color);
