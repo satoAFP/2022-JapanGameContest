@@ -5,7 +5,7 @@ using UnityEngine;
 public class MIxColorChild_Script : Base_Color_Script
 {
     //ColorJudgement_Script‚ÉF‚Ì’l‚ğ“n‚·‚ÉŒ¸Z‚©‰ÁZ‚©”»’f‚³‚¹‚é—p•Ï”
-    private short colculation;
+    private short colculation = 0;
 
     [SerializeField]
     private GameObject parent;

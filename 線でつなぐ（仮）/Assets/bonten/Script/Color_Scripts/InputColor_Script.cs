@@ -5,6 +5,10 @@ using UnityEngine;
 //İ’è‚³‚ê‚½F‚É•Ï‚¦‚é‚¾‚¯
 public class InputColor_Script : Base_Color_Script
 {
+    public void Start()
+    {
+        energization = true;
+    }
     // Update is called once per frame
     public void Update()
     {

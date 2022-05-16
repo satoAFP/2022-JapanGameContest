@@ -17,7 +17,7 @@ public class Base_Color_Script : Base_Enegization
 
     protected const short NONE_COL = 2;             //ŒvŽZ‚È‚µ
     protected const short ADDITION = 1;             //‰ÁŽZ
-    protected const short SUBTRACTION = 0;          //Œ¸ŽZ
+    protected const short SUBTRACTION = 2;          //Œ¸ŽZ
 
     //-----------------------------------------------------------
 
