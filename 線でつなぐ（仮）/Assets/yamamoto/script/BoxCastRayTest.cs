@@ -28,10 +28,12 @@ public class BoxCastRayTest : MonoBehaviour
 
     private bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
 
-    private bool judgeblock_delete = false;//判定ブロック削除フラグ
 
     [System.NonSerialized]
     public bool Existence_Check = false;//判定ブロック存在フラグ
+
+    [System.NonSerialized]
+    public bool  NosetLight = false;//ライトオブジェクトの上にオブジェクトを置かせない
 
     // 判定ブロックプレハブ格納用
     public GameObject Judgeblock;
@@ -40,7 +42,7 @@ public class BoxCastRayTest : MonoBehaviour
 
     private GameObject Memmapcip=null;//現在選択しているマップチップ記憶
 
-    private GameObject cloneblock = null;//生成されたは判定ブロックを入れる
+    private GameObject cloneblock = null;//生成された判定ブロックを入れる
 
     void Start()
     {
@@ -57,12 +59,6 @@ public class BoxCastRayTest : MonoBehaviour
         RaycastHit hit;
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
-
-        int layerMask = 1 << 12;//マップチップのレイヤーだけ除外するレイヤーマスク
-        layerMask = ~layerMask;//レイヤー11番（マップチップ）を除外
-
-        //bool a = false;
-        //a = Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Target"));
 
         //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
         if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")) || Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Door")))
@@ -126,7 +122,7 @@ public class BoxCastRayTest : MonoBehaviour
         {
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
-            if(Memmapcip== hit.collider.gameObject)
+            if(Memmapcip == hit.collider.gameObject)
             {
                 if (first_setblock)
                 {
@@ -154,7 +150,8 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
                 //線の上に置けるオブジェクトかどうか判断して置ける処理を変更
-                if(setlineblock)
+                //線の上に置ける
+                if (setlineblock)
                 {
                     //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                     if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
@@ -179,7 +176,7 @@ public class BoxCastRayTest : MonoBehaviour
                         setlineblock = false;//線の上に置けるオブジェクト設定を初期化
                     }
                 }
-                //線の上に置ける
+                //線の上に置けない
                 else
                 {
                     if (!Existence_Check)
@@ -214,9 +211,9 @@ public class BoxCastRayTest : MonoBehaviour
         else
         {
             Existence_Check = false;
-            judgeblock_delete = true;
         }
 
+        //現在の選択中のオブジェクト（マップチップ）を記憶  
         Memmapcip = hit.collider.gameObject;
         //-----------使ってないレイヤーの処理（コメント解除で使えるよ！）--------------------
 
@@ -272,7 +269,7 @@ public class BoxCastRayTest : MonoBehaviour
 
         //-----------------------------------------------------------------------------------------
 
-
+        
         //ブロックを持っている時に回転させる
         if (Input.GetMouseButtonDown(1) && grab ==true)
         {
