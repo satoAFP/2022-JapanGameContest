@@ -23,13 +23,12 @@ public class ClickObj : Base_Enegization
     // Update is called once per frame
     void Update()
     {
-        if(energization==true)
-        {
-            //レイが当たってないときは初期色にし続ける
-            mats[0] = mat[0];
+        
+         //レイが当たってないときは初期色にし続ける
+          mats[0] = mat[0];
 
-            GetComponent<Renderer>().materials = mats;
-        }
+         GetComponent<Renderer>().materials = mats;
+        
 
         if (Rotationflag == true)
         {
