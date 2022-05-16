@@ -30,7 +30,7 @@ public class MixColor_Script : Base_Color_Script
             }
         }
 
-        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)128);
+        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
     }
 
     // Start is called before the first frame update
@@ -50,7 +50,7 @@ public class MixColor_Script : Base_Color_Script
             {
                 colorchange_signal = false;
 
-                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)128);
+                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
                 //子供objに色を入力する信号を出す
                 child.GetComponent<MIxColorChild_Script>().SetColCulation(ADDITION);
             }
@@ -64,7 +64,7 @@ public class MixColor_Script : Base_Color_Script
         {
             //その後、離れたColorInputが持っている色の値を今これが持ってる色の値から減らす
             SetColor(collision.gameObject, SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)128);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
             //子オブジェクトに色を消す指令を出す
             child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION);
         }
