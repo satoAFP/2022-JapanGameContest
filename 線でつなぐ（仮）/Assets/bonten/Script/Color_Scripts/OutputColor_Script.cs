@@ -50,7 +50,7 @@ public class OutputColor_Script : Base_Color_Script
                 energization = false;
                 //ColorInputÇ©ÇÁêFÇéÊìæ
                 SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
-                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
+                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 255);
             }
         }
         else if (collision.gameObject.tag == "ColorOutput")
@@ -68,7 +68,7 @@ public class OutputColor_Script : Base_Color_Script
                     }
                     //ColorInputÇ©ÇÁêFÇéÊìæ
                     SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
-                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
+                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 255);
 
                 }
             }
@@ -82,7 +82,7 @@ public class OutputColor_Script : Base_Color_Script
                     colorchange_signal = true;
                     //ColorInputÇ©ÇÁêFÇéÊìæ
                     SetColor(collision.gameObject, ADDITION);
-                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
+                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 255);
 
                     if (mixObj_hit)
                     {
@@ -107,7 +107,7 @@ public class OutputColor_Script : Base_Color_Script
             energization = false;
             colorchange_signal = false;
             SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 255);
 
         }
         else if (collision.gameObject.tag == "ColorMix")

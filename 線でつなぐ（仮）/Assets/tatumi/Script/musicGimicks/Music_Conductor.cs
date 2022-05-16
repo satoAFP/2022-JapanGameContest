@@ -27,9 +27,9 @@ public class Music_Conductor : Base_Enegization
     {
         //í ìdèÛãµÇ…ÇÊÇËêFïœçX
         if (energization == true)
-            GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 1);
+            GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 128);
         else
-            GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+            GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 128);
 
     }
 
