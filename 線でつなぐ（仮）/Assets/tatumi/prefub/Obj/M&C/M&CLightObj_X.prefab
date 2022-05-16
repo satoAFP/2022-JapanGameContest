@@ -702,7 +702,6 @@ GameObject:
   - component: {fileID: 5715216528942555645}
   - component: {fileID: 6388170703484743695}
   - component: {fileID: 4488827656597239320}
-  - component: {fileID: 7901523611549323349}
   m_Layer: 0
   m_Name: M&CLightObj_X
   m_TagString: Power_Supply
@@ -821,9 +820,8 @@ MonoBehaviour:
   colorchange_signal: 0
   color: 000000000000000000000000
   clearColor: ff000000ff00000000000000
-  objs:
-  - {fileID: 0}
-  - {fileID: 0}
+  OnLight: {fileID: 0}
+  OffLight: {fileID: 0}
   MCmode: 1
 --- !u!114 &6388170703484743695
 MonoBehaviour:
@@ -859,25 +857,6 @@ MonoBehaviour:
   - {fileID: 3802421047562040316}
   - {fileID: 7878735492675928464}
   OK: 0
---- !u!114 &7901523611549323349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488827656597239335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de7b214164d85a4bb7402da98c0a919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClearTaskflag: 
-  warp_door: 0
-  door: {fileID: 0}
-  doorknob: {fileID: 0}
-  mat:
-  - {fileID: 0}
-  mats: []
 --- !u!1 &4929321797722094429
 GameObject:
   m_ObjectHideFlags: 0
