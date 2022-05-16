@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &155530616467131134
+--- !u!1 &7360732160249013405
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,79 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 155530616467131135}
+  - component: {fileID: 7360732161300143541}
+  - component: {fileID: 7360732160249013393}
+  - component: {fileID: 7360732160249013392}
+  - component: {fileID: 7360732160249013395}
+  - component: {fileID: 7360732160249013398}
+  - component: {fileID: 7360732160249013399}
+  - component: {fileID: 7360732160249013394}
   m_Layer: 0
-  m_Name: Cylinder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &155530616467131135
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155530616467131134}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -3.2, y: -3.7516062, z: -3.6845326}
-  m_LocalScale: {x: 0.3, y: 2, z: 0.3}
-  m_Children:
-  - {fileID: 995490086091450524}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!1 &3575148578188191382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 995490086091450524}
-  - component: {fileID: 2243119378501359308}
-  - component: {fileID: 3789635001091679728}
-  - component: {fileID: 4537535822135984388}
-  - component: {fileID: 2996085390574732597}
-  - component: {fileID: 7035743487684746625}
-  m_Layer: 0
-  m_Name: pCylinder1
+  m_Name: Rotate_Block
   m_TagString: Conductor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &995490086091450524
+--- !u!4 &7360732161300143541
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575148578188191382}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 0, z: 0}
-  m_LocalScale: {x: 70, y: 100.00002, z: 70}
+  m_GameObject: {fileID: 7360732160249013405}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 11.251169, y: 5.550006, z: 3.7354403}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children: []
-  m_Father: {fileID: 155530616467131135}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2243119378501359308
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!33 &7360732160249013393
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575148578188191382}
-  m_Mesh: {fileID: -5076798556035486163, guid: 4c29b7fd28a5ffc42b1e1e30aed79aea, type: 3}
---- !u!23 &3789635001091679728
+  m_GameObject: {fileID: 7360732160249013405}
+  m_Mesh: {fileID: -5495902117074765545, guid: 6c943988491e6194fa0730182a2eca85, type: 3}
+--- !u!23 &7360732160249013392
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575148578188191382}
+  m_GameObject: {fileID: 7360732160249013405}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -93,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3fb930f8c22327e40b6010b66d05b5b7, type: 2}
+  - {fileID: 2100000, guid: 8004d495e33ff5c478536552dcca6a4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,27 +85,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4537535822135984388
-CapsuleCollider:
+--- !u!114 &7360732160249013395
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575148578188191382}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 7360732160249013405}
   m_Enabled: 1
-  m_Radius: 0.005000001
-  m_Height: 0.02
-  m_Direction: 1
-  m_Center: {x: -0.009688638, y: -0.00039845658, z: 0.000000013969839}
---- !u!54 &2996085390574732597
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579f083970f89c547beacc673bbb710d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7360732160249013398
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575148578188191382}
+  m_GameObject: {fileID: 7360732160249013405}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -145,16 +113,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7035743487684746625
+--- !u!65 &7360732160249013399
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7360732160249013405}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 0, y: -9.313226e-10, z: 0}
+--- !u!114 &7360732160249013394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575148578188191382}
+  m_GameObject: {fileID: 7360732160249013405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1e3a27264a321049beed393e8b80ff5, type: 3}
+  m_Script: {fileID: 11500000, guid: c206548553022d442b663c4e1ac48c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   energization: 0
@@ -169,3 +150,7 @@ MonoBehaviour:
   power_cnt: 0
   contacing_conductor: 0
   giving_conductor: 0
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  vertical: 0000
