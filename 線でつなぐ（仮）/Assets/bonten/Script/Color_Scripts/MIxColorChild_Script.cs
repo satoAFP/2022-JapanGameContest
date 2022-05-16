@@ -18,13 +18,6 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         colculation = col;
         SetColor(decolor, colculation);
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -32,14 +25,18 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         if (colculation == ADDITION)
         {
-            SetColor(parent.gameObject, colculation);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED],  (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
+            Debug.Log("Take Off");
+            SetColor(parent.gameObject.GetComponent<Base_Color_Script>().GetColor());
+            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             colorchange_signal = true;
+            colculation = NONE_COL;
         }
         else if (colculation == SUBTRACTION)
         {
+            Debug.Log("勝利の大凱旋");
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], 1);
             colorchange_signal = true;
+            colculation = NONE_COL;
         }
     }
 
@@ -52,10 +49,10 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         if (collision.gameObject.tag == "Power_Supply" && colorchange_signal == true)
         {
-
-            collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(this.gameObject, colculation);
+            //ライトobjに色を送信
+            collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColor(color);
             collision.gameObject.GetComponent<ColorJudgment_Sctipt>().SetColorChange(colorchange_signal);
-            
+
             colorchange_signal = false;
         }
     }

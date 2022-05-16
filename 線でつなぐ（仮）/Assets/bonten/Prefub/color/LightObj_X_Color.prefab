@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7416535302104172882}
   - component: {fileID: 1727078022348201614}
   - component: {fileID: 1727078022348201613}
-  - component: {fileID: 1727078022348201610}
+  - component: {fileID: 6044501766795192219}
   m_Layer: 0
   m_Name: LightObj_X_Color
   m_TagString: Power_Supply
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7416535302104172880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.324, y: 0.805, z: 2.837}
+  m_LocalPosition: {x: -6.324, y: 0.805, z: 2.813}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 7416535303645048828}
@@ -117,7 +117,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7416535302104172880}
   m_Mesh: {fileID: 0}
---- !u!114 &1727078022348201610
+--- !u!114 &6044501766795192219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,8 +132,10 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  clearColor: ff000000ff00000000000000
-  objs: []
+  clearColor: 000000000000000000000000
+  OnLight: {fileID: 0}
+  OffLight: {fileID: 0}
+  MCmode: 0
 --- !u!1 &7416535302299309696
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,13 +148,14 @@ GameObject:
   - component: {fileID: 7416535302299309700}
   - component: {fileID: 7416535302299309701}
   - component: {fileID: 7416535302299309698}
+  - component: {fileID: 5975925790094279585}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: OnLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7416535302299309699
 Transform:
   m_ObjectHideFlags: 0
@@ -236,6 +239,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5975925790094279585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416535302299309696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d38c667f8753c459fa4317b5693563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000
 --- !u!1 &7416535303088936872
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,12 +347,12 @@ GameObject:
   - component: {fileID: 7416535303645048830}
   - component: {fileID: 7416535303645048831}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: OffLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7416535303645048828
 Transform:
   m_ObjectHideFlags: 0
@@ -489,6 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7416535303914058121}
   - component: {fileID: 7416535303914058120}
+  - component: {fileID: 8717527481612211505}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -572,3 +591,19 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &8717527481612211505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416535303914058118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9868d3474060d54683154beec25a49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  intensity_light: 0
