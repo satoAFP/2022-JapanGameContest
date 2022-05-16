@@ -1560,6 +1560,10 @@ PrefabInstance:
       propertyPath: mat.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 3c038897395ea254e9af91d74fa0891d, type: 2}
+    - target: {fileID: 6991499480829396272, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[2]
+      value: 255
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
 --- !u!4 &431362730 stripped
@@ -7881,6 +7885,14 @@ PrefabInstance:
       propertyPath: mat.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 10bad99f47a608c4e98164289605410d, type: 2}
+    - target: {fileID: 6991499480829396272, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991499480829396272, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
+      propertyPath: color.Array.data[1]
+      value: 255
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e707ceb980720459e6c349b146cb5e, type: 3}
 --- !u!4 &2031161701 stripped
