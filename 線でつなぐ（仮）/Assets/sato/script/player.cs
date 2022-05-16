@@ -296,7 +296,7 @@ public class player : MonoBehaviour
         float eulerX = y * mouse_power;
         float eulerY = x * mouse_power;
 
-
+        
         if (!cursol_pop)
         {
             if (cursol_pos_check.x > 950 || cursol_pos_check.x < 35 ||

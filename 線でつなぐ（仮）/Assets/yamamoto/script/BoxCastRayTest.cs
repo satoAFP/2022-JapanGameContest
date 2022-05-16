@@ -10,6 +10,10 @@ public class BoxCastRayTest : MonoBehaviour
 
     [SerializeField] private int getsize; //オブジェクトを拾った時に手に収まるサイズにする
 
+    [SerializeField] private Vector3 TargetPos; //オブジェクトを拾った時に手に収まる位置
+
+    [SerializeField] private Vector3 TargetRor; //オブジェクトを拾った時に手に収まる回転
+
     private Vector3 TargetScale;//ターゲットの元の大きさ
 
     private Vector3 TargetRotate;//ターゲットの元の角度
@@ -89,10 +93,18 @@ public class BoxCastRayTest : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && grab == false)
                 {
                     Target = hit.collider.gameObject;
-                    //手に持つ用にオブジェクトのサイズを帰る
+
+                    //手に持つ用にオブジェクトのサイズと回転を記憶
                     TargetScale = Target.transform.localScale;
                     TargetRotate = Target.transform.eulerAngles;
+
+                    //カメラの子オブジェクトにする
+                    Target.transform.parent = gameObject.transform;
+
+                    //手に持つ用にオブジェクトのサイズと回転の変更
                     Target.transform.localScale /= getsize;
+                    Target.transform.localEulerAngles = TargetRor;
+                    Target.transform.localPosition = TargetPos;
                     Target.GetComponent<BoxCollider>().isTrigger = true;
                     Target.GetComponent<Rigidbody>().isKinematic = true;
 
