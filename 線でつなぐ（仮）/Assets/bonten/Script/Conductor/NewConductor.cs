@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Conductor_Script : Base_Enegization
+public class NewConductor : Base_Enegization
 {
     protected const int ELECTORIC_POWER = 1;   //1以上で通電
 
@@ -51,7 +51,7 @@ public class Conductor_Script : Base_Enegization
             power_cnt = set_p;
         }
     }
-    public void SetPower(int set_p,GameObject Obj)
+    public void SetPower(int set_p, GameObject Obj)
     {
         //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
         //それがこのオブジェクトのpower_cntより小さければ代入する
@@ -69,7 +69,7 @@ public class Conductor_Script : Base_Enegization
         if (power_save < pow)
         {
             //電源と接触している導体だけ問題外とする
-            if(Power_hit!=true)
+            if (Power_hit != true)
             {
                 //通電状態ではなくなるので通電している証となる変数を初期化する
                 energi_check = true;
@@ -87,13 +87,14 @@ public class Conductor_Script : Base_Enegization
         Power_hit = turn_on;
     }
 
+    //power_cntのゲッター
+    public int GetPower() => power_cnt;
+
+
     //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
-    public void SetInsulator(bool set_insul, int pow)
+    public void SetInsulator(bool set_insul)
     {
-        if (pow > power_cnt && pow != 0) 
-        {
-            hitting_insulator = set_insul;
-        }
+        hitting_insulator = set_insul;
     }
 
     //導体と離れた時の処理
@@ -101,7 +102,7 @@ public class Conductor_Script : Base_Enegization
     {
         if (pow > power_cnt)
         {
-            if(this.gameObject.name=="Cube")
+            if (this.gameObject.name == "Cube")
             {
                 /*バグ原因
                  電源からつながってるコンダクター(以下シリンダー1)が先にこの処理を通るとCubeコンダクターのパワーが0になる
@@ -154,7 +155,7 @@ public class Conductor_Script : Base_Enegization
     {
         GivePowerReSet();
         power_save = power_cnt;
-        
+
         power_cnt = 0;
         energi_check = true;
     }
@@ -162,34 +163,6 @@ public class Conductor_Script : Base_Enegization
     // Update is called once per frame
     public void Update()
     {
-        //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        //if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
-        //{
-        //    GivePowerReSet();
-        //    if (leaving_Conductor == true)
-        //    {
-        //        power_cnt = 0;
-        //        leaving_Conductor = false;
-        //    }
-        //}
-        //else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
-        //{
-        //    energization = true;
-        //}
-
-
-        if (energization == true)
-        {
-            //オブジェクトの色をシアンにする
-            GetComponent<Renderer>().material.color = new Color32(0, 255, 255, 200);
-        }
-        else if (energization == false)
-        {
-            //オブジェクトの色をグレーにする
-            GetComponent<Renderer>().material.color = new Color32(192, 192, 192, 200);
-
-        }
-
 
     }
 
@@ -209,17 +182,6 @@ public class Conductor_Script : Base_Enegization
             //Insulator_hitをtrueにする
             Insulator_hit = true;
         }
-        else if (c.gameObject.tag == "Conductor")
-        {
-            //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
-            contacing_conductor++;
-
-            //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
-            if (energization == true)
-            {
-                GivePowerReSet();
-            }
-        }
     }
 
     //他の特定のオブジェクトが離れた時の処理
@@ -237,16 +199,16 @@ public class Conductor_Script : Base_Enegization
         else if (c.gameObject.tag == "Insulator")
         {
             Insulator_hit = false;
-            GivePowerReSet();
         }
         //導体と離れたとき
         else if (c.gameObject.tag == "Conductor")
         {
-            //導体と接触してる総数を1個へらす
-            contacing_conductor--;
-
-            //電気ついてるかの確認用変数をfalseにする
-            Conductor_hit = false;
+            if(power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
+            {
+                energization = false;
+                power_save = power_cnt;
+                power_cnt = 0;
+            }
         }
     }
 
@@ -255,41 +217,33 @@ public class Conductor_Script : Base_Enegization
     {
         if (c.gameObject.tag == "Conductor")
         {
-
-            if (Conductor_hit == false)
+            //絶縁体と接触している時、
+            if ((Insulator_hit || hitting_insulator) && power_cnt > c.gameObject.GetComponent<NewConductor>().GetPower() && energization) 
             {
-                Conductor_hit = true;
+                c.gameObject.GetComponent<NewConductor>().SetInsulator(true);
+                energization = false;
+                power_save = power_cnt;
+                power_cnt = 0;
             }
-            if (Insulator_hit == true || hitting_insulator == true)
+            else
             {
-                c.gameObject.GetComponent<Conductor_Script>().SetInsulator(true, power_cnt);
-            }
-            else if (energization == true && power_gave == false)
-            {
-                //自分が通電状態にある時、周りの接触している導体も通電状態にする
-                if (giving_conductor < contacing_conductor)
+                //自身が通電してなくて、接触してるConductorObjが通電してる時、自身も通電させ
+                //接触してるConductorObjの電力を1低下させた数値を取得
+                if (!energization && c.gameObject.GetComponent<Base_Enegization>().GetEnergization())
                 {
-                    //周りの導体のpower_cntには自身のpower_cntより1少ない数を代入して差別化を図る
-                    c.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
-                    giving_conductor++;
+                    energization = true;
+                    power_cnt = c.gameObject.GetComponent<NewConductor>().GetPower() - 1;
+                    c.gameObject.GetComponent<NewConductor>().SetInsulator(false);
+                    //オブジェクトの色をシアンにする
+                    GetComponent<Renderer>().material.color = new Color32(0, 255, 255, 200);
                 }
-                else
+                //自身が通電しており、接触してるConductorObjが通電してなかったとき、自身も消灯し
+                //電力を0にする
+                else if (energization && !c.gameObject.GetComponent<Base_Enegization>().GetEnergization() && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
                 {
-                    power_gave = true;
-                }
-                c.gameObject.GetComponent<Conductor_Script>().SetInsulator(false, power_cnt);
-            }
-            //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
-            if (power_cnt == 0 && energi_check == true)
-            {
-                
-                //隣のオブジェクトのパワーの大きさがこのオブジェクトより大きければ、そのオブジェクトは絶縁されない
-                c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
-                giving_conductor++;
-                if (giving_conductor == contacing_conductor)
-                {
-                    energi_check = false;
-                    giving_conductor = 0;
+                    energization = false;
+                    power_save = power_cnt;
+                    power_cnt = 0;
                 }
             }
         }
