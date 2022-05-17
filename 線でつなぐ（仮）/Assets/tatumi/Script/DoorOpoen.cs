@@ -23,11 +23,16 @@ public class DoorOpoen : MonoBehaviour
     [SerializeField, Header("0=ã≠í≤,1=ïÅí ")]
     Material[] mats;
 
+    //âπåπéÊìæ
+    [SerializeField]
+    private AudioClip sound1;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         mats = GetComponent<Renderer>().materials;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -61,6 +66,7 @@ public class DoorOpoen : MonoBehaviour
             {
                 door.SetBool("open", true);
                 doorknob.SetBool("open", true);
+                audioSource.PlayOneShot(sound1);
             }
             else
             {
@@ -78,6 +84,7 @@ public class DoorOpoen : MonoBehaviour
             door.SetBool("open", true);
             doorknob.SetBool("open", true);
             scene_move_panel.SetActive(true);
+            audioSource.PlayOneShot(sound1);
         }
     }
 
