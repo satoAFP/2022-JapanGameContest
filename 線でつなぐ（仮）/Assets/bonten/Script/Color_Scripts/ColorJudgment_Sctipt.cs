@@ -38,8 +38,8 @@ public class ColorJudgment_Sctipt : Base_Color_Script
         if (colorchange_signal == true)
         {
             //F•ÏX‚ğ‚·‚é
-            Liting.GetComponent<Base_Color_Script>().SetColor(color);
             Liting.GetComponent<Base_Color_Script>().SetColorChange(true);
+            Liting.GetComponent<Base_Color_Script>().SetColor(color);
 
             //‘OE‚ª0‚È‚çÁ“”
             if (color[COLOR_RED] == 0 && color[COLOR_GREEN] == 0 && color[COLOR_BLUE] == 0)
