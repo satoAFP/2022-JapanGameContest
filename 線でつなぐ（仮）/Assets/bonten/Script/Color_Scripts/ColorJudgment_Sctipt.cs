@@ -24,13 +24,6 @@ public class ColorJudgment_Sctipt : Base_Color_Script
     [SerializeField]
     private bool MCmode;
 
-    private void Start()
-    {
-        //光源部分のオブジェクトを取得
-        Liting = transform.Find("Liting").gameObject;
-        Nonliting = transform.Find("Nonliting").gameObject;
-    }
-
     // Update is called once per frame
     void Update()
     {

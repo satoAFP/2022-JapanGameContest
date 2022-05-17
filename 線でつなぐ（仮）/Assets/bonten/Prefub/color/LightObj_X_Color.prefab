@@ -666,6 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4647229284010576220}
   - component: {fileID: 3266008374985361846}
+  - component: {fileID: 6217572671146710806}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -749,6 +750,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6217572671146710806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4196813034721959883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9868d3474060d54683154beec25a49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  intensity_light: 0
 --- !u!1 &4548948690412729315
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +889,7 @@ GameObject:
   - component: {fileID: 1927679543727891784}
   - component: {fileID: 5048653094439329367}
   - component: {fileID: 1847804372183021812}
+  - component: {fileID: 5221635831799960715}
   m_Layer: 0
   m_Name: Liting
   m_TagString: Untagged
@@ -962,6 +980,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5221635831799960715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572486878044649471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d38c667f8753c459fa4317b5693563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  PointLight: {fileID: 4196813034721959883}
 --- !u!1 &6134074472863185870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,8 +1283,8 @@ MonoBehaviour:
   colorchange_signal: 0
   color: 000000000000000000000000
   clearColor: 000000000000000000000000
-  OnLight: {fileID: 5572486878044649471}
-  OffLight: {fileID: 1497304689382851987}
+  Liting: {fileID: 5572486878044649471}
+  Nonliting: {fileID: 1497304689382851987}
   MCmode: 0
 --- !u!114 &3534675700054096168
 MonoBehaviour:
@@ -1379,6 +1413,7 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
+  PointLight: {fileID: 0}
 --- !u!1 &7498039338791792333
 GameObject:
   m_ObjectHideFlags: 0
