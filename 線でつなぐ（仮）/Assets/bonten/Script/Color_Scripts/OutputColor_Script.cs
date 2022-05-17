@@ -14,6 +14,12 @@ public class OutputColor_Script : Base_Color_Script
     [SerializeField]
     private int cnt;          // 一方通行のための優先度
 
+    [SerializeField]
+    private bool Insulator_hit;
+
+    [SerializeField]
+    private bool hitting_insulator;
+
     GameObject parent;
 
     //アクセサー
@@ -57,44 +63,49 @@ public class OutputColor_Script : Base_Color_Script
                 ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
             }
         }
-        if (collision.gameObject.tag == "ColorMix")
+        else if (collision.gameObject.tag == "ColorMix")
         {
             MixObj = collision.gameObject;
             mixObj_hit = true;
         }
-        if (collision.gameObject.tag == "Power_Supply")
+        else if (collision.gameObject.tag == "Power_Supply")
         {
             ClearObj = collision.gameObject;
             clearObj_hit = true;
         }
+        else if (c.gameObject.tag == "Insulator")
+        {
+            Insulator_hit = false;
+        }
+
 
     }
 
     public void OnCollisionStay(Collision collision)
     {
-        //if (collision.gameObject.tag == "ColorInput")
-        //{
-        //    //ColorInputが離れたり、ColorInputに電気が送られなくなった時の処理
-        //    if (collision.gameObject.GetComponent<Base_Enegization>().GetEnergization() == false && energization == true)
-        //    {
-        //        //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
-        //        //接触してたら先に脱色処理を行う
-        //        if (mixObj_hit)
-        //        {
-        //            MixObj.GetComponent<MixColor_Script>().Decolorization(color);
-        //        }
-        //        else if (clearObj_hit)
-        //        {
-        //            ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
-        //        }
-        //        //下記のMixColorObjを脱色できるようにtrueにする
-        //        energization = false;
-        //        //ColorInputから色を取得
-        //        SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
-        //        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-        //    }
-        //}
-        //else if (collision.gameObject.tag == "ColorOutput")
+        if (collision.gameObject.tag == "ColorInput")
+        {
+            //ColorInputが離れたり、ColorInputに電気が送られなくなった時の処理
+            if (collision.gameObject.GetComponent<InputColor_Script>().GetEnergization() == false && energization == true)
+            {
+                //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
+                //接触してたら先に脱色処理を行う
+                if (mixObj_hit)
+                {
+                    MixObj.GetComponent<MixColor_Script>().Decolorization(color);
+                }
+                else if (clearObj_hit)
+                {
+                    ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
+                }
+                //下記のMixColorObjを脱色できるようにtrueにする
+                energization = false;
+                //ColorInputから色を取得
+                SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
+                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            }
+        }
+        else if (collision.gameObject.tag == "ColorOutput")
         {
             //電気が通っているかどうか確認。
             if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == false && energization == true)
