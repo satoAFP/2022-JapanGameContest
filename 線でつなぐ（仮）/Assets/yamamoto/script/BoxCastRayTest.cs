@@ -179,7 +179,7 @@ public class BoxCastRayTest : MonoBehaviour
                 //線の上に置けない
                 else
                 {
-                    if (!Existence_Check)
+                    if (!Existence_Check&&!NosetLight)
                     {
                         //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                         if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)

@@ -1758,6 +1758,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1454502206}
     m_Modifications:
+    - target: {fileID: 4265935717147948814, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7515901411532041956, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1894,6 +1898,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5416599692782986113, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: getsize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416599692782986113, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: Judgeblock
+      value: 
+      objectReference: {fileID: 7622661339139817492, guid: 5f3471a090d89b4478ef906ba62a877c, type: 3}
     - target: {fileID: 5546672774901355798, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_Name
       value: player
@@ -1952,7 +1964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5546672775496220539, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 195639
+      value: 457783
       objectReference: {fileID: 0}
     - target: {fileID: 6819870333844757489, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_RootOrder
@@ -2805,6 +2817,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightObj_X
       objectReference: {fileID: 0}
+    - target: {fileID: 7515901411532041959, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba7f09b9fd906745ba8748e0f4fcbf9, type: 3}
 --- !u!4 &1449657304 stripped
@@ -3020,6 +3036,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492191301238770975, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760724085245998228, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
