@@ -54,9 +54,9 @@ public class Music_or_Script : Base_Enegization
         {
             //音のみなら色付け
             if (energization == true)
-                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 255);
+                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 200);
             else
-                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 255);
+                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 200);
         }
     }
 
@@ -141,15 +141,21 @@ public class Music_or_Script : Base_Enegization
             //2種類以上の音楽を認識した場合初期化
             music_num = -1;
             Debug.Log("2種混ざってるよ");
+            energization = false;
         }
         else if(num==1)
         {
+            if(music_num==-1)
+                musics[Powernum].GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
             //なぬもない（バグ回避）
+            music_num = -1;
+            energization = false;
         }
         else
         {
             //SE番号を非電源対象に送る
             musics[Powernum].GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
+            energization = true;
         }
 
         /*合成処理----------------------------------------------------------

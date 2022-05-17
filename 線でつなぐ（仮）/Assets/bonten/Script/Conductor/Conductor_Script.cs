@@ -181,12 +181,12 @@ public class Conductor_Script : Base_Enegization
         if (energization == true)
         {
             //オブジェクトの色をシアンにする
-            GetComponent<Renderer>().material.color = Color.cyan;
+            GetComponent<Renderer>().material.color = new Color32(0, 255, 255, 200);
         }
         else if (energization == false)
         {
             //オブジェクトの色をグレーにする
-            GetComponent<Renderer>().material.color = Color.gray;
+            GetComponent<Renderer>().material.color = new Color32(192, 192, 192, 200);
 
         }
 
