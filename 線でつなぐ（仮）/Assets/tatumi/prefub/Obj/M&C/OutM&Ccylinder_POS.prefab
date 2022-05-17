@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3115567275276239192}
   m_Layer: 0
-  m_Name: OutM&Ccylinder2
+  m_Name: OutM&Ccylinder_POS
   m_TagString: ColorOutput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2411047635015983318}
   - component: {fileID: 4407390951122189143}
   m_Layer: 0
-  m_Name: pCylinder1
+  m_Name: OutM&Ccylinder
   m_TagString: ColorOutput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energization: 0
-  music_num: 0
+  music_num: -1
   Change: 0
   Input_Hit: 0
 --- !u!114 &4407390951122189143
@@ -177,4 +177,6 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
+  mixObj_hit: 0
+  clearObj_hit: 0
   cnt: 0

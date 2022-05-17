@@ -10,11 +10,18 @@ public class TurnonPower_Script : MonoBehaviour
     private GameObject NonlitingChild;//光源となってない子オブジェクト取得用
     private GameObject LiteingChild;//光源となってる子オブジェクト取得用
     private bool energi_investigate;//電気ついてるかの確認用変数
+
+    //音源取得
+    [SerializeField]
+    private AudioClip sound1;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         NonlitingChild = gameObject.transform.Find("Nonliting").gameObject;
         LiteingChild = gameObject.transform.Find("Liting").gameObject;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,9 +58,14 @@ public class TurnonPower_Script : MonoBehaviour
             //つながっている導体のenergizasionがtrueならこのobjのcounductorhitもtrueにする
             if (energi_investigate == true)
             {
-                //counductor_hitをtrueにする
-                turn_on_power = true;
-                Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = true;
+                //counductor_hitをtrueにする(連続で信号飛ばさん様に最初の一度のみ適用)
+                if(turn_on_power==false)
+                {
+                    audioSource.PlayOneShot(sound1);
+                    turn_on_power = true;
+                    Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = true;
+                }
+               
             }
         }
     }
