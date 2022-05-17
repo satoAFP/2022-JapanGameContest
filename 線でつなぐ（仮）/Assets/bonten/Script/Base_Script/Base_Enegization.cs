@@ -5,7 +5,7 @@ using UnityEngine;
 public class Base_Enegization : MonoBehaviour
 {
     [SerializeField]
-    protected bool energization = false;        //電気が通ってるかどうか
+    protected bool energization=false;        //電気が通ってるかどうか
 
 
     //energizationのセッター。

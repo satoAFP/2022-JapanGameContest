@@ -37,15 +37,21 @@ public class Rotate_Script : Conductor_Script
                 power_cnt = 0;
                 leaving_Conductor = false;
             }
+            else if(vertical[OWN] != vertical[PARTHER])
+            {
+                power_save = power_cnt;
+                power_cnt = 0;
+                energi_check = true;
+            }
         }
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             if(vertical[OWN]==vertical[PARTHER])
             {
-                Debug.Log("ÉçÉäÉRÉìÇ©Ç‡ÇµÇÍÇ»Ç¢");
                 energization = true;
             }
         }
+
 
 
         if (energization == true)
