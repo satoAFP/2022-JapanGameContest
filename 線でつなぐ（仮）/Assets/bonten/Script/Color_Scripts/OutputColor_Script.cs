@@ -20,8 +20,6 @@ public class OutputColor_Script : Base_Color_Script
     [SerializeField]
     private bool hitting_insulator;
 
-    GameObject parent;
-
     //アクセサー
     public int GetPrecedence()
     {
@@ -34,7 +32,6 @@ public class OutputColor_Script : Base_Color_Script
 
     private void Start()
     {
-        parent = transform.parent.gameObject;
         colorchange_signal = false;
     }
 
@@ -42,8 +39,6 @@ public class OutputColor_Script : Base_Color_Script
     {
         if(collision.gameObject.tag=="ColorInput")
         {
-            Debug.Log(parent.gameObject.name);
-            Debug.Log(collision.gameObject.GetComponent<Base_Enegization>().GetEnergization());
             energization = true;
             cnt = 1;
             SetColor(collision.gameObject, ADDITION);
@@ -73,7 +68,7 @@ public class OutputColor_Script : Base_Color_Script
             ClearObj = collision.gameObject;
             clearObj_hit = true;
         }
-        else if (c.gameObject.tag == "Insulator")
+        else if (collision.gameObject.tag == "Insulator")
         {
             Insulator_hit = false;
         }
