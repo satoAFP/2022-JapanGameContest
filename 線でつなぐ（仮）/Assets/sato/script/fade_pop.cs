@@ -12,8 +12,8 @@ public class fade_pop : MonoBehaviour
 
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void FixedUpdate()
     {
         //ìßâﬂìxÇè„Ç∞ÇÈ
         gameObject.GetComponent<Image>().color -= new Color(0, 0, 0, fade_speed);
