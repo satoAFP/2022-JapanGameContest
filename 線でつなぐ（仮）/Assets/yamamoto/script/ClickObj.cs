@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickObj : MonoBehaviour
+public class ClickObj : Base_Enegization
 {
     public Material[] mat = new Material[2];//変更したいマテリアルをセット
     Material[] mats;
@@ -23,13 +23,12 @@ public class ClickObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(mat[0]!=mats[0])
-        {
-            //レイが当たってないときは初期色にし続ける
-            mats[0] = mat[0];
+        
+         //レイが当たってないときは初期色にし続ける
+          mats[0] = mat[0];
 
-            GetComponent<Renderer>().materials = mats;
-        }
+         GetComponent<Renderer>().materials = mats;
+        
 
         if (Rotationflag == true)
         {

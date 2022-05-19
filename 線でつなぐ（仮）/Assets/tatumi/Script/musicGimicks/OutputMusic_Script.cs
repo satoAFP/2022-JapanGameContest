@@ -31,9 +31,9 @@ public class OutputMusic_Script : Base_Enegization
         if (MCmode == false)
         {
             if (energization == true)
-                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 1);
+                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 200);
             else
-                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 1);
+                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 200);
         }
 
     }
@@ -49,8 +49,14 @@ public class OutputMusic_Script : Base_Enegization
 
     public void OnCollisionStay(Collision collision)
     {
+        if (collision.gameObject.tag == "Insulator")
+        {
+            music_num = -1;//âΩÇ‡Ç»Çµ
+            energization = false;
+            Input_Hit = false;
+        }
         //SEîªíËÇÃÇ›ÇÃèÍçá(In)
-        if (collision.gameObject.tag == "MusicInput")
+        else if (collision.gameObject.tag == "MusicInput")
         {
             if (collision.gameObject.GetComponent<InputMusic_Script>().GetEnergization() == true)
             {
