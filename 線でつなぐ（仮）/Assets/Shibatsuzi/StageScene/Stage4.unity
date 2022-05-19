@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -595,6 +595,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5689840893230314990, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 8943496772141076483, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.15
@@ -688,6 +692,10 @@ PrefabInstance:
     - target: {fileID: 4027445005602140924, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689840893230314990, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8943496772141076483, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
       propertyPath: m_LocalScale.y
@@ -1784,6 +1792,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2
@@ -1845,6 +1857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1512255467}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2
@@ -1962,6 +1978,10 @@ PrefabInstance:
     - target: {fileID: 2365263351324246331, guid: 92660cbc84a6c6d408cd0df5ed429e43, type: 3}
       propertyPath: m_Name
       value: MOutCylinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829036496641785934, guid: 92660cbc84a6c6d408cd0df5ed429e43, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92660cbc84a6c6d408cd0df5ed429e43, type: 3}
@@ -3801,6 +3821,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581678682}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (2)
@@ -4747,9 +4771,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581678682}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
-      value: OutM&Ccylinder2 (5)
+      value: OutM&Ccylinder2 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239192, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_RootOrder
@@ -5178,9 +5206,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581678682}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
-      value: OutM&Ccylinder2 (4)
+      value: OutM&Ccylinder2 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239192, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_RootOrder
@@ -5316,6 +5348,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5689840893230314990, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 8943496772141076483, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
       propertyPath: m_LocalScale.y
       value: 3.45
@@ -5347,6 +5383,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1512255467}
     m_Modifications:
+    - target: {fileID: 6466510073535486844, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 8202813484955511011, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
       propertyPath: m_Name
       value: M&C_LastCylinder
@@ -5377,7 +5417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8202813484955511023, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8202813484955511023, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5385,7 +5425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8202813484955511023, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8202813484955511023, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5397,7 +5437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8202813484955511023, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b52b13a9b639bd4d9370d7b8c0c4064, type: 3}
@@ -5470,6 +5510,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1454765421}
     m_Modifications:
+    - target: {fileID: 1697650883991361478, guid: 3897ecb2f94682a40ba678542342fd6c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 7168277851265327034, guid: 3897ecb2f94682a40ba678542342fd6c, type: 3}
       propertyPath: m_Name
       value: EMCylinder
@@ -6250,6 +6294,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581678682}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.66
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2
@@ -6316,6 +6364,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 788730666}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (1)
@@ -6390,6 +6442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (1)
@@ -6697,6 +6753,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1512255467}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (3)
@@ -6903,6 +6963,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 788730666}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2
@@ -7355,6 +7419,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581678682}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (1)
@@ -7688,6 +7756,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1512255467}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (2)
@@ -8251,6 +8323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1512255467}
     m_Modifications:
+    - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
       value: OutM&Ccylinder2 (1)
@@ -8742,6 +8818,10 @@ PrefabInstance:
     - target: {fileID: 4027445005602140924, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689840893230314990, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 8943496772141076483, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
       propertyPath: m_LocalScale.y
