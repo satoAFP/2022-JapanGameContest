@@ -27,8 +27,9 @@ public class ColorJudgment_Sctipt : Base_Color_Script
     private void Start()
     {
         //光源部分のオブジェクトを取得
-        OnLight = transform.Find("OnLight").gameObject;
-        OffLight = transform.Find("OffLight").gameObject;
+        //OnLight = transform.Find("OnLight").gameObject;
+        //OffLight = transform.Find("OffLight").gameObject;
+        OffLight.GetComponent<Renderer>().material.color=new Color32((byte)(clearColor[COLOR_RED]/5), (byte)(clearColor[COLOR_GREEN]/5), (byte)(clearColor[COLOR_BLUE]/5), 255);
     }
 
     // Update is called once per frame
