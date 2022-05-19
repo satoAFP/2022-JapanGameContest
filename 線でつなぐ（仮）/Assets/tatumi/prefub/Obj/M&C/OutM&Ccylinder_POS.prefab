@@ -163,6 +163,7 @@ MonoBehaviour:
   music_num: -1
   Change: 0
   Input_Hit: 0
+  eneger_line: {fileID: 3111253803732989771}
 --- !u!114 &4407390951122189143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +243,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+--- !u!1 &3111253803732989771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7959141969651541011, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+  m_PrefabInstance: {fileID: 4997282178039403352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3111253803732989772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7959141969651541012, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}

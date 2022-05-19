@@ -29,7 +29,8 @@ public class Conductor_Script : Base_Enegization
     [SerializeField]
     protected int giving_conductor = 0;            //電気を分け与えた導体の数
 
-
+    [SerializeField, Header("電線色")]
+    private GameObject eneger_line;
     public void AlreadyGetEnegy()
     {
         giving_conductor++;
@@ -156,13 +157,15 @@ public class Conductor_Script : Base_Enegization
 
         if (energization == true)
         {
-            //オブジェクトの色をシアンにする
-            GetComponent<Renderer>().material.color = new Color32(0, 255, 255, 200);
+            //オブジェクトの色を表示
+            eneger_line.SetActive(true);
+            
+                
         }
         else if (energization == false)
         {
-            //オブジェクトの色をグレーにする
-            GetComponent<Renderer>().material.color = new Color32(192, 192, 192, 200);
+            //オブジェクトの色を非表示
+            eneger_line.SetActive(false);
 
         }
 

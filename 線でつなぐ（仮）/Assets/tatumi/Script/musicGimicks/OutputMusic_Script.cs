@@ -18,6 +18,9 @@ public class OutputMusic_Script : Base_Enegization
 
     //色同居判定
     private bool MCmode = false;
+
+    [SerializeField, Header("電線色")]
+    private GameObject eneger_line;
     void Start()
     {
         //色のIN.OUTどっちも取得する可能性あり
@@ -31,9 +34,9 @@ public class OutputMusic_Script : Base_Enegization
         if (MCmode == false)
         {
             if (energization == true)
-                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 200);
+                eneger_line.SetActive(true);
             else
-                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 200);
+                eneger_line.SetActive(false);
         }
 
     }

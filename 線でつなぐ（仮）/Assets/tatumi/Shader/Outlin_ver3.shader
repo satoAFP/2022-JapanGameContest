@@ -93,6 +93,8 @@ Shader "Custom/Outline_ver3"
                             return o;
                         }
 
+                       
+
                         fixed4 frag(v2f i) : SV_Target
                         {
                             half2 delta = (1 / _ScreenParams.xy) * _OutlineWidth;
@@ -105,9 +107,13 @@ Shader "Custom/Outline_ver3"
                                 edge += distance(tex.rgb, DUMMY_COLOR) < EPSILON ? 0 : 1;
                             }
 
+                           
+
                             fixed4 col = lerp(tex2D(_MainTex, i.uv) * _MainColor, _OutlineColor, edge);
                             return col;
                         }
+
+                        
                         ENDCG
                     }
         }
