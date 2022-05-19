@@ -28,6 +28,11 @@ public class BoxCastRayTest : MonoBehaviour
 
     private bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
 
+    private bool Pause = false;//一時中断フラグ
+
+    //連続で押されないための判定
+    private bool key_check_E = true;
+
 
     [System.NonSerialized]
     public bool Existence_Check = false;//判定ブロック存在フラグ
@@ -60,6 +65,25 @@ public class BoxCastRayTest : MonoBehaviour
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
 
+        //Eキーでブロックの取得、設置をできないようにする
+        //再度Eキーを押すと、取得＆設置許可
+         if (Input.GetKey(KeyCode.E))
+        {
+            if (key_check_E)
+            {
+                if (Pause)
+                {
+                    Pause = false;
+                }
+                else
+                {
+                    Pause = true;//Pauseがtrueだとブロックの設置or取得をできないようにする
+                }
+            }
+            key_check_E = false;
+        }
+        else { key_check_E = true; }
+
         //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
         if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")) || Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Door")))
         {
@@ -68,7 +92,7 @@ public class BoxCastRayTest : MonoBehaviour
         //Cubeのレイを飛ばしターゲットと接触しているか判定
         else if (grab==false)
         {
-            if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")))
+            if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")) && !Pause)
             {
                 Debug.Log(hit.transform.name);
 
@@ -118,7 +142,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
         
         //マップチップにレイが接触しているか判定(rayを線に変更）
-        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")))
+        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")) && !Pause)
         {
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
@@ -273,14 +297,14 @@ public class BoxCastRayTest : MonoBehaviour
 
         
         //ブロックを持っている時に回転させる
-        if (Input.GetMouseButtonDown(1) && grab ==true)
+        if (Input.GetMouseButtonDown(1) && grab == true && !Pause)
         {
            // Debug.Log("あばばばばばば");
             TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
         }
 
         //ドアにレイが接触しているか判定(rayを線に変更）
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")) && !Pause)
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
             {
@@ -293,7 +317,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //ボタンがレイに接触しているか判定
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Button")))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Button")) && !Pause)
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
             {

@@ -75,7 +75,7 @@ public class MapcipSlect : MonoBehaviour
            // Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
-        //if (other.gameObject.name == "mapchip_check")
+        //if (other.CompareTag("Noset"))
         //{
         //    Debug.Log("夢色キッチン☆");
         //    Onplayer = true;
@@ -91,17 +91,6 @@ public class MapcipSlect : MonoBehaviour
            // Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
         }
-        //if (other.CompareTag("Conductor"))
-        //{
-        //    Debug.Log("Death");
-        //    Onobj = false;
-        //}
-        //if (other.gameObject.name == "mapchip_check")
-        //{
-        //    Debug.Log("夢色キッチン☆");
-        //    Onplayer = false;
-        //}
-
     }
 
     
