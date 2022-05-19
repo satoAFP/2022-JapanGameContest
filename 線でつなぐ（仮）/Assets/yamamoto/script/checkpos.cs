@@ -20,10 +20,25 @@ public class checkpos : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //線（シリンダー）に判定ブロックが当たっているときその上にブロックを置けなくする
         if(other.gameObject.tag=="Conductor"|| other.gameObject.tag == "ColorOutput")
         {
             Debug.Log("いい流れが出来てるよ！");
             BoxCastRayTest.GetComponent<BoxCastRayTest>().Existence_Check = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //電源オブジェクトに判定ブロックが当たっているときその上にブロックを置けなくする
+        //tag[Noset]　線の終点に置いてるライトオブジェクト
+        if (other.gameObject.tag == "Power_Supply" || other.gameObject.tag == "Noset")
+        {
+            BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = true;
+        }
+        else
+        {
+            BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = false;
         }
     }
 }
