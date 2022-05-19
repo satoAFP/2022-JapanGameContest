@@ -61,5 +61,10 @@ public class ClickObj : Base_Enegization
        
     }
 
+    public void SetColor(Color32 a)
+    {
+
+    }
+
    
 }
