@@ -181,28 +181,28 @@ public class player : MonoBehaviour
 
 
         //グレースケールカメラ切り替え
-        if (Input.GetKey(KeyCode.C))
-        {
-            if (key_check_C)
-            {
-                //フェードオン
-                fade_check = true;
+        //if (Input.GetKey(KeyCode.C))
+        //{
+        //    if (key_check_C)
+        //    {
+        //        //フェードオン
+        //        fade_check = true;
 
-                //カメラ切り替え
-                if (camera_change)
-                {
-                    camera.GetComponent<PostEffect>().enabled = true;
-                    camera_change = false;
-                }
-                else
-                {
-                    camera.GetComponent<PostEffect>().enabled = false;
-                    camera_change = true;
-                }
-            }
-            key_check_C = false;
-        }
-        else { key_check_C = true; }
+        //        //カメラ切り替え
+        //        if (camera_change)
+        //        {
+        //            camera.GetComponent<PostEffect>().enabled = true;
+        //            camera_change = false;
+        //        }
+        //        else
+        //        {
+        //            camera.GetComponent<PostEffect>().enabled = false;
+        //            camera_change = true;
+        //        }
+        //    }
+        //    key_check_C = false;
+        //}
+        //else { key_check_C = true; }
 
 
 
