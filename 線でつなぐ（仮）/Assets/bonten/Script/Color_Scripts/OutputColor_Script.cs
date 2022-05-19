@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OutputColor_Script : Base_Color_Script
 {
-    private int[] my_color = new int[3];
+    protected int[] my_color = new int[3];
     protected GameObject ClearObj;
     protected GameObject MixObj;
     [SerializeField]
@@ -72,7 +72,7 @@ public class OutputColor_Script : Base_Color_Script
         if (collision.gameObject.tag == "ColorInput")
         {
             //ColorInputが離れたり、ColorInputに電気が送られなくなった時の処理
-            if (collision.gameObject.GetComponent<Base_Enegization>().GetEnergization() == false && energization == true)
+            if (collision.gameObject.GetComponent<InputColor_Script>().GetEnergization() == false && energization == true)
             {
                 //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
                 //接触してたら先に脱色処理を行う
@@ -89,10 +89,6 @@ public class OutputColor_Script : Base_Color_Script
                 //ColorInputから色を取得
                 SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
                 GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-                if (this.gameObject.GetComponent<ClickObj>() != null)
-                {
-                    this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
-                }
             }
         }
         else if (collision.gameObject.tag == "ColorOutput")
@@ -118,11 +114,6 @@ public class OutputColor_Script : Base_Color_Script
                     //ColorInputから色を取得
                     SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
                     GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-                    if (this.gameObject.GetComponent<ClickObj>() != null)
-                    {
-                        this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
-                    }
-
                 }
             }
             else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false)
@@ -137,10 +128,6 @@ public class OutputColor_Script : Base_Color_Script
                     //ColorInputから色を取得
                     SetColor(collision.gameObject, ADDITION);
                     GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-                    if (this.gameObject.GetComponent<ClickObj>() != null)
-                    {
-                        this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
-                    }
 
                     //自身の脱色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
                     //接触してたら色を入れる
@@ -179,15 +166,20 @@ public class OutputColor_Script : Base_Color_Script
             colorchange_signal = false;
             SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-            if (this.gameObject.GetComponent<ClickObj>() != null)
-            {
-                this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
-            }
 
         }
         else if (collision.gameObject.tag == "ColorMix")
         {
             collision.gameObject.GetComponent<MixColor_Script>().Decolorization(color);
+        }
+        else if(collision.gameObject.tag == "ColorOutput")
+        {
+            energization = false;
+            if(cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())
+            {
+                SetColor(color, SUBTRACTION);
+                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            }
         }
     }
 }
