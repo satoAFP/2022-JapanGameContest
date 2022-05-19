@@ -128,6 +128,10 @@ public class OutputColor_Script : Base_Color_Script
                     //ColorInputから色を取得
                     SetColor(collision.gameObject, ADDITION);
                     GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+                    if (this.gameObject.GetComponent<ClickObj>() != null)
+                    {
+                        this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
+                    }
 
                     //自身の脱色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
                     //接触してたら色を入れる
@@ -179,7 +183,12 @@ public class OutputColor_Script : Base_Color_Script
             {
                 SetColor(color, SUBTRACTION);
                 GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+                if (this.gameObject.GetComponent<ClickObj>() != null)
+                {
+                    this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
+                }
             }
+            cnt = 0;
         }
     }
 }
