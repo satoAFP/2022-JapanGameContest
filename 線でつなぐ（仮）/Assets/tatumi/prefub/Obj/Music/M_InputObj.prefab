@@ -127,12 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf338ab858b1f1044962534c30600a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   mat:
-  - {fileID: 2100000, guid: cfc42e33d0793134cbb71550fdca4acc, type: 2}
-  - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
+  - {fileID: 2100000, guid: bb3f8fa409c28e848b38ea2528e8940a, type: 2}
+  - {fileID: 2100000, guid: 8b1f0b7a9577d4f4b95fa0269ad453f1, type: 2}
   Rotationflag: 0
   vertical: 0
-  Nosetline: 0
+  Setlineblock: 0
 --- !u!114 &8905620662700294152
 MonoBehaviour:
   m_ObjectHideFlags: 0

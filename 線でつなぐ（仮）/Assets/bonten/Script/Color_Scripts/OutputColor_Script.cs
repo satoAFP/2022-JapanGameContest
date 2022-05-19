@@ -37,6 +37,10 @@ public class OutputColor_Script : Base_Color_Script
             cnt = 1;
             SetColor(collision.gameObject, ADDITION);
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            if(this.gameObject.GetComponent<ClickObj>()!=null)
+            {
+                this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
+            }
             //自身の着色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
             //接触してたら着色する
             if (mixObj_hit)
