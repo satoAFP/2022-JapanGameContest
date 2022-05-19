@@ -5,22 +5,14 @@ using UnityEngine;
 public class OutputColor_Script : Base_Color_Script
 {
     private int[] my_color = new int[3];
-    GameObject ClearObj;            
-    GameObject MixObj;
+    protected GameObject ClearObj;
+    protected GameObject MixObj;
     [SerializeField]
-    private bool mixObj_hit;        //色混ぜるobjと接触してるか確認する用の変数
+    protected bool mixObj_hit;        //色混ぜるobjと接触してるか確認する用の変数
     [SerializeField]
-    private bool clearObj_hit;      //クリア判定のobjと接触してるか確認する要の変数
+    protected bool clearObj_hit;      //クリア判定のobjと接触してるか確認する要の変数
     [SerializeField]
-    private int cnt;          // 一方通行のための優先度
-
-    [SerializeField]
-    private bool Insulator_hit;
-
-    [SerializeField]
-    private bool hitting_insulator;
-
-    GameObject parent;
+    protected int cnt;          // 一方通行のための優先度
 
     //アクセサー
     public int GetPrecedence()
@@ -34,7 +26,6 @@ public class OutputColor_Script : Base_Color_Script
 
     private void Start()
     {
-        parent = transform.parent.gameObject;
         colorchange_signal = false;
     }
 
@@ -42,14 +33,14 @@ public class OutputColor_Script : Base_Color_Script
     {
         if(collision.gameObject.tag=="ColorInput")
         {
-            Debug.Log(parent.gameObject.name);
-            Debug.Log(collision.gameObject.GetComponent<Base_Enegization>().GetEnergization());
             energization = true;
             cnt = 1;
             SetColor(collision.gameObject, ADDITION);
-            
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-            Debug.Log(this.gameObject.GetComponent<Base_Color_Script>().GetColorRed());
+            if(this.gameObject.GetComponent<ClickObj>()!=null)
+            {
+                this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
+            }
             //自身の着色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
             //接触してたら着色する
             if (mixObj_hit)
@@ -63,21 +54,16 @@ public class OutputColor_Script : Base_Color_Script
                 ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
             }
         }
-        else if (collision.gameObject.tag == "ColorMix")
+        if (collision.gameObject.tag == "ColorMix")
         {
             MixObj = collision.gameObject;
             mixObj_hit = true;
         }
-        else if (collision.gameObject.tag == "Power_Supply")
+        if (collision.gameObject.tag == "Power_Supply")
         {
             ClearObj = collision.gameObject;
             clearObj_hit = true;
         }
-        else if (c.gameObject.tag == "Insulator")
-        {
-            Insulator_hit = false;
-        }
-
 
     }
 
@@ -86,7 +72,7 @@ public class OutputColor_Script : Base_Color_Script
         if (collision.gameObject.tag == "ColorInput")
         {
             //ColorInputが離れたり、ColorInputに電気が送られなくなった時の処理
-            if (collision.gameObject.GetComponent<InputColor_Script>().GetEnergization() == false && energization == true)
+            if (collision.gameObject.GetComponent<Base_Enegization>().GetEnergization() == false && energization == true)
             {
                 //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
                 //接触してたら先に脱色処理を行う

@@ -5,15 +5,8 @@ using UnityEngine;
 public class ColorLightBulb_Script : Base_Color_Script
 {
     //子オブジェクト取得用
+    [SerializeField]
     private GameObject PointLight;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //ポイントライトobjを取得
-        PointLight = transform.Find("Point Light").gameObject;
-        Debug.Log(colorchange_signal);
-    }
 
     // Update is called once per frame
     void Update()
