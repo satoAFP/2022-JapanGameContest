@@ -15,7 +15,7 @@ public class time_count : MonoBehaviour
     private int count;
     private bool time_move = true;
 
-    private float fade_speed;
+    [SerializeField, Header("shut_out")] private float fade_speed;
 
     //連続で押されないための判定
     private bool key_check_E = true;
@@ -23,12 +23,13 @@ public class time_count : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fade_speed = 1 / total_time;
+
         minute = (int)total_time / 60;
         seconds = (int)total_time % 60;
         total_time = (int)total_time % 60;
         count = (int)total_time - 1;
 
-        fade_speed = 1 / total_time;
     }
 
     // Update is called once per frame
@@ -72,7 +73,7 @@ public class time_count : MonoBehaviour
 
             //死んだときのフェード
             if ((int)total_time <= 0)
-                shut_out.GetComponent<Image>().color += new Color(0, 0, 0, 0.015f);
+                shut_out.GetComponent<Image>().color += new Color(0, 0, 0, 0.01f);
 
             //画面が光ってステージセレクトに戻される
             if(shut_out.GetComponent<Image>().color.a>=0.5f)
