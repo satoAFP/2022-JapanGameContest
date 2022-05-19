@@ -27,7 +27,11 @@ public class Music_or_Script : Base_Enegization
     private string OutColor_name;
 
     //音＆色の状態かどうか判断
+    [SerializeField, Header("事前設定")]
     private bool MCmode;
+
+    [SerializeField, Header("電線色")]
+    private GameObject eneger_line;
 
     // Start is called before the first frame update
     void Start()
@@ -54,9 +58,9 @@ public class Music_or_Script : Base_Enegization
         {
             //音のみなら色付け
             if (energization == true)
-                GetComponent<Renderer>().material.color = new Color32(71, 214, 255, 200);
+                eneger_line.SetActive(true);
             else
-                GetComponent<Renderer>().material.color = new Color32(255, 255, 255, 200);
+                eneger_line.SetActive(false);
         }
     }
 
@@ -84,35 +88,20 @@ public class Music_or_Script : Base_Enegization
                 }
             }
         }
-       
+
 
         //記録の有無に限らず情報更新
-        //タグColorOutputオブジェクトから色を取得し、その色に変更
-        if (collision.gameObject.tag == "MusicOutput")
+        //M&Cオブジェクトから色を取得し、その色に変更
+        if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             //ColorOutoputのenergizationがtrueならここに入る
-            if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
-            {
-              //電源関連はいらない色があるかどうかのみを判断
-                MCmode = false;
-            }
-        }
-        else if (collision.gameObject.name.Contains(OutColor_name) == true)
-        {
-            //ColorOutoputのenergizationがtrueならここに入る
-            if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() == true)
-            {
-                //電源関連はいらない色があるかどうかのみを判断
-                MCmode = true;
-            }
-            else
+            if (collision.gameObject.GetComponent<OutputMusic_Script>().GetEnergization() != true)
             {
                 //電源関連はいらない色があるかどうかのみを判断(抜けなのでSE番号初期化)
                 music_num = -1;
-                MCmode = true;
             }
         }
-       
+ 
         //長さ確認(2以上なら内部同一化確認)
         //中身更新(SE番号入れ替え)
         for(int i=0;i!=10;i++)
@@ -188,7 +177,7 @@ public class Music_or_Script : Base_Enegization
             music_num = -1;
             energization = false;
             ResetObj.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
-            MCmode = false;
+            
             //子オブジェクトに色を消す指令を出す(子供はつか(ry)
             // child.GetComponent<MIxColorChild_Script>().SetColCulation(SUBTRACTION);
         }
@@ -198,7 +187,7 @@ public class Music_or_Script : Base_Enegization
             music_num = -1;
             energization = false;
             ResetObj.GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
-            MCmode = true;
+           
         }
 
         //記録を抜く(覚えてるやつから)

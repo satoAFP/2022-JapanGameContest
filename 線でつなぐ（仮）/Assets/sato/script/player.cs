@@ -12,12 +12,10 @@ public class player : MonoBehaviour
     [SerializeField, Header("ジャンプ力"), Range(0, 10)]             float jump_power;
     [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.1f)]    float climbing_speed;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
-    [SerializeField, Header("フェードの時間"), Range(0.5f, 3.0f)]    float fade_time;
 
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
     [SerializeField, Header("通常カメラ")] GameObject camera;
-    [SerializeField, Header("fade用image")] GameObject fade;
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
@@ -183,51 +181,31 @@ public class player : MonoBehaviour
 
 
         //グレースケールカメラ切り替え
-        if (Input.GetKey(KeyCode.C))
-        {
-            if (key_check_C)
-            {
-                //フェードオン
-                fade_check = true;
+        //if (Input.GetKey(KeyCode.C))
+        //{
+        //    if (key_check_C)
+        //    {
+        //        //フェードオン
+        //        fade_check = true;
 
-                //カメラ切り替え
-                if (camera_change)
-                {
-                    camera.GetComponent<PostEffect>().enabled = true;
-                    camera_change = false;
-                }
-                else
-                {
-                    camera.GetComponent<PostEffect>().enabled = false;
-                    camera_change = true;
-                }
-            }
-            key_check_C = false;
-        }
-        else { key_check_C = true; }
+        //        //カメラ切り替え
+        //        if (camera_change)
+        //        {
+        //            camera.GetComponent<PostEffect>().enabled = true;
+        //            camera_change = false;
+        //        }
+        //        else
+        //        {
+        //            camera.GetComponent<PostEffect>().enabled = false;
+        //            camera_change = true;
+        //        }
+        //    }
+        //    key_check_C = false;
+        //}
+        //else { key_check_C = true; }
 
 
 
-        //フェード処理
-        if(fade_check)
-        {
-            //フェード実行
-            if (fade_updown)
-                fade.GetComponent<Image>().color += new Color(0, 0, 0, 0.1f);
-            else
-                fade.GetComponent<Image>().color -= new Color(0, 0, 0, 0.1f);
-
-            //透過レベルの上げ下げ切り替え
-            if (fade.GetComponent<Image>().color.a >= fade_time)
-            {
-                fade_updown = false;
-            }
-            else if (fade.GetComponent<Image>().color.a <= 0)
-            {
-                fade_updown = true;
-                fade_check = false;
-            }
-        }
 
 
         //カーソルの座標記憶
