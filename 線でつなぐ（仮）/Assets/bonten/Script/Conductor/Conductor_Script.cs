@@ -40,6 +40,10 @@ public class Conductor_Script : Base_Enegization
         power_gave = false;
         giving_conductor = 0;
     }
+
+    //電力のゲッター
+    public int GetPower() => power_cnt;
+    
     //電力の優先度、数小さい程電源に近いので優先する
     //set_p→自身のpower_cnt
     public void SetPower(int set_p)
@@ -71,6 +75,7 @@ public class Conductor_Script : Base_Enegization
             //電源と接触している導体だけ問題外とする
             if(Power_hit!=true)
             {
+                Debug.Log("おまえは？"+"     "+this.gameObject.name);
                 //通電状態ではなくなるので通電している証となる変数を初期化する
                 energi_check = true;
                 GivePowerReSet();
@@ -101,35 +106,6 @@ public class Conductor_Script : Base_Enegization
     {
         if (pow > power_cnt)
         {
-            if(this.gameObject.name=="Cube")
-            {
-                /*バグ原因
-                 電源からつながってるコンダクター(以下シリンダー1)が先にこの処理を通るとCubeコンダクターのパワーが0になる
-                 それによって、Cubeコンダクターからつながってるコンダクター(以下シリンダー3)のExit処理に入り、このSetLeave
-                 に入ってもCubeパワーが0(引数powの方)になってるのでこのif文に入らない
-
-                フローチャート的に描くと
-                Cubeが離れる
-                ↓
-                先にシリンダー1のExitがCubeに対して反応し、CubeのPower_cntが0になる
-                ↓
-                その後、CubeのExitがシリンダー3に対して反応し、シリンダー3の電気を消そうとする(SetLeaveに入る)が
-                しかしCubeのPower_cntが0になっているのでif文の中に入らない
-                ↓
-                その結果、電源とつながってる導体が離れても電気がつき続ける
-
-                やりたい処理
-                Cubeが離れる
-                ↓
-                先にCubeのExitがシリンダー1、およびシリンダー3に反応させる
-                ↓
-
-                 */
-                Debug.Log(this.gameObject.name);
-                Debug.Log(power_cnt);
-                Debug.Log(pow);
-            }
-
             power_save = power_cnt;
             leaving_Conductor = leave;
             Conductor_hit = false;
@@ -163,19 +139,19 @@ public class Conductor_Script : Base_Enegization
     public void Update()
     {
         //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        //if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
-        //{
-        //    GivePowerReSet();
-        //    if (leaving_Conductor == true)
-        //    {
-        //        power_cnt = 0;
-        //        leaving_Conductor = false;
-        //    }
-        //}
-        //else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
-        //{
-        //    energization = true;
-        //}
+        if (((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0) && Power_hit == false))
+        {
+            GivePowerReSet();
+            if (leaving_Conductor == true)
+            {
+                power_cnt = 0;
+                leaving_Conductor = false;
+            }
+        }
+        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
+        {
+            energization = true;
+        }
 
 
         if (energization == true)
@@ -282,9 +258,9 @@ public class Conductor_Script : Base_Enegization
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-                
+                Debug.Log("おぬし"+this.gameObject.name);
                 //隣のオブジェクトのパワーの大きさがこのオブジェクトより大きければ、そのオブジェクトは絶縁されない
-                c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
+                    c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
                 if (giving_conductor == contacing_conductor)
                 {

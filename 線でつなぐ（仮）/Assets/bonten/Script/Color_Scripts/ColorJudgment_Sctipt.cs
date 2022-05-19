@@ -17,20 +17,12 @@ public class ColorJudgment_Sctipt : Base_Color_Script
 
     //光源系の子オブジェクトを取得
     [SerializeField]
-    private GameObject OnLight;         //こっちが光源のほうのobj
+    private GameObject Liting;         //こっちが光源のほうのobj
     [SerializeField]
-    private GameObject OffLight;        //こっちが光源じゃないほうのobj
+    private GameObject Nonliting;        //こっちが光源じゃないほうのobj
 
     [SerializeField]
     private bool MCmode;
-
-    private void Start()
-    {
-        //光源部分のオブジェクトを取得
-        //OnLight = transform.Find("OnLight").gameObject;
-        //OffLight = transform.Find("OffLight").gameObject;
-        OffLight.GetComponent<Renderer>().material.color=new Color32((byte)(clearColor[COLOR_RED]/5), (byte)(clearColor[COLOR_GREEN]/5), (byte)(clearColor[COLOR_BLUE]/5), 255);
-    }
 
     // Update is called once per frame
     void Update()
@@ -39,19 +31,19 @@ public class ColorJudgment_Sctipt : Base_Color_Script
         if (colorchange_signal == true)
         {
             //色変更をする
-            OnLight.GetComponent<Base_Color_Script>().SetColor(color);
-            OnLight.GetComponent<Base_Color_Script>().SetColorChange(true);
+            Liting.GetComponent<Base_Color_Script>().SetColorChange(true);
+            Liting.GetComponent<Base_Color_Script>().SetColor(color);
 
             //前職が0なら消灯
             if (color[COLOR_RED] == 0 && color[COLOR_GREEN] == 0 && color[COLOR_BLUE] == 0)
             {
-                OnLight.SetActive(false);
-                OffLight.SetActive(true);
+                Liting.SetActive(false);
+                Nonliting.SetActive(true);
             }
             else
             {
-                OnLight.SetActive(true);
-                OffLight.SetActive(false);
+                Liting.SetActive(true);
+                Nonliting.SetActive(false);
             }
 
             colorchange_signal = false;

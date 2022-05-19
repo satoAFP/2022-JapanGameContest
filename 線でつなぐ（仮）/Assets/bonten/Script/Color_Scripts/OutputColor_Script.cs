@@ -5,14 +5,14 @@ using UnityEngine;
 public class OutputColor_Script : Base_Color_Script
 {
     private int[] my_color = new int[3];
-    GameObject ClearObj;            
-    GameObject MixObj;
+    protected GameObject ClearObj;
+    protected GameObject MixObj;
     [SerializeField]
-    private bool mixObj_hit;        //色混ぜるobjと接触してるか確認する用の変数
+    protected bool mixObj_hit;        //色混ぜるobjと接触してるか確認する用の変数
     [SerializeField]
-    private bool clearObj_hit;      //クリア判定のobjと接触してるか確認する要の変数
+    protected bool clearObj_hit;      //クリア判定のobjと接触してるか確認する要の変数
     [SerializeField]
-    private int cnt;          // 一方通行のための優先度
+    protected int cnt;          // 一方通行のための優先度
 
     //アクセサー
     public int GetPrecedence()
