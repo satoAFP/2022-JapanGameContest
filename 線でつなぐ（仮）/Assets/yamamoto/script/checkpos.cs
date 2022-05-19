@@ -26,27 +26,19 @@ public class checkpos : MonoBehaviour
             Debug.Log("いい流れが出来てるよ！");
             BoxCastRayTest.GetComponent<BoxCastRayTest>().Existence_Check = true;
         }
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
         //電源オブジェクトに判定ブロックが当たっているときその上にブロックを置けなくする
-        if (other.gameObject.tag == "Power_Supply")
+        //tag[Noset]　線の終点に置いてるライトオブジェクト
+        if (other.gameObject.tag == "Power_Supply" || other.gameObject.tag == "Noset")
         {
-            Debug.Log("ティーダの〇〇〇気持ちよすぎだろ！");
             BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = true;
         }
         else
         {
-            Debug.Log("ヒューズの〇〇〇気持ちよすぎだろ！");
             BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //電源オブジェクトに判定ブロックが当たっているときその上にブロックを置けなくする
-        if (other.gameObject.tag == "Power_Supply")
-        {
-           // Debug.Log("ヒューズの〇〇〇気持ちよすぎだろ！");
-            //BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = true;
         }
     }
 }

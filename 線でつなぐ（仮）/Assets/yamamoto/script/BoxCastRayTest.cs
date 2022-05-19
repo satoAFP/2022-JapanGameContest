@@ -150,8 +150,9 @@ public class BoxCastRayTest : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer==false)
             {
                 //線の上に置けるオブジェクトかどうか判断して置ける処理を変更
+                //この時にライトオブジェクトがあるか判断する、あれば置けないようにする
                 //線の上に置ける
-                if (setlineblock)
+                if (setlineblock && !NosetLight)
                 {
                     //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                     if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
@@ -179,7 +180,8 @@ public class BoxCastRayTest : MonoBehaviour
                 //線の上に置けない
                 else
                 {
-                    if (!Existence_Check&&!NosetLight)
+                    //マップチップにあるオブジェクトを判断する、あれば置けないようにする
+                    if (!Existence_Check)
                     {
                         //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                         if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
