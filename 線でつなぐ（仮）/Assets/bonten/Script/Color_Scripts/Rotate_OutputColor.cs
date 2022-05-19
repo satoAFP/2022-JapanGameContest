@@ -2,42 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutputColor_Script : Base_Color_Script
+public class Rotate_OutputColor : OutputColor_Script
 {
-    private int[] my_color = new int[3];
-    protected GameObject ClearObj;
-    protected GameObject MixObj;
-    [SerializeField]
-    protected bool mixObj_hit;        //色混ぜるobjと接触してるか確認する用の変数
-    [SerializeField]
-    protected bool clearObj_hit;      //クリア判定のobjと接触してるか確認する要の変数
-    [SerializeField]
-    protected int cnt;          // 一方通行のための優先度
+    private const int OWN = 0;         //このオブジェクト
+    private const int PARTHER = 1;     //それ以外のオブジェクト
 
-    //アクセサー
-    public int GetPrecedence()
-    {
-        return cnt;
-    }
-    public void SetPrecedence(int num)
-    {
-        cnt = num;
-    }
 
-    private void Start()
-    {
-        colorchange_signal = false;
-    }
+    [NamedArrayAttribute(new string[] { "OWN", "PARTHER" })]
+    [SerializeField]
+    private bool[] vertical = new bool[2];        //縦か横か向いている方向を記憶しておくための変数。trueで0or180,falseで90or270。
 
-    public void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if(collision.gameObject.tag=="ColorInput")
+        //自身の角度を判別
+        if (this.gameObject.transform.localEulerAngles.y == 0 || this.gameObject.transform.localEulerAngles.y == -180) vertical[OWN] = true;
+        else if (this.gameObject.transform.localEulerAngles.y == 90 || this.gameObject.transform.localEulerAngles.y == -90) vertical[OWN] = false;
+    }
+    public new void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ColorInput")
         {
             energization = true;
             cnt = 1;
             SetColor(collision.gameObject, ADDITION);
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-            if(this.gameObject.GetComponent<ClickObj>()!=null)
+            if (this.gameObject.GetComponent<ClickObj>() != null)
             {
                 this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
             }
@@ -54,20 +43,24 @@ public class OutputColor_Script : Base_Color_Script
                 ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
             }
         }
-        if (collision.gameObject.tag == "ColorMix")
+        else if (collision.gameObject.tag == "ColorMix")
         {
             MixObj = collision.gameObject;
             mixObj_hit = true;
         }
-        if (collision.gameObject.tag == "Power_Supply")
+        else if (collision.gameObject.tag == "Power_Supply")
         {
             ClearObj = collision.gameObject;
             clearObj_hit = true;
         }
+        else if (collision.gameObject.tag == "ColorOutput")
+        {
+            if (collision.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180) vertical[PARTHER] = false;
+            else if (collision.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = true;
+        }
 
     }
-
-    public void OnCollisionStay(Collision collision)
+    public new void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "ColorInput")
         {
@@ -106,7 +99,7 @@ public class OutputColor_Script : Base_Color_Script
                     {
                         MixObj.GetComponent<MixColor_Script>().Decolorization(color);
                     }
-                    else if(clearObj_hit)
+                    else if (clearObj_hit)
                     {
                         ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
                         ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
@@ -117,61 +110,55 @@ public class OutputColor_Script : Base_Color_Script
 
                 }
             }
-            else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false)
+            else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false )
             {
-                //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
-                if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
+                if(vertical[OWN] == vertical[PARTHER])
                 {
-                    //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
-                    cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
-                    energization = true;
-                    colorchange_signal = true;
-                    //ColorInputから色を取得
-                    SetColor(collision.gameObject, ADDITION);
-                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+                    //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
+                    if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
+                    {
+                        //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
+                        cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
+                        energization = true;
+                        colorchange_signal = true;
+                        //ColorInputから色を取得
+                        SetColor(collision.gameObject, ADDITION);
+                        GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
 
-                    //自身の脱色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
-                    //接触してたら色を入れる
+                        //自身の脱色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
+                        //接触してたら色を入れる
+                        if (mixObj_hit)
+                        {
+                            MixObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
+                            MixObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+                        }
+                        else if (clearObj_hit)
+                        {
+                            ClearObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
+                            ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+                        }
+                    }
+                }
+                else
+                {
+
+                    energization = false;
+                    //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
+                    //接触してたら先に脱色処理を行う
                     if (mixObj_hit)
                     {
-                        MixObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
-                        MixObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+                        MixObj.GetComponent<MixColor_Script>().Decolorization(color);
                     }
                     else if (clearObj_hit)
                     {
-                        ClearObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
+                        ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
                         ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
                     }
+                    //ColorInputから色を取得
+                    SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
+                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
                 }
             }
-        }
-    }
-
-    public void OnCollisionExit(Collision collision)
-    {
-        //OutputColorから色を捨てる
-        if (collision.gameObject.tag == "ColorInput")
-        {
-            //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
-            //接触してたら先に脱色処理を行う
-            if (mixObj_hit)
-            {
-                MixObj.GetComponent<MixColor_Script>().Decolorization(color);
-            }
-            else if (clearObj_hit)
-            {
-                ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
-                ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
-            }
-            energization = false;
-            colorchange_signal = false;
-            SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-
-        }
-        else if (collision.gameObject.tag == "ColorMix")
-        {
-            collision.gameObject.GetComponent<MixColor_Script>().Decolorization(color);
         }
     }
 }
