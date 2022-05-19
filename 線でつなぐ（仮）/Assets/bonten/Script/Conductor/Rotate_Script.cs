@@ -28,31 +28,6 @@ public class Rotate_Script : Conductor_Script
         if (this.gameObject.transform.localEulerAngles.y == 0 || this.gameObject.transform.localEulerAngles.y == -180) vertical[OWN] = true;
         else if (this.gameObject.transform.localEulerAngles.y == 90 || this.gameObject.transform.localEulerAngles.y == -90) vertical[OWN] = false;
 
-        //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        if ((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0 || vertical[OWN] != vertical[PARTHER]) && Power_hit == false)
-        {
-            GivePowerReSet();
-            if (leaving_Conductor == true)
-            {
-                power_cnt = 0;
-                leaving_Conductor = false;
-            }
-            else if(vertical[OWN] != vertical[PARTHER])
-            {
-                power_save = power_cnt;
-                power_cnt = 0;
-                energi_check = true;
-            }
-        }
-        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
-        {
-            if(vertical[OWN]==vertical[PARTHER])
-            {
-                energization = true;
-            }
-        }
-
-
 
         if (energization == true)
         {
@@ -80,8 +55,8 @@ public class Rotate_Script : Conductor_Script
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
 
-            if (c.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180 || c.gameObject.transform.localEulerAngles.y == 180) vertical[PARTHER] = true;
-            else if (c.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = false;
+            if (c.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180) vertical[PARTHER] = false;
+            else if (c.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = true;
 
 
                 //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
@@ -89,6 +64,35 @@ public class Rotate_Script : Conductor_Script
                 {
                     GivePowerReSet();
                 }
+        }
+    }
+
+    public new void OnCollisionStay(Collision collision)
+    {
+        //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
+        if (collision.gameObject.tag == "Conductor")
+        {
+            if (Insulator_hit || hitting_insulator) 
+            {
+                energization = false;
+            }
+            else if (power_cnt >= ELECTORIC_POWER )
+            {
+                if(vertical[OWN] == vertical[PARTHER])
+                {
+                    energization = true;
+                    power_save = power_cnt;
+                    collision.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
+                }
+                else
+                {
+                    energization = false;
+                    if(power_cnt>collision.gameObject.GetComponent<Conductor_Script>().GetPower())
+                    {
+                        collision.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_cnt);
+                    }
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    // ドラッグ前の位置(中心位置)
+    // ドラッグ前の位置(中心位置)//
     private Vector3 prevPos;
 
     //移動対象
