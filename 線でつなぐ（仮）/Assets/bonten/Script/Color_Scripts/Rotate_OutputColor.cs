@@ -55,8 +55,8 @@ public class Rotate_OutputColor : OutputColor_Script
         }
         else if (collision.gameObject.tag == "ColorOutput")
         {
-            if (collision.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180) vertical[PARTHER] = false;
-            else if (collision.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = true;
+            if (collision.gameObject.transform.localEulerAngles.y == 0 || collision.gameObject.transform.localEulerAngles.y == -180) vertical[PARTHER] = false;
+            else if (collision.gameObject.transform.localEulerAngles.y == 90 || collision.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = true;
         }
 
     }

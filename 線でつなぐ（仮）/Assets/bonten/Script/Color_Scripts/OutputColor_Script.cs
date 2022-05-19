@@ -72,7 +72,7 @@ public class OutputColor_Script : Base_Color_Script
         if (collision.gameObject.tag == "ColorInput")
         {
             //ColorInputが離れたり、ColorInputに電気が送られなくなった時の処理
-            if (collision.gameObject.GetComponent<Base_Enegization>().GetEnergization() == false && energization == true)
+            if (collision.gameObject.GetComponent<InputColor_Script>().GetEnergization() == false && energization == true)
             {
                 //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
                 //接触してたら先に脱色処理を行う
