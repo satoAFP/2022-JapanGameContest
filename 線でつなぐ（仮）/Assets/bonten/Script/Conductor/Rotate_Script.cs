@@ -15,6 +15,12 @@ public class Rotate_Script : Conductor_Script
     [NamedArrayAttribute(new string[] { "right", "left" })]
     GameObject[] AssistObj = new GameObject[2];
 
+
+    public void ThisSetPower(int pow)
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,9 +81,11 @@ public class Rotate_Script : Conductor_Script
                     energization = true;
                     power_save = power_cnt;
                     collision.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
+                    collision.gameObject.GetComponent<Conductor_Script>().SetEnergization(true);
                 }
                 else
                 {
+                    Debug.Log("usoyaro");
                     energization = false;
                     if(power_cnt>collision.gameObject.GetComponent<Conductor_Script>().GetPower())
                     {

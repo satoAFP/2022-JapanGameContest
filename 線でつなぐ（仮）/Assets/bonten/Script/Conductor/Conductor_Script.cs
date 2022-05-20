@@ -28,6 +28,8 @@ public class Conductor_Script : Base_Enegization
     protected int contacing_conductor = 0;         //接触している導体の数
     [SerializeField]
     protected int giving_conductor = 0;            //電気を分け与えた導体の数
+    [SerializeField]
+    private bool rotate_hit = false;
 
     [SerializeField, Header("電線色")]
     private GameObject eneger_line;
@@ -37,6 +39,7 @@ public class Conductor_Script : Base_Enegization
     }
     public void GivePowerReSet()
     {
+        if(rotate_hit)Debug.Log("yurusan");
         energization = false;
         power_gave = false;
         giving_conductor = 0;
@@ -76,7 +79,6 @@ public class Conductor_Script : Base_Enegization
             //電源と接触している導体だけ問題外とする
             if(Power_hit!=true)
             {
-                Debug.Log("おまえは？"+"     "+this.gameObject.name);
                 //通電状態ではなくなるので通電している証となる変数を初期化する
                 energi_check = true;
                 GivePowerReSet();
@@ -169,9 +171,10 @@ public class Conductor_Script : Base_Enegization
                 leaving_Conductor = false;
             }
         }
-        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
+        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true || rotate_hit == true))
         {
             energization = true;
+            Debug.Log(energization);
         }
 
 
@@ -219,6 +222,11 @@ public class Conductor_Script : Base_Enegization
                 GivePowerReSet();
             }
         }
+        else if (c.gameObject.tag == "Rotate")
+        {
+            contacing_conductor++;
+            rotate_hit = true;
+        }
     }
 
     //他の特定のオブジェクトが離れた時の処理
@@ -247,6 +255,10 @@ public class Conductor_Script : Base_Enegization
             //電気ついてるかの確認用変数をfalseにする
             Conductor_hit = false;
         }
+        else if(c.gameObject.tag=="Rotate")
+        {
+            rotate_hit = false;
+        }
     }
 
 
@@ -255,7 +267,7 @@ public class Conductor_Script : Base_Enegization
         if (c.gameObject.tag == "Conductor")
         {
 
-            if (Conductor_hit == false)
+            if (Conductor_hit == false )
             {
                 Conductor_hit = true;
             }
