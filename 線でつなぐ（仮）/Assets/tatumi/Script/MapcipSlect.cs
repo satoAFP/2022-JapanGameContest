@@ -36,15 +36,31 @@ public class MapcipSlect : MonoBehaviour
         if (now_select == true && Onplayer==false)
         {
             now_select = false;
-            mats[0] = mat[1];
-
+            //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
+            if (Onblock==true)
+            {
+               // Debug.Log("ぶ");
+            }
+            else
+            {
+                mats[0] = mat[1];
+            }
+          
             GetComponent<Renderer>().materials = mats;
         }
         //プレイヤーが足元近くにブロック置けなくする
         else if(now_select == true && Onplayer ==true && script.grab==true)
         {
             now_select = false;
-            mats[0] = mat[2];
+            //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
+            if (Onblock == true)
+            {
+                //Debug.Log("53位");
+            }
+            else
+            {
+                mats[0] = mat[2];
+            }
 
             GetComponent<Renderer>().materials = mats;
         }
@@ -69,17 +85,37 @@ public class MapcipSlect : MonoBehaviour
     //プレイヤーがマップチップに侵入してた時、そのマップチップに置けないようにする
     public void OnTriggerStay(Collider other)
     {
+
+        string layerName = LayerMask.LayerToName(other.gameObject.layer);
+
         //接触したオブジェクトのタグが"Player"のとき
         if (other.CompareTag("Player"))
         {
            // Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
-        //if (other.gameObject.name == "mapchip_check")
-        //{
-        //    Debug.Log("夢色キッチン☆");
-        //    Onplayer = true;
-        //}
+        if (other.CompareTag("Conductor"))
+        {
+           // Onplayer = true;
+        }
+
+        //ライトオブジェクトがマップチップの上にある時、ブロックを置けないようにする
+        //（マップチップの上に乗っているときのみ！！！！）
+        if (other.CompareTag("Power_Supply"))
+        {
+            Debug.Log("バナナ");
+            Onobj = true;
+        }
+
+        //ライトオブジェクト(出口？)がマップチップの上にある時、ブロックを置けないようにする
+        //（マップチップの上に乗っているときのみ！！！！）
+        if (other.CompareTag("Noset"))
+        {
+            Debug.Log("夢色キッチン☆");
+            Onobj = true;
+        }
+
+      
     }
 
     //プレイヤーが侵入したマップチップを離れたとき、置けない処理解除
@@ -91,17 +127,6 @@ public class MapcipSlect : MonoBehaviour
            // Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
         }
-        //if (other.CompareTag("Conductor"))
-        //{
-        //    Debug.Log("Death");
-        //    Onobj = false;
-        //}
-        //if (other.gameObject.name == "mapchip_check")
-        //{
-        //    Debug.Log("夢色キッチン☆");
-        //    Onplayer = false;
-        //}
-
     }
 
     

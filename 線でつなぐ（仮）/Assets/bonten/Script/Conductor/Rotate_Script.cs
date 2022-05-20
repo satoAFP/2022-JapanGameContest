@@ -5,15 +5,15 @@ using UnityEngine;
 public class Rotate_Script : Conductor_Script
 {
 
-    private const int OWN = 0;         //このオブジェクト
-    private const int PARTHER = 1;     //それ以外のオブジェクト
+    private const int RIGHT = 0;         //このオブジェクト
+    private const int LEFT = 1;     //それ以外のオブジェクト
 
     public Material[] mat = new Material[2];//変更したいマテリアルをセット
     Material[] mats;
 
-    [NamedArrayAttribute(new string[] { "OWN", "PARTHER"})]
-    [SerializeField] 
-    private bool[] vertical=new bool[2];        //縦か横か向いている方向を記憶しておくための変数。trueで0or180,falseで90or270。
+    [SerializeField]
+    [NamedArrayAttribute(new string[] { "right", "left" })]
+    GameObject[] AssistObj = new GameObject[2];
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +24,6 @@ public class Rotate_Script : Conductor_Script
     // Update is called once per frame
     public new void Update()
     {
-        //自身の角度を判別
-        if (this.gameObject.transform.localEulerAngles.y == 0 || this.gameObject.transform.localEulerAngles.y == -180) vertical[OWN] = true;
-        else if (this.gameObject.transform.localEulerAngles.y == 90 || this.gameObject.transform.localEulerAngles.y == -90) vertical[OWN] = false;
-
-
         if (energization == true)
         {
             //オブジェクトの色をシアンにする
@@ -55,9 +50,6 @@ public class Rotate_Script : Conductor_Script
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
 
-            if (c.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180) vertical[PARTHER] = false;
-            else if (c.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = true;
-
 
                 //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
                 if (energization == true)
@@ -78,7 +70,7 @@ public class Rotate_Script : Conductor_Script
             }
             else if (power_cnt >= ELECTORIC_POWER )
             {
-                if(vertical[OWN] == vertical[PARTHER])
+                if(AssistObj[RIGHT].GetComponent<RotateAssist>().GetHitConductor()&& AssistObj[LEFT].GetComponent<RotateAssist>().GetHitConductor())
                 {
                     energization = true;
                     power_save = power_cnt;
