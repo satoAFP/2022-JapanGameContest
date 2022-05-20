@@ -49,6 +49,8 @@ public class BoxCastRayTest : MonoBehaviour
 
     private GameObject cloneblock = null;//生成された判定ブロックを入れる
 
+    private bool second_set = false;//現在レイが当たっているマップチップで二回目以降置くときのフラグ
+
     void Start()
     {
         grab = false;//初期化
@@ -146,7 +148,7 @@ public class BoxCastRayTest : MonoBehaviour
         {
             Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
-            if(Memmapcip == hit.collider.gameObject)
+            if(Memmapcip == hit.collider.gameObject && second_set == false)
             {
                 if (first_setblock)
                 {
@@ -154,10 +156,13 @@ public class BoxCastRayTest : MonoBehaviour
                     cloneblock = Instantiate(Judgeblock, new Vector3(worldPos.x, worldPos.y += 0.25f, worldPos.z), Quaternion.identity);
                     first_setblock = false;
                 }
+              
                 Debug.Log("aaa");
             }
             else
             {
+                //違うレイヤー＆マップチップにレイが当たるとフラグ初期化＆前の位置にいた判定ブロック削除
+                second_set = false;
                 first_setblock = true;
                 Existence_Check = false;
                 Destroy(cloneblock);
@@ -199,6 +204,7 @@ public class BoxCastRayTest : MonoBehaviour
                         Target = null;//タ-ゲットの初期化
                         grab = false;//掴みフラグをfalse
                         setlineblock = false;//線の上に置けるオブジェクト設定を初期化
+                        second_set = true;//現在のマップチップで２回目のブロックを置く処理
                     }
                 }
                 //線の上に置けない
@@ -207,9 +213,11 @@ public class BoxCastRayTest : MonoBehaviour
                     //マップチップにあるオブジェクトを判断する、あれば置けないようにする
                     if (!Existence_Check)
                     {
+                        Debug.Log("1");
                         //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                         if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                         {
+                            Debug.Log("2");
                             //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
                             //worldPos.y += Target.transformr.localPosition.y;
@@ -228,6 +236,7 @@ public class BoxCastRayTest : MonoBehaviour
                             Target = null;//タ-ゲットの初期化
                             grab = false;//掴みフラグをfalse
                             setlineblock = false;//線の上に置けるオブジェクト設定を初期化
+                            second_set = true;//現在のマップチップで２回目のブロックを置く処理
                         }
                     }
                 }
