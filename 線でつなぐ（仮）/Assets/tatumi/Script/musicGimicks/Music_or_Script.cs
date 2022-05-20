@@ -134,7 +134,7 @@ public class Music_or_Script : Base_Enegization
         }
         else if(num==1)
         {
-            if(music_num==-1)
+            if(music_num==-1&&Powernum!=-1)
                 musics[Powernum].GetComponent<MusicJudgment_Sctipt>().now_music(music_num);
             //なぬもない（バグ回避）
             music_num = -1;
