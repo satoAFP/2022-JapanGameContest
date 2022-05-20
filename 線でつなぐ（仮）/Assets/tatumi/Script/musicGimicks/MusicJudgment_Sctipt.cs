@@ -22,14 +22,18 @@ public class MusicJudgment_Sctipt : Base_Enegization
         //同居しなければ直接いじる
         if (MCmode == false)
         {
-            objs[0].SetActive(true);
-            objs[1].SetActive(false);
-
+            
             if (clearMusic == muisc_num)
             {
                 //ここにクリアの証的なコード
                 objs[0].SetActive(false);
                 objs[1].SetActive(true);
+            }
+            else
+            {
+                objs[0].SetActive(true);
+                objs[1].SetActive(false);
+
             }
         }
         else
