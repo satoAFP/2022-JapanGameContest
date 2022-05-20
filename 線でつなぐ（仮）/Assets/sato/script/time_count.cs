@@ -12,6 +12,7 @@ public class time_count : MonoBehaviour
 
     private int minute;
     private int seconds;
+    private float mem_total_time;
     private int count;
     private bool time_move = true;
 
@@ -24,11 +25,12 @@ public class time_count : MonoBehaviour
     void Start()
     {
         fade_speed = 1 / total_time;
+        mem_total_time = total_time;
+        count = (int)total_time - 1;
 
         minute = (int)total_time / 60;
         seconds = (int)total_time % 60;
         total_time = (int)total_time % 60;
-        count = (int)total_time - 1;
 
     }
 
@@ -59,24 +61,25 @@ public class time_count : MonoBehaviour
                 total_time = 60;
             }
             total_time -= Time.deltaTime;
+            mem_total_time -= Time.deltaTime;
             seconds = (int)total_time;
 
             //時間の表示
             gameObject.GetComponent<TextMesh>().text = minute.ToString("d2") + ":" + seconds.ToString("d2");
 
             //フェード移行処理
-            if ((int)total_time == count)
+            if ((int)mem_total_time == count)
             {
                 fade.GetComponent<Image>().color += new Color(0, 0, 0, fade_speed);
                 count--;
             }
 
             //死んだときのフェード
-            if ((int)total_time <= 0)
+            if ((int)mem_total_time <= 0)
                 shut_out.GetComponent<Image>().color += new Color(0, 0, 0, 0.01f);
 
             //画面が光ってステージセレクトに戻される
-            if(shut_out.GetComponent<Image>().color.a>=0.5f)
+            if(shut_out.GetComponent<Image>().color.a>=1.0f)
                 SceneManager.LoadScene("STAGE_SELECT");
 
         }
