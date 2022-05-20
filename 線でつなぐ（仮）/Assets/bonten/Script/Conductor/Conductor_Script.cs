@@ -93,12 +93,32 @@ public class Conductor_Script : Base_Enegization
         Power_hit = turn_on;
     }
 
-    //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
+    /// <summary>
+    /// 絶縁体の処理。セット元のより自分のパワーが小さければ絶縁されない
+    /// </summary>
+    /// <param name="set_insul">セット元が絶縁体と接触しているかの成否</param>
+    /// <param name="pow">セット元のパワーの値</param>
     public void SetInsulator(bool set_insul, int pow)
     {
         if (pow > power_cnt && pow != 0) 
         {
             hitting_insulator = set_insul;
+        }
+    }
+
+    /// <summary>
+    /// 絶縁体と接触しているかどうか。
+    /// </summary>
+    /// <returns></returns>
+    public bool GetInsulator()
+    {
+        if(Insulator_hit||hitting_insulator)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -261,7 +281,6 @@ public class Conductor_Script : Base_Enegization
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-                Debug.Log("おぬし"+this.gameObject.name);
                 //隣のオブジェクトのパワーの大きさがこのオブジェクトより大きければ、そのオブジェクトは絶縁されない
                     c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
