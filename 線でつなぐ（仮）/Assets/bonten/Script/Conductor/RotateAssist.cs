@@ -14,7 +14,7 @@ public class RotateAssist : MonoBehaviour
     [SerializeField]
     private bool hitting_conductor;
 
-    //
+    [SerializeField]
     private int power = 0;
 
     public bool GetHitConductor() => hitting_conductor;
