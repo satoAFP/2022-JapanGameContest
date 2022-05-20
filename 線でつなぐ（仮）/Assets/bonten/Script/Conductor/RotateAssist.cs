@@ -38,29 +38,29 @@ public class RotateAssist : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.tag=="Conductor")
+        if(collider.gameObject.tag=="Conductor")
         {
             hitting_conductor = true;
             //絶縁体と接触していたらオブジェクトを取得
-            if (collision.gameObject.GetComponent<Conductor_Script>().GetInsulator())
+            if (collider.gameObject.GetComponent<Conductor_Script>().GetInsulator())
             {
                 hitting_conductor = false;
-                ConductorObj = collision.gameObject;
+                ConductorObj = collider.gameObject;
             }
             //RotateObjに電気を通す
-            else if(collision.gameObject.GetComponent<Conductor_Script>().GetEnergization())
+            else if(collider.gameObject.GetComponent<Conductor_Script>().GetEnergization())
             {
-                power = collision.gameObject.GetComponent<Conductor_Script>().GetPower();
+                power = collider.gameObject.GetComponent<Conductor_Script>().GetPower();
                 RotateObj.GetComponent<Rotate_Script>().SetPower(power);
             }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collider)
     {
-        if (collision.gameObject.tag == "Conductor")
+        if (collider.gameObject.tag == "Conductor")
         {
             hitting_conductor = false;
             if(ConductorObj!=null)

@@ -171,7 +171,7 @@ public class Conductor_Script : Base_Enegization
                 leaving_Conductor = false;
             }
         }
-        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true || rotate_hit == true))
+        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
             Debug.Log(energization);
@@ -211,7 +211,7 @@ public class Conductor_Script : Base_Enegization
             //Insulator_hitをtrueにする
             Insulator_hit = true;
         }
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.tag == "Conductor" || c.gameObject.tag == "Rotate")
         {
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
@@ -221,11 +221,6 @@ public class Conductor_Script : Base_Enegization
             {
                 GivePowerReSet();
             }
-        }
-        else if (c.gameObject.tag == "Rotate")
-        {
-            contacing_conductor++;
-            rotate_hit = true;
         }
     }
 
@@ -247,7 +242,7 @@ public class Conductor_Script : Base_Enegization
             GivePowerReSet();
         }
         //導体と離れたとき
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.tag == "Conductor" || c.gameObject.tag == "Rotate")
         {
             //導体と接触してる総数を1個へらす
             contacing_conductor--;
@@ -267,7 +262,7 @@ public class Conductor_Script : Base_Enegization
         if (c.gameObject.tag == "Conductor")
         {
 
-            if (Conductor_hit == false )
+            if (Conductor_hit == false)
             {
                 Conductor_hit = true;
             }
