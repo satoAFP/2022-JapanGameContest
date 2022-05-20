@@ -1290,6 +1290,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5546672775496220533, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
   m_PrefabInstance: {fileID: 5546672775317637571}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &915828224 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6317636434055902254, guid: 65858468eabce7240bd89f53fa34724f, type: 3}
+  m_PrefabInstance: {fileID: 6317636433732378938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &950601001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,7 +1516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &991303662
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2069,6 +2074,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219706147}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1270959196 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5988050310241738050, guid: 0ab8fe12d92df644ba77d7e33bcdedf8, type: 3}
+  m_PrefabInstance: {fileID: 5988050310346249140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1306760678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4330,9 +4340,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1601485543}
     - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: breath
+      value: 
+      objectReference: {fileID: 915828224}
+    - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: shut_out
       value: 
       objectReference: {fileID: 329468596}
+    - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: clock_only
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: heart_beat
+      value: 
+      objectReference: {fileID: 1270959196}
     - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: total_time
       value: 100
@@ -4429,6 +4451,10 @@ PrefabInstance:
     - target: {fileID: 5546672774901355798, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546672774901355798, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5546672774901355798, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_TagString
@@ -4594,11 +4620,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988050310241738049, guid: 0ab8fe12d92df644ba77d7e33bcdedf8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5988050310241738050, guid: 0ab8fe12d92df644ba77d7e33bcdedf8, type: 3}
       propertyPath: m_Pitch
-      value: 2.3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988050310241738050, guid: 0ab8fe12d92df644ba77d7e33bcdedf8, type: 3}
+      propertyPath: m_Volume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5988050310241738051, guid: 0ab8fe12d92df644ba77d7e33bcdedf8, type: 3}
       propertyPath: m_RootOrder
@@ -4659,6 +4689,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6317636434055902249, guid: 65858468eabce7240bd89f53fa34724f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317636434055902254, guid: 65858468eabce7240bd89f53fa34724f, type: 3}
+      propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6317636434055902255, guid: 65858468eabce7240bd89f53fa34724f, type: 3}
