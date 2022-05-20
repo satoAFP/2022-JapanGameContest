@@ -51,25 +51,34 @@ public class MC_Judgment : MonoBehaviour
             //片方通電ならOFF
             if(num==2)
             {
-                objs[0].SetActive(true);
-                objs[1].SetActive(false);
+                //通電ならOFFる
+                if (objs[0].activeSelf == false)
+                {
+                    objs[0].SetActive(true);
+                    objs[1].SetActive(false);
+
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_off();
+                }
             }
             //両方一致
             else if (num == 1)
             {
                //しかし通電してないからOFF
-                if (OK == false)
+                if (OK == false && objs[0].activeSelf == false)
                 {
                     objs[0].SetActive(true);
                     objs[1].SetActive(false);
-                   
+
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_off();
                 }
                 //ON!!!
-                else
+                else if(OK != false && objs[0].activeSelf != false)
                 {
                     //ここにクリアの証的なコード
                     objs[0].SetActive(false);
                     objs[1].SetActive(true);
+
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_on();
                 }
             }
         }
