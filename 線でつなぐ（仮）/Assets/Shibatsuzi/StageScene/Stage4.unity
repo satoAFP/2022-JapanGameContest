@@ -722,6 +722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 3133320674150281715, guid: cff81e838a1a41e40ac22c37891199dc, type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 1149334408}
     - target: {fileID: 4488827656597239332, guid: cff81e838a1a41e40ac22c37891199dc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2757,6 +2761,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &754290411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1285862886477623969, guid: 1f6f20133873c1946a1a6ee31b417108, type: 3}
+  m_PrefabInstance: {fileID: 2135714403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &756609056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3115567275276239192, guid: 4408166100ab8fb468253fd92f735327, type: 3}
@@ -3454,6 +3463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 1285862886477623973, guid: 1f6f20133873c1946a1a6ee31b417108, type: 3}
+      propertyPath: ClearTaskflag.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1285862888166691618, guid: 1f6f20133873c1946a1a6ee31b417108, type: 3}
       propertyPath: m_Name
       value: ClearDoor (2)
@@ -4639,6 +4652,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6763044880481132199, guid: a1c0370a4c1066941b64a280e4975029, type: 3}
   m_PrefabInstance: {fileID: 1274279758}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1149334408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1285862886477623969, guid: 1f6f20133873c1946a1a6ee31b417108, type: 3}
+  m_PrefabInstance: {fileID: 893289981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1167771651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6763044880481132199, guid: a1c0370a4c1066941b64a280e4975029, type: 3}
@@ -4850,6 +4868,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1454765421}
     m_Modifications:
+    - target: {fileID: 1788888578523210320, guid: 5913d467855bed44a8d2a409a477d77d, type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 754290411}
     - target: {fileID: 2366961515444626400, guid: 5913d467855bed44a8d2a409a477d77d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8080,6 +8102,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3210765134819990686, guid: 6e65a8481cec4a946b9f35b31987d3a9, type: 3}
+      propertyPath: SE_set
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3865379107292385625, guid: 6e65a8481cec4a946b9f35b31987d3a9, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -8204,6 +8230,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 3133320674150281715, guid: cff81e838a1a41e40ac22c37891199dc, type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 1149334408}
+    - target: {fileID: 3133320674150281715, guid: cff81e838a1a41e40ac22c37891199dc, type: 3}
+      propertyPath: Clear_num
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4488827656597239332, guid: cff81e838a1a41e40ac22c37891199dc, type: 3}
       propertyPath: m_RootOrder
       value: 8
