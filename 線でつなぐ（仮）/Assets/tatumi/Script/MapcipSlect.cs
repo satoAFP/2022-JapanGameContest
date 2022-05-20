@@ -99,10 +99,23 @@ public class MapcipSlect : MonoBehaviour
            // Onplayer = true;
         }
 
-        if (layerName == "Target")
+        //ライトオブジェクトがマップチップの上にある時、ブロックを置けないようにする
+        //（マップチップの上に乗っているときのみ！！！！）
+        if (other.CompareTag("Power_Supply"))
+        {
+            Debug.Log("バナナ");
+            Onobj = true;
+        }
+
+        //ライトオブジェクト(出口？)がマップチップの上にある時、ブロックを置けないようにする
+        //（マップチップの上に乗っているときのみ！！！！）
+        if (other.CompareTag("Noset"))
         {
             Debug.Log("夢色キッチン☆");
+            Onobj = true;
         }
+
+      
     }
 
     //プレイヤーが侵入したマップチップを離れたとき、置けない処理解除
