@@ -40,12 +40,7 @@ public class ColorJudgment_Sctipt : Base_Color_Script
                 Liting.SetActive(false);
                 Nonliting.SetActive(true);
             }
-            else
-            {
-                Liting.SetActive(true);
-                Nonliting.SetActive(false);
-            }
-
+          
             colorchange_signal = false;
         }
 
@@ -53,8 +48,8 @@ public class ColorJudgment_Sctipt : Base_Color_Script
         {
             if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
             {
-                Debug.Log("くりあー");
-                //ここにクリアの証的なコード
+                Liting.SetActive(true);
+                Nonliting.SetActive(false);
             }
         }
         else
