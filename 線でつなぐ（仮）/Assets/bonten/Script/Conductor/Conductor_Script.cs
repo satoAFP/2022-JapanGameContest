@@ -250,10 +250,6 @@ public class Conductor_Script : Base_Enegization
             //電気ついてるかの確認用変数をfalseにする
             Conductor_hit = false;
         }
-        else if(c.gameObject.tag=="Rotate")
-        {
-            rotate_hit = false;
-        }
     }
 
 
