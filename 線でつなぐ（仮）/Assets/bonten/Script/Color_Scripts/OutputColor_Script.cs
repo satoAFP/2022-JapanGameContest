@@ -14,6 +14,11 @@ public class OutputColor_Script : Base_Color_Script
     [SerializeField]
     protected int cnt;          // 一方通行のための優先度
 
+    [SerializeField]
+    GameObject efflight;
+
+    ParticleSystem.MainModule par;
+
     //アクセサー
     public int GetPrecedence()
     {
@@ -27,6 +32,7 @@ public class OutputColor_Script : Base_Color_Script
     private void Start()
     {
         colorchange_signal = false;
+        par = GetComponent<ParticleSystem>().main;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -36,8 +42,8 @@ public class OutputColor_Script : Base_Color_Script
             energization = true;
             cnt = 1;
             SetColor(collision.gameObject, ADDITION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-            if(this.gameObject.GetComponent<ClickObj>()!=null)
+            efflight.GetComponent<ColorLight_Script1>().SetLight(color);
+            if (this.gameObject.GetComponent<ClickObj>()!=null)
             {
                 this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
             }
@@ -88,7 +94,7 @@ public class OutputColor_Script : Base_Color_Script
                 energization = false;
                 //ColorInputから色を取得
                 SetColor(collision.gameObject.GetComponent<Base_Color_Script>().GetColor(), SUBTRACTION);
-                GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+                efflight.GetComponent<ColorLight_Script1>().SetLight(color);
             }
         }
         else if (collision.gameObject.tag == "ColorOutput")
@@ -113,7 +119,7 @@ public class OutputColor_Script : Base_Color_Script
                     }
                     //ColorInputから色を取得
                     SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
-                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+                    efflight.GetComponent<ColorLight_Script1>().SetLight(color);
                     if (this.gameObject.GetComponent<ClickObj>() != null)
                     {
                         this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
@@ -132,7 +138,7 @@ public class OutputColor_Script : Base_Color_Script
                     colorchange_signal = true;
                     //ColorInputから色を取得
                     SetColor(collision.gameObject, ADDITION);
-                    GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+                    efflight.GetComponent<ColorLight_Script1>().SetLight(color);
                     if (this.gameObject.GetComponent<ClickObj>() != null)
                     {
                         this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
@@ -188,7 +194,7 @@ public class OutputColor_Script : Base_Color_Script
             {
                 collision.gameObject.GetComponent<OutputColor_Script>().SetEnergization(false);
                 collision.gameObject.GetComponent<OutputColor_Script>().SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor(), SUBTRACTION);
-                collision.gameObject.GetComponent<Renderer>().material.color = new Color32((byte)collision.gameObject.GetComponent<OutputColor_Script>().color[COLOR_RED], (byte)collision.gameObject.GetComponent<OutputColor_Script>().color[COLOR_GREEN], (byte)collision.gameObject.GetComponent<OutputColor_Script>().color[COLOR_BLUE], (byte)200);
+                efflight.GetComponent<ColorLight_Script1>().SetLight(color);
                 if (this.gameObject.GetComponent<ClickObj>() != null)
                 {
                     this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
