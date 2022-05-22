@@ -13,6 +13,8 @@ public class player : MonoBehaviour
     [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.1f)]    float climbing_speed;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
 
+    [SerializeField, Header("カーソルの出現位置")] Vector2 reset_cursol_pos;
+
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
     [SerializeField, Header("通常カメラ")] GameObject camera;
@@ -65,7 +67,7 @@ public class player : MonoBehaviour
         
         //カーソルを消して、中央にロック
         Cursor.visible = false;
-        SetCursorPos(1024, 576);
+        SetCursorPos((int)reset_cursol_pos.x, (int)reset_cursol_pos.y);
         //my_camera.transform.rotation = Quaternion.identity;
 
         //カメラ関係初期化
@@ -107,7 +109,7 @@ public class player : MonoBehaviour
                 {
                     cursol_pop = true;
                     Cursor.visible = true;
-                    SetCursorPos(1024, 576);
+                    SetCursorPos((int)reset_cursol_pos.x, (int)reset_cursol_pos.y);
                 }
             }
             key_check_E = false;
@@ -280,7 +282,7 @@ public class player : MonoBehaviour
             if (cursol_pos_check.x > 950 || cursol_pos_check.x < 35 ||
                 cursol_pos_check.y > 540 || cursol_pos_check.y < 40)
             {
-                SetCursorPos(1024, 576);
+                SetCursorPos((int)reset_cursol_pos.x, (int)reset_cursol_pos.y);
                 cursol_reset = true;
             }
         }
