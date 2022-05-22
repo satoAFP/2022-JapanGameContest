@@ -72,6 +72,7 @@ public class Base_Color_Script : Base_Enegization
 
     public void SetColor(int[] _color, short col)
     {
+        
         if (col == ADDITION)
         {
             color[COLOR_RED]   += _color[COLOR_RED];

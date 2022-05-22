@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7416535302104172880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfbfe02ea2803cf4eada482ca058dee1, type: 3}
   m_Name: 
@@ -1301,6 +1301,7 @@ MonoBehaviour:
   turn_on_power: 0
   Door: {fileID: 0}
   Clear_num: 0
+  enegeronly: 0
   sound1: {fileID: 8300000, guid: 7b3dac917779bfd4b9b7be0897276667, type: 3}
 --- !u!82 &7304692841293753918
 AudioSource:

@@ -822,8 +822,8 @@ MonoBehaviour:
   colorchange_signal: 0
   color: 000000000000000000000000
   clearColor: ff000000ff00000000000000
-  OnLight: {fileID: 0}
-  OffLight: {fileID: 0}
+  Liting: {fileID: 0}
+  Nonliting: {fileID: 0}
   MCmode: 1
 --- !u!114 &6388170703484743695
 MonoBehaviour:
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energization: 0
   clearMusic: 0
-  muisc_num: 0
+  muisc_num: -1
   objs: []
   MCmode: 1
 --- !u!114 &4488827656597239320
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4488827656597239335}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfbfe02ea2803cf4eada482ca058dee1, type: 3}
   m_Name: 
@@ -874,6 +874,7 @@ MonoBehaviour:
   turn_on_power: 0
   Door: {fileID: 0}
   Clear_num: 0
+  enegeronly: 0
   sound1: {fileID: 8300000, guid: 7b3dac917779bfd4b9b7be0897276667, type: 3}
 --- !u!82 &-6467675479123758293
 AudioSource:
