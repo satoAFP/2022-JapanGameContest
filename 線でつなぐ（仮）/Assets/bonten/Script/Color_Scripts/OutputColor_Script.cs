@@ -261,5 +261,28 @@ public class OutputColor_Script : Base_Color_Script
                 }
             }
         }
+        else if (collision.gameObject.tag == "Rotate")
+        {
+            //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
+            //接触してたら先に脱色処理を行う
+            if (mixObj_hit)
+            {
+                MixObj.GetComponent<MixColor_Script>().Decolorization(color);
+            }
+            else if (clearObj_hit)
+            {
+                ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
+                ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+            }
+            energization = false;
+            colorchange_signal = false;
+            //自身の脱色処理を行ったのち、回転Objの脱色処理を行う
+            SetColor(collision.gameObject.GetComponent<Rotate_OutputColor>().GetColor(), SUBTRACTION);
+            //回転Obj脱色
+            collision.gameObject.GetComponent<Rotate_OutputColor>().SetColor(collision.gameObject.GetComponent<Rotate_OutputColor>().GetColor(), SUBTRACTION);
+            //回転Objの優先度を初期化
+            collision.gameObject.GetComponent<Rotate_OutputColor>().SetPrecedence(0);
+            efflight.GetComponent<ColorLight_Script1>().SetLight(color);
+        }
     }
 }
