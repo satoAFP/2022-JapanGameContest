@@ -25,7 +25,6 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         if (colculation == ADDITION)
         {
-            Debug.Log("Take Off");
             SetColor(parent.gameObject.GetComponent<Base_Color_Script>().GetColor());
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
             colorchange_signal = true;
@@ -33,7 +32,6 @@ public class MIxColorChild_Script : Base_Color_Script
         }
         else if (colculation == SUBTRACTION)
         {
-            Debug.Log("èüóòÇÃëÂäMê˘");
             GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
             colorchange_signal = true;
             colculation = NONE_COL;
