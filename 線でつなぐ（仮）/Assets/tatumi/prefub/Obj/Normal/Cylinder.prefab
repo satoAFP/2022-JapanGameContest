@@ -170,7 +170,6 @@ MonoBehaviour:
   power_cnt: 0
   contacing_conductor: 0
   giving_conductor: 0
-  eneger_line: {fileID: 6594421561823805400}
 --- !u!1001 &3886775852508421067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,11 +231,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
---- !u!1 &6594421561823805400 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7959141969651541011, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
-  m_PrefabInstance: {fileID: 3886775852508421067}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6594421561823805407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7959141969651541012, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}

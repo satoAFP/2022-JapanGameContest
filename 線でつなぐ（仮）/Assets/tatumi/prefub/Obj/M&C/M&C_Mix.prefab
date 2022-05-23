@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840362926418640118}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.4530002, y: 0.599, z: 0.02999866}
-  m_LocalScale: {x: 60, y: 110, z: 60}
+  m_LocalPosition: {x: -1.4530002, y: 0.259, z: 0.02999866}
+  m_LocalScale: {x: 25.500006, y: 110, z: 25.500006}
   m_Children:
   - {fileID: 5689840893230314991}
   m_Father: {fileID: 3624942584482038840}
@@ -344,7 +344,7 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  child: {fileID: 840362926418640118}
+  obj_list: []
 --- !u!1 &5929059983664985383
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8943496772141076492}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.076, y: -0.08700001, z: -0.01}
+  m_LocalPosition: {x: -1.1400005, y: -0.08700001, z: -0.010002255}
   m_LocalScale: {x: 0.49999994, y: 1.5000005, z: 0.49999994}
   m_Children: []
   m_Father: {fileID: 3624942584482038840}
@@ -563,8 +563,6 @@ MonoBehaviour:
   - 
   - 
   music_num: -1
-  MCmode: 1
-  eneger_line: {fileID: 0}
 --- !u!136 &8943496772141076482
 CapsuleCollider:
   m_ObjectHideFlags: 0

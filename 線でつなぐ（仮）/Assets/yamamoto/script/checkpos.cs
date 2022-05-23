@@ -32,15 +32,13 @@ public class checkpos : MonoBehaviour
     {
         //電源オブジェクトに判定ブロックが当たっているときその上にブロックを置けなくする
         //tag[Noset]　線の終点に置いてるライトオブジェクト
-        //if (other.gameObject.tag == "Power_Supply" || other.gameObject.tag == "Noset")
-        //{
-        //    Debug.Log("置けぬ");
-        //    BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = true;
-        //}
-        //else
-        //{
-        //    Debug.Log("なぜ置ける");
-        //    BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = false;
-        //}
+        if (other.gameObject.tag == "Power_Supply" || other.gameObject.tag == "Noset")
+        {
+            BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = true;
+        }
+        else
+        {
+            BoxCastRayTest.GetComponent<BoxCastRayTest>().NosetLight = false;
+        }
     }
 }

@@ -6,8 +6,9 @@ public class MixColor_Script : Base_Color_Script
 {
 
     //子オブジェクト取得用
-    [SerializeField]
     private GameObject child;
+    [SerializeField]
+    private List<GameObject> obj_list = new List<GameObject>();
     private bool decolor = false;
 
     //脱色処理
@@ -35,7 +36,8 @@ public class MixColor_Script : Base_Color_Script
     // Start is called before the first frame update
     void Start()
     {
-        
+        //子オブジェクトを取得
+        child = transform.GetChild(0).gameObject;
     }
 
     private void OnCollisionStay(Collision collision)

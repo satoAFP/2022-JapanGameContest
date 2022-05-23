@@ -28,11 +28,6 @@ public class BoxCastRayTest : MonoBehaviour
 
     private bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
 
-    private bool Pause = false;//一時中断フラグ
-
-    //連続で押されないための判定
-    private bool key_check_E = true;
-
 
     [System.NonSerialized]
     public bool Existence_Check = false;//判定ブロック存在フラグ
@@ -49,24 +44,10 @@ public class BoxCastRayTest : MonoBehaviour
 
     private GameObject cloneblock = null;//生成された判定ブロックを入れる
 
-    private bool second_set = false;//現在レイが当たっているマップチップで二回目以降置くときのフラグ
-
-    public AudioClip get_se;//取得SE
-
-    public AudioClip set_se;//設置SE
-    AudioSource audioSource;
-
-    Vector3 worldPos;//マップチップの座標保存用変数
-
-    private bool ray_Mapcip = false;//マップチップがレイに当たっていたら、ブロックマップチップの処理を通さない
-
     void Start()
     {
         grab = false;//初期化
-
-        //Componentを取得
-        audioSource = GetComponent<AudioSource>();
-
+       
     }
 
     // Update is called once per frame
@@ -79,25 +60,6 @@ public class BoxCastRayTest : MonoBehaviour
 
         Ray ray = new Ray(transform.position, transform.forward);//レイの設定
 
-        //Eキーでブロックの取得、設置をできないようにする
-        //再度Eキーを押すと、取得＆設置許可
-         if (Input.GetKey(KeyCode.E))
-        {
-            if (key_check_E)
-            {
-                if (Pause)
-                {
-                    Pause = false;
-                }
-                else
-                {
-                    Pause = true;//Pauseがtrueだとブロックの設置or取得をできないようにする
-                }
-            }
-            key_check_E = false;
-        }
-        else { key_check_E = true; }
-
         //壁にレイが接触しているか(接触していたら他のオブジェクトとのレイの処理を行わない）
         if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Wall")) || Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Door")))
         {
@@ -106,7 +68,7 @@ public class BoxCastRayTest : MonoBehaviour
         //Cubeのレイを飛ばしターゲットと接触しているか判定
         else if (grab==false)
         {
-            if (Physics.Raycast(ray, out hit, 3.0f, LayerMask.GetMask("Target")) && !Pause)
+            if (Physics.Raycast(ray, out hit, 5.0f, LayerMask.GetMask("Target")))
             {
                 Debug.Log(hit.transform.name);
 
@@ -128,8 +90,6 @@ public class BoxCastRayTest : MonoBehaviour
                 {
                     Target = hit.collider.gameObject;
 
-                    audioSource.PlayOneShot(get_se);//ブロック取得SE
-
                     //手に持つ用にオブジェクトのサイズと回転を記憶
                     TargetScale = Target.transform.localScale;
                     TargetRotate = Target.transform.eulerAngles;
@@ -148,22 +108,21 @@ public class BoxCastRayTest : MonoBehaviour
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
                
-                ////右クリックでオブジェクトを回転
-                //else if (Input.GetMouseButtonDown(1))
-                //{
-                //    hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
-                //}
+                //右クリックでオブジェクトを回転
+                else if (Input.GetMouseButtonDown(1))
+                {
+                    hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
+                }
 
             }
         }
         
         //マップチップにレイが接触しているか判定(rayを線に変更）
-        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")) && !Pause )
+        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")))
         {
-            ray_Mapcip = true;
-            worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
+            Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
-            if(Memmapcip == hit.collider.gameObject && second_set == false)
+            if(Memmapcip == hit.collider.gameObject)
             {
                 if (first_setblock)
                 {
@@ -171,13 +130,10 @@ public class BoxCastRayTest : MonoBehaviour
                     cloneblock = Instantiate(Judgeblock, new Vector3(worldPos.x, worldPos.y += 0.25f, worldPos.z), Quaternion.identity);
                     first_setblock = false;
                 }
-              
                 Debug.Log("aaa");
             }
             else
             {
-                //違うレイヤー＆マップチップにレイが当たるとフラグ初期化＆前の位置にいた判定ブロック削除
-                second_set = false;
                 first_setblock = true;
                 Existence_Check = false;
                 Destroy(cloneblock);
@@ -196,14 +152,12 @@ public class BoxCastRayTest : MonoBehaviour
                 //線の上に置けるオブジェクトかどうか判断して置ける処理を変更
                 //この時にライトオブジェクトがあるか判断する、あれば置けないようにする
                 //線の上に置ける
-                if (setlineblock && hit.collider.gameObject.GetComponent<MapcipSlect>().Onobj == false)
+                if (setlineblock && !NosetLight)
                 {
                     //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                     if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                     {
                         //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
-
-                        audioSource.PlayOneShot(set_se);//設置SE
 
                         //worldPos.y += Target.transformr.localPosition.y;
                         //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
@@ -221,7 +175,6 @@ public class BoxCastRayTest : MonoBehaviour
                         Target = null;//タ-ゲットの初期化
                         grab = false;//掴みフラグをfalse
                         setlineblock = false;//線の上に置けるオブジェクト設定を初期化
-                        second_set = true;//現在のマップチップで２回目のブロックを置く処理
                     }
                 }
                 //線の上に置けない
@@ -251,68 +204,19 @@ public class BoxCastRayTest : MonoBehaviour
                             Target = null;//タ-ゲットの初期化
                             grab = false;//掴みフラグをfalse
                             setlineblock = false;//線の上に置けるオブジェクト設定を初期化
-                            second_set = true;//現在のマップチップで２回目のブロックを置く処理
                         }
                     }
                 }
             }
 
-            //現在の選択中のオブジェクト（マップチップ）を記憶  
-            Memmapcip = hit.collider.gameObject;
-
         }
         else
         {
-            ray_Mapcip = false;//レイから外れるとtrue
             Existence_Check = false;
         }
 
-         //マップチップ(ブロックの上用）のレイ判定
-        if (Physics.Raycast(ray, out hit, 2.0f, LayerMask.GetMask("MapcipB")) && !Pause && !ray_Mapcip)
-        {
-            worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
-
-            if (grab == true)
-            {
-                hit.collider.gameObject.GetComponent<MapcipSlect>().ChangeMaterial();//掴んでるときのみ選択先の場所に色を出す
-            }
-
-            //左クリックされたときにマップチップの座標をTargetに上書きする
-            if (Input.GetMouseButtonDown(0) && grab == true && hit.collider.gameObject.GetComponent<MapcipSlect>().Onplayer == false)
-            {
-                //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
-                if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
-                {
-                    Debug.Log("敵だね");
-
-                    //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
-                    worldPos.y += 0.5f;//Y軸を固定する
-
-                    //手に持ったオブジェクトを元の大きさに戻す
-                    Target.gameObject.transform.parent = null;
-                    Target.transform.localScale = TargetScale;
-                    Target.transform.localEulerAngles = TargetRotate;
-                    //手に持ったオブジェクトの当たり判定を復活させる
-                    Target.GetComponent<BoxCollider>().isTrigger = false;
-                    Target.GetComponent<Rigidbody>().isKinematic = false;
-
-                    Target.transform.position = worldPos;
-                    Target = null;//タ-ゲットの初期化
-                    grab = false;//掴みフラグをfalse
-                    setlineblock = false;//線の上に置けるオブジェクト設定を初期化
-                    second_set = true;//現在のマップチップで２回目のブロックを置く処理
-
-                }
-            }
-        }
-        else
-        {
-          
-           // Existence_Check = false;
-        }
-
-
-
+        //現在の選択中のオブジェクト（マップチップ）を記憶  
+        Memmapcip = hit.collider.gameObject;
         //-----------使ってないレイヤーの処理（コメント解除で使えるよ！）--------------------
 
 
@@ -367,16 +271,16 @@ public class BoxCastRayTest : MonoBehaviour
 
         //-----------------------------------------------------------------------------------------
 
-
+        
         //ブロックを持っている時に回転させる
-        if (Input.GetMouseButtonDown(1) && grab == true && !Pause)
+        if (Input.GetMouseButtonDown(1) && grab ==true)
         {
            // Debug.Log("あばばばばばば");
             TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
         }
 
         //ドアにレイが接触しているか判定(rayを線に変更）
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")) && !Pause)
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")))
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
             {
@@ -389,7 +293,7 @@ public class BoxCastRayTest : MonoBehaviour
         }
 
         //ボタンがレイに接触しているか判定
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Button")) && !Pause)
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Button")))
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
             {

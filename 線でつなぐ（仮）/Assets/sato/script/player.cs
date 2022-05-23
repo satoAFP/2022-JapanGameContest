@@ -12,12 +12,12 @@ public class player : MonoBehaviour
     [SerializeField, Header("ジャンプ力"), Range(0, 10)]             float jump_power;
     [SerializeField, Header("壁を上る速度"), Range(0.01f, 0.1f)]    float climbing_speed;
     [SerializeField, Header("マウス上下の限界"), Range(0, 0.5f)]     float mouse_max_y;
-
-    [SerializeField, Header("カーソルの出現位置")] Vector2 reset_cursol_pos;
+    [SerializeField, Header("フェードの時間"), Range(0.5f, 3.0f)]    float fade_time;
 
     //ゲームオブジェクトの取得
     [SerializeField, Header("主人公のカメラセット"), Header("ゲームオブジェクトの取得")] GameObject my_camera;
     [SerializeField, Header("通常カメラ")] GameObject camera;
+    [SerializeField, Header("fade用image")] GameObject fade;
     [SerializeField, Header("climbing_check_head")]     GameObject head;
     [SerializeField, Header("climbing_check_leg")]      GameObject leg;
 
@@ -67,7 +67,7 @@ public class player : MonoBehaviour
         
         //カーソルを消して、中央にロック
         Cursor.visible = false;
-        SetCursorPos((int)reset_cursol_pos.x, (int)reset_cursol_pos.y);
+        SetCursorPos(1024, 576);
         //my_camera.transform.rotation = Quaternion.identity;
 
         //カメラ関係初期化
@@ -109,7 +109,7 @@ public class player : MonoBehaviour
                 {
                     cursol_pop = true;
                     Cursor.visible = true;
-                    SetCursorPos((int)reset_cursol_pos.x, (int)reset_cursol_pos.y);
+                    SetCursorPos(1024, 576);
                 }
             }
             key_check_E = false;
@@ -120,46 +120,40 @@ public class player : MonoBehaviour
         //メニュー表示中は動けない
         if (!cursol_pop)
         {
-            //歩いていないとき足音を消す
-           gameObject.GetComponent<AudioSource>().mute = true;
-
             //マウス操作-----------------------------------------------------------------------------------------
             CameraRotationMouseControl();
+
+
 
             //左右上下の移動処理---------------------------------------------------------------------------------
             if (Input.GetKey(KeyCode.W))
             {
-                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(0, 0, move_power);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
 
-                //ブロックを上る処理
-                //if (!climbing_check_head)
-                //{
-                //    if (climbing_check_leg)
-                //    {
-                //        this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
-                //    }
-                //}
+                if (!climbing_check_head)
+                {
+                    if (climbing_check_leg)
+                    {
+                        this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
+                    }
+                }
             }
             if (Input.GetKey(KeyCode.A))
             {
-                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(-move_power, 0, 0);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(0, 0, -move_power);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(move_power, 0, 0);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
@@ -189,31 +183,51 @@ public class player : MonoBehaviour
 
 
         //グレースケールカメラ切り替え
-        //if (Input.GetKey(KeyCode.C))
-        //{
-        //    if (key_check_C)
-        //    {
-        //        //フェードオン
-        //        fade_check = true;
+        if (Input.GetKey(KeyCode.C))
+        {
+            if (key_check_C)
+            {
+                //フェードオン
+                fade_check = true;
 
-        //        //カメラ切り替え
-        //        if (camera_change)
-        //        {
-        //            camera.GetComponent<PostEffect>().enabled = true;
-        //            camera_change = false;
-        //        }
-        //        else
-        //        {
-        //            camera.GetComponent<PostEffect>().enabled = false;
-        //            camera_change = true;
-        //        }
-        //    }
-        //    key_check_C = false;
-        //}
-        //else { key_check_C = true; }
+                //カメラ切り替え
+                if (camera_change)
+                {
+                    camera.GetComponent<PostEffect>().enabled = true;
+                    camera_change = false;
+                }
+                else
+                {
+                    camera.GetComponent<PostEffect>().enabled = false;
+                    camera_change = true;
+                }
+            }
+            key_check_C = false;
+        }
+        else { key_check_C = true; }
 
 
 
+        //フェード処理
+        if(fade_check)
+        {
+            //フェード実行
+            if (fade_updown)
+                fade.GetComponent<Image>().color += new Color(0, 0, 0, 0.1f);
+            else
+                fade.GetComponent<Image>().color -= new Color(0, 0, 0, 0.1f);
+
+            //透過レベルの上げ下げ切り替え
+            if (fade.GetComponent<Image>().color.a >= fade_time)
+            {
+                fade_updown = false;
+            }
+            else if (fade.GetComponent<Image>().color.a <= 0)
+            {
+                fade_updown = true;
+                fade_check = false;
+            }
+        }
 
 
         //カーソルの座標記憶
@@ -288,7 +302,7 @@ public class player : MonoBehaviour
             if (cursol_pos_check.x > 950 || cursol_pos_check.x < 35 ||
                 cursol_pos_check.y > 540 || cursol_pos_check.y < 40)
             {
-                SetCursorPos((int)reset_cursol_pos.x, (int)reset_cursol_pos.y);
+                SetCursorPos(1024, 576);
                 cursol_reset = true;
             }
         }

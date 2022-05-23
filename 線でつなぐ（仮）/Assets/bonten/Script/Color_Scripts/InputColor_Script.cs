@@ -13,10 +13,5 @@ public class InputColor_Script : Base_Color_Script
     public void Update()
     {
         if (energization == true) GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
-
-        if (this.gameObject.GetComponent<ClickObj>() != null)
-        {
-            this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
-        }
     }
 }
