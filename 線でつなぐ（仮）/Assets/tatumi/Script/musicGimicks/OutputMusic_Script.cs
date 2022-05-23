@@ -17,7 +17,8 @@ public class OutputMusic_Script : Base_Enegization
     private string InColor_name,OutColor_name;
 
     //色同居判定
-    private bool MCmode = false;
+    [SerializeField]
+    private bool MCmode;
 
     [SerializeField, Header("電線色")]
     private GameObject eneger_line;
@@ -67,7 +68,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
                 energization = true;
                 Input_Hit = true;
-                MCmode = false;
+                //MCmode = false;
             }
             else
             {
@@ -75,7 +76,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = -1;
                 energization = false;
                 Input_Hit = false;
-                MCmode = false;
+               // MCmode = false;
             }
         }
         //SE判定のみの場合(Out)
@@ -88,7 +89,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
                 Input_Hit = true;
                 energization = true;
-                MCmode = false;
+               // MCmode = false;
             }
             else if(collision.gameObject.GetComponent<OutputMusic_Script>())
             {
@@ -98,7 +99,7 @@ public class OutputMusic_Script : Base_Enegization
                     music_num = -1;
                     Input_Hit = false;
                     energization = false;
-                    MCmode = false;
+                    //MCmode = false;
                 }
             }
         }
@@ -111,7 +112,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<InputMusic_Script>().REset_num();
                 energization = true;
                 Input_Hit = true;
-                MCmode = true;
+                //MCmode = true;
             }
             else
             {
@@ -119,7 +120,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = -1;
                 energization = false;
                 Input_Hit = false;
-                MCmode = true;
+               // MCmode = true;
             }
         }
         //色も判定の場合(Out)
@@ -132,7 +133,7 @@ public class OutputMusic_Script : Base_Enegization
                 music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
                 Input_Hit = true;
                 energization = true;
-                MCmode = true;
+                //MCmode = true;
             }
             else if (collision.gameObject.GetComponent<OutputMusic_Script>())
             {
@@ -142,7 +143,7 @@ public class OutputMusic_Script : Base_Enegization
                     music_num = -1;
                     Input_Hit = false;
                     energization = false;
-                    MCmode = true;
+                    //MCmode = true;
                 }
             }
         }
@@ -156,14 +157,14 @@ public class OutputMusic_Script : Base_Enegization
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
-            MCmode = false;
+           // MCmode = false;
         }
         else if (collision.gameObject.tag == "MusicOutput")
         {
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
-            MCmode = false;
+            //MCmode = false;
         }
         //抜けたとき電源音番号初期化(色付き)
         else if (collision.gameObject.name.Contains(InColor_name) == true)
@@ -171,14 +172,14 @@ public class OutputMusic_Script : Base_Enegization
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
-            MCmode = true;
+            //MCmode = true;
         }
         else if (collision.gameObject.name.Contains(OutColor_name) == true)
         {
             music_num = -1;//何もなし
             energization = false;
             Input_Hit = false;
-            MCmode = true;
+           // MCmode = true;
         }
     }
 
