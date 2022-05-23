@@ -13,7 +13,8 @@ public class DoorOpoen : MonoBehaviour
     private bool taskflag = false;
     private int num;
 
-    [SerializeField, Header("ワープゲートとして使うか(true)、ステージのドアとして使うか(false)")] public bool warp_door;
+    [SerializeField, Header("ワープゲートとして使うか(true)")] public bool warp_door;
+    [SerializeField, Header("ゴール時のワープゲートとして使うか(true)")] public bool goal_warp_door;
     [SerializeField, Header("ドアのアニメーション")] public Animator door;
     [SerializeField, Header("ドアノブのアニメーション")] public Animator doorknob;
 
@@ -67,12 +68,22 @@ public class DoorOpoen : MonoBehaviour
                 door.SetBool("open", true);
                 doorknob.SetBool("open", true);
                 audioSource.PlayOneShot(sound1);
+
+                //最後の部屋でゴール時ワープする
+                if (goal_warp_door)
+                {
+                    door.SetBool("open", true);
+                    doorknob.SetBool("open", true);
+                    scene_move_panel.SetActive(true);
+                }
             }
             else
             {
                 door.SetBool("open", false);
                 doorknob.SetBool("open", false);
             }
+
+            
         }
     }
 
