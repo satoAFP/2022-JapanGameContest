@@ -15,12 +15,6 @@ public class Rotate_Script : Conductor_Script
     [NamedArrayAttribute(new string[] { "right", "left" })]
     GameObject[] AssistObj = new GameObject[2];
 
-
-    public void ThisSetPower(int pow)
-    {
-
-    }
-
     // Start is called before the first frame update
     void Start()
     {

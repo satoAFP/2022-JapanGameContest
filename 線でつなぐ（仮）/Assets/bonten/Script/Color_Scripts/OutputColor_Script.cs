@@ -158,6 +158,67 @@ public class OutputColor_Script : Base_Color_Script
                 }
             }
         }
+        else if(collision.gameObject.tag == "Rotate")
+        {
+            //電気が通っているかどうか確認。
+            if (collision.gameObject.GetComponent<Rotate_OutputColor>().GetEnergization() == false && energization == true)
+            {
+                //当たっているObjの優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
+                if (collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence())
+                {
+                    Debug.Log("2");
+                    energization = false;
+                    //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
+                    //接触してたら先に脱色処理を行う
+                    if (mixObj_hit)
+                    {
+                        MixObj.GetComponent<MixColor_Script>().Decolorization(color);
+                    }
+                    else if (clearObj_hit)
+                    {
+                        ClearObj.GetComponent<Base_Color_Script>().SetColor(color, SUBTRACTION);
+                        ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+                    }
+                    //ColorInputから色を取得
+                    SetColor(collision.gameObject.GetComponent<Rotate_OutputColor>().GetColor());
+                    efflight.GetComponent<ColorLight_Script1>().SetLight(color);
+                    if (this.gameObject.GetComponent<ClickObj>() != null)
+                    {
+                        this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
+                    }
+                }
+            }
+            else if (collision.gameObject.GetComponent<Rotate_OutputColor>().GetEnergization() == true && energization == false)
+            {
+                //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
+                if ((collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence()))
+                {
+                    //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
+                    cnt = collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() + 1;
+                    energization = true;
+                    colorchange_signal = true;
+                    //ColorInputから色を取得
+                    SetColor(collision.gameObject, ADDITION);
+                    efflight.GetComponent<ColorLight_Script1>().SetLight(color);
+                    if (this.gameObject.GetComponent<ClickObj>() != null)
+                    {
+                        this.gameObject.GetComponent<ClickObj>().SetColor(new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200));
+                    }
+                    //自身の脱色を行った後に、MixColorObjおよびClear判定Objと接触してるか確認し
+                    //接触してたら色を入れる
+                    if (mixObj_hit)
+                    {
+                        MixObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
+                        MixObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+                    }
+                    else if (clearObj_hit)
+                    {
+                        ClearObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
+                        ClearObj.GetComponent<Base_Color_Script>().SetColorChange(true);
+                    }
+                }
+            }
+        }
     }
 
     public void OnCollisionExit(Collision collision)
