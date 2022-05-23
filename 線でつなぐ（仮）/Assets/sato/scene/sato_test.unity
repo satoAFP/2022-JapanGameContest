@@ -1521,7 +1521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &991303662
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4498,6 +4498,18 @@ PrefabInstance:
     - target: {fileID: 2955414713751523939, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.915
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982469951367608701, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: m_Pitch
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982469951367608701, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982469951367608701, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4184857672909650829, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: ani_speed
