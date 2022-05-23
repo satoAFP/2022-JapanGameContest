@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: ba677a7758663df4da65e7c2342c0922, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -520,6 +520,10 @@ PrefabInstance:
     - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: m_Name
       value: clock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
@@ -966,6 +970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: clock (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
 --- !u!1001 &232093846
@@ -1246,6 +1254,10 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.48
       objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
+      objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1450,6 +1462,10 @@ PrefabInstance:
     - target: {fileID: 234150237345202839, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
       objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
@@ -1947,6 +1963,10 @@ PrefabInstance:
     - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: m_Name
       value: clock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
@@ -3993,6 +4013,10 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
+      objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -4364,6 +4388,10 @@ PrefabInstance:
     - target: {fileID: 234150237345202839, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
       objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
@@ -4972,6 +5000,10 @@ PrefabInstance:
     - target: {fileID: 234150237345202839, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
       objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
@@ -5847,6 +5879,10 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
+      objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -5981,6 +6017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: clock
       objectReference: {fileID: 0}
+    - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
 --- !u!1001 &1644593178
@@ -5993,6 +6033,10 @@ PrefabInstance:
     - target: {fileID: 234150237345202839, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
       objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
@@ -7307,6 +7351,10 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.48
       objectReference: {fileID: 0}
+    - target: {fileID: 2132287015211926288, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0085
+      objectReference: {fileID: 0}
     - target: {fileID: 4307690091455122946, guid: 3d5e2bc7082d4f0448bb011d85014733, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -7436,6 +7484,10 @@ PrefabInstance:
     - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: m_Name
       value: clock (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191362931832533919, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
