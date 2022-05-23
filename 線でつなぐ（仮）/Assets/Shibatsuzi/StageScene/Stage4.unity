@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &3404387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5689840893230314984, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
+  m_PrefabInstance: {fileID: 127709428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &10458969
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +722,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8943496772141076485, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
+      propertyPath: eneger_line
+      value: 
+      objectReference: {fileID: 3404387}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3c2b43d6ed62a249b549a69e2ff0edd, type: 3}
 --- !u!1001 &212339680
@@ -3798,7 +3807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5546672774901355802, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.94
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5546672774901355802, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4978,6 +4987,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 5528962187279440905, guid: 5913d467855bed44a8d2a409a477d77d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 68b1b131e376bbe42a3894a055c834c2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5913d467855bed44a8d2a409a477d77d, type: 3}
 --- !u!1001 &1243730613
