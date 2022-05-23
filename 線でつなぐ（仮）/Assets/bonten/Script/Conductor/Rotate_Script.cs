@@ -5,15 +5,21 @@ using UnityEngine;
 public class Rotate_Script : Conductor_Script
 {
 
-    private const int OWN = 0;         //このオブジェクト
-    private const int PARTHER = 1;     //それ以外のオブジェクト
+    private const int RIGHT = 0;         //このオブジェクト
+    private const int LEFT = 1;     //それ以外のオブジェクト
 
     public Material[] mat = new Material[2];//変更したいマテリアルをセット
     Material[] mats;
 
-    [NamedArrayAttribute(new string[] { "OWN", "PARTHER"})]
-    [SerializeField] 
-    private bool[] vertical=new bool[2];        //縦か横か向いている方向を記憶しておくための変数。trueで0or180,falseで90or270。
+    [SerializeField]
+    [NamedArrayAttribute(new string[] { "right", "left" })]
+    GameObject[] AssistObj = new GameObject[2];
+
+
+    public void ThisSetPower(int pow)
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,36 +30,12 @@ public class Rotate_Script : Conductor_Script
     // Update is called once per frame
     public new void Update()
     {
-        //自身の角度を判別
-        if (this.gameObject.transform.localEulerAngles.y == 0 || this.gameObject.transform.localEulerAngles.y == -180) vertical[OWN] = true;
-        else if (this.gameObject.transform.localEulerAngles.y == 90 || this.gameObject.transform.localEulerAngles.y == -90) vertical[OWN] = false;
-
-        //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
-        if ((hitting_insulator == true || Insulator_hit == true || leaving_Conductor == true || contacing_conductor == 0 || vertical[OWN] != vertical[PARTHER]) && Power_hit == false)
+        if (leaving_Conductor == true)
         {
-            GivePowerReSet();
-            if (leaving_Conductor == true)
-            {
-                power_cnt = 0;
-                leaving_Conductor = false;
-            }
-            else if(vertical[OWN] != vertical[PARTHER])
-            {
-                power_save = power_cnt;
-                power_cnt = 0;
-                energi_check = true;
-            }
+            energization = false;
+            power_cnt = 0;
+            leaving_Conductor = false;
         }
-        else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
-        {
-            if(vertical[OWN]==vertical[PARTHER])
-            {
-                energization = true;
-            }
-        }
-
-
-
         if (energization == true)
         {
             //オブジェクトの色をシアンにする
@@ -64,6 +46,19 @@ public class Rotate_Script : Conductor_Script
             //オブジェクトの色をグレーにする
             GetComponent<Renderer>().material.color = Color.gray;
 
+        }
+    }
+
+    public new void OnCollisionExit(Collision c)
+    {
+
+        if (c.gameObject.tag == "Conductor")
+        {
+            //導体と接触してる総数を1個へらす
+            contacing_conductor--;
+            leaving_Conductor = true;
+            //電気ついてるかの確認用変数をfalseにする
+            Conductor_hit = false;
         }
     }
 
@@ -80,15 +75,41 @@ public class Rotate_Script : Conductor_Script
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
 
-            if (c.gameObject.transform.localEulerAngles.y == 0 || c.gameObject.transform.localEulerAngles.y == -180 || c.gameObject.transform.localEulerAngles.y == 180) vertical[PARTHER] = true;
-            else if (c.gameObject.transform.localEulerAngles.y == 90 || c.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = false;
-
-
                 //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
                 if (energization == true)
                 {
                     GivePowerReSet();
                 }
+        }
+    }
+
+    public new void OnCollisionStay(Collision collision)
+    {
+        //電気を遮断する処理。絶縁体と接触、自分のオブジェクトよりパワーカウントが大きいオブジェクトが絶縁体と接触していると電気遮断
+        if (collision.gameObject.tag == "Conductor")
+        {
+            if (Insulator_hit || hitting_insulator) 
+            {
+                energization = false;
+            }
+            else if (power_cnt >= ELECTORIC_POWER )
+            {
+                if(AssistObj[RIGHT].GetComponent<RotateAssist>().GetHitConductor()&& AssistObj[LEFT].GetComponent<RotateAssist>().GetHitConductor())
+                {
+                    energization = true;
+                    power_save = power_cnt;
+                    collision.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
+                    collision.gameObject.GetComponent<Conductor_Script>().SetEnergization(true);
+                }
+                else
+                {
+                    energization = false;
+                    if(power_cnt>collision.gameObject.GetComponent<Conductor_Script>().GetPower())
+                    {
+                        collision.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_cnt);
+                    }
+                }
+            }
         }
     }
 }

@@ -28,18 +28,26 @@ public class Conductor_Script : Base_Enegization
     protected int contacing_conductor = 0;         //接触している導体の数
     [SerializeField]
     protected int giving_conductor = 0;            //電気を分け与えた導体の数
+    [SerializeField]
+    private bool rotate_hit = false;
 
-
+    [SerializeField, Header("電線色")]
+    private GameObject eneger_line;
     public void AlreadyGetEnegy()
     {
         giving_conductor++;
     }
     public void GivePowerReSet()
     {
+        if(rotate_hit)Debug.Log("yurusan");
         energization = false;
         power_gave = false;
         giving_conductor = 0;
     }
+
+    //電力のゲッター
+    public int GetPower() => power_cnt;
+    
     //電力の優先度、数小さい程電源に近いので優先する
     //set_p→自身のpower_cnt
     public void SetPower(int set_p)
@@ -87,7 +95,11 @@ public class Conductor_Script : Base_Enegization
         Power_hit = turn_on;
     }
 
-    //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
+    /// <summary>
+    /// 絶縁体の処理。セット元のより自分のパワーが小さければ絶縁されない
+    /// </summary>
+    /// <param name="set_insul">セット元が絶縁体と接触しているかの成否</param>
+    /// <param name="pow">セット元のパワーの値</param>
     public void SetInsulator(bool set_insul, int pow)
     {
         if (pow > power_cnt && pow != 0) 
@@ -96,40 +108,27 @@ public class Conductor_Script : Base_Enegization
         }
     }
 
+    /// <summary>
+    /// 絶縁体と接触しているかどうか。
+    /// </summary>
+    /// <returns></returns>
+    public bool GetInsulator()
+    {
+        if(Insulator_hit||hitting_insulator)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     //導体と離れた時の処理
     public void SetLeave(bool leave, int pow)
     {
         if (pow > power_cnt)
         {
-            if(this.gameObject.name=="Cube")
-            {
-                /*バグ原因
-                 電源からつながってるコンダクター(以下シリンダー1)が先にこの処理を通るとCubeコンダクターのパワーが0になる
-                 それによって、Cubeコンダクターからつながってるコンダクター(以下シリンダー3)のExit処理に入り、このSetLeave
-                 に入ってもCubeパワーが0(引数powの方)になってるのでこのif文に入らない
-
-                フローチャート的に描くと
-                Cubeが離れる
-                ↓
-                先にシリンダー1のExitがCubeに対して反応し、CubeのPower_cntが0になる
-                ↓
-                その後、CubeのExitがシリンダー3に対して反応し、シリンダー3の電気を消そうとする(SetLeaveに入る)が
-                しかしCubeのPower_cntが0になっているのでif文の中に入らない
-                ↓
-                その結果、電源とつながってる導体が離れても電気がつき続ける
-
-                やりたい処理
-                Cubeが離れる
-                ↓
-                先にCubeのExitがシリンダー1、およびシリンダー3に反応させる
-                ↓
-
-                 */
-                Debug.Log(this.gameObject.name);
-                Debug.Log(power_cnt);
-                Debug.Log(pow);
-            }
-
             power_save = power_cnt;
             leaving_Conductor = leave;
             Conductor_hit = false;
@@ -175,18 +174,21 @@ public class Conductor_Script : Base_Enegization
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
+            Debug.Log(energization);
         }
 
 
         if (energization == true)
         {
-            //オブジェクトの色をシアンにする
-            GetComponent<Renderer>().material.color = new Color32(0, 255, 255, 200);
+            //オブジェクトの色を表示
+            eneger_line.SetActive(true);
+            
+                
         }
         else if (energization == false)
         {
-            //オブジェクトの色をグレーにする
-            GetComponent<Renderer>().material.color = new Color32(192, 192, 192, 200);
+            //オブジェクトの色を非表示
+            eneger_line.SetActive(false);
 
         }
 
@@ -209,7 +211,7 @@ public class Conductor_Script : Base_Enegization
             //Insulator_hitをtrueにする
             Insulator_hit = true;
         }
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.tag == "Conductor" || c.gameObject.tag == "Rotate")
         {
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
@@ -240,7 +242,7 @@ public class Conductor_Script : Base_Enegization
             GivePowerReSet();
         }
         //導体と離れたとき
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.tag == "Conductor" || c.gameObject.tag == "Rotate")
         {
             //導体と接触してる総数を1個へらす
             contacing_conductor--;
@@ -282,9 +284,8 @@ public class Conductor_Script : Base_Enegization
             //このオブジェクトのパワーが0になったことにより、隣のオブジェクトもパワーが0になるかどうか確認する
             if (power_cnt == 0 && energi_check == true)
             {
-                
                 //隣のオブジェクトのパワーの大きさがこのオブジェクトより大きければ、そのオブジェクトは絶縁されない
-                c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
+                    c.gameObject.GetComponent<Conductor_Script>().SetPower(0, power_save);
                 giving_conductor++;
                 if (giving_conductor == contacing_conductor)
                 {

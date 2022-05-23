@@ -61,5 +61,20 @@ public class ClickObj : Base_Enegization
        
     }
 
+    public void SetColor(Color32 a)
+    {
+        for(int i=0;i!=2;i++)
+        {
+            mat[i].color = a;
+            if(i==1)
+            {
+                //アウトライン対応
+                mat[i].SetColor("_MainColor", a);
+            }
+        }
+
+        Debug.Log(a);
+    }
+
    
 }

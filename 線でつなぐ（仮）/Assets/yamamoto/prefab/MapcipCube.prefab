@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3934397434515396410}
-  m_Mesh: {fileID: 4068373912626513877, guid: c144fbee7fd3745459cfff4833ab7b35, type: 3}
+  m_Mesh: {fileID: 4068373912626513877, guid: 88ae029ee3e51fe478246145b78d8fea, type: 3}
 --- !u!23 &1481388409386531592
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe0c94b36cfd06c4fb7f4f4d9e5c1edb, type: 2}
+  - {fileID: 2100000, guid: 6439a5948d953af4baab03a1cf4badb6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,6 +110,8 @@ MonoBehaviour:
   power_cnt: 0
   contacing_conductor: 0
   giving_conductor: 0
+  rotate_hit: 0
+  eneger_line: {fileID: 0}
 --- !u!54 &3913197719941650277
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,8 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energization: 0
   mat:
-  - {fileID: -1360991219368177298, guid: 9498995e7ea1f2e46baf0ec102c7a387, type: 3}
-  - {fileID: 2100000, guid: 75601ca377f0a12478fa6e3ecec3eec2, type: 2}
+  - {fileID: 2100000, guid: 6439a5948d953af4baab03a1cf4badb6, type: 2}
+  - {fileID: 2100000, guid: 2ee8f48577bd33646bb76985fcd2e9b9, type: 2}
   Rotationflag: 0
   vertical: 0
   Setlineblock: 0
