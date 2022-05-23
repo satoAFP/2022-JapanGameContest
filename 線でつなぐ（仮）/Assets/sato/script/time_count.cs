@@ -9,13 +9,19 @@ public class time_count : MonoBehaviour
     [SerializeField, Header("終了時間(秒)")] float total_time;
     [SerializeField, Header("ダメージフェード")] GameObject fade;
     [SerializeField, Header("shut_out")] GameObject shut_out;
+    [SerializeField, Header("時計だけ動かしたいときtrue")] bool clock_only;
 
-    private int minute;
-    private int seconds;
-    private int count;
-    private bool time_move = true;
+    [SerializeField, Header("SE_心音")] AudioSource heart_beat;
+    [SerializeField, Header("SE_吐息")] AudioSource breath;
 
-    [SerializeField, Header("shut_out")] private float fade_speed;
+
+    private int minute;             //分
+    private int seconds;            //秒
+    private float mem_total_time;   //終了時間記憶用
+    private int count;              //1秒刻みのカウント
+    private bool time_move = true;  //メニュー表示中は出さない
+    private float fade_speed;
+    private float sound_fade_speed;
 
     //連続で押されないための判定
     private bool key_check_E = true;
@@ -24,11 +30,13 @@ public class time_count : MonoBehaviour
     void Start()
     {
         fade_speed = 1 / total_time;
+        sound_fade_speed = 0.4f / total_time;
+        mem_total_time = total_time;
+        count = (int)total_time - 1;
 
         minute = (int)total_time / 60;
         seconds = (int)total_time % 60;
         total_time = (int)total_time % 60;
-        count = (int)total_time - 1;
 
     }
 
@@ -59,25 +67,32 @@ public class time_count : MonoBehaviour
                 total_time = 60;
             }
             total_time -= Time.deltaTime;
+            mem_total_time -= Time.deltaTime;
             seconds = (int)total_time;
 
             //時間の表示
             gameObject.GetComponent<TextMesh>().text = minute.ToString("d2") + ":" + seconds.ToString("d2");
 
-            //フェード移行処理
-            if ((int)total_time == count)
+            //時計だけ動かしたいとき
+            if (!clock_only)
             {
-                fade.GetComponent<Image>().color += new Color(0, 0, 0, fade_speed);
-                count--;
+                //フェード移行処理
+                if ((int)mem_total_time == count)
+                {
+                    fade.GetComponent<Image>().color += new Color(0, 0, 0, fade_speed);
+                    heart_beat.volume += sound_fade_speed;
+                    breath.volume += sound_fade_speed;
+                    count--;
+                }
+
+                //死んだときのフェード
+                if ((int)mem_total_time <= 0)
+                    shut_out.GetComponent<Image>().color += new Color(0, 0, 0, 0.01f);
+
+                //画面が光ってステージセレクトに戻される
+                if (shut_out.GetComponent<Image>().color.a >= 1.0f)
+                    SceneManager.LoadScene("STAGE_SELECT");
             }
-
-            //死んだときのフェード
-            if ((int)total_time <= 0)
-                shut_out.GetComponent<Image>().color += new Color(0, 0, 0, 0.01f);
-
-            //画面が光ってステージセレクトに戻される
-            if(shut_out.GetComponent<Image>().color.a>=0.5f)
-                SceneManager.LoadScene("STAGE_SELECT");
 
         }
     }

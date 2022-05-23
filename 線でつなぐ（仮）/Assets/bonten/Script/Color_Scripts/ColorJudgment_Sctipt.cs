@@ -37,15 +37,17 @@ public class ColorJudgment_Sctipt : Base_Color_Script
             //前職が0なら消灯
             if (color[COLOR_RED] == 0 && color[COLOR_GREEN] == 0 && color[COLOR_BLUE] == 0)
             {
-                Liting.SetActive(false);
-                Nonliting.SetActive(true);
-            }
-            else
-            {
-                Liting.SetActive(true);
-                Nonliting.SetActive(false);
-            }
+                //通電ならOFFる
+                if (Liting.activeSelf == true)
+                {
+                    Liting.SetActive(false);
+                    Nonliting.SetActive(true);
 
+
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_off();
+                }
+            }
+          
             colorchange_signal = false;
         }
 
@@ -53,8 +55,13 @@ public class ColorJudgment_Sctipt : Base_Color_Script
         {
             if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
             {
-                Debug.Log("くりあー");
-                //ここにクリアの証的なコード
+                //通電ならONる
+                if (Liting.activeSelf == false)
+                {
+                    Liting.SetActive(true);
+                    Nonliting.SetActive(false);
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_on();
+                }
             }
         }
         else

@@ -176,7 +176,7 @@ public class BoxCastRayTest : MonoBehaviour
                 //線の上に置けるオブジェクトかどうか判断して置ける処理を変更
                 //この時にライトオブジェクトがあるか判断する、あれば置けないようにする
                 //線の上に置ける
-                if (setlineblock && !NosetLight)
+                if (setlineblock && hit.collider.gameObject.GetComponent<MapcipSlect>().Onobj == false)
                 {
                     //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                     if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
@@ -233,14 +233,16 @@ public class BoxCastRayTest : MonoBehaviour
                 }
             }
 
+            //現在の選択中のオブジェクト（マップチップ）を記憶  
+            Memmapcip = hit.collider.gameObject;
+
         }
         else
         {
             Existence_Check = false;
         }
 
-        //現在の選択中のオブジェクト（マップチップ）を記憶  
-        Memmapcip = hit.collider.gameObject;
+        
         //-----------使ってないレイヤーの処理（コメント解除で使えるよ！）--------------------
 
 

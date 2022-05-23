@@ -22,14 +22,29 @@ public class MusicJudgment_Sctipt : Base_Enegization
         //同居しなければ直接いじる
         if (MCmode == false)
         {
-            objs[0].SetActive(true);
-            objs[1].SetActive(false);
-
+            
             if (clearMusic == muisc_num)
             {
                 //ここにクリアの証的なコード
-                objs[0].SetActive(false);
-                objs[1].SetActive(true);
+                if (objs[0].activeSelf == true)
+                {
+                    objs[0].SetActive(false);
+                    objs[1].SetActive(true);
+
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_on();
+                }
+            }
+            else
+            {
+                //通電ならOFFる
+                if (objs[0].activeSelf == false)
+                {
+                    objs[0].SetActive(true);
+                    objs[1].SetActive(false);
+
+                    this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_off();
+                }
+
             }
         }
         else
