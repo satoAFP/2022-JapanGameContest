@@ -28,6 +28,8 @@ public class Conductor_Script : Base_Enegization
     protected int contacing_conductor = 0;         //接触している導体の数
     [SerializeField]
     protected int giving_conductor = 0;            //電気を分け与えた導体の数
+    [SerializeField]
+    private bool rotate_hit = false;
 
     [SerializeField, Header("電線色")]
     private GameObject eneger_line;
@@ -37,6 +39,7 @@ public class Conductor_Script : Base_Enegization
     }
     public void GivePowerReSet()
     {
+        if(rotate_hit)Debug.Log("yurusan");
         energization = false;
         power_gave = false;
         giving_conductor = 0;
@@ -76,7 +79,6 @@ public class Conductor_Script : Base_Enegization
             //電源と接触している導体だけ問題外とする
             if(Power_hit!=true)
             {
-                Debug.Log("おまえは？"+"     "+this.gameObject.name);
                 //通電状態ではなくなるので通電している証となる変数を初期化する
                 energi_check = true;
                 GivePowerReSet();
@@ -172,6 +174,7 @@ public class Conductor_Script : Base_Enegization
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
+            Debug.Log(energization);
         }
 
 
@@ -208,7 +211,7 @@ public class Conductor_Script : Base_Enegization
             //Insulator_hitをtrueにする
             Insulator_hit = true;
         }
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.tag == "Conductor" || c.gameObject.tag == "Rotate")
         {
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
@@ -239,7 +242,7 @@ public class Conductor_Script : Base_Enegization
             GivePowerReSet();
         }
         //導体と離れたとき
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.tag == "Conductor" || c.gameObject.tag == "Rotate")
         {
             //導体と接触してる総数を1個へらす
             contacing_conductor--;

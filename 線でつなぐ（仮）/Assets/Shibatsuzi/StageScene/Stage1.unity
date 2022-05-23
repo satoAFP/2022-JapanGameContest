@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 2b845f0bae2f47b4d82ebf60e9c82ce6, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -356,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647471, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647471, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1621,7 +1621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8289187679779933840, guid: d9023386accc4ae42b84b83d882c6c6c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8289187679779933840, guid: d9023386accc4ae42b84b83d882c6c6c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5847,6 +5847,10 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 1668819653}
+    - target: {fileID: 492191301238770973, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
+      propertyPath: enegeronly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 492191301238770975, guid: 8820f03e270b02640939fb0c0a78d34e, type: 3}
       propertyPath: m_RootOrder
       value: 5

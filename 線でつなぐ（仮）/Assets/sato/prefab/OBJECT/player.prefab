@@ -605,10 +605,9 @@ MonoBehaviour:
   jump_power: 0
   climbing_speed: 0.03
   mouse_max_y: 0.5
-  fade_time: 1.5
+  reset_cursol_pos: {x: 960, y: 570}
   my_camera: {fileID: 543616966170634727}
   camera: {fileID: 5546672775496220533}
-  fade: {fileID: 0}
   head: {fileID: 7661609363871565882}
   leg: {fileID: 3371741339474149769}
 --- !u!65 &7958196246127183844

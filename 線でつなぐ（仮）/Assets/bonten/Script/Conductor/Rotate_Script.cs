@@ -15,6 +15,12 @@ public class Rotate_Script : Conductor_Script
     [NamedArrayAttribute(new string[] { "right", "left" })]
     GameObject[] AssistObj = new GameObject[2];
 
+
+    public void ThisSetPower(int pow)
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +30,12 @@ public class Rotate_Script : Conductor_Script
     // Update is called once per frame
     public new void Update()
     {
+        if (leaving_Conductor == true)
+        {
+            energization = false;
+            power_cnt = 0;
+            leaving_Conductor = false;
+        }
         if (energization == true)
         {
             //オブジェクトの色をシアンにする
@@ -34,6 +46,19 @@ public class Rotate_Script : Conductor_Script
             //オブジェクトの色をグレーにする
             GetComponent<Renderer>().material.color = Color.gray;
 
+        }
+    }
+
+    public new void OnCollisionExit(Collision c)
+    {
+
+        if (c.gameObject.tag == "Conductor")
+        {
+            //導体と接触してる総数を1個へらす
+            contacing_conductor--;
+            leaving_Conductor = true;
+            //電気ついてるかの確認用変数をfalseにする
+            Conductor_hit = false;
         }
     }
 
@@ -49,7 +74,6 @@ public class Rotate_Script : Conductor_Script
         {
             //導体に触れたら、現時点でどれだけの導体と接触しているかカウントする
             contacing_conductor++;
-
 
                 //新しく導体に触れたら、giving_conductor,power_gave,energizationいったんリセットする
                 if (energization == true)
@@ -75,6 +99,7 @@ public class Rotate_Script : Conductor_Script
                     energization = true;
                     power_save = power_cnt;
                     collision.gameObject.GetComponent<Conductor_Script>().SetPower(power_cnt - 1);
+                    collision.gameObject.GetComponent<Conductor_Script>().SetEnergization(true);
                 }
                 else
                 {
