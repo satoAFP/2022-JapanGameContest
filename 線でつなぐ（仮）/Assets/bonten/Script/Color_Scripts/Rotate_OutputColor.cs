@@ -12,6 +12,8 @@ public class Rotate_OutputColor : Base_Color_Script
     [NamedArrayAttribute(new string[] { "right", "left" })]
     GameObject[] AssistObj = new GameObject[2];
 
+
+    [SerializeField]
     private int cnt = 0;
 
 
@@ -52,7 +54,7 @@ public class Rotate_OutputColor : Base_Color_Script
                         cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
                         energization = true;
                         colorchange_signal = true;
-                        //ColorInputから色を取得
+                        //接触してるOutputColor(RelayColor)から色を取得
                         SetColor(collision.gameObject, ADDITION);
                         GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
                     }
@@ -61,7 +63,6 @@ public class Rotate_OutputColor : Base_Color_Script
             //アシストobjがほかのRelayColorと接触していなければ脱色する。
             else if (energization == true)
             {
-                Debug.Log("1");
                 energization = false;
                 //ColorInputから色を取得
                 SetColor(color,SUBTRACTION);
