@@ -13,8 +13,9 @@ public class ColorLightBulb_Script : Base_Color_Script
     {
         if (colorchange_signal)
         {
-            //色を設定
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            //色(emiison)を設定
+            this.gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)255));
+          
             //ポイントライトに色を入力
             PointLight.GetComponent<Base_Color_Script>().SetColor(color);
             PointLight.gameObject.GetComponent<Light>().color = new Color((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE]);
