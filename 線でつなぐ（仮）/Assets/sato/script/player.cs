@@ -120,40 +120,46 @@ public class player : MonoBehaviour
         //メニュー表示中は動けない
         if (!cursol_pop)
         {
+            //歩いていないとき足音を消す
+           gameObject.GetComponent<AudioSource>().mute = true;
+
             //マウス操作-----------------------------------------------------------------------------------------
             CameraRotationMouseControl();
-
-
 
             //左右上下の移動処理---------------------------------------------------------------------------------
             if (Input.GetKey(KeyCode.W))
             {
+                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(0, 0, move_power);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
 
-                if (!climbing_check_head)
-                {
-                    if (climbing_check_leg)
-                    {
-                        this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
-                    }
-                }
+                //ブロックを上る処理
+                //if (!climbing_check_head)
+                //{
+                //    if (climbing_check_leg)
+                //    {
+                //        this.gameObject.transform.position += new Vector3(0, climbing_speed, 0);
+                //    }
+                //}
             }
             if (Input.GetKey(KeyCode.A))
             {
+                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(-move_power, 0, 0);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
+                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(0, 0, -move_power);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
             }
             if (Input.GetKey(KeyCode.D))
             {
+                gameObject.GetComponent<AudioSource>().mute = false;
                 velocity = gameObject.transform.rotation * new Vector3(move_power, 0, 0);
                 Move(velocity * Time.deltaTime);
                 Move_check = true;
