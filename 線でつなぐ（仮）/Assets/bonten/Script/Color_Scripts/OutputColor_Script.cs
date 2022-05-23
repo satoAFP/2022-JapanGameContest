@@ -190,7 +190,7 @@ public class OutputColor_Script : Base_Color_Script
             else if (collision.gameObject.GetComponent<Rotate_OutputColor>().GetEnergization() == true && energization == false)
             {
                 //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
-                if ((collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence()))
+                if ((collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence()) || cnt == 0)
                 {
                     //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
                     cnt = collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() + 1;
