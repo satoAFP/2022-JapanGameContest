@@ -53,7 +53,7 @@ public class Rotate_OutputColor : OutputColor_Script
             ClearObj = collision.gameObject;
             clearObj_hit = true;
         }
-        else if (collision.gameObject.tag == "ColorOutput")
+        else if (collision.gameObject.tag == "Relay")
         {
             if (collision.gameObject.transform.localEulerAngles.y == 0 || collision.gameObject.transform.localEulerAngles.y == -180) vertical[PARTHER] = true;
             else if (collision.gameObject.transform.localEulerAngles.y == 90 || collision.gameObject.transform.localEulerAngles.y == -90) vertical[PARTHER] = false;
@@ -87,7 +87,7 @@ public class Rotate_OutputColor : OutputColor_Script
         else if (collision.gameObject.tag == "ColorOutput")
         {
             //電気が通っているかどうか確認。
-            if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == false && energization == true)
+            if ((collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == false && energization == true)|| vertical[OWN] != vertical[PARTHER])
             {
                 //当たっているObjの優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
                 if (collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())
@@ -115,7 +115,6 @@ public class Rotate_OutputColor : OutputColor_Script
             {
                 if(vertical[OWN] == vertical[PARTHER])
                 {
-                    Debug.Log("んんんん？");
                     //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
                     if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
                     {
