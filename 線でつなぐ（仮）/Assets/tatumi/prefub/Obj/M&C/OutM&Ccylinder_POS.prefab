@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3115567275276239192}
   m_Layer: 0
   m_Name: OutM&Ccylinder_POS
-  m_TagString: ColorOutput
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +27,8 @@ Transform:
   m_LocalPosition: {x: 34.24, y: 0.026424035, z: 5.27}
   m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_Children:
-  - {fileID: 386918444636280825}
   - {fileID: 3111253803732989772}
+  - {fileID: 386918444636280825}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -66,7 +66,7 @@ Transform:
   m_LocalScale: {x: 80.000015, y: 100.00004, z: 80}
   m_Children: []
   m_Father: {fileID: 3115567275276239192}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1706588845324020137
 MeshFilter:
@@ -195,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7959141969651541012, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7959141969651541012, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
       propertyPath: m_LocalPosition.x
