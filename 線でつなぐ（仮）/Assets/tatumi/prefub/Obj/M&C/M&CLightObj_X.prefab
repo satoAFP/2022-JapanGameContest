@@ -822,9 +822,10 @@ MonoBehaviour:
   colorchange_signal: 0
   color: 000000000000000000000000
   clearColor: ff000000ff00000000000000
-  Liting: {fileID: 0}
-  Nonliting: {fileID: 0}
+  Liting: {fileID: 7878735492675928464}
+  Nonliting: {fileID: 3802421047562040316}
   MCmode: 1
+  ClearColor_N: 10
 --- !u!114 &6388170703484743695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,6 +1524,7 @@ GameObject:
   - component: {fileID: 4234484473701749543}
   - component: {fileID: 7355500075363985464}
   - component: {fileID: 4154341048156917403}
+  - component: {fileID: 6020764588109124395}
   m_Layer: 0
   m_Name: Liting
   m_TagString: Untagged
@@ -1613,6 +1615,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6020764588109124395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7878735492675928464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d38c667f8753c459fa4317b5693563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  PointLight: {fileID: 8321232731611183044}
 --- !u!1 &8321232731611183044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678341608320699451}
   - component: {fileID: 7792355936462127015}
+  - component: {fileID: 3837092681357685230}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -1706,6 +1725,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3837092681357685230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321232731611183044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9868d3474060d54683154beec25a49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000
+  intensity_light: 0
 --- !u!1 &8440602628695215521
 GameObject:
   m_ObjectHideFlags: 0

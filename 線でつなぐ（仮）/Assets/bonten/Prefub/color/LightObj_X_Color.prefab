@@ -1286,6 +1286,7 @@ MonoBehaviour:
   Liting: {fileID: 5572486878044649471}
   Nonliting: {fileID: 1497304689382851987}
   MCmode: 0
+  ClearColor_N: 10
 --- !u!114 &3534675700054096168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1301,6 +1302,7 @@ MonoBehaviour:
   turn_on_power: 0
   Door: {fileID: 0}
   Clear_num: 0
+  enegeronly: 0
   sound1: {fileID: 8300000, guid: 7b3dac917779bfd4b9b7be0897276667, type: 3}
 --- !u!82 &7304692841293753918
 AudioSource:

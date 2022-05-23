@@ -24,9 +24,20 @@ public class ColorJudgment_Sctipt : Base_Color_Script
     [SerializeField]
     private bool MCmode;
 
+    [SerializeField, Header("非通電時の薄さ(0で無色)"), Range(1, 255)]
+    private int ClearColor_N;        //非通電の時の色の薄さ
+
+    void Start()
+    {
+        Nonliting.GetComponent<Renderer>().material.color = new Color32((byte)(clearColor[COLOR_RED] / ClearColor_N), (byte)(clearColor[COLOR_GREEN] / ClearColor_N), (byte)(clearColor[COLOR_BLUE] / ClearColor_N), 255);
+
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
+      
         //色変更の信号を受け取ると
         if (colorchange_signal == true)
         {
@@ -43,6 +54,7 @@ public class ColorJudgment_Sctipt : Base_Color_Script
                     Liting.SetActive(false);
                     Nonliting.SetActive(true);
 
+                  
 
                     this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_off();
                 }
@@ -61,19 +73,23 @@ public class ColorJudgment_Sctipt : Base_Color_Script
                     Liting.SetActive(true);
                     Nonliting.SetActive(false);
                     this.gameObject.GetComponent<TurnonPower_Script>().else_Switch_on();
+                   
                 }
             }
         }
         else
         {
+           
             if (clearColor[COLOR_RED] == color[COLOR_RED] && clearColor[COLOR_GREEN] == color[COLOR_GREEN] && clearColor[COLOR_BLUE] == color[COLOR_BLUE])
             {
                 //ここにクリアの証的なコード
                 energization = true;
+               
             }
             else
             {
                 energization = false;
+              
             }
         }
     }
