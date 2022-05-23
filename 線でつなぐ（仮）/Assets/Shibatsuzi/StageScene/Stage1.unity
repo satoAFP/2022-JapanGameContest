@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5837372755436607912, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 7077040707213909096, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2999,7 +3003,7 @@ PrefabInstance:
     - target: {fileID: 5416599692782986113, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: Judgeblock
       value: 
-      objectReference: {fileID: 7622661339139817492, guid: 5f3471a090d89b4478ef906ba62a877c, type: 3}
+      objectReference: {fileID: 106500149060978326, guid: 5b52b6fe1e8e5844f8509b62b9472ad7, type: 3}
     - target: {fileID: 5546672774901355798, guid: cfdd35027fffb0f4e83f4da0f40e1166, type: 3}
       propertyPath: m_Name
       value: player
@@ -6253,9 +6257,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1765962234773401539, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: Setlineblock
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5837372754100066201, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647468, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Name
@@ -6305,9 +6313,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5837372755436607912, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 5837372755436607913, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837372755436607913, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7915178695561397444, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7048,11 +7064,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1765962234773401539, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: Setlineblock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754100066201, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5837372754190647381, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Enabled
@@ -7116,7 +7132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5837372755436607913, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837372755436607913, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7077040707213909096, guid: f5e67647d9f966c42bc7e18b90144d7e, type: 3}
       propertyPath: m_Enabled

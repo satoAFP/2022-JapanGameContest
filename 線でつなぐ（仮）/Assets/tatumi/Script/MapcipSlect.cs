@@ -39,7 +39,7 @@ public class MapcipSlect : MonoBehaviour
             //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
             if (Onblock==true)
             {
-               // Debug.Log("ぶ");
+               
             }
             else
             {
