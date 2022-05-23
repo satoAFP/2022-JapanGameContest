@@ -10,7 +10,7 @@ public class MC_Judgment : MonoBehaviour
     ColorJudgment_Sctipt Color_script;
 
     //二つのenegeの状態を取得
-    [SerializeField]
+    [SerializeField, Header("0=音,1=色")]
     private bool[] clearflag = new bool[2];
 
     //Obj自体の発行を表示・非表示で再現

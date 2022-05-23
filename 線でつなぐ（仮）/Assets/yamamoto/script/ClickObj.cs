@@ -8,10 +8,11 @@ public class ClickObj : Base_Enegization
     Material[] mats;
 
     [SerializeField]
-    private bool Rotationflag,vertical;
+    private bool Rotationflag,vertical,inputON;
 
     [SerializeField]
     public bool Setlineblock = false;//シリンダーの上に置けるブロック
+
 
 
     // Start is called before the first frame update
@@ -48,6 +49,7 @@ public class ClickObj : Base_Enegization
             }
         }
 
+        inputON = false;
     }
 
     //関数化（Updateはうざいため）
@@ -58,6 +60,7 @@ public class ClickObj : Base_Enegization
         mats[0] = mat[1];
 
         GetComponent<Renderer>().materials = mats;
+        inputON = true;
        
     }
 
@@ -68,12 +71,16 @@ public class ClickObj : Base_Enegization
             mat[i].color = a;
             if(i==1)
             {
-                //アウトライン対応
-                mat[i].SetColor("_MainColor", a);
+                if (inputON == true)
+                {
+                    //アウトライン対応
+                    mat[i].SetColor("_MainColor", a);
+                    Debug.Log(a);
+                }
             }
         }
 
-        Debug.Log(a);
+       
     }
 
    
