@@ -51,10 +51,22 @@ public class BoxCastRayTest : MonoBehaviour
 
     private bool second_set = false;//現在レイが当たっているマップチップで二回目以降置くときのフラグ
 
+    public AudioClip get_se;//取得SE
+
+    public AudioClip set_se;//設置SE
+    AudioSource audioSource;
+
+    Vector3 worldPos;//マップチップの座標保存用変数
+
+    private bool ray_Mapcip = false;//マップチップがレイに当たっていたら、ブロックマップチップの処理を通さない
+
     void Start()
     {
         grab = false;//初期化
-       
+
+        //Componentを取得
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -116,6 +128,8 @@ public class BoxCastRayTest : MonoBehaviour
                 {
                     Target = hit.collider.gameObject;
 
+                    audioSource.PlayOneShot(get_se);//ブロック取得SE
+
                     //手に持つ用にオブジェクトのサイズと回転を記憶
                     TargetScale = Target.transform.localScale;
                     TargetRotate = Target.transform.eulerAngles;
@@ -134,19 +148,20 @@ public class BoxCastRayTest : MonoBehaviour
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
                
-                //右クリックでオブジェクトを回転
-                else if (Input.GetMouseButtonDown(1))
-                {
-                    hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
-                }
+                ////右クリックでオブジェクトを回転
+                //else if (Input.GetMouseButtonDown(1))
+                //{
+                //    hit.collider.gameObject.transform.eulerAngles += new Vector3(0.0f, 90.0f, 0.0f);
+                //}
 
             }
         }
         
         //マップチップにレイが接触しているか判定(rayを線に変更）
-        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")) && !Pause)
+        else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")) && !Pause )
         {
-            Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
+            ray_Mapcip = true;
+            worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
             if(Memmapcip == hit.collider.gameObject && second_set == false)
             {
@@ -187,6 +202,8 @@ public class BoxCastRayTest : MonoBehaviour
                     if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                     {
                         //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
+
+                        audioSource.PlayOneShot(set_se);//設置SE
 
                         //worldPos.y += Target.transformr.localPosition.y;
                         //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
@@ -234,6 +251,7 @@ public class BoxCastRayTest : MonoBehaviour
                             Target = null;//タ-ゲットの初期化
                             grab = false;//掴みフラグをfalse
                             setlineblock = false;//線の上に置けるオブジェクト設定を初期化
+                            second_set = true;//現在のマップチップで２回目のブロックを置く処理
                         }
                     }
                 }
@@ -245,13 +263,14 @@ public class BoxCastRayTest : MonoBehaviour
         }
         else
         {
+            ray_Mapcip = false;//レイから外れるとtrue
             Existence_Check = false;
         }
 
          //マップチップ(ブロックの上用）のレイ判定
-        if (Physics.Raycast(ray, out hit, 2.0f, LayerMask.GetMask("MapcipB")) && !Pause)
+        if (Physics.Raycast(ray, out hit, 2.0f, LayerMask.GetMask("MapcipB")) && !Pause && !ray_Mapcip)
         {
-            Vector3 worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
+            worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
             if (grab == true)
             {
@@ -264,10 +283,9 @@ public class BoxCastRayTest : MonoBehaviour
                 //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                 if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                 {
-                    //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
+                    Debug.Log("敵だね");
 
-                    //worldPos.y += Target.transformr.localPosition.y;
-                    //worldPos.y += Target.transform.localScale.y / 2;//Y軸を固定する
+                    //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
                     worldPos.y += 0.5f;//Y軸を固定する
 
                     //手に持ったオブジェクトを元の大きさに戻す
@@ -283,8 +301,14 @@ public class BoxCastRayTest : MonoBehaviour
                     grab = false;//掴みフラグをfalse
                     setlineblock = false;//線の上に置けるオブジェクト設定を初期化
                     second_set = true;//現在のマップチップで２回目のブロックを置く処理
+
                 }
             }
+        }
+        else
+        {
+          
+           // Existence_Check = false;
         }
 
 
