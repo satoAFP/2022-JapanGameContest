@@ -162,7 +162,6 @@ public class OutputColor_Script : Base_Color_Script
 
     public void OnCollisionExit(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
         //OutputColorÇ©ÇÁêFÇéÃÇƒÇÈ
         if (collision.gameObject.tag == "ColorInput")
         {
@@ -180,7 +179,7 @@ public class OutputColor_Script : Base_Color_Script
             energization = false;
             colorchange_signal = false;
             SetColor(color, SUBTRACTION);
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            efflight.GetComponent<ColorLight_Script1>().SetLight(color);
 
         }
         else if (collision.gameObject.tag == "ColorMix")
