@@ -24,20 +24,20 @@ public class stage_clear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //クリアした時
         if (clear)
         {
-            Debug.Log("aaa");
+            //それぞれのステージをクリアしているか判断
             for (int i = 0; i < 5; i++)
             {
-                Debug.Log("bbb");
                 if (SceneManager.GetActiveScene().name == "Stage" + i)
                 {
-                    Debug.Log("ccc");
-                    Stage_clear[i + 1] = true;
+                    Stage_clear[i] = true;
                 }
             }
         }
 
+        //ステージセレクトに戻るとクリアフラグ戻す
         if (SceneManager.GetActiveScene().name == "STAGE_SELECT")
         {
             clear = false;

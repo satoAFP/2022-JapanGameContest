@@ -78,7 +78,6 @@ public class DoorOpoen : MonoBehaviour
                 //ÅŒã‚Ì•”‰®‚ÅƒS[ƒ‹ƒ[ƒv‚·‚é
                 if (goal_warp_door)
                 {
-                    GameObject.Find("stage_clear_check").GetComponent<stage_clear>().clear = true; Debug.Log("ddd");
                     door.SetBool("open", true);
                     doorknob.SetBool("open", true);
                     scene_move_panel.SetActive(true);
