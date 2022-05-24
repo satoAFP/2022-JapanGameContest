@@ -16,6 +16,10 @@ public class Rotate_OutputColor : Base_Color_Script
     [SerializeField]
     private int cnt = 0;
 
+    [SerializeField]
+    [NamedArrayAttribute(new string[] { "right", "left" })]
+    private bool[] hit_check = new bool[2];         //アシストOBJ(両端の球)が当たってるかどうかチェックするよう
+
 
     //アクセサー
     public int GetPrecedence()
@@ -24,21 +28,37 @@ public class Rotate_OutputColor : Base_Color_Script
     }
     public void SetPrecedence(int num)
     {
+        Debug.Log(this.gameObject.transform.parent.name);
         cnt = num;
+    }
+
+    public void SetCheckRight(bool success)
+    {
+        Debug.Log("はいって？");
+        hit_check[RIGHT] = success;
+    }
+    public void SetCheckLeft(bool success)
+    {
+        Debug.Log("はいれ");
+        hit_check[LEFT] = success;
     }
 
     public void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "ColorOutput")
         {
-            if (AssistObj[RIGHT].GetComponent<Rotate_AssistColor>().GetHitTarget() && AssistObj[LEFT].GetComponent<Rotate_AssistColor>().GetHitTarget())
+            Debug.Log("aiueo");
+            if (hit_check[RIGHT] == true && hit_check[LEFT] == true)
             {
+                
                 //電気が通っているかどうか確認。
                 if ((collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == false && energization == true))
                 {
+                    //Debug.Log(collision.gameObject.transform.parent.name);
                     //当たっているObjの優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
                     if (collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())
                     {
+                        Debug.Log("かつしかない");
                         energization = false;
                         //ColorInputから色を取得
                         SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
@@ -47,9 +67,11 @@ public class Rotate_OutputColor : Base_Color_Script
                 }
                 else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false)
                 {
+                    Debug.Log(collision.gameObject.transform.parent.name);
                     //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
-                    if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
+                    if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()) || cnt == 0)
                     {
+                        Debug.Log("そもそもここに入ってない？");
                         //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
                         cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
                         energization = true;
@@ -67,6 +89,18 @@ public class Rotate_OutputColor : Base_Color_Script
                 //ColorInputから色を取得
                 SetColor(color,SUBTRACTION);
                 GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "ColorOutput")
+        {
+            if(energization==true)
+            {
+                energization = false;
+                SetColor(color, SUBTRACTION);
             }
         }
     }
