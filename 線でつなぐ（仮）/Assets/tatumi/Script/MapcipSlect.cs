@@ -39,7 +39,7 @@ public class MapcipSlect : MonoBehaviour
             //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
             if (Onblock==true)
             {
-               // Debug.Log("ぶ");
+               
             }
             else
             {
@@ -103,7 +103,7 @@ public class MapcipSlect : MonoBehaviour
         //（マップチップの上に乗っているときのみ！！！！）
         if (other.CompareTag("Power_Supply"))
         {
-            Debug.Log("バナナ");
+            //Debug.Log("バナナ");
             Onobj = true;
         }
 
@@ -111,7 +111,7 @@ public class MapcipSlect : MonoBehaviour
         //（マップチップの上に乗っているときのみ！！！！）
         if (other.CompareTag("Noset"))
         {
-            Debug.Log("夢色キッチン☆");
+           // Debug.Log("夢色キッチン☆");
             Onobj = true;
         }
 

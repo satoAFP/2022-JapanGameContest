@@ -9,6 +9,12 @@ public class DoorOpoen : MonoBehaviour
     [SerializeField, Header("現在の通電状況")]
     public bool[] ClearTaskflag;
 
+    [SerializeField, Header("飛ぶ先のステージ番号")] 
+    public int stage_num;
+
+    [SerializeField, Header("ドアのイラスト")]
+    public GameObject[] door_illustration;
+
     //ギミックの詳細判別（flag種類,num=true,falseが同居してないか）
     private bool taskflag = false;
     private int num;
@@ -17,8 +23,9 @@ public class DoorOpoen : MonoBehaviour
     [SerializeField, Header("ゴール時のワープゲートとして使うか(true)")] public bool goal_warp_door;
     [SerializeField, Header("ドアのアニメーション")] public Animator door;
     [SerializeField, Header("ドアノブのアニメーション")] public Animator doorknob;
-
     [SerializeField, Header("シーン移動用のパネルの出現")] public GameObject scene_move_panel;
+
+    private bool[] stage_clear_check = new bool[6];
 
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
     [SerializeField, Header("0=強調,1=普通")]
@@ -34,6 +41,16 @@ public class DoorOpoen : MonoBehaviour
     {
         mats = GetComponent<Renderer>().materials;
         audioSource = GetComponent<AudioSource>();
+        
+        stage_clear_check = GameObject.Find("stage_clear_check").GetComponent<stage_clear>().Stage_clear;
+
+        if (stage_clear_check[stage_num])
+        {
+            for (int i = 0; i < door_illustration.Length; i++)
+            {
+                door_illustration[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -55,7 +72,6 @@ public class DoorOpoen : MonoBehaviour
         mats[0] = mat[1];
         //rayあたってないなら元に戻す
         GetComponent<Renderer>().materials = mats;
-
     }
 
     public void RayOpenDoor()
@@ -75,6 +91,7 @@ public class DoorOpoen : MonoBehaviour
                     door.SetBool("open", true);
                     doorknob.SetBool("open", true);
                     scene_move_panel.SetActive(true);
+                    
                 }
             }
             else
@@ -91,11 +108,14 @@ public class DoorOpoen : MonoBehaviour
     {
         if (warp_door)
         {
-            //ステージ入るための扉開く処理
-            door.SetBool("open", true);
-            doorknob.SetBool("open", true);
-            scene_move_panel.SetActive(true);
-            audioSource.PlayOneShot(sound1);
+            if (stage_clear_check[stage_num])
+            {
+                //ステージ入るための扉開く処理
+                door.SetBool("open", true);
+                doorknob.SetBool("open", true);
+                scene_move_panel.SetActive(true);
+                audioSource.PlayOneShot(sound1);
+            }
         }
     }
 

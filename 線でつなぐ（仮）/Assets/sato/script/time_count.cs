@@ -14,14 +14,16 @@ public class time_count : MonoBehaviour
     [SerializeField, Header("SE_心音")] AudioSource heart_beat;
     [SerializeField, Header("SE_吐息")] AudioSource breath;
 
+    [SerializeField, Header("ゲームオーバーパネル")] GameObject gameover_panel;
+
 
     private int minute;             //分
     private int seconds;            //秒
     private float mem_total_time;   //終了時間記憶用
     private int count;              //1秒刻みのカウント
     private bool time_move = true;  //メニュー表示中は出さない
-    private float fade_speed;
-    private float sound_fade_speed;
+    private float fade_speed;       //ダメージフェードのフェード速度
+    private float sound_fade_speed; //SEフェードのフェード速度
 
     //連続で押されないための判定
     private bool key_check_E = true;
@@ -89,9 +91,18 @@ public class time_count : MonoBehaviour
                 if ((int)mem_total_time <= 0)
                     shut_out.GetComponent<Image>().color += new Color(0, 0, 0, 0.01f);
 
-                //画面が光ってステージセレクトに戻される
+                //フェードでゲームオーバーが知らされる
                 if (shut_out.GetComponent<Image>().color.a >= 1.0f)
-                    SceneManager.LoadScene("STAGE_SELECT");
+                {
+                    gameover_panel.GetComponent<Text>().color += new Color(0, 0, 0, 0.01f);
+
+                    //左クリックでステージセレクト
+                    if (Input.GetMouseButton(0))
+                    {
+                        SceneManager.LoadScene("STAGE_SELECT");
+                    }
+                }
+
             }
 
         }
