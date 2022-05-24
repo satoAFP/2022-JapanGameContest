@@ -131,7 +131,6 @@ public class OutputColor_Script : Base_Color_Script
                 //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
                 if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())||(cnt==0 && 0 < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
                 {
-                    Debug.Log("2:" + this.gameObject.transform.parent.name+":"+cnt);
                     //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
                     cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
                     energization = true;
@@ -225,7 +224,6 @@ public class OutputColor_Script : Base_Color_Script
         //OutputColorから色を捨てる
         if (collision.gameObject.tag == "ColorInput")
         {
-            Debug.Log("1:" + this.gameObject.transform.parent.name);
             //自身の脱色を行う前に、MixColorObjおよびClear判定Objと接触してるか確認し
             //接触してたら先に脱色処理を行う
             if (mixObj_hit)
