@@ -129,7 +129,7 @@ public class OutputColor_Script : Base_Color_Script
             else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false)
             {
                 //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
-                if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())||cnt==0)
+                if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())||(cnt==0 && 0 < collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()))
                 {
                     Debug.Log("2:" + this.gameObject.transform.parent.name+":"+cnt);
                     //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
@@ -190,7 +190,7 @@ public class OutputColor_Script : Base_Color_Script
             else if (collision.gameObject.GetComponent<Rotate_OutputColor>().GetEnergization() == true && energization == false)
             {
                 //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
-                if ((collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() != 0 || cnt < collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence()))
+                if ((collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence()) || (cnt == 0 && 0 < collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence()))
                 {
                     //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
                     cnt = collision.gameObject.GetComponent<Rotate_OutputColor>().GetPrecedence() + 1;
@@ -277,7 +277,7 @@ public class OutputColor_Script : Base_Color_Script
             energization = false;
             colorchange_signal = false;
             //自身の脱色処理を行ったのち、回転Objの脱色処理を行う
-            SetColor(collision.gameObject.GetComponent<Rotate_OutputColor>().GetColor(), SUBTRACTION);
+            SetColor(GetColor(), SUBTRACTION);
             //回転Obj脱色
             collision.gameObject.GetComponent<Rotate_OutputColor>().SetColor(collision.gameObject.GetComponent<Rotate_OutputColor>().GetColor(), SUBTRACTION);
             //回転Objの優先度を初期化

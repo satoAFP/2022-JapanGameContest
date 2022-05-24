@@ -6,24 +6,23 @@ public class Rotate_AssistColor : Base_Color_Script
 {
     //アシストする回転オブジェクト
     [SerializeField]
-    private GameObject RotateObj;
-
-    private GameObject ConductorObj;
-
-    //導体と接触してるかの成否
-    [SerializeField]
-    private bool hitting_target;
+    private GameObject AssistingObj;
 
     [SerializeField]
-    private int cnt = 0;
+    private string AssistTag;
 
-    public bool GetHitTarget() => hitting_target;
+    private void Start()
+    {
+        AssistTag = AssistingObj.tag;
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "ColorOutput")
         {
-            hitting_target = true;
+            Debug.Log("なんで入れへんの");
+            AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(true);
+            AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(true);
         }
     }
 
@@ -31,7 +30,10 @@ public class Rotate_AssistColor : Base_Color_Script
     {
         if (collider.gameObject.tag == "ColorOutput")
         {
-            hitting_target = false;
+
+            Debug.Log("なんで入れへんの:::::");
+            AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(false);
+            AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(false);
         }
     }
 }
