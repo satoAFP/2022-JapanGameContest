@@ -21,7 +21,7 @@ public class DoorOpoen : MonoBehaviour
     [SerializeField, Header("ドアノブのアニメーション")] public Animator doorknob;
     [SerializeField, Header("シーン移動用のパネルの出現")] public GameObject scene_move_panel;
 
-    private bool[] stage_clear_check = new bool[5];
+    private bool[] stage_clear_check = new bool[6];
 
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
     [SerializeField, Header("0=強調,1=普通")]

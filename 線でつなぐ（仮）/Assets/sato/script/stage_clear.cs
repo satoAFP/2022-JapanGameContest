@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class stage_clear : MonoBehaviour
 {
     //ステージクリア状況
-    [System.NonSerialized] public bool[] Stage_clear = new bool[5];
+    [System.NonSerialized] public bool[] Stage_clear = new bool[6];
 
     //クリアした判定
     [System.NonSerialized] public bool clear;
@@ -17,7 +17,7 @@ public class stage_clear : MonoBehaviour
         DontDestroyOnLoad(this);
 
         Stage_clear[0] = true;
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 6; i++)
             Stage_clear[i] = false;
     }
 
@@ -28,7 +28,7 @@ public class stage_clear : MonoBehaviour
         if (clear)
         {
             //それぞれのステージをクリアしているか判断
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 6; i++)
             {
                 if (SceneManager.GetActiveScene().name == "Stage" + i)
                 {

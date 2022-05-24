@@ -385,6 +385,7 @@ MonoBehaviour:
   setting_menu: {fileID: 6755224439222950744}
   All_map: {fileID: 1654467014063245013}
   center_point: {fileID: 4413538959282297489}
+  not_setting: 0
 --- !u!1 &2503376558897142506
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2503376558897142507
 RectTransform:
   m_ObjectHideFlags: 0
@@ -787,7 +788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -42.65001}
+  m_AnchoredPosition: {x: 0, y: -45}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2503376559167656420
@@ -920,7 +921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 42.65001}
+  m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2503376559503621138
@@ -2303,6 +2304,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2503376558872538308}
     m_Modifications:
+    - target: {fileID: 5157150177828059913, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
+      propertyPath: text_fade_obj
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5157150177828059914, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2369,7 +2374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5157150177828059914, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157150177828059914, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
       propertyPath: m_AnchoredPosition.y
