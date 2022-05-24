@@ -31,7 +31,7 @@ public class scene_manager : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                GameObject.Find("stage_clear_check").GetComponent<stage_clear>().clear = true; Debug.Log("ddd");
+                GameObject.Find("stage_clear_check").GetComponent<stage_clear>().clear = true;
                 SceneManager.LoadScene(scene_name);
             }
         }
