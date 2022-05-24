@@ -20,7 +20,6 @@ public class Rotate_OutputColor : Base_Color_Script
     [NamedArrayAttribute(new string[] { "right", "left" })]
     private bool[] hit_check = new bool[2];         //アシストOBJ(両端の球)が当たってるかどうかチェックするよう
 
-
     //アクセサー
     public int GetPrecedence()
     {
@@ -34,13 +33,13 @@ public class Rotate_OutputColor : Base_Color_Script
 
     public void SetCheckRight(bool success)
     {
-        Debug.Log("はいって？");
         hit_check[RIGHT] = success;
+        Debug.Log(hit_check[RIGHT]);
     }
     public void SetCheckLeft(bool success)
     {
-        Debug.Log("はいれ");
         hit_check[LEFT] = success;
+        Debug.Log(hit_check[LEFT]);
     }
 
     public void OnCollisionStay(Collision collision)

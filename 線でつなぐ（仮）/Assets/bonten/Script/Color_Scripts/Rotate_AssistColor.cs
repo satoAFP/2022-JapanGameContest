@@ -20,7 +20,7 @@ public class Rotate_AssistColor : Base_Color_Script
     {
         if (collider.gameObject.tag == "ColorOutput")
         {
-            Debug.Log("なんで入れへんの");
+            Debug.Log("お前それマジで言ってる？");
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(true);
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(true);
         }
@@ -30,8 +30,6 @@ public class Rotate_AssistColor : Base_Color_Script
     {
         if (collider.gameObject.tag == "ColorOutput")
         {
-
-            Debug.Log("なんで入れへんの:::::");
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(false);
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(false);
         }

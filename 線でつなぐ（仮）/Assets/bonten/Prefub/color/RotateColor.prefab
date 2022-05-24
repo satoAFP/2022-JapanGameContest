@@ -571,9 +571,8 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  RotateObj: {fileID: 0}
-  hitting_target: 0
-  cnt: 0
+  AssistingObj: {fileID: 5622828187745693407}
+  AssistTag: 
 --- !u!1 &5555657536650221797
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +760,7 @@ MonoBehaviour:
   - {fileID: 7655963810217910157}
   - {fileID: 5412410372454864757}
   cnt: 0
+  hit_check: 0000
 --- !u!1 &5640660002997293061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,9 +1027,8 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  RotateObj: {fileID: 0}
-  hitting_target: 0
-  cnt: 0
+  AssistingObj: {fileID: 5622828187745693407}
+  AssistTag: 
 --- !u!1 &7733681136906287920
 GameObject:
   m_ObjectHideFlags: 0
