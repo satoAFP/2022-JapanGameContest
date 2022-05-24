@@ -356,12 +356,12 @@ public class BoxCastRayTest : MonoBehaviour
         //-----------------------------------------------------------------------------------------
 
 
-        //ブロックを持っている時に回転させる
-        if (Input.GetMouseButtonDown(1) && grab == true && !Pause)
-        {
-           // Debug.Log("あばばばばばば");
-            TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
-        }
+        ////ブロックを持っている時に回転させる
+        //if (Input.GetMouseButtonDown(1) && grab == true && !Pause)
+        //{
+        //   // Debug.Log("あばばばばばば");
+        //    TargetRotate += new Vector3(0.0f, 90.0f, 0.0f);
+        //}
 
         //ドアにレイが接触しているか判定(rayを線に変更）
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")) && !Pause)
