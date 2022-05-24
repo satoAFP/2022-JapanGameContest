@@ -8,8 +8,12 @@ public class DoorOpoen : MonoBehaviour
     //ギミックノクリア状況管理用flag
     [SerializeField, Header("現在の通電状況")]
     public bool[] ClearTaskflag;
+
     [SerializeField, Header("飛ぶ先のステージ番号")] 
     public int stage_num;
+
+    [SerializeField, Header("ドアのイラスト")]
+    public GameObject[] door_illustration;
 
     //ギミックの詳細判別（flag種類,num=true,falseが同居してないか）
     private bool taskflag = false;
@@ -39,7 +43,14 @@ public class DoorOpoen : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         
         stage_clear_check = GameObject.Find("stage_clear_check").GetComponent<stage_clear>().Stage_clear;
-        Debug.Log(stage_clear_check);
+
+        if (stage_clear_check[stage_num])
+        {
+            for (int i = 0; i < door_illustration.Length; i++)
+            {
+                door_illustration[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -61,7 +72,6 @@ public class DoorOpoen : MonoBehaviour
         mats[0] = mat[1];
         //rayあたってないなら元に戻す
         GetComponent<Renderer>().materials = mats;
-
     }
 
     public void RayOpenDoor()
