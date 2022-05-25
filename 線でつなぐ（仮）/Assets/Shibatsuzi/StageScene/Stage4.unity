@@ -5186,6 +5186,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 4860581061027031062, guid: 5913d467855bed44a8d2a409a477d77d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5528962187279440905, guid: 5913d467855bed44a8d2a409a477d77d, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -9432,6 +9436,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1454765421}
     m_Modifications:
+    - target: {fileID: 403157043444241758, guid: f795577dca5df544797109922667459f, type: 3}
+      propertyPath: Setlineblock
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3019918237944578759, guid: f795577dca5df544797109922667459f, type: 3}
       propertyPath: m_RootOrder
       value: 1
