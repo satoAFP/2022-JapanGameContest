@@ -39,7 +39,6 @@ public class Conductor_Script : Base_Enegization
     }
     public void GivePowerReSet()
     {
-        if(rotate_hit)Debug.Log("yurusan");
         energization = false;
         power_gave = false;
         giving_conductor = 0;
@@ -167,7 +166,6 @@ public class Conductor_Script : Base_Enegization
             GivePowerReSet();
             if (leaving_Conductor == true)
             {
-                Debug.Log(this.gameObject.transform.parent.name);
                 power_cnt = 0;
                 leaving_Conductor = false;
             }
@@ -175,7 +173,6 @@ public class Conductor_Script : Base_Enegization
         else if (power_cnt >= ELECTORIC_POWER && (Conductor_hit == true || Power_hit == true))
         {
             energization = true;
-            Debug.Log(energization);
         }
 
 
@@ -198,16 +195,8 @@ public class Conductor_Script : Base_Enegization
 
     public void OnCollisionEnter(Collision c)
     {
-        //電源と接触したとき
-        if (c.gameObject.tag == "Power_Supply")
-        {
-            ////Power_hitをtrueにする
-            //Power_hit = true;
-            ////電源から伸びてる導体は最小に設定し、最優先とする
-            //power_cnt = 1;
-        }
         //絶縁体と接触したとき
-        else if (c.gameObject.tag == "Insulator")
+        if (c.gameObject.tag == "Insulator")
         {
             //Insulator_hitをtrueにする
             Insulator_hit = true;
@@ -228,11 +217,9 @@ public class Conductor_Script : Base_Enegization
     //他の特定のオブジェクトが離れた時の処理
     public void OnCollisionExit(Collision c)
     {
-
         //電源と離れたとき
         if (c.gameObject.tag == "Power_Supply")
         {
-            //
             energization = false;
             Power_hit = false;
         }

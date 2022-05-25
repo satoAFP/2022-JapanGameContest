@@ -34,19 +34,16 @@ public class Rotate_OutputColor : Base_Color_Script
     public void SetCheckRight(bool success)
     {
         hit_check[RIGHT] = success;
-        Debug.Log(hit_check[RIGHT]);
     }
     public void SetCheckLeft(bool success)
     {
         hit_check[LEFT] = success;
-        Debug.Log(hit_check[LEFT]);
     }
 
     public void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "ColorOutput")
         {
-            Debug.Log("aiueo");
             if (hit_check[RIGHT] == true && hit_check[LEFT] == true)
             {
                 
@@ -57,7 +54,6 @@ public class Rotate_OutputColor : Base_Color_Script
                     //当たっているObjの優先度(cnt変数)が0(0ならすでに脱色されてる)でなく、このObjより小さいなら、energizationは途切れてるので色を破棄する。
                     if (collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence())
                     {
-                        Debug.Log("かつしかない");
                         energization = false;
                         //ColorInputから色を取得
                         SetColor(collision.gameObject.GetComponent<OutputColor_Script>().GetColor());
@@ -66,11 +62,9 @@ public class Rotate_OutputColor : Base_Color_Script
                 }
                 else if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() == true && energization == false)
                 {
-                    Debug.Log(collision.gameObject.transform.parent.name);
                     //優先度(cnt変数)が0(0なら脱色されてる)でなく、このObjより小さいならそのObjの色を取得する。
                     if ((collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() != 0 && cnt > collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence()) || cnt == 0)
                     {
-                        Debug.Log("そもそもここに入ってない？");
                         //接触してるRelayColorのカウントより1つ大きい値を取得する（一方通行にするため）
                         cnt = collision.gameObject.GetComponent<OutputColor_Script>().GetPrecedence() + 1;
                         energization = true;
