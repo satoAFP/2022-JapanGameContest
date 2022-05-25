@@ -1837,9 +1837,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 3111253803732989772, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.84
+      objectReference: {fileID: 0}
     - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
+      value: 0.475
       objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
@@ -6718,9 +6722,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779749510}
     m_Modifications:
+    - target: {fileID: 3111253803732989772, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.837
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111253803732989772, guid: 4408166100ab8fb468253fd92f735327, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 3111253803732989773, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
+      value: 0.475
       objectReference: {fileID: 0}
     - target: {fileID: 3115567275276239188, guid: 4408166100ab8fb468253fd92f735327, type: 3}
       propertyPath: m_Name
