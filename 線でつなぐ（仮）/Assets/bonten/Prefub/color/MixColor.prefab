@@ -673,6 +673,7 @@ MonoBehaviour:
   colorchange_signal: 0
   color: 000000000000000000000000
   parent: {fileID: 5644080152936407850}
+  efflight: {fileID: 4846781236312018345}
 --- !u!1001 &3258271494971828666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -732,10 +733,42 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 7959141969651541013, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959141969651541013, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959141969651541013, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+--- !u!1 &4846781236312018345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7959141969651541011, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
+  m_PrefabInstance: {fileID: 3258271494971828666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4846781236312018350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7959141969651541012, guid: 05a32f426d67d3c4b8d0ca5e3ebac387, type: 3}
   m_PrefabInstance: {fileID: 3258271494971828666}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5984833578658375984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4846781236312018345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ed9f6249acdaa40816734ea6ec954a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  colorchange_signal: 0
+  color: 000000000000000000000000

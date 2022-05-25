@@ -35,6 +35,15 @@ public class OutputColor_Script : Base_Color_Script
         par = GetComponent<ParticleSystem>().main;
     }
 
+    private void Update()
+    {
+        //F‚ğ‚Á‚Ä‚È‚©‚Á‚½‚çcnt‚ğ”jŠü
+        if (color[COLOR_RED] == 0 && color[COLOR_GREEN] == 0 && color[COLOR_BLUE] == 0) 
+        {
+            cnt = 0;
+        }
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag=="ColorInput")
@@ -206,6 +215,7 @@ public class OutputColor_Script : Base_Color_Script
                     //ÚG‚µ‚Ä‚½‚çF‚ğ“ü‚ê‚é
                     if (mixObj_hit)
                     {
+                        Debug.Log(this.gameObject.transform.parent.name + "F‚±‚±’Ê‚Á‚Ä‚é‚©‚È‚Ÿ");
                         MixObj.GetComponent<Base_Color_Script>().SetColor(color, ADDITION);
                         MixObj.GetComponent<Base_Color_Script>().SetColorChange(true);
                     }
