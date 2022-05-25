@@ -21,7 +21,8 @@ public class checkpos : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //線（シリンダー）に判定ブロックが当たっているときその上にブロックを置けなくする
-        if(other.gameObject.tag=="Conductor"|| other.gameObject.tag == "ColorOutput"|| other.gameObject.tag == "Rotate")
+        if(other.gameObject.tag=="Conductor"|| other.gameObject.tag == "ColorOutput"|| other.gameObject.tag == "Rotate"
+            || other.gameObject.tag == "MusicInput")
         {
             Debug.Log("いい流れが出来てるよ！");
             BoxCastRayTest.GetComponent<BoxCastRayTest>().Existence_Check = true;

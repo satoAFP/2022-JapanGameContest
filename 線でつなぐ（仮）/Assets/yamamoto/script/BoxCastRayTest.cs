@@ -73,7 +73,7 @@ public class BoxCastRayTest : MonoBehaviour
     void Update()
     {
         //　ターゲットとの距離
-       //distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
+        //distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
 
         RaycastHit hit;
 
@@ -108,7 +108,7 @@ public class BoxCastRayTest : MonoBehaviour
             Debug.Log("Wall");
         }
         //Cubeのレイを飛ばしターゲットと接触しているか判定
-        else if (grab==false)
+        else if (grab == false)
         {
             if (Physics.Raycast(ray, out hit, 3.0f, LayerMask.GetMask("Target")) && !Pause)
             {
@@ -121,7 +121,7 @@ public class BoxCastRayTest : MonoBehaviour
                 Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
                 //シリンダーの上に置けるブロックの場合、シリンダー設置ON
-                if(hit.collider.GetComponent<ClickObj>().Setlineblock == true)
+                if (hit.collider.GetComponent<ClickObj>().Setlineblock == true)
                 {
                     setlineblock = true;
                 }
@@ -150,7 +150,7 @@ public class BoxCastRayTest : MonoBehaviour
                     grab = true;//掴みフラグをtrue
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
-               
+
                 ////右クリックでオブジェクトを回転
                 //else if (Input.GetMouseButtonDown(1))
                 //{
@@ -160,25 +160,36 @@ public class BoxCastRayTest : MonoBehaviour
             }
         }
 
-     
+        //else if (Physics.Raycast(ray, out hit, 3.0f, LayerMask.GetMask("Target")) && !Pause && grab)
+        //{
+        //    Existence_Check = false;
+        //    Debug.Log("じゃじゃ");
+        //}    
+
         //マップチップにレイが接触しているか判定(rayを線に変更）
         else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")) && !Pause)
         {
 
-            
+
             //2本目のレイがtargetレイヤー
             if (Physics.Raycast(ray2, out hit2, 3.0f, LayerMask.GetMask("Target")) && !Pause && grab)
             {
+              
                 Existence_Check = false;
                 Debug.Log("なんで寺院に機械があんだよ");
 
+                if (Physics.Raycast(ray, out hit, 2.0f, LayerMask.GetMask("Mapcip")) && !Pause)
+                {
+                    Debug.Log("tyu");
+                }
+
             }
-            else
+            else if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Mapcip"))
             {
                 Debug.Log("教えはどうなってんだ教えは");
             }
 
-
+        
             ray_Mapcip = true;
             worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
