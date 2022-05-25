@@ -1960,7 +1960,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829036496641785934, guid: 92660cbc84a6c6d408cd0df5ed429e43, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 1.1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829036496641785935, guid: 92660cbc84a6c6d408cd0df5ed429e43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92660cbc84a6c6d408cd0df5ed429e43, type: 3}
