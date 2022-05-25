@@ -44,7 +44,7 @@ public class PL_Conductor : Conductor_Script
             //電気ついてるかの確認用変数をfalseにする
             Conductor_hit = false;
             c.gameObject.GetComponent<Conductor_Script>().SetLeave(true, power_cnt);
-
+            power_cnt = 0;
             contacing_conductor--;
         }
     }

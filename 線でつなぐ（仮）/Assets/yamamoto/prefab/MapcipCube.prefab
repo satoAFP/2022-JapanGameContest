@@ -159,6 +159,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2ee8f48577bd33646bb76985fcd2e9b9, type: 2}
   Rotationflag: 0
   vertical: 0
+  inputON: 0
   Setlineblock: 0
 --- !u!1 &5837372754190647468
 GameObject:
@@ -208,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191550264238114024, guid: 9597f4f9185c32849a112b08e958c49b, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5191550264238114025, guid: 9597f4f9185c32849a112b08e958c49b, type: 3}
       propertyPath: m_RootOrder
@@ -268,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191550265580686040, guid: 9597f4f9185c32849a112b08e958c49b, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9597f4f9185c32849a112b08e958c49b, type: 3}

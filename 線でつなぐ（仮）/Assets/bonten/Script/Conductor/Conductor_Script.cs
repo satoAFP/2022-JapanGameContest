@@ -167,6 +167,7 @@ public class Conductor_Script : Base_Enegization
             GivePowerReSet();
             if (leaving_Conductor == true)
             {
+                Debug.Log(this.gameObject.transform.parent.name);
                 power_cnt = 0;
                 leaving_Conductor = false;
             }

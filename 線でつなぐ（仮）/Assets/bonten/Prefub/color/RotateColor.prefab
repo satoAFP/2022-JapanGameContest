@@ -571,9 +571,8 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  RotateObj: {fileID: 0}
-  hitting_target: 0
-  cnt: 0
+  AssistingObj: {fileID: 5622828187745693407}
+  AssistTag: 
 --- !u!1 &5555657536650221797
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +706,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &7850751377395334557
 BoxCollider:
@@ -740,6 +739,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5b5f3c6a0b6c2c042a24613f7f5c7f97, type: 2}
   Rotationflag: 0
   vertical: 0
+  inputON: 0
   Setlineblock: 0
 --- !u!114 &5622828187745693404
 MonoBehaviour:
@@ -759,6 +759,8 @@ MonoBehaviour:
   AssistObj:
   - {fileID: 7655963810217910157}
   - {fileID: 5412410372454864757}
+  cnt: 0
+  hit_check: 0000
 --- !u!1 &5640660002997293061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,9 +1027,8 @@ MonoBehaviour:
   energization: 0
   colorchange_signal: 0
   color: 000000000000000000000000
-  RotateObj: {fileID: 0}
-  hitting_target: 0
-  cnt: 0
+  AssistingObj: {fileID: 5622828187745693407}
+  AssistTag: 
 --- !u!1 &7733681136906287920
 GameObject:
   m_ObjectHideFlags: 0
