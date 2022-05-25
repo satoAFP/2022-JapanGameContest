@@ -2307,7 +2307,7 @@ PrefabInstance:
     - target: {fileID: 5157150177828059913, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
       propertyPath: text_fade_obj
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3643781051708605259}
     - target: {fileID: 5157150177828059914, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2402,6 +2402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
+--- !u!1 &3643781051708605259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3173752511700786691, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
+  m_PrefabInstance: {fileID: 2205110802653502792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6416433564623136322 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5157150177828059914, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
