@@ -414,8 +414,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.18764275, y: 0.047701214, z: 0.23190308}
-  m_Center: {x: 0.07, y: 0.0006322104, z: -0.0026621819}
+  m_Size: {x: 0.30337942, y: 0.20253086, z: 0.23190308}
+  m_Center: {x: 0.059000496, y: -0.0032602302, z: -0.0026621777}
 --- !u!114 &5565445574457796459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,12 +429,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClearTaskflag: 00
+  stage_num: 0
+  door_illustration: []
   warp_door: 1
+  goal_warp_door: 0
   door: {fileID: 5565445574867910592}
   doorknob: {fileID: 5565445574604120400}
   scene_move_panel: {fileID: 5565445573842272542}
   mat:
-  - {fileID: 2100000, guid: 26117d3a3db7cfd40bfc0d45d4c7fb82, type: 2}
+  - {fileID: 2100000, guid: 79cfe94e510fac744955e438dfc3dfd5, type: 2}
   - {fileID: 2100000, guid: 78bd2a3d83a0cce4aaf93c403212213b, type: 2}
   mats: []
   sound1: {fileID: 8300000, guid: 56810291fa092fa468918489ed847b7b, type: 3}

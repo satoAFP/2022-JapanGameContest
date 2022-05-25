@@ -44,8 +44,9 @@ public class MixColor_Script : Base_Color_Script
         if (collision.gameObject.tag == "ColorOutput")
         {
             //ColorOutoputÇÃenergizationÇ™trueÇ»ÇÁÇ±Ç±Ç…ì¸ÇÈ
-            if (collision.gameObject.GetComponent<Base_Enegization>().GetEnergization() && colorchange_signal)
+            if (collision.gameObject.GetComponent<OutputColor_Script>().GetEnergization() && colorchange_signal)
             {
+                Debug.Log(this.gameObject.name + "Ç±Ç±í Ç¡ÇƒÇÈÅH");
                 colorchange_signal = false;
 
                 GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);

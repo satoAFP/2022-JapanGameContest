@@ -9,6 +9,8 @@ public class MIxColorChild_Script : Base_Color_Script
 
     [SerializeField]
     private GameObject parent;
+    [SerializeField]
+    private GameObject efflight;
 
     public void SetColCulation(short col)
     {
@@ -25,22 +27,18 @@ public class MIxColorChild_Script : Base_Color_Script
     {
         if (colculation == ADDITION)
         {
-            SetColor(parent.gameObject.GetComponent<Base_Color_Script>().GetColor());
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            Debug.Log(parent.gameObject.name + "ÅF"+parent.gameObject.GetComponent<MixColor_Script>().GetColorBlue());
+            SetColor(parent.gameObject.GetComponent<MixColor_Script>().GetColor());
+            Debug.Log(parent.gameObject.name+"ÅF"+color[COLOR_BLUE]);
             colorchange_signal = true;
             colculation = NONE_COL;
         }
         else if (colculation == SUBTRACTION)
         {
-            GetComponent<Renderer>().material.color = new Color32((byte)color[COLOR_RED], (byte)color[COLOR_GREEN], (byte)color[COLOR_BLUE], (byte)200);
+            efflight.GetComponent<ColorLight_Script1>().SetLight(color);
             colorchange_signal = true;
             colculation = NONE_COL;
         }
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log(collision.gameObject.tag);
     }
 
     public void OnCollisionStay(Collision collision)

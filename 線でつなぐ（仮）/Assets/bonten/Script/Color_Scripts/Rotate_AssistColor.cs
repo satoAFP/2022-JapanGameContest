@@ -20,7 +20,6 @@ public class Rotate_AssistColor : Base_Color_Script
     {
         if (collider.gameObject.tag == "ColorOutput")
         {
-            Debug.Log("お前それマジで言ってる？");
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(true);
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(true);
         }
