@@ -22,7 +22,7 @@ public class checkpos : MonoBehaviour
     {
         //線（シリンダー）に判定ブロックが当たっているときその上にブロックを置けなくする
         if(other.gameObject.tag=="Conductor"|| other.gameObject.tag == "ColorOutput"|| other.gameObject.tag == "Rotate"
-            || other.gameObject.tag == "MusicInput")
+            || other.gameObject.tag == "MusicInput"|| other.gameObject.tag == "MusicOutput"||other.gameObject.tag == "MusicMix")
         {
             Debug.Log("いい流れが出来てるよ！");
             BoxCastRayTest.GetComponent<BoxCastRayTest>().Existence_Check = true;
