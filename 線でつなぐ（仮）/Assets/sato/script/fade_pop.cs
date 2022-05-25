@@ -56,8 +56,8 @@ public class fade_pop : MonoBehaviour
             gameObject.GetComponent<Image>().color -= new Color(0, 0, 0, fade_speed);
 
             //Š®‘S‚É“§‰ß‚µ‚½‚çÁ‚·
-            if (gameObject.GetComponent<Image>().color.a < 0)
-                gameObject.SetActive(false);
+            //if (gameObject.GetComponent<Image>().color.a < 0)
+            //    gameObject.SetActive(false);
         }
     }
 }
