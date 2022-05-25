@@ -18,7 +18,7 @@ public class PowerSupply_Script : MonoBehaviour
 
     [SerializeField]
     private int electoric_power;            //接触している、タグConductorオブジェクトに譲渡する電力の値
-
+    
     public void SetPowerSupply()
     {
         if (power_on == false)
@@ -30,6 +30,7 @@ public class PowerSupply_Script : MonoBehaviour
             power_on = false;
         }
         list_count = 0;
+        int i = 0;
     }
 
 
