@@ -5,11 +5,11 @@ using UnityEngine;
 public class Rotate_Script : Conductor_Script
 {
 
-    private const int RIGHT = 0;         //このオブジェクト
-    private const int LEFT = 1;     //それ以外のオブジェクト
-
     public Material[] mat = new Material[2];//変更したいマテリアルをセット
     Material[] mats;
+
+    private const int RIGHT = 0;         //このオブジェクト
+    private const int LEFT = 1;     //それ以外のオブジェクト
 
     [SerializeField]
     [NamedArrayAttribute(new string[] { "right", "left" })]

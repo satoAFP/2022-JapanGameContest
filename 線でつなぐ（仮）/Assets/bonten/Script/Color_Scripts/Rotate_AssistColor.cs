@@ -11,14 +11,9 @@ public class Rotate_AssistColor : Base_Color_Script
     [SerializeField]
     private string AssistTag;
 
-    private void Start()
-    {
-        AssistTag = AssistingObj.tag;
-    }
-
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "ColorOutput")
+        if (collider.gameObject.tag == AssistTag)
         {
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(true);
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(true);
@@ -27,7 +22,7 @@ public class Rotate_AssistColor : Base_Color_Script
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.tag == "ColorOutput")
+        if (collider.gameObject.tag == AssistTag)
         {
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckRight(false);
             AssistingObj.GetComponent<Rotate_OutputColor>().SetCheckLeft(false);

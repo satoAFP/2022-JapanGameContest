@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewConductor : Base_Enegization
+public class NewRotate : Base_Enegization
 {
     protected const int ELECTORIC_POWER = 1;   //1以上で通電
 
@@ -31,6 +31,19 @@ public class NewConductor : Base_Enegization
     [SerializeField]
     private GameObject efflight;
 
+
+
+    private const int RIGHT = 0;         //このオブジェクト
+    private const int LEFT = 1;     //それ以外のオブジェクト
+
+    [SerializeField]
+    [NamedArrayAttribute(new string[] { "right", "left" })]
+    GameObject[] AssistObj = new GameObject[2];
+
+
+    [SerializeField]
+    [NamedArrayAttribute(new string[] { "right", "left" })]
+    private bool[] hit_check = new bool[2];         //アシストOBJ(両端の球)が当たってるかどうかチェックするよう
 
     public void AlreadyGetEnegy()
     {
@@ -162,20 +175,28 @@ public class NewConductor : Base_Enegization
         energi_check = true;
     }
 
+
+    public void SetCheckRight(bool success)
+    {
+        hit_check[RIGHT] = success;
+    }
+    public void SetCheckLeft(bool success)
+    {
+        hit_check[LEFT] = success;
+    }
+
     // Update is called once per frame
     public void Update()
     {
-        //電線?エネルギーライン的なやつをアクティブ、非アクティブに設定する
-        if (energization)
+        if (energization && efflight != null)
         {
-            if(efflight != null)
-            {
-                //オブジェクトの色を表示
-                efflight.SetActive(true);
-            }
+
+            //オブジェクトの色を表示
+            efflight.SetActive(true);
         }
-        else
+        else 
         {
+            power_cnt = 0;
             if (efflight != null)
             {
                 //オブジェクトの色を非表示
@@ -221,7 +242,7 @@ public class NewConductor : Base_Enegization
         //導体と離れたとき
         else if (c.gameObject.tag == "Conductor")
         {
-            if(power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
+            if (power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
             {
                 energization = false;
                 power_save = power_cnt;
@@ -234,65 +255,44 @@ public class NewConductor : Base_Enegization
     {
         if (c.gameObject.tag == "Conductor")
         {
-            //絶縁体と接触している時、
-            if ((Insulator_hit || hitting_insulator) && (power_cnt != 0 && power_cnt > c.gameObject.GetComponent<NewConductor>().GetPower()) && energization) 
+
+            if (hit_check[RIGHT] == true && hit_check[LEFT] == true)
             {
-                c.gameObject.GetComponent<NewConductor>().SetInsulator(true);
-                energization = false;
-                power_save = power_cnt;
-                power_cnt = 0;
+                //絶縁体と接触している時、
+                if ((Insulator_hit || hitting_insulator) && (power_cnt != 0 && power_cnt > c.gameObject.GetComponent<NewConductor>().GetPower()) && energization)
+                {
+                    c.gameObject.GetComponent<NewConductor>().SetInsulator(true);
+                    energization = false;
+                    power_save = power_cnt;
+                    power_cnt = 0;
+                }
+                else
+                {
+
+                    //自身が通電してなくて、接触してるConductorObjが通電してる時、自身も通電させ
+                    //接触してるConductorObjの電力を1低下させた数値を取得
+                    if ((!energization && c.gameObject.GetComponent<NewConductor>().GetEnergization()) && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
+                    {
+                        Debug.Log(this.gameObject.transform.parent.name);
+                        energization = true;
+                        power_cnt = c.gameObject.GetComponent<NewConductor>().GetPower() - 1;
+                        c.gameObject.GetComponent<NewConductor>().SetInsulator(false);
+                    }
+                    //自身が通電しており、接触してるConductorObjが通電してなかったとき、自身も消灯し
+                    //電力を0にする
+                    else if (energization && !c.gameObject.GetComponent<NewConductor>().GetEnergization() && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
+                    {
+                        energization = false;
+                        power_save = power_cnt;
+
+                    }
+                }
             }
             else
             {
-
-                //自身が通電してなくて、接触してるConductorObjが通電してる時、自身も通電させ
-                //接触してるConductorObjの電力を1低下させた数値を取得
-                if ((!energization && c.gameObject.GetComponent<NewConductor>().GetEnergization()) && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower()) 
-                {
-                    Debug.Log(this.gameObject.transform.parent.name);
-                    energization = true;
-                    power_cnt = c.gameObject.GetComponent<NewConductor>().GetPower() - 1;
-                    c.gameObject.GetComponent<NewConductor>().SetInsulator(false);
-                }
-                //自身が通電しており、接触してるConductorObjが通電してなかったとき、自身も消灯し
-                //電力を0にする
-                else if (energization && !c.gameObject.GetComponent<NewConductor>().GetEnergization() && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
-                {
-                    energization = false;
-                    power_save = power_cnt;
-                    
-                }
-            }
-        }
-        else if (c.gameObject.tag == "Rotate")
-        {
-            //絶縁体と接触している時、
-            if ((Insulator_hit || hitting_insulator) && (power_cnt != 0 && power_cnt > c.gameObject.GetComponent<NewConductor>().GetPower()) && energization)
-            {
-                c.gameObject.GetComponent<NewConductor>().SetInsulator(true);
                 energization = false;
-                power_save = power_cnt;
             }
-            else
-            {
-
-                //自身が通電してなくて、接触してるConductorObjが通電してる時、自身も通電させ
-                //接触してるConductorObjの電力を1低下させた数値を取得
-                if ((!energization && c.gameObject.GetComponent<NewConductor>().GetEnergization()) && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
-                {
-                    Debug.Log(this.gameObject.transform.parent.name);
-                    energization = true;
-                    power_cnt = c.gameObject.GetComponent<NewConductor>().GetPower() - 1;
-                    c.gameObject.GetComponent<NewConductor>().SetInsulator(false);
-                }
-                //自身が通電しており、接触してるConductorObjが通電してなかったとき、自身も消灯し
-                //電力を0にする
-                else if (energization && !c.gameObject.GetComponent<NewConductor>().GetEnergization() && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
-                {
-                    energization = false;
-                    power_save = power_cnt;
-                }
-            }
+                
         }
     }
 }

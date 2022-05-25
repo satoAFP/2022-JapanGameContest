@@ -25,12 +25,13 @@ public class Rotate_OutputColor : Base_Color_Script
     {
         return cnt;
     }
+    //—Dæ“xİ’è—p
     public void SetPrecedence(int num)
     {
-        Debug.Log(this.gameObject.transform.parent.name);
         cnt = num;
     }
 
+    //—¼’[‚Ì‹Ê‚ª“–‚½‚Á‚Ä‚é‚©‚Ç‚¤‚©‚ğİ’è
     public void SetCheckRight(bool success)
     {
         hit_check[RIGHT] = success;
