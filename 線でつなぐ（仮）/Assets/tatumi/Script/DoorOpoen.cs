@@ -42,8 +42,10 @@ public class DoorOpoen : MonoBehaviour
         mats = GetComponent<Renderer>().materials;
         audioSource = GetComponent<AudioSource>();
         
+        //ステージのクリア状況取得
         stage_clear_check = GameObject.Find("stage_clear_check").GetComponent<stage_clear>().Stage_clear;
 
+        //出来るステージの扉のイラスト光らせる
         if (stage_clear_check[stage_num])
         {
             for (int i = 0; i < door_illustration.Length; i++)

@@ -3834,6 +3834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClearTaskflag: 00000000
   stage_num: 0
+  door_illustration: []
   warp_door: 0
   goal_warp_door: 0
   door: {fileID: 0}
@@ -4517,7 +4518,7 @@ PrefabInstance:
       objectReference: {fileID: 1270959196}
     - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: total_time
-      value: 5
+      value: 6000
       objectReference: {fileID: 0}
     - target: {fileID: 4191362931499463187, guid: e8f29ca0f6dc3054182d1afe7db0c88f, type: 3}
       propertyPath: gameover_panel
