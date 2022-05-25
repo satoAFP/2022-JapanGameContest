@@ -103,6 +103,25 @@ public class OutputMusic_Script : Base_Enegization
                 }
             }
         }
+        //回転処理。今は実質コンダクターなのでOFF
+        //else if (collision.gameObject.tag == "Rotate")
+        //{
+        //    //電源がOnの相手のみ作動
+        //    if (collision.gameObject.GetComponent<Rotate_music>().GetEnergization() == true)
+        //    {
+        //        //取得＆自身に代入
+        //        music_num = collision.gameObject.GetComponent<OutputMusic_Script>().Remusic_num();
+               
+        //        energization = true;
+               
+        //    }
+        //    else
+        //    {
+        //        //電源と接触してないかつ相手が非通電なら初期化
+        //        if(Input_Hit!=true)
+        //        music_num = -1;
+        //    }
+        //}
         //色も判定の場合(In)
         else if (collision.gameObject.name.Contains(InColor_name) == true)
         {
@@ -166,6 +185,14 @@ public class OutputMusic_Script : Base_Enegization
             Input_Hit = false;
             //MCmode = false;
         }
+        //else if (collision.gameObject.tag == "Rotate")
+        //{
+            
+        //    //電源と接触してないなら初期化
+        //    if (Input_Hit != true)
+        //          music_num = -1;
+            
+        //}
         //抜けたとき電源音番号初期化(色付き)
         else if (collision.gameObject.name.Contains(InColor_name) == true)
         {
