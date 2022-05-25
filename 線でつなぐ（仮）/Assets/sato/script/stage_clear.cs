@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class stage_clear : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class stage_clear : MonoBehaviour
     //クリアした判定
     [System.NonSerialized] public bool clear;
 
+    //クリア時のテキスト
+    [System.NonSerialized] public string text_mem;
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
 
+        //クリア状況初期化
         Stage_clear[0] = true;
         for (int i = 1; i < 6; i++)
             Stage_clear[i] = false;
@@ -33,6 +38,8 @@ public class stage_clear : MonoBehaviour
                 if (SceneManager.GetActiveScene().name == "Stage" + i)
                 {
                     Stage_clear[i] = true;
+
+                    text_mem = i + "/5";
                 }
             }
         }
@@ -43,4 +50,5 @@ public class stage_clear : MonoBehaviour
             clear = false;
         }
     }
+
 }
