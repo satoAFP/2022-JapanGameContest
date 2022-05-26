@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 public class stage_clear : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class stage_clear : MonoBehaviour
 
     //クリア時のテキスト
     [System.NonSerialized] public string text_mem;
+
+    //タイトルに戻るとカーソルをセットする
+    private bool title_cursol_set = false;
+    //カーソルの移動設定
+    [DllImport("user32.dll")]
+    public static extern bool SetCursorPos(int x, int y);
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +55,16 @@ public class stage_clear : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "STAGE_SELECT")
         {
             clear = false;
+            title_cursol_set = true;
+        }
+
+        if(SceneManager.GetActiveScene().name == "TITLE")
+        {
+            if(title_cursol_set)
+            {
+                SetCursorPos(960, 570);
+                title_cursol_set = false;
+            }
         }
     }
 
