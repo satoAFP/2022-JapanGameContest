@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4734,6 +4734,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5565445573842272540, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
+      propertyPath: scene_name
+      value: TITLE
+      objectReference: {fileID: 0}
     - target: {fileID: 5565445573999347436, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
       propertyPath: m_Name
       value: WarpGate2
@@ -4784,11 +4788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565445574457796459, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
       propertyPath: warp_door
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5565445574457796459, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
       propertyPath: goal_warp_door
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}

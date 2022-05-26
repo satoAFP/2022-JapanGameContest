@@ -58,11 +58,13 @@ public class stage_clear : MonoBehaviour
             title_cursol_set = true;
         }
 
+        //タイトルに戻るとカーソルを出すようにする
         if(SceneManager.GetActiveScene().name == "TITLE")
         {
             if(title_cursol_set)
             {
                 SetCursorPos(960, 570);
+                Cursor.visible = true;
                 title_cursol_set = false;
             }
         }
