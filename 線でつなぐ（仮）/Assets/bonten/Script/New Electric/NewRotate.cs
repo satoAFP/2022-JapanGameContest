@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewRotate : Base_Enegization
+public class NewRotate : Base_RotateAssist
 {
     protected const int ELECTORIC_POWER = 1;   //1以上で通電
 
@@ -33,17 +33,6 @@ public class NewRotate : Base_Enegization
 
 
 
-    private const int RIGHT = 0;         //このオブジェクト
-    private const int LEFT = 1;     //それ以外のオブジェクト
-
-    [SerializeField]
-    [NamedArrayAttribute(new string[] { "right", "left" })]
-    GameObject[] AssistObj = new GameObject[2];
-
-
-    [SerializeField]
-    [NamedArrayAttribute(new string[] { "right", "left" })]
-    private bool[] hit_check = new bool[2];         //アシストOBJ(両端の球)が当たってるかどうかチェックするよう
 
     public void AlreadyGetEnegy()
     {
@@ -106,101 +95,36 @@ public class NewRotate : Base_Enegization
     public int GetPower() => power_cnt;
 
 
+    //save_cntのゲッター
+    public int GetSavePower() => power_save;
+
     //絶縁体の処理。セット元より自分のパワーが小さければ絶縁されない
     public void SetInsulator(bool set_insul)
     {
         hitting_insulator = set_insul;
     }
 
-    //導体と離れた時の処理
-    public void SetLeave(bool leave, int pow)
-    {
-        if (pow > power_cnt)
-        {
-            if (this.gameObject.name == "Cube")
-            {
-                /*バグ原因
-                 電源からつながってるコンダクター(以下シリンダー1)が先にこの処理を通るとCubeコンダクターのパワーが0になる
-                 それによって、Cubeコンダクターからつながってるコンダクター(以下シリンダー3)のExit処理に入り、このSetLeave
-                 に入ってもCubeパワーが0(引数powの方)になってるのでこのif文に入らない
-
-                フローチャート的に描くと
-                Cubeが離れる
-                ↓
-                先にシリンダー1のExitがCubeに対して反応し、CubeのPower_cntが0になる
-                ↓
-                その後、CubeのExitがシリンダー3に対して反応し、シリンダー3の電気を消そうとする(SetLeaveに入る)が
-                しかしCubeのPower_cntが0になっているのでif文の中に入らない
-                ↓
-                その結果、電源とつながってる導体が離れても電気がつき続ける
-
-                やりたい処理
-                Cubeが離れる
-                ↓
-                先にCubeのExitがシリンダー1、およびシリンダー3に反応させる
-                ↓
-
-                 */
-                Debug.Log(this.gameObject.name);
-                Debug.Log(power_cnt);
-                Debug.Log(pow);
-            }
-
-            power_save = power_cnt;
-            leaving_Conductor = leave;
-            Conductor_hit = false;
-            //このオブジェクトのpower_cntが0になったことにより
-            //このオブジェクトと隣接しているオブジェクトも電力を失うかどうかを確認するため、trueにする
-            energi_check = true;
-        }
-    }
-
-    public void EffExit()
-    {
-        PowerOn(power_save);
-    }
-
-    public void PowerOn(int a)
-    {
-        power_cnt = a;
-        Debug.Log(a);
-    }
-
-    public void PowerOff()
-    {
-        GivePowerReSet();
-        power_save = power_cnt;
-
-        power_cnt = 0;
-        energi_check = true;
-    }
-
-
-    public void SetCheckRight(bool success)
-    {
-        hit_check[RIGHT] = success;
-    }
-    public void SetCheckLeft(bool success)
-    {
-        hit_check[LEFT] = success;
-    }
-
     // Update is called once per frame
     public void Update()
     {
-        if (energization && efflight != null)
+        if (energization)
         {
-
-            //オブジェクトの色を表示
-            efflight.SetActive(true);
+            if(efflight != null)
+            {
+                //オブジェクトの色を表示
+                efflight.SetActive(true);
+            }
         }
         else 
         {
-            power_cnt = 0;
             if (efflight != null)
             {
                 //オブジェクトの色を非表示
                 efflight.SetActive(false);
+            }
+            else
+            {
+                power_cnt = 0;
             }
         }
     }
@@ -208,7 +132,7 @@ public class NewRotate : Base_Enegization
     public void OnCollisionEnter(Collision c)
     {
         //電源と接触したとき
-        if (c.gameObject.tag == "Power_Supply")
+        if (c.gameObject.CompareTag("Power_Supply"))
         {
             ////Power_hitをtrueにする
             energization = true;
@@ -216,7 +140,7 @@ public class NewRotate : Base_Enegization
             //power_cnt = 1;
         }
         //絶縁体と接触したとき
-        else if (c.gameObject.tag == "Insulator")
+        else if (c.gameObject.CompareTag("Insulator"))
         {
             //Insulator_hitをtrueにする
             Insulator_hit = true;
@@ -228,19 +152,19 @@ public class NewRotate : Base_Enegization
     {
 
         //電源と離れたとき
-        if (c.gameObject.tag == "Power_Supply")
+        if (c.gameObject.CompareTag("Power_Supply"))
         {
             //
             energization = false;
             Power_hit = false;
         }
         //絶縁体と離れたとき
-        else if (c.gameObject.tag == "Insulator")
+        else if (c.gameObject.CompareTag("Insulator"))
         {
             Insulator_hit = false;
         }
         //導体と離れたとき
-        else if (c.gameObject.tag == "Conductor")
+        else if (c.gameObject.CompareTag("Conductor"))
         {
             if (power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
             {
@@ -253,7 +177,7 @@ public class NewRotate : Base_Enegization
 
     public void OnCollisionStay(Collision c)
     {
-        if (c.gameObject.tag == "Conductor")
+        if (c.gameObject.CompareTag("Conductor"))
         {
 
             if (hit_check[RIGHT] == true && hit_check[LEFT] == true)
@@ -273,9 +197,9 @@ public class NewRotate : Base_Enegization
                     //接触してるConductorObjの電力を1低下させた数値を取得
                     if ((!energization && c.gameObject.GetComponent<NewConductor>().GetEnergization()) && power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
                     {
-                        Debug.Log(this.gameObject.transform.parent.name);
                         energization = true;
                         power_cnt = c.gameObject.GetComponent<NewConductor>().GetPower() - 1;
+                        Debug.Log(power_cnt);
                         c.gameObject.GetComponent<NewConductor>().SetInsulator(false);
                     }
                     //自身が通電しており、接触してるConductorObjが通電してなかったとき、自身も消灯し

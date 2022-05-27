@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 9040866287768383082}
   - component: {fileID: 7005540828752750070}
   - component: {fileID: 910993590828355160}
-  - component: {fileID: 4149373458491898364}
+  - component: {fileID: 4478952857665131391}
   m_Layer: 10
   m_Name: AssistRight
   m_TagString: Untagged
@@ -378,7 +378,7 @@ CapsuleCollider:
   m_Height: 0.010008061
   m_Direction: 1
   m_Center: {x: 0, y: -0.031978864, z: 0}
---- !u!114 &4149373458491898364
+--- !u!114 &4478952857665131391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,12 +387,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1693867666066576987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fd4653b9cd38c4b9c7e8321f5c5a48, type: 3}
+  m_Script: {fileID: 11500000, guid: d242c21e766a8e04a99434ce0aa87a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateObj: {fileID: 3726426726834726665}
-  hitting_conductor: 0
-  power: 0
+  AssistingObj: {fileID: 3726426726834726665}
+  AssistTag: Conductor
 --- !u!1 &1847757012030338629
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,8 +534,8 @@ GameObject:
   - component: {fileID: 7151342665469338550}
   - component: {fileID: 1980884995262340012}
   - component: {fileID: 1246892258291971147}
-  - component: {fileID: 8754214105078285350}
   - component: {fileID: 5922560090562875078}
+  - component: {fileID: 1214985516709021845}
   m_Layer: 10
   m_Name: polySurface1
   m_TagString: Rotate
@@ -639,38 +638,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.10000003, y: 0.09999999, z: 0.10000002}
   m_Center: {x: 0, y: -0.000000005122274, z: 0}
---- !u!114 &8754214105078285350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3726426726834726665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c206548553022d442b663c4e1ac48c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energization: 0
-  Conductor_hit: 0
-  Insulator_hit: 0
-  Power_hit: 0
-  hitting_insulator: 0
-  leaving_Conductor: 0
-  energi_check: 0
-  power_gave: 0
-  power_save: 0
-  power_cnt: 0
-  contacing_conductor: 0
-  giving_conductor: 0
-  rotate_hit: 0
-  eneger_line: {fileID: 0}
-  mat:
-  - {fileID: 0}
-  - {fileID: 0}
-  AssistObj:
-  - {fileID: 1693867666066576987}
-  - {fileID: 3936743804684213923}
 --- !u!114 &5922560090562875078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,7 +656,37 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5b5f3c6a0b6c2c042a24613f7f5c7f97, type: 2}
   Rotationflag: 0
   vertical: 0
+  inputON: 0
   Setlineblock: 0
+--- !u!114 &1214985516709021845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726426726834726665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2282588197dd642a0b84cb11630562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energization: 0
+  AssistObj:
+  - {fileID: 0}
+  - {fileID: 0}
+  hit_check: 0000
+  Conductor_hit: 0
+  Insulator_hit: 0
+  Power_hit: 0
+  hitting_insulator: 0
+  leaving_Conductor: 0
+  energi_check: 0
+  power_gave: 0
+  power_save: 0
+  power_cnt: 0
+  contacing_conductor: 0
+  giving_conductor: 0
+  efflight: {fileID: 0}
 --- !u!1 &3745032589951080915
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +809,7 @@ GameObject:
   - component: {fileID: 7252270200603226147}
   - component: {fileID: 7233450425728001023}
   - component: {fileID: 4100685503226526379}
-  - component: {fileID: 6123359204664802875}
+  - component: {fileID: 838672085778127003}
   m_Layer: 10
   m_Name: AssistLeft
   m_TagString: Untagged
@@ -864,7 +861,7 @@ CapsuleCollider:
   m_Height: 0.010008061
   m_Direction: 1
   m_Center: {x: 0, y: -0.031978864, z: 0}
---- !u!114 &6123359204664802875
+--- !u!114 &838672085778127003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -873,12 +870,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3936743804684213923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fd4653b9cd38c4b9c7e8321f5c5a48, type: 3}
+  m_Script: {fileID: 11500000, guid: d242c21e766a8e04a99434ce0aa87a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateObj: {fileID: 3726426726834726665}
-  hitting_conductor: 0
-  power: 0
+  AssistingObj: {fileID: 3726426726834726665}
+  AssistTag: Conductor
 --- !u!1 &4912359873545506595
 GameObject:
   m_ObjectHideFlags: 0

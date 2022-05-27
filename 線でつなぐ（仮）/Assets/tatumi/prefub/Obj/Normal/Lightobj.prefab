@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 492191301238770975}
   - component: {fileID: 492191301238770974}
   - component: {fileID: 492191301238770972}
-  - component: {fileID: 492191301238770973}
   - component: {fileID: 2593512771729135742}
+  - component: {fileID: 8523498869877340523}
   m_Layer: 0
   m_Name: Lightobj
   m_TagString: Untagged
@@ -97,23 +97,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &492191301238770973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492191301238770968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfbfe02ea2803cf4eada482ca058dee1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turn_on_power: 0
-  Door: {fileID: 0}
-  Clear_num: 0
-  enegeronly: 1
-  sound1: {fileID: 8300000, guid: 7b3dac917779bfd4b9b7be0897276667, type: 3}
 --- !u!82 &2593512771729135742
 AudioSource:
   m_ObjectHideFlags: 0
@@ -210,6 +193,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8523498869877340523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492191301238770968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c650de3ebe40fc44bba911cff0a39f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn_on_power: 0
+  Door: {fileID: 0}
+  Clear_num: 0
+  enegeronly: 1
+  sound1: {fileID: 8300000, guid: 7b3dac917779bfd4b9b7be0897276667, type: 3}
 --- !u!1 &701137322470591355
 GameObject:
   m_ObjectHideFlags: 0

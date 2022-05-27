@@ -4,22 +4,8 @@ using UnityEngine;
 
 public class Rotate_OutputColor : Base_Color_Script
 {
-
-    private const int RIGHT = 0;         //このオブジェクト
-    private const int LEFT = 1;     //それ以外のオブジェクト
-
-    [SerializeField]
-    [NamedArrayAttribute(new string[] { "right", "left" })]
-    GameObject[] AssistObj = new GameObject[2];
-
-
     [SerializeField]
     private int cnt = 0;
-
-    [SerializeField]
-    [NamedArrayAttribute(new string[] { "right", "left" })]
-    private bool[] hit_check = new bool[2];         //アシストOBJ(両端の球)が当たってるかどうかチェックするよう
-
     //アクセサー
     public int GetPrecedence()
     {
@@ -30,20 +16,9 @@ public class Rotate_OutputColor : Base_Color_Script
     {
         cnt = num;
     }
-
-    //両端の玉が当たってるかどうかを設定
-    public void SetCheckRight(bool success)
-    {
-        hit_check[RIGHT] = success;
-    }
-    public void SetCheckLeft(bool success)
-    {
-        hit_check[LEFT] = success;
-    }
-
     public void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "ColorOutput")
+        if (collision.gameObject.CompareTag("ColorOutput"))
         {
             if (hit_check[RIGHT] == true && hit_check[LEFT] == true)
             {
@@ -89,7 +64,7 @@ public class Rotate_OutputColor : Base_Color_Script
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "ColorOutput")
+        if (collision.gameObject.CompareTag("ColorOutput"))
         {
             if(energization==true)
             {
