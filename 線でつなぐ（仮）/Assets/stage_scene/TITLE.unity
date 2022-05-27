@@ -1297,6 +1297,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cylinder
       objectReference: {fileID: 0}
+    - target: {fileID: 6594421561823805406, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594421561823805406, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594421561823805406, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
 --- !u!1 &1514688119
@@ -1594,6 +1606,22 @@ PrefabInstance:
     - target: {fileID: 3132251060453365195, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
       propertyPath: m_Name
       value: Cylinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792267159921433083, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792267159921433083, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594421561823805406, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594421561823805406, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f5d36e0ef028542ae1a4cf68780a3c, type: 3}

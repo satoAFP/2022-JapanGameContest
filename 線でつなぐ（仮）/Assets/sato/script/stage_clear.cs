@@ -46,7 +46,7 @@ public class stage_clear : MonoBehaviour
                 {
                     Stage_clear[i] = true;
 
-                    text_mem = i + "/5";
+                    text_mem = "“d—Í " + i * 20 + "%";
                 }
             }
         }
