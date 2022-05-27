@@ -41,6 +41,11 @@ public class MapcipSlect : MonoBehaviour
             {
                
             }
+            else if(Onobj == true)
+            {
+                Debug.Log("きも");
+                mats[0] = mat[2];
+            }
             else
             {
                 mats[0] = mat[1];
@@ -55,7 +60,12 @@ public class MapcipSlect : MonoBehaviour
             //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
             if (Onblock == true)
             {
-                //Debug.Log("53位");
+                Debug.Log("53位");
+            }
+            else if(Onobj==true)
+            {
+                Debug.Log("黄色");
+                mats[0] = mat[2];
             }
             else
             {
@@ -64,6 +74,8 @@ public class MapcipSlect : MonoBehaviour
 
             GetComponent<Renderer>().materials = mats;
         }
+
+       
         else
         {
             if (mats[0] == mat[1])
@@ -96,14 +108,14 @@ public class MapcipSlect : MonoBehaviour
         }
         if (other.CompareTag("Conductor"))
         {
-           // Onplayer = true;
+            Onobj = true;
         }
 
         //ライトオブジェクトがマップチップの上にある時、ブロックを置けないようにする
         //（マップチップの上に乗っているときのみ！！！！）
         if (other.CompareTag("Power_Supply"))
         {
-            Debug.Log("バナナ");
+          //  Debug.Log("バナナ");
             Onobj = true;
         }
 
@@ -111,7 +123,7 @@ public class MapcipSlect : MonoBehaviour
         //（マップチップの上に乗っているときのみ！！！！）
         if (other.CompareTag("Noset"))
         {
-            Debug.Log("夢色キッチン☆");
+            //Debug.Log("夢色キッチン☆");
             Onobj = true;
         }
 
@@ -126,6 +138,18 @@ public class MapcipSlect : MonoBehaviour
         {
            // Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
+        }
+
+        if (other.CompareTag("Conductor"))
+        {
+            Debug.Log("素敵だね");
+            Onobj = false;
+        }
+
+        if (other.CompareTag("Rotate"))
+        {
+         //   Debug.Log("素敵だね");
+            Onobj = false;
         }
     }
 
