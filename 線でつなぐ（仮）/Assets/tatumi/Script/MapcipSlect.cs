@@ -106,7 +106,38 @@ public class MapcipSlect : MonoBehaviour
            // Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
+        //電線＆電気ブロック
         if (other.CompareTag("Conductor"))
+        {
+            Onobj = true;
+        }
+        //色用ブロック
+        if (other.gameObject.tag == "ColorInput")
+        {
+            Onobj = true;
+        }
+        //色用電線
+        if (other.gameObject.tag == "ColorOutput")
+        {
+            Onobj = true;
+        }
+        //混色オブジェクト
+        if (other.gameObject.tag == "ColorMix")
+        {
+            Onobj = true;
+        }
+        ////音用ブロック
+        //if (other.gameObject.tag == "MusicInput")
+        //{
+        //    Onobj = true;
+        //}
+        //音用電線
+        if (other.gameObject.tag == "MusicOutput")
+        {
+            Onobj = true;
+        }
+        //音混ぜオブジェクト
+        if (other.gameObject.tag == "MusicMix")
         {
             Onobj = true;
         }
@@ -140,15 +171,29 @@ public class MapcipSlect : MonoBehaviour
             Onplayer = false;
         }
 
+        //電気ブロックが床から離れたときマップチップの色を元に戻す
         if (other.CompareTag("Conductor"))
         {
             Debug.Log("素敵だね");
             Onobj = false;
         }
 
+        //回転ブロックが床から離れたときマップチップの色を元に戻す
         if (other.CompareTag("Rotate"))
         {
          //   Debug.Log("素敵だね");
+            Onobj = false;
+        }
+
+        //色用ブロックが床から離れたときマップチップの色を元に戻す
+        if (other.gameObject.tag == "ColorInput")
+        {
+            Onobj = false;
+        }
+
+        //音用ブロックが床から離れたときマップチップの色を元に戻す
+        if (other.gameObject.tag == "MusicInput")
+        {
             Onobj = false;
         }
     }
