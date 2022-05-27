@@ -36,6 +36,7 @@ public class MapcipSlect : MonoBehaviour
         if (now_select == true && Onplayer==false)
         {
             now_select = false;
+
             //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
             if (Onblock==true)
             {
@@ -43,8 +44,15 @@ public class MapcipSlect : MonoBehaviour
             }
             else if(Onobj == true)
             {
-                Debug.Log("きも");
-                mats[0] = mat[2];
+                if(script.Existence_Check == false)
+                {
+                    Debug.Log("きも");
+                    mats[0] = mat[1];
+                }
+                else
+                {
+                    mats[0] = mat[2];
+                }
             }
             else
             {
@@ -71,7 +79,6 @@ public class MapcipSlect : MonoBehaviour
             {
                 mats[0] = mat[2];
             }
-
             GetComponent<Renderer>().materials = mats;
         }
 
