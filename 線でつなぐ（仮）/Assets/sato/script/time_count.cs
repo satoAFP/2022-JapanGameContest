@@ -99,6 +99,7 @@ public class time_count : MonoBehaviour
                     //左クリックでステージセレクト
                     if (Input.GetMouseButton(0))
                     {
+                        GameObject.Find("stage_clear_check").GetComponent<stage_clear>().text_mem = "";
                         SceneManager.LoadScene("STAGE_SELECT");
                     }
                 }
