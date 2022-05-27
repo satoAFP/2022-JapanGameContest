@@ -26,7 +26,7 @@ public class BoxCastRayTest : MonoBehaviour
 
     public bool grab;//掴みフラグ
 
-    private bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
+    public bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
 
     private bool Pause = false;//一時中断フラグ
 
@@ -294,6 +294,7 @@ public class BoxCastRayTest : MonoBehaviour
                             second_set = true;//現在のマップチップで２回目のブロックを置く処理
                         }
                     }
+
                 }
             }
 
