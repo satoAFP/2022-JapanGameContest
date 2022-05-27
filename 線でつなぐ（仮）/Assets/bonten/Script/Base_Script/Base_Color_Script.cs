@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //色の基盤スクリプト
-public class Base_Color_Script : Base_Enegization
+public class Base_Color_Script : Base_RotateAssist
 {
     //定数-------------------------------------------------------
     //色の値の最大値

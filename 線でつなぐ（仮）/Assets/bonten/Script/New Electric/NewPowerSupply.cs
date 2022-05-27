@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerSupply_Script : MonoBehaviour
+public class NewPowerSupply : MonoBehaviour
 {
 
     [SerializeField]
@@ -10,22 +10,22 @@ public class PowerSupply_Script : MonoBehaviour
     [SerializeField]
     private bool gave_power = false;
     [SerializeField]
-    private int  list_count = 0;
+    private int list_count = 0;
 
 
     [SerializeField]
-    private List<GameObject> obj_list=new List<GameObject>();
+    private List<GameObject> obj_list = new List<GameObject>();
 
     [SerializeField]
     private int electoric_power;            //接触している、タグConductorオブジェクトに譲渡する電力の値
-    
+
     public void SetPowerSupply()
     {
         if (power_on == false)
         {
             power_on = true;
         }
-        else if(power_on == true)
+        else if (power_on == true)
         {
             power_on = false;
         }
@@ -50,13 +50,13 @@ public class PowerSupply_Script : MonoBehaviour
         if (power_on == true && list_count < obj_list.Count)
         {
             //導体に電気を通す
-            obj_list[list_count].GetComponent<Conductor_Script>().SetPower(electoric_power, true);
+            obj_list[list_count].GetComponent<NewConductor>().SetPower(electoric_power, true);
             list_count++;
         }
         else if (power_on == false && list_count < obj_list.Count)
         {
             //電源を切って電気を消す。
-            obj_list[list_count].GetComponent<Conductor_Script>().PowerOff();
+            obj_list[list_count].GetComponent<NewConductor>().PowerOff();
             list_count++;
         }
     }
@@ -76,7 +76,7 @@ public class PowerSupply_Script : MonoBehaviour
         if (collision.gameObject.tag == "Conductor")
         {
             //ConductorObjの電気を消して該当Objのリストも消す
-            collision.gameObject.GetComponent<Conductor_Script>().PowerOff();
+            collision.gameObject.GetComponent<NewConductor>().PowerOff();
             obj_list.Remove(collision.gameObject);
             //list_count < obj_listの数 にならないようにする
             list_count = obj_list.Count;
