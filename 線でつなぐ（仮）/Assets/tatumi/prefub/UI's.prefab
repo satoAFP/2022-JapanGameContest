@@ -274,7 +274,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7b49f9dabcab13747a939a573a5d3357, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\n\n\nGAME OVER\n\n\n\n                                          click
-    back"
+  m_Text: "\n\n\nGAME OVER\n\n\n\n                                         -click
+    back-"
 --- !u!1 &1753067499006245036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,14 +2575,14 @@ PrefabInstance:
       objectReference: {fileID: 5002043507089337601, guid: 52bd90da3f2028f46956f2b06543a423, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
---- !u!1 &1654467014063245013 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2112334751894939849, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
-  m_PrefabInstance: {fileID: 839179951180508700}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1654467014063245014 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2112334751894939850, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
+  m_PrefabInstance: {fileID: 839179951180508700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1654467014063245013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2112334751894939849, guid: cf912158cd5af2e4e9a830eb0cc9368e, type: 3}
   m_PrefabInstance: {fileID: 839179951180508700}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2205110802653502792
@@ -2592,6 +2592,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2503376558872538308}
     m_Modifications:
+    - target: {fileID: 1449276700462032194, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7b49f9dabcab13747a939a573a5d3357, type: 3}
     - target: {fileID: 5157150177828059913, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
       propertyPath: text_fade_obj
       value: 
@@ -2690,13 +2694,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
---- !u!1 &3643781051708605259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3173752511700786691, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
-  m_PrefabInstance: {fileID: 2205110802653502792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6416433564623136322 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5157150177828059914, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
+  m_PrefabInstance: {fileID: 2205110802653502792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3643781051708605259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3173752511700786691, guid: b9f0aa13094e5f847836af2b037724c7, type: 3}
   m_PrefabInstance: {fileID: 2205110802653502792}
   m_PrefabAsset: {fileID: 0}
