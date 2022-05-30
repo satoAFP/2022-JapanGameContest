@@ -297,7 +297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -800}
+  m_AnchoredPosition: {x: -4, y: -800}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296164691
@@ -555,7 +555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -440}
+  m_AnchoredPosition: {x: -75, y: -440}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &781871360
@@ -713,7 +713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -740}
+  m_AnchoredPosition: {x: -52, y: -740}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854606229
@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -680}
+  m_AnchoredPosition: {x: 7, y: -680}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1578621398
@@ -1560,7 +1560,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "SATO\u3000KOUSUKE"
+  m_Text: "    SATO\u3000KOUSUKE"
 --- !u!222 &1578621399
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1678,7 +1678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -980}
+  m_AnchoredPosition: {x: -37, y: -980}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1644540875
@@ -1985,7 +1985,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -620}
+  m_AnchoredPosition: {x: 5, y: -620}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891079883
@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbb850c1fc84ca4ea450c9d51e13bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  role_speed: 0.75
+  role_speed: 0.25
 --- !u!1 &1974671147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,7 +2210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6583, y: -1040}
+  m_AnchoredPosition: {x: 18, y: -1040}
   m_SizeDelta: {x: 1024, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051526115
@@ -2246,7 +2246,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "MIKI\u3000TOMOYA"
+  m_Text: "   MIKI\u3000TOMOYA"
 --- !u!222 &2051526116
 CanvasRenderer:
   m_ObjectHideFlags: 0
