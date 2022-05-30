@@ -62,15 +62,18 @@ public class time_count : MonoBehaviour
         //時間のカウント処理
         if (time_move)
         {
-            //分の処理
-            if (total_time < 0)
+            if (mem_total_time > 0)
             {
-                minute--;
-                total_time = 60;
+                //分の処理
+                if (total_time < 0)
+                {
+                    minute--;
+                    total_time = 60;
+                }
+                total_time -= Time.deltaTime;
+                mem_total_time -= Time.deltaTime;
+                seconds = (int)total_time;
             }
-            total_time -= Time.deltaTime;
-            mem_total_time -= Time.deltaTime;
-            seconds = (int)total_time;
 
             //時間の表示
             gameObject.GetComponent<TextMesh>().text = minute.ToString("d2") + ":" + seconds.ToString("d2");
