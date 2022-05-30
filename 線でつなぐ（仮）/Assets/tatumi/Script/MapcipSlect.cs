@@ -36,10 +36,23 @@ public class MapcipSlect : MonoBehaviour
         if (now_select == true && Onplayer==false)
         {
             now_select = false;
+
             //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
             if (Onblock==true)
             {
                
+            }
+            else if(Onobj == true)
+            {
+                if(script.Existence_Check == false)
+                {
+                    Debug.Log("きも");
+                    mats[0] = mat[1];
+                }
+                else
+                {
+                    mats[0] = mat[2];
+                }
             }
             else
             {
@@ -55,15 +68,21 @@ public class MapcipSlect : MonoBehaviour
             //マップチップの上にブロックが置いてあった場合、マップチップの色を変えない
             if (Onblock == true)
             {
-                //Debug.Log("53位");
+                Debug.Log("53位");
+            }
+            else if(Onobj==true)
+            {
+                Debug.Log("黄色");
+                mats[0] = mat[2];
             }
             else
             {
                 mats[0] = mat[2];
             }
-
             GetComponent<Renderer>().materials = mats;
         }
+
+       
         else
         {
             if (mats[0] == mat[1])
@@ -94,16 +113,47 @@ public class MapcipSlect : MonoBehaviour
            // Debug.Log("夢色キッチン☆");
             Onplayer = true;
         }
+        //電線＆電気ブロック
         if (other.CompareTag("Conductor"))
         {
-           // Onplayer = true;
+            Onobj = true;
+        }
+        //色用ブロック
+        if (other.gameObject.tag == "ColorInput")
+        {
+            Onobj = true;
+        }
+        //色用電線
+        if (other.gameObject.tag == "ColorOutput")
+        {
+            Onobj = true;
+        }
+        //混色オブジェクト
+        if (other.gameObject.tag == "ColorMix")
+        {
+            Onobj = true;
+        }
+        ////音用ブロック
+        //if (other.gameObject.tag == "MusicInput")
+        //{
+        //    Onobj = true;
+        //}
+        //音用電線
+        if (other.gameObject.tag == "MusicOutput")
+        {
+            Onobj = true;
+        }
+        //音混ぜオブジェクト
+        if (other.gameObject.tag == "MusicMix")
+        {
+            Onobj = true;
         }
 
         //ライトオブジェクトがマップチップの上にある時、ブロックを置けないようにする
         //（マップチップの上に乗っているときのみ！！！！）
         if (other.CompareTag("Power_Supply"))
         {
-            //Debug.Log("バナナ");
+          //  Debug.Log("バナナ");
             Onobj = true;
         }
 
@@ -111,7 +161,7 @@ public class MapcipSlect : MonoBehaviour
         //（マップチップの上に乗っているときのみ！！！！）
         if (other.CompareTag("Noset"))
         {
-           // Debug.Log("夢色キッチン☆");
+            //Debug.Log("夢色キッチン☆");
             Onobj = true;
         }
 
@@ -126,6 +176,32 @@ public class MapcipSlect : MonoBehaviour
         {
            // Debug.Log("フォークなのにさじ加減！");
             Onplayer = false;
+        }
+
+        //電気ブロックが床から離れたときマップチップの色を元に戻す
+        if (other.CompareTag("Conductor"))
+        {
+            Debug.Log("素敵だね");
+            Onobj = false;
+        }
+
+        //回転ブロックが床から離れたときマップチップの色を元に戻す
+        if (other.CompareTag("Rotate"))
+        {
+         //   Debug.Log("素敵だね");
+            Onobj = false;
+        }
+
+        //色用ブロックが床から離れたときマップチップの色を元に戻す
+        if (other.gameObject.tag == "ColorInput")
+        {
+            Onobj = false;
+        }
+
+        //音用ブロックが床から離れたときマップチップの色を元に戻す
+        if (other.gameObject.tag == "MusicInput")
+        {
+            Onobj = false;
         }
     }
 

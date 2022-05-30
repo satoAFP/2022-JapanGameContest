@@ -115,7 +115,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &501095358814453646
 MonoBehaviour:
@@ -156,12 +156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf338ab858b1f1044962534c30600a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energization: 0
   mat:
   - {fileID: 2100000, guid: bb3f8fa409c28e848b38ea2528e8940a, type: 2}
   - {fileID: 2100000, guid: 8b1f0b7a9577d4f4b95fa0269ad453f1, type: 2}
   Rotationflag: 0
   vertical: 0
-  Nosetline: 0
+  inputON: 0
+  Setlineblock: 0
 --- !u!114 &3210765134819990686
 MonoBehaviour:
   m_ObjectHideFlags: 0

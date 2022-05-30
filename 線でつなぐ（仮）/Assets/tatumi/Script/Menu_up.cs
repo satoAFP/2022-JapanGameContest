@@ -11,7 +11,6 @@ public class Menu_up : MonoBehaviour
     [SerializeField, Header("全体map")] GameObject All_map;
     [SerializeField, Header("中央点")] GameObject center_point;
 
-    [SerializeField, Header("設定出さない")] bool not_setting;
 
 
     // Start is called before the first frame update
@@ -23,23 +22,20 @@ public class Menu_up : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!not_setting)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            //Eキーを推されたさいメニュー画面を全部非表示(真ん中の十字は再表示)
+            if (Menu.gameObject.activeSelf == true)
             {
-                //Eキーを推されたさいメニュー画面を全部非表示(真ん中の十字は再表示)
-                if (Menu.gameObject.activeSelf == true)
-                {
-                    Menu.gameObject.SetActive(false);
-                    setting_menu.gameObject.SetActive(false);
-                    All_map.gameObject.SetActive(false);
-                    center_point.gameObject.SetActive(true);
-                }
-                else
-                {
-                    Menu.gameObject.SetActive(true);
-                    center_point.gameObject.SetActive(false);
-                }
+                Menu.gameObject.SetActive(false);
+                setting_menu.gameObject.SetActive(false);
+                All_map.gameObject.SetActive(false);
+                center_point.gameObject.SetActive(true);
+            }
+            else
+            {
+                Menu.gameObject.SetActive(true);
+                center_point.gameObject.SetActive(false);
             }
         }
     }

@@ -26,7 +26,7 @@ public class BoxCastRayTest : MonoBehaviour
 
     public bool grab;//掴みフラグ
 
-    private bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
+    public bool setlineblock = false;//ClickObjのNosetlineの受け取りフラグ
 
     private bool Pause = false;//一時中断フラグ
 
@@ -73,7 +73,7 @@ public class BoxCastRayTest : MonoBehaviour
     void Update()
     {
         //　ターゲットとの距離
-       //distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
+        //distanceFromTargetObj = Vector3.Distance(transform.position, targetTra.position);
 
         RaycastHit hit;
 
@@ -108,7 +108,7 @@ public class BoxCastRayTest : MonoBehaviour
             Debug.Log("Wall");
         }
         //Cubeのレイを飛ばしターゲットと接触しているか判定
-        else if (grab==false)
+        else if (grab == false)
         {
             if (Physics.Raycast(ray, out hit, 3.0f, LayerMask.GetMask("Target")) && !Pause)
             {
@@ -121,10 +121,9 @@ public class BoxCastRayTest : MonoBehaviour
                 Cancel = hit.collider.gameObject;//レイが当たったらオブジェクトを取得する（同じオブジェクトを二回クリックで選択を解除させるため）
 
                 //シリンダーの上に置けるブロックの場合、シリンダー設置ON
-                if(hit.collider.GetComponent<ClickObj>().Setlineblock == true)
+                if (hit.collider.GetComponent<ClickObj>().Setlineblock == true)
                 {
                     setlineblock = true;
-                    Debug.Log("as");
                 }
 
                 //左クリックされたときにレイと接触しているオブジェクトの座標をTargetに入れる
@@ -151,7 +150,7 @@ public class BoxCastRayTest : MonoBehaviour
                     grab = true;//掴みフラグをtrue
                     Cancel = Target;//キャンセルするオブジェクトを設定
                 }
-               
+
                 ////右クリックでオブジェクトを回転
                 //else if (Input.GetMouseButtonDown(1))
                 //{
@@ -161,22 +160,36 @@ public class BoxCastRayTest : MonoBehaviour
             }
         }
 
-     
+        //else if (Physics.Raycast(ray, out hit, 3.0f, LayerMask.GetMask("Target")) && !Pause && grab)
+        //{
+        //    Existence_Check = false;
+        //    Debug.Log("じゃじゃ");
+        //}    
+
         //マップチップにレイが接触しているか判定(rayを線に変更）
         else if (Physics.Raycast(ray, out hit, 4.0f, LayerMask.GetMask("Mapcip")) && !Pause)
         {
 
+
             //2本目のレイがtargetレイヤー
-             if(Physics.Raycast(ray2, out hit2, 3.0f, LayerMask.GetMask("Target")) && !Pause && grab)
+            if (Physics.Raycast(ray2, out hit2, 3.0f, LayerMask.GetMask("Target")) && !Pause && grab)
             {
+              
                 Existence_Check = false;
-                Debug.Log("?????");
+                Debug.Log("なんで寺院に機械があんだよ");
+
+                if (Physics.Raycast(ray, out hit, 2.0f, LayerMask.GetMask("Mapcip")) && !Pause)
+                {
+                    Debug.Log("tyu");
+                }
+
             }
-            else
+            else if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Mapcip"))
             {
-                Debug.Log("くぉ");
+                Debug.Log("教えはどうなってんだ教えは");
             }
 
+        
             ray_Mapcip = true;
             worldPos = hit.collider.gameObject.transform.position;//マップチップの座標を取得する
 
@@ -193,7 +206,6 @@ public class BoxCastRayTest : MonoBehaviour
             }
             else
             {
-                Debug.Log("aaa");
                 //違うレイヤー＆マップチップにレイが当たるとフラグ初期化＆前の位置にいた判定ブロック削除
                 second_set = false;
                 first_setblock = true;
@@ -218,11 +230,11 @@ public class BoxCastRayTest : MonoBehaviour
                 //線の上に置ける
                 if (setlineblock && hit.collider.gameObject.GetComponent<MapcipSlect>().Onobj == false)
                 {
-                    Debug.Log("判定1");
+                  //  Debug.Log("判定1");
                     //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                     if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                     {
-                        Debug.Log("判定2");
+                       // Debug.Log("判定2");
                         //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
                         audioSource.PlayOneShot(set_se);//設置SE
@@ -249,18 +261,18 @@ public class BoxCastRayTest : MonoBehaviour
                 //線の上に置けない
                 else
                 {
-                    Debug.Log("判定3");
+                   // Debug.Log("判定3");
                     //マップチップにあるオブジェクトを判断する、あれば置けないようにする
                     if (!Existence_Check)
                     {
-                        Debug.Log("判定4");
+                        //Debug.Log("判定4");
                         //マップチップの上にオブジェクトが置いていない時のみオブジェクトを設置する
                         if (hit.collider.gameObject.GetComponent<MapcipSlect>().Onblock == false)
                         {
 
                             audioSource.PlayOneShot(set_se);//設置SE
 
-                            Debug.Log("判定5");
+                          //  Debug.Log("判定5");
                             //マップチップの高さが一定以上の時オブジェクトを置いた時の高さを調整する
 
                             //worldPos.y += Target.transformr.localPosition.y;
@@ -282,6 +294,7 @@ public class BoxCastRayTest : MonoBehaviour
                             second_set = true;//現在のマップチップで２回目のブロックを置く処理
                         }
                     }
+
                 }
             }
 
@@ -291,7 +304,6 @@ public class BoxCastRayTest : MonoBehaviour
         }
         else 
         {
-            Debug.Log("はずれ");
             ray_Mapcip = false;//レイから外れるとtrue
             Existence_Check = false;
         }
@@ -364,7 +376,7 @@ public class BoxCastRayTest : MonoBehaviour
         //}
 
         //ドアにレイが接触しているか判定(rayを線に変更）
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Door")) && !Pause)
+        if (Physics.Raycast(ray, out hit, 3.0f, LayerMask.GetMask("Door")) && !Pause)
         {
             if (Input.GetMouseButtonDown(0) && grab == false)
             {
