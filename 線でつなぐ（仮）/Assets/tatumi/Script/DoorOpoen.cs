@@ -26,6 +26,7 @@ public class DoorOpoen : MonoBehaviour
     [SerializeField, Header("シーン移動用のパネルの出現")] public GameObject scene_move_panel;
 
     private bool[] stage_clear_check = new bool[6];
+    private bool SoundClear = false;
 
     public Material[] mat = new Material[1];//変更したいマテリアルをセット
     [SerializeField, Header("0=強調,1=普通")]
@@ -33,7 +34,7 @@ public class DoorOpoen : MonoBehaviour
 
     //音源取得
     [SerializeField]
-    private AudioClip sound1;
+    private AudioClip soundopen,soundclose;
     AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -85,7 +86,11 @@ public class DoorOpoen : MonoBehaviour
             {
                 door.SetBool("open", true);
                 doorknob.SetBool("open", true);
-                audioSource.PlayOneShot(sound1);
+
+                //一度のみ
+                if (SoundClear == false)
+                audioSource.PlayOneShot(soundopen);
+                SoundClear = true;
 
                 //最後の部屋でゴール時ワープする
                 if (goal_warp_door)
@@ -100,6 +105,7 @@ public class DoorOpoen : MonoBehaviour
             {
                 door.SetBool("open", false);
                 doorknob.SetBool("open", false);
+                audioSource.PlayOneShot(soundclose);
             }
 
             
@@ -116,7 +122,10 @@ public class DoorOpoen : MonoBehaviour
                 door.SetBool("open", true);
                 doorknob.SetBool("open", true);
                 scene_move_panel.SetActive(true);
-                audioSource.PlayOneShot(sound1);
+                if (!SoundClear)
+                    audioSource.PlayOneShot(soundopen);
+                SoundClear = true;
+
             }
         }
     }
