@@ -98,6 +98,11 @@ public class NewConductor : Base_Enegization
                 //オブジェクトの色を非表示
                 efflight.SetActive(false);
             }
+            else
+            {
+                power_cnt = 0;
+                power_save = 0;
+            }
         }
     }
 
@@ -138,7 +143,6 @@ public class NewConductor : Base_Enegization
         {
             if (power_cnt < c.gameObject.GetComponent<NewConductor>().GetPower())
             {
-                
                 energization = false;
                 power_save = power_cnt;
             }
@@ -148,7 +152,6 @@ public class NewConductor : Base_Enegization
             Debug.Log(this.gameObject.transform.parent.name + "：" + c.gameObject.GetComponent<NewRotate>().GetPower());
             if (power_cnt < c.gameObject.GetComponent<NewRotate>().GetPower())
             {
-
                 energization = false;
                 power_save = power_cnt;
             }
