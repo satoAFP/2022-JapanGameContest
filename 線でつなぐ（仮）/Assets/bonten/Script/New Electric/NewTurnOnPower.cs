@@ -9,7 +9,7 @@ public class NewTurnOnPower : MonoBehaviour
     public int Clear_num;
     private GameObject NonlitingChild;//光源となってない子オブジェクト取得用
     private GameObject LiteingChild;//光源となってる子オブジェクト取得用
-    private bool energi_investigate;//電気ついてるかの確認用変数
+    private bool isEnergized;        //通電してるかどうかの確認用変数
 
     [SerializeField, Header("電気のみかどうか(prefubで管理)")]
     private bool enegeronly;
@@ -36,7 +36,7 @@ public class NewTurnOnPower : MonoBehaviour
     {
         if (enegeronly == true)
         {
-            if (energi_investigate == false)
+            if (isEnergized == false)
             {
                 turn_on_power = false;
                 Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;
@@ -62,14 +62,14 @@ public class NewTurnOnPower : MonoBehaviour
         if (enegeronly == true)
         {
             //タグ名Conductorと接触しつづけてる時
-            if (c.gameObject.tag == "Conductor")
+            if (c.gameObject.CompareTag("Conductor"))
             {
                 //つながってる導体のenergization(通電確認用変数)で初期化
-                energi_investigate = c.gameObject.GetComponent<NewConductor>().GetEnergization();
+                isEnergized = c.gameObject.GetComponent<NewConductor>().GetEnergization();
 
                 //Debug.Log(c.gameObject.name);
                 //つながっている導体のenergizasionがtrueならこのobjのcounductorhitもtrueにする
-                if (energi_investigate == true)
+                if (isEnergized == true)
                 {
                     //counductor_hitをtrueにする(連続で信号飛ばさん様に最初の一度のみ適用)
                     if (turn_on_power == false)
@@ -80,7 +80,7 @@ public class NewTurnOnPower : MonoBehaviour
                     }
 
                 }
-                else
+                else 
                 {
                     //counductor_hitをtrueにする(連続で信号飛ばさん様に最初の一度のみ適用)
                     if (turn_on_power == true)
@@ -100,7 +100,7 @@ public class NewTurnOnPower : MonoBehaviour
         if (enegeronly == true)
         {
             //タグ名Conductorと離れたとき
-            if (c.gameObject.tag == "Conductor")
+            if (c.gameObject.CompareTag("Conductor"))
             {
                 turn_on_power = false;
                 Door.GetComponent<DoorOpoen>().ClearTaskflag[Clear_num] = false;

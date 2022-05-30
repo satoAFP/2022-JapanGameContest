@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 492191301238770974}
   - component: {fileID: 492191301238770972}
   - component: {fileID: 2593512771729135742}
-  - component: {fileID: 8523498869877340523}
+  - component: {fileID: 7979733133571088464}
   m_Layer: 0
   m_Name: Lightobj
   m_TagString: Untagged
@@ -193,7 +193,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8523498869877340523
+--- !u!114 &7979733133571088464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 492191301238770968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c650de3ebe40fc44bba911cff0a39f73, type: 3}
+  m_Script: {fileID: 11500000, guid: 13b04cd18947bbd4c88dbcb1faa211fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   turn_on_power: 0
