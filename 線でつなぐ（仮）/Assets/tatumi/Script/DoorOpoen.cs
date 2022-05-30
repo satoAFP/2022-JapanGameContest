@@ -34,7 +34,7 @@ public class DoorOpoen : MonoBehaviour
 
     //音源取得
     [SerializeField]
-    private AudioClip soundopen,soundclose;
+    private AudioClip soundopen,soundclose,soundlock;
     AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -70,6 +70,12 @@ public class DoorOpoen : MonoBehaviour
         {
             //代入（中身判別）
             taskflag = Check;
+
+            //カギ閉め、開け
+            if(taskflag!=Check)
+            {
+                audioSource.PlayOneShot(soundlock);
+            }
         }
        
         mats[0] = mat[1];
