@@ -130,6 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energization: 1
+  AssistObj:
+  - {fileID: 0}
+  - {fileID: 0}
+  hit_check: 0000
   colorchange_signal: 0
   color: ff00000000000000ff000000
 --- !u!114 &6887897119672136773
@@ -232,6 +236,10 @@ PrefabInstance:
     - target: {fileID: 1813393952390425486, guid: ad9b95bcaeba0e44eb23b73f2edd22d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813393952390425487, guid: ad9b95bcaeba0e44eb23b73f2edd22d5, type: 3}
+      propertyPath: MaxDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9b95bcaeba0e44eb23b73f2edd22d5, type: 3}
