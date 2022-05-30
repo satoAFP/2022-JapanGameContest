@@ -127,6 +127,8 @@ public class DoorOpoen : MonoBehaviour
                 SoundClear = true;
 
             }
+            else
+                audioSource.PlayOneShot(soundclose);
         }
     }
 
