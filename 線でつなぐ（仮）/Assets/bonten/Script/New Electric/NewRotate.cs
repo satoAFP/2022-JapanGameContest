@@ -44,53 +44,6 @@ public class NewRotate : Base_RotateAssist
         power_gave = false;
         giving_conductor = 0;
     }
-    //電力の優先度、数小さい程電源に近いので優先する
-    //set_p→自身のpower_cnt
-    public void SetPower(int set_p)
-    {
-        //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
-        //それがこのオブジェクトのpower_cntより小さければ代入する
-        if ((set_p > power_cnt || power_cnt == 0) && energization == false)
-        {
-            power_cnt = set_p;
-        }
-    }
-    public void SetPower(int set_p, GameObject Obj)
-    {
-        //set_pにはこのメソッドを起動したオブジェクトのpower_cntが入り、
-        //それがこのオブジェクトのpower_cntより小さければ代入する
-        if ((set_p > power_cnt || power_cnt == 0) && energization == false)
-        {
-            power_cnt = set_p;
-            Obj.gameObject.GetComponent<Conductor_Script>().AlreadyGetEnegy();
-        }
-    }
-
-    //自身のpower_cntが0になったときに周りも0にするためだけのメソッド
-    public void SetPower(int set_p, int pow)
-    {
-        //上のメソッドのset_pの役割を変数powで代用する。
-        if (power_save < pow)
-        {
-            //電源と接触している導体だけ問題外とする
-            if (Power_hit != true)
-            {
-                //通電状態ではなくなるので通電している証となる変数を初期化する
-                energi_check = true;
-                GivePowerReSet();
-                power_save = power_cnt;
-                power_cnt = set_p;
-            }
-        }
-    }
-
-    //タグPower_Supplyオブジェクトからアクセスするためのメソッド
-    public void SetPower(int set_p, bool turn_on)
-    {
-        power_cnt = set_p;
-        Power_hit = turn_on;
-    }
-
     //power_cntのゲッター
     public int GetPower() => power_cnt;
 
