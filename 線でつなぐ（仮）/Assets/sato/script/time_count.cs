@@ -74,6 +74,11 @@ public class time_count : MonoBehaviour
                 mem_total_time -= Time.deltaTime;
                 seconds = (int)total_time;
             }
+            else
+            {
+                heart_beat.volume = 0;
+                breath.volume = 0;
+            }
 
             //ŽžŠÔ‚Ì•\Ž¦
             gameObject.GetComponent<TextMesh>().text = minute.ToString("d2") + ":" + seconds.ToString("d2");
