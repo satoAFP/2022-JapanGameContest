@@ -17,7 +17,7 @@ public class ending_move : MonoBehaviour
     void Update()
     {
         //スタッフロールの移動処理
-        if (this.gameObject.GetComponent<RectTransform>().localPosition.y <= 1750)
+        if (this.gameObject.GetComponent<RectTransform>().localPosition.y <= 1999)
             this.gameObject.GetComponent<RectTransform>().localPosition += new Vector3(0, role_speed, 0);
     }
 }

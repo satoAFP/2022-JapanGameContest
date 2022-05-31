@@ -176,7 +176,7 @@ public class BoxCastRayTest : MonoBehaviour
             {
               
                 Existence_Check = false;
-                Debug.Log("‚È‚ñ‚ÅŽ›‰@‚É‹@ŠB‚ª‚ ‚ñ‚¾‚æ");
+              //  Debug.Log("‚È‚ñ‚ÅŽ›‰@‚É‹@ŠB‚ª‚ ‚ñ‚¾‚æ");
 
                 if (Physics.Raycast(ray, out hit, 2.0f, LayerMask.GetMask("Mapcip")) && !Pause)
                 {
@@ -186,7 +186,7 @@ public class BoxCastRayTest : MonoBehaviour
             }
             else if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Mapcip"))
             {
-                Debug.Log("‹³‚¦‚Í‚Ç‚¤‚È‚Á‚Ä‚ñ‚¾‹³‚¦‚Í");
+               // Debug.Log("‹³‚¦‚Í‚Ç‚¤‚È‚Á‚Ä‚ñ‚¾‹³‚¦‚Í");
             }
 
         
