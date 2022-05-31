@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Imageコンポーネントを必要とする
+// Imageコンポーネントを必要とする(自動生成)
 [RequireComponent(typeof(Image))]
 
 public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler

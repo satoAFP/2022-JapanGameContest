@@ -77,8 +77,7 @@ public class DoorOpoen : MonoBehaviour
             {
                 if (taskflag != Check)
                 {
-                    audioSource.PlayOneShot(soundlock);
-                    Debug.Log("a");
+                    StartCoroutine(Soundon());
                 }
 
                 //代入（中身判別）
@@ -154,5 +153,19 @@ public class DoorOpoen : MonoBehaviour
         //光るよ！
         GetComponent<Renderer>().materials = mats;
 
+    }
+
+    public IEnumerator Soundon()
+    {
+        for (int i = 0; i != 3; i++)
+        {
+            if (i == 0)
+                yield return new WaitForSeconds(0.5f);
+            else
+            {
+                audioSource.PlayOneShot(soundlock);
+            }
+
+        }
     }
 }
