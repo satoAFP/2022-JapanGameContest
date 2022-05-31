@@ -68,14 +68,23 @@ public class DoorOpoen : MonoBehaviour
         //bool型で判定できるように変換
         foreach (bool Check in results)
         {
-            //代入（中身判別）
-            taskflag = Check;
+            Debug.Log(num);
+            Debug.Log(taskflag);
+            Debug.Log(Check);
 
             //カギ閉め、開け
-            if(taskflag!=Check)
+            if (num == 1)
             {
-                audioSource.PlayOneShot(soundlock);
+                if (taskflag != Check)
+                {
+                    StartCoroutine(Soundon());
+                }
+
+                //代入（中身判別）
+                taskflag = Check;
             }
+
+           
         }
        
         mats[0] = mat[1];
@@ -146,5 +155,19 @@ public class DoorOpoen : MonoBehaviour
         //光るよ！
         GetComponent<Renderer>().materials = mats;
 
+    }
+
+    public IEnumerator Soundon()
+    {
+        for (int i = 0; i != 3; i++)
+        {
+            if (i == 0)
+                yield return new WaitForSeconds(0.5f);
+            else
+            {
+                audioSource.PlayOneShot(soundlock);
+            }
+
+        }
     }
 }
