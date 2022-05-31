@@ -61,7 +61,6 @@ public class stage_clear : MonoBehaviour
         //タイトル、エンディングに戻るとカーソルを出すようにする
         if (SceneManager.GetActiveScene().name == "TITLE" || SceneManager.GetActiveScene().name == "ENDING") 
         {
-            text_mem = "";
             if (title_cursol_set)
             {
                 SetCursorPos(960, 570);

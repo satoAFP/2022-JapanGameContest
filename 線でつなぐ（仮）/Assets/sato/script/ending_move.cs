@@ -14,7 +14,7 @@ public class ending_move : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //スタッフロールの移動処理
         if (this.gameObject.GetComponent<RectTransform>().localPosition.y <= 1999)

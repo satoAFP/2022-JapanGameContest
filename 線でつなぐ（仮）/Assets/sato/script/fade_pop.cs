@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class fade_pop : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class fade_pop : MonoBehaviour
         //表示用テキスト入力
         text_fade_obj.GetComponent<Text>().text = GameObject.Find("stage_clear_check").GetComponent<stage_clear>().text_mem;
 
+        if (SceneManager.GetActiveScene().name == "ENDING")
+            text_fade_obj.GetComponent<Text>().text = "";
     }
 
     // Update is called once per frame
