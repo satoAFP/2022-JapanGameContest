@@ -22,12 +22,6 @@ public class Allmap_moveCamera : MonoBehaviour
     //Œ»İ’n•Ô‚µ
     public Vector3 Getpos()
     {
-        //‰¡(Œü‚±‚¤‘¤‚Åˆ—)
-        //trans.x += a.x + this.transform.position.x;
-
-        //c
-       // trans.z = a.y + this.transform.position.z;
-
         return this.transform.position;
     }
 

@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Imageコンポーネントを必要とする(自動生成)
-[RequireComponent(typeof(Image))]
-
 public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     // ドラッグ前の位置(中心位置)//
@@ -24,7 +21,7 @@ public class Allmap_move : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     // Use this for initialization
     void Start()
     {
-        //rootPos = new Vector3(512.0f, 287.0f, 0f); //画面の半分
+      
     }
 
     // Update is called once per frame

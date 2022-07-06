@@ -23,6 +23,7 @@ public class Rotate_music_Assist : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        //回転状況を認識対応（objtypeにより変更）
         if (collider.gameObject.tag == "MusicOutput")
         {
             AssistingObj.GetComponent<Rotate_music>().SetCheckRight(true);
@@ -37,6 +38,7 @@ public class Rotate_music_Assist : MonoBehaviour
 
     private void OnTriggerExit(Collider collider)
     {
+        //回転状況を認識対応（objtypeにより変更）
         if (collider.gameObject.tag == "MusicOutput")
         {
             AssistingObj.GetComponent<Rotate_music>().SetCheckRight(false);
