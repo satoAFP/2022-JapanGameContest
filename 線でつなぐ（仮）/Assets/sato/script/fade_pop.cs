@@ -21,7 +21,7 @@ public class fade_pop : MonoBehaviour
         //表示用テキスト入力
         text_fade_obj.GetComponent<Text>().text = GameObject.Find("stage_clear_check").GetComponent<stage_clear>().text_mem;
 
-        if (SceneManager.GetActiveScene().name == "ENDING")
+        if (SceneManager.GetActiveScene().name == "ENDING" || SceneManager.GetActiveScene().name == "LOSEENDING") 
             text_fade_obj.GetComponent<Text>().text = "";
     }
 

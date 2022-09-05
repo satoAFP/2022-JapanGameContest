@@ -17,7 +17,7 @@ public class stage_clear : MonoBehaviour
     [System.NonSerialized] public string text_mem;
 
     //タイトルに戻るとカーソルをセットする
-    private bool title_cursol_set = false;
+    private bool title_cursol_set = true;
     //カーソルの移動設定
     [DllImport("user32.dll")]
     public static extern bool SetCursorPos(int x, int y);
@@ -59,12 +59,12 @@ public class stage_clear : MonoBehaviour
         }
 
         //タイトル、エンディングに戻るとカーソルを出すようにする
-        if (SceneManager.GetActiveScene().name == "TITLE" || SceneManager.GetActiveScene().name == "ENDING") 
+        if (SceneManager.GetActiveScene().name == "TITLE" || SceneManager.GetActiveScene().name == "ENDING" || SceneManager.GetActiveScene().name == "LOSEENDING")
         {
+            Cursor.visible = true;
             if (title_cursol_set)
             {
                 SetCursorPos(960, 570);
-                Cursor.visible = true;
                 title_cursol_set = false;
             }
         }

@@ -1090,7 +1090,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5565445573842272540, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
       propertyPath: scene_name
-      value: TITLE
+      value: ENDING
       objectReference: {fileID: 0}
     - target: {fileID: 5565445573999347436, guid: 29881e8d9d6f0614f95d769af3445afc, type: 3}
       propertyPath: m_Name
@@ -11479,6 +11479,10 @@ PrefabInstance:
     - target: {fileID: 4223610538632133940, guid: 6a7a3b3890d0cac439bc7e616e7b82ad, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416433564623136325, guid: 6a7a3b3890d0cac439bc7e616e7b82ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a7a3b3890d0cac439bc7e616e7b82ad, type: 3}
