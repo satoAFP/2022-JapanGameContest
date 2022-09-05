@@ -326,7 +326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: "\u4F55\u304B\u58F0\u304C\u805E\u3053\u3048\u308B\n\u524D\u3082\u3069\u3053\u304B\u3067\u304D\u3044\u305F..\u3088\u3046....\n"
+  m_Text: "\u4F55\u304B\u58F0\u304C\u805E\u3053\u3048\u308B\n\u524D\u3082\u3069\u3053\u304B\u3067\u805E\u3044\u305F..\u3088\u3046....\n"
 --- !u!222 &138390135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -473,9 +473,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642942098}
     m_Modifications:
+    - target: {fileID: 542261153012714524, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2933749b14c27384db4b42893c09244f, type: 2}
     - target: {fileID: 2932871327092357129, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
       propertyPath: m_Name
       value: keikoutou_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932871327092357129, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3792039579817011057, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
       propertyPath: m_RootOrder
@@ -521,6 +529,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7534854174716723886, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2933749b14c27384db4b42893c09244f, type: 2}
+    - target: {fileID: 7670561563682673881, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2933749b14c27384db4b42893c09244f, type: 2}
+    - target: {fileID: 9216135024088948000, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2933749b14c27384db4b42893c09244f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb375cb1125ddab40997805f8c01348f, type: 3}
 --- !u!1001 &429548029
